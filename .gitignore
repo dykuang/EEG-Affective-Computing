@@ -1,0 +1,42 @@
+# Keep this repo focused on book source files.
+# Ignore everything by default, then allowlist book content.
+*
+
+# Always keep gitignore itself
+!.gitignore
+
+# Keep directory structure so unignore rules can apply recursively
+!*/
+
+# Core book files
+!README.md
+!SUMMARY.md
+!GLOSSARY.md
+!book.json
+!.bookignore
+
+# Book content pages
+!**/*.md
+
+# Common book/static assets
+!**/*.png
+!**/*.jpg
+!**/*.jpeg
+!**/*.gif
+!**/*.svg
+!**/*.webp
+!**/*.pdf
+!**/*.csv
+!**/*.json
+!**/*.yml
+!**/*.yaml
+
+# HonKit/npm artifacts (kept ignored explicitly for clarity)
+node_modules/
+_book/
+package.json
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
