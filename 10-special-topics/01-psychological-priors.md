@@ -102,6 +102,30 @@ This is often more realistic than enforcing uniform smoothness everywhere, espec
 - Scherer, K. R. (2009). The dynamic architecture of emotion: Evidence for the component process model. Cognition and Emotion, 23(7), 1307-1351.
 - Gross, J. J. (2015). Emotion regulation: Current status and future prospects. Psychological Inquiry, 26(1), 1-26.
 
+## Self-Assessment Lag and Delayed Subjective Reports
+
+In many affective EEG datasets, labels are obtained through self-assessment after a clip, trial, or stimulus episode has already unfolded. This creates a psychologically important time-lag prior: the reported label may trail the underlying affective and neural dynamics rather than coincide with them exactly. Subjective awareness, retrospective summarization, and the act of mapping an internal feeling onto a rating scale all take time. As a result, the label attached to a trial may reflect a delayed, integrated, or memory-shaped appraisal rather than the exact state present at each local EEG segment.
+
+This matters because the brain's response, the participant's felt state, and the participant's later report are not necessarily synchronized. Affective changes can occur rapidly in physiology, while self-reported labels may be shifted later in time, smoothed across the episode, or biased toward salient peaks and end-of-trial impressions. This makes label alignment a modeling problem, not just a bookkeeping detail.
+
+Useful modeling consequences include:
+
+- Allow temporal offsets between local EEG evidence and the associated subjective label.
+- Learn soft alignment or lag-aware attention between segment-level features and trial-level reports.
+- Use sequence models whose latent affect trajectory is later aggregated into a delayed subjective judgment.
+- Down-weight the assumption that every local window shares the same instantaneous label as the final self-report.
+- Evaluate whether predictions align better with shifted or temporally pooled labels than with naive synchronous targets.
+
+This prior is especially relevant for datasets such as DEAP, SEED, and similar paradigms where ratings are often collected after the stimulus presentation rather than continuously during it. It also interacts naturally with the local-segment versus global-trial inconsistency issue: a local segment may differ from the reported label not because it is mislabeled, but because the report reflects a later and temporally aggregated subjective summary.
+
+> Figure suggestion: Add a timeline figure here showing stimulus onset, evolving latent affect, local EEG responses, and a delayed self-report collected after the trial.
+
+### References
+
+- Kahneman, D., Fredrickson, B. L., Schreiber, C. A., and Redelmeier, D. A. (1993). When more pain is preferred to less: Adding a better end. Psychological Science, 4(6), 401-405.
+- Barrett, L. F. (2006). Solving the emotion paradox: Categorization and the experience of emotion. Personality and Social Psychology Review, 10(1), 20-46.
+- Mauss, I. B., and Robinson, M. D. (2009). Measures of emotion: A review. Cognition and Emotion, 23(2), 209-237.
+
 ## Subject-Specific Baselines and Individual Differences
 
 The same EEG pattern does not imply the same affective meaning for every individual. People differ in resting rhythms, reactivity, regulation style, trait affect, and the mapping between physiological response and reported emotion. A useful prior, therefore, is that part of the affective process is shared across subjects, while another part is person-specific.
