@@ -677,6 +677,214 @@ Self-supervised approach:
 4. Fine-tune on emotion labels with pre-trained encoder
 ```
 
+### Discrete Curvature for EEG Graph Analysis
+
+#### What Is Discrete Curvature?
+
+In Riemannian geometry, curvature measures how a space deviates from being flat. Discrete curvature extends this idea to graphs, quantifying how "curved" local neighbourhoods are. Two common formulations are:
+
+**Ollivier-Ricci Curvature (ORC)** compares the Wasserstein distance between probability distributions on neighbouring nodes to the shortest-path distance between the nodes themselves:
+
+$$\kappa_{\text{OR}}(u, v) = 1 - \frac{W_1(m_u, m_v)}{d(u, v)}$$
+
+where $m_u$ and $m_v$ are probability measures concentrated around nodes $u$ and $v$, $W_1$ is the 1-Wasserstein distance, and $d(u,v)$ is the graph distance.
+
+**Interpretation**:
+- $\kappa > 0$: locally "spherical" — tightly connected community
+- $\kappa \approx 0$: locally "flat" — grid-like structure
+- $\kappa < 0$: locally "hyperbolic" — tree-like or bottleneck structure
+
+**Forman-Ricci Curvature (FRC)** is a simpler combinatorial alternative:
+
+$$\kappa_F(e) = w_e\left(\frac{w_u}{w_e} + \frac{w_v}{w_e} - \sum_{e_u \sim e, e_v \sim e} \frac{w_e}{\sqrt{w_e w_{e_u}}} + \frac{w_e}{\sqrt{w_e w_{e_v}}}\right)$$
+
+where $w_e$ is the edge weight and the sum runs over edges adjacent to $e$.
+
+#### Why Curvature Matters for EEG GNNs
+
+Discrete curvature provides several insights for EEG graph modelling:
+
+**1. Detecting Bottlenecks and Oversquashing**
+
+Negative-curvature edges act as information bottlenecks in message-passing GNNs — a phenomenon known as **oversquashing**, where information from many nodes is compressed through a narrow pathway. In EEG graphs, this can reveal:
+
+- critical hub channels through which emotional information flows,
+- edges where gradient signals may be attenuated during training,
+- structural weaknesses in the graph that limit model expressiveness.
+
+**2. Curvature-Guided Graph Rewiring**
+
+Edges with strongly negative curvature can be augmented or rewired to improve information flow:
+
+```python
+# Compute ORC on the EEG connectivity graph
+curvatures = compute_ollivier_ricci_curvature(A, node_features)
+
+# Identify bottleneck edges (κ < -0.5)
+bottleneck_edges = np.where(curvatures < -0.5)
+
+# Rewiring: add new edges near bottlenecks to alleviate oversquashing
+A_rewired = add_edges_near_bottlenecks(A, bottleneck_edges)
+```
+
+This can improve GNN performance without increasing model capacity.
+
+**3. Community Detection**
+
+Positive curvature regions correspond to tightly connected communities — functionally coupled brain regions. In EEG affective computing, curvature-based community detection can:
+
+- identify which electrode groups co-activate during specific emotional states,
+- reveal hierarchical brain network organization,
+- provide interpretable functional modules for emotion processing.
+
+**4. Curvature as an Edge Feature**
+
+Curvature values can be used as additional edge features in GNNs:
+
+```python
+# Augment adjacency with curvature-based edge weights
+curvature_features = compute_forman_curvature(A)
+edge_attr = curvature_features[edge_index]  # Shape: (n_edges,)
+
+# Use in GNN message passing
+x = GATConv(x, edge_index, edge_attr=edge_attr)
+```
+
+#### EEG-Specific Considerations
+
+- Curvature computations are **relatively expensive** for large graphs, but EEG graphs are small (14-64 nodes), making curvature analysis tractable.
+- Curvature depends on the **graph construction method** — functional connectivity yields very different curvature patterns than anatomical connectivity.
+- **Temporal curvature dynamics**: as brain connectivity changes during emotional processing, curvature patterns shift, potentially identifying when emotion-relevant network reconfigurations occur.
+
+#### Practical Recommendations
+
+1. Use **Forman-Ricci curvature** as a fast first-pass analysis; switch to Ollivier-Ricci for deeper structural insight.
+2. Compute curvature **per emotional condition** to see how network geometry differs across states.
+3. Use curvature not only for analysis but also as a **regularization signal** — penalize the model when important emotional edges have high bottleneck curvature.
+4. Visualize curvature on a **topographic head plot** with edges coloured by $\kappa$ to reveal brain network geometry.
+
+### Causal Graphs for EEG Connectivity
+
+#### From Correlation to Causation
+
+Most EEG connectivity graphs are built on **symmetric, undirected** measures — correlation, coherence, phase synchrony. These capture statistical association but cannot distinguish:
+
+- whether channel A drives channel B or vice versa,
+- whether a third channel C confounds the A-B relationship,
+- whether the association reflects genuine neural interaction or volume conduction.
+
+**Causal graph** approaches address these limitations by constructing **directed** graphs where edges represent directional influence.
+
+#### Causal Discovery Methods for EEG
+
+**Granger Causality** tests whether past values of one time series improve prediction of another:
+
+$$X \xrightarrow{\text{Granger}} Y \text{ if } \text{Var}(Y_t | Y_{<t}, X_{<t}) < \text{Var}(Y_t | Y_{<t})$$
+
+Spectral Granger causality extends this to frequency domain, directly linking to EEG bands:
+
+```python
+from mne_connectivity import spectral_connectivity_epochs
+
+# Compute directed connectivity in alpha band
+con = spectral_connectivity_epochs(
+    epochs, method='gc', sfreq=256, fmin=8, fmax=13
+)
+# con shape: (n_channels, n_channels) — directed adjacency
+```
+
+**Transfer Entropy** is an information-theoretic alternative sensitive to nonlinear interactions:
+
+$$TE_{X \to Y} = I(Y_t; X_{<t} \mid Y_{<t})$$
+
+This is useful for EEG because neural interactions are often nonlinear.
+
+**Directed Information** generalizes mutual information to directed settings, capturing the full temporal causal structure.
+
+**Conditional Independence Testing (PC Algorithm)** discovers causal structure by testing for conditional independence between channel pairs.
+
+#### Causal Graph Neural Networks
+
+Once a causal (directed) graph is constructed, GNNs can be adapted:
+
+**1. Directed Message Passing**
+
+Standard GNNs assume undirected edges. For causal graphs:
+
+```python
+# Use separate weight matrices for incoming vs. outgoing edges
+h_v = σ(
+    W_self @ h_v +
+    W_in  @ aggregate({h_u: u → v}) +   # Incoming causal influence
+    W_out @ aggregate({h_w: v → w})      # Outgoing causal influence
+)
+```
+
+**2. Causal Attention**
+
+Attention weights can be constrained by causal structure:
+
+```python
+# Only attend to nodes that causally influence the target
+α_{vu} = 0 if u does not Granger-cause v
+```
+
+This produces sparser, more interpretable attention patterns.
+
+**3. Structural Causal Models (SCM) with GNNs**
+
+Embed EEG causal graphs in an SCM framework:
+
+```
+z (exogenous) → h (endogenous) → y (emotion)
+       ↑               ↑
+   Causal GNN     Causal constraints
+```
+
+The GNN learns representations that respect the causal structure, improving out-of-distribution generalization and robustness to interventions.
+
+#### Why Causal Graphs Matter for EEG Affective Computing
+
+**1. Avoiding Spurious Associations**
+
+Correlation-based connectivity can be inflated by:
+- volume conduction (same source picked up by multiple electrodes),
+- common reference effects,
+- shared noise sources.
+
+Causal analysis helps separate genuine neural interaction from these confounds.
+
+**2. Interpretability**
+
+Directed edges have a clear interpretation: "channel F3 causally influences channel F4 in the alpha band during high-valence states." This is more neuroscientifically meaningful than "F3 and F4 are correlated."
+
+**3. Intervention Reasoning**
+
+Causal models support "what-if" reasoning:
+- What would the EEG pattern look like if we perturbed frontal activity?
+- Which channels are causal drivers of the emotional response vs. downstream effects?
+
+**4. Cross-Subject Generalization**
+
+Causal relationships may be more invariant across subjects than correlational ones because they capture mechanistic influence rather than statistical association.
+
+#### Practical Integration with GNNs
+
+| Step | Method |
+|---|---|
+| **1. Causal Discovery** | Granger causality, transfer entropy, or PC algorithm on EEG time series |
+| **2. Graph Construction** | Build directed adjacency matrix $A_{\text{causal}}$ with thresholding |
+| **3. GNN Adaptation** | Directed message passing or causal attention masking |
+| **4. Training** | Train GNN with causal constraints (e.g., regularization based on causal structure) |
+| **5. Evaluation** | Test on held-out subjects; evaluate robustness to interventions |
+
+#### Caveats and Limitations
+
+- **Granger causality assumes linearity** — nonlinear extensions exist but are more complex.
+- Causal discovery from **observational data alone** has fundamental limits; interventional data (e.g., TMS-EEG) is rarely available.
+- **Temporal resolution** matters: EEG at 256 Hz may miss very fast causal interactions.
+- Causal graphs add **complexity** to the GNN pipeline; the benefit must be weighed against increased computational and methodological overhead.
+
 ## Best Practices for EEG GNNs
 
 1. **Start with anatomical connectivity**: Baseline before learning
@@ -687,6 +895,8 @@ Self-supervised approach:
 6. **Validate connectivity**: Ensure discovered connections make neurophysiological sense
 7. **Regularize**: Prevent overfitting with small graphs
 8. **Visualize learned patterns**: Show which connections the model uses
+9. **Analyse curvature**: Use discrete curvature (Ollivier-Ricci, Forman) to detect bottlenecks, guide rewiring, and uncover community structure in brain networks
+10. **Consider causal graphs**: Where temporal resolution permits, replace undirected correlation-based edges with directed causal edges (Granger, transfer entropy) for stronger interpretability and intervention reasoning
 
 ## Summary
 
@@ -714,6 +924,8 @@ Graph Neural Networks offer a principled way to incorporate brain network struct
 
 **Future Directions**:
 - Dynamic graphs capturing time-varying connectivity
+- Discrete curvature analysis for bottleneck detection and graph rewiring
+- Causal graph construction and directed GNNs for interpretable brain networks
 - Multi-scale hierarchical GNNs
 - Combination with domain-specific priors
 - Better transfer learning for EEG
