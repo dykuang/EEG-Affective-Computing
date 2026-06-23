@@ -1,0 +1,726 @@
+# Graph Neural Networks (GNNs) for EEG-based Affective Computing
+
+## Overview
+
+Graph Neural Networks represent a paradigm shift in modeling EEG data by explicitly leveraging the spatial structure of brain networks. Unlike CNNs that treat channels as a sequence or Transformers that ignore spatial relationships, GNNs model EEG channels as nodes in a graph with connections based on functional or anatomical brain connectivity. This section explores how GNNs can capture the graph structure of brain networks for improved emotion recognition.
+
+## Theoretical Foundations
+
+### Graph Representation
+
+A graph $G = (V, E)$ consists of:
+- **Vertices (Nodes)**: $V = \{v_1, v_2, \ldots, v_n\}$ - EEG channels/electrodes
+- **Edges**: $E$ - Connections between channels based on brain connectivity
+- **Node features**: $X \in \mathbb{R}^{n \times d}$ - EEG signals or spectral features
+- **Adjacency matrix**: $A \in \mathbb{R}^{n \times n}$ - Connection weights between channels
+
+For EEG with 14 channels:
+```
+n = 14 (nodes = electrodes)
+d = temporal resolution (features per node)
+A = 14 × 14 adjacency matrix (brain connectivity)
+```
+
+### Graph Convolution
+
+Graph convolution generalizes standard convolution to irregular graph structures:
+
+**Spectral approach** (using graph Laplacian):
+$$H^{(l+1)} = \sigma(D^{-1/2} A D^{-1/2} H^{(l)} W^{(l)})$$
+
+where:
+- $H^{(l)}$ = node features at layer $l$
+- $A$ = adjacency matrix
+- $D$ = degree matrix ($D_{ii} = \sum_j A_{ij}$)
+- $W^{(l)}$ = learnable weights
+- $\sigma$ = activation function
+
+**Spatial approach** (message passing):
+$$h_v^{(l+1)} = \sigma(W_s^{(l)} h_v^{(l)} + \sum_{u \in \mathcal{N}(v)} W_n^{(l)} h_u^{(l)})$$
+
+where:
+- $\mathcal{N}(v)$ = neighbors of node $v$
+- $h_v^{(l)}$ = feature vector of node $v$ at layer $l$
+- Message is aggregated from all neighbors
+
+### GNN Architectures
+
+#### Graph Convolutional Network (GCN)
+
+Simplest GNN, using spectral convolutions:
+
+$$H^{(l+1)} = \sigma(\tilde{A} H^{(l)} W^{(l)})$$
+
+where $\tilde{A} = D^{-1/2} A D^{-1/2}$ is normalized adjacency matrix.
+
+**Advantages**:
+- Computationally efficient
+- Well-understood and stable
+- Good baseline for brain networks
+
+**Disadvantages**:
+- May oversmooth for deep networks
+- Limited expressiveness with fixed weights
+
+#### Graph Attention Networks (GAT)
+
+Uses attention mechanisms to weight neighbor contributions:
+
+$$h_v^{(l+1)} = \sigma\left(\sum_{u \in \mathcal{N}(v) \cup \{v\}} \alpha_{vu}^{(l)} W^{(l)} h_u^{(l)}\right)$$
+
+**Attention weights**:
+$$\alpha_{vu}^{(l)} = \frac{\exp(\text{LeakyReLU}(a^T [W h_v || W h_u]))}{\sum_{k \in \mathcal{N}(v) \cup \{v\}} \exp(\text{LeakyReLU}(a^T [W h_v || W h_k]))}$$
+
+**Advantages**:
+- Learns which connections are important
+- Multi-head attention for stability
+- Interpretable attention weights
+
+#### GraphSAGE (Sample and Aggregate)
+
+Learns to aggregate neighbor information:
+
+$$h_v^{(l+1)} = \sigma(W^{(l)}[h_v^{(l)}, \text{AGGREGATE}(\{h_u^{(l)} : u \in \mathcal{N}(v)\})])$$
+
+Aggregation functions:
+- **Mean**: $\text{AGGREGATE} = \text{mean}(\{h_u : u \in \mathcal{N}(v)\})$
+- **LSTM**: $\text{AGGREGATE} = \text{LSTM}(\{h_u : u \in \mathcal{N}(v)\})$
+- **Pooling**: $\text{AGGREGATE} = \max(\{h_u : u \in \mathcal{N}(v)\})$
+
+#### Graph Isomorphism Network (GIN)
+
+More expressive than GCN:
+
+$$h_v^{(l+1)} = \text{MLP}^{(l)}\left((1 + \epsilon^{(l)}) h_v^{(l)} + \sum_{u \in \mathcal{N}(v)} h_u^{(l)}\right)$$
+
+where $\epsilon^{(l)}$ is a learnable parameter.
+
+## Adaptation to EEG-based Affective Computing
+
+### Why GNNs for EEG?
+
+**Advantages**:
+- **Explicit brain structure**: Leverages functional or anatomical connectivity
+- **Irregular topology**: Handles electrode positions without spatial regularity
+- **Learnable connections**: Can discover task-relevant connections
+- **Multi-scale analysis**: Hierarchical networks capture nested structure
+- **Interpretability**: Attention weights show channel importance
+
+**Challenges**:
+- **Graph construction**: How to define edges? (correlation, coherence, anatomical?)
+- **Dynamic graphs**: Brain connectivity changes over time
+- **Limited labeled data**: GNNs often need large graphs; EEG has only ~14-64 channels
+- **Computational overhead**: Graph operations add complexity
+- **Hyperparameter sensitivity**: GNNs can be difficult to tune
+
+### Graph Construction from EEG
+
+#### Option 1: Anatomical Connectivity
+
+Based on known brain structure:
+
+```
+Create fixed edges based on electrode proximity:
+- Fp1, Fp2 (frontal poles) → connected to F3, F4 (frontal)
+- F3, F4 → connected to C3, C4 (central)
+- C3, C4 → connected to P3, P4 (parietal)
+- P3, P4 → connected to O1, O2 (occipital)
+- etc. (Standard 10-20 electrode system)
+```
+
+**Pros**: Fixed, interpretable, domain-guided
+**Cons**: Ignores task-specific connectivity
+
+#### Option 2: Functional Connectivity
+
+Based on signal relationships during task:
+
+**Pearson Correlation**:
+$$A_{ij} = \text{corr}(x_i, x_j)$$
+
+Simple but can be noisy.
+
+**Coherence**:
+$$A_{ij} = \frac{|S_{ij}(f)|^2}{S_{ii}(f) S_{jj}(f)}$$
+
+Frequency-specific relationship (0 ≤ coherence ≤ 1).
+
+**Wavelet Coherence**:
+$$WC_{ij}(t,f) = \frac{|W_i(t,f) W_j^*(t,f)|}{\sqrt{|W_i|^2 |W_j|^2}}$$
+
+Time-frequency dependent relationships.
+
+**Mutual Information**:
+$$MI(X,Y) = \sum p(x,y) \log \frac{p(x,y)}{p(x)p(y)}$$
+
+Captures non-linear relationships.
+
+**Phase Synchrony**:
+$$PLI = |<\sin(\phi_i - \phi_j)>|$$
+
+Phase lag index (robust to volume conduction).
+
+#### Option 3: Hybrid Connectivity
+
+Combine anatomical and functional:
+
+$$A_{ij} = w_a A^{\text{anat}}_{ij} + w_f A^{\text{func}}_{ij}$$
+
+where $w_a$ and $w_f$ are weights.
+
+#### Option 4: Learnable Connectivity
+
+Let the network learn edge weights:
+
+```
+Input: raw or spectral EEG
+↓
+Compute pairwise similarity between channels
+↓
+Learnable edge weights (parameterized)
+↓
+Input to GNN
+```
+
+**Advantage**: Task-specific connections
+**Disadvantage**: May overfit, harder to interpret
+
+### Threshold for Edge Creation
+
+For sparse graphs (especially with ~14 channels):
+
+```
+# Keep top-k connections per node
+A_sparse = keep_topk(A, k=5)
+
+# Or threshold-based
+A_sparse[A < threshold] = 0
+
+# Or statistical significance
+A_sparse[p_value > 0.05] = 0
+```
+
+This reduces noise and computational cost.
+
+## Suitable Input Features
+
+### Node Feature Options
+
+#### Option 1: Raw Time-Series per Channel
+
+```python
+# Each node (channel) has temporal features
+X shape: (n_channels, n_samples)
+# Example: (14, 2048)
+
+# GNN processes:
+# - Node i = Channel i (1000+ samples at 256 Hz)
+# - Edges = Brain connectivity
+# - Output = Emotion prediction
+
+# Challenge: Long sequences, GNN processes all time steps
+```
+
+#### Option 2: Spectral Features per Channel
+
+```python
+# Pre-extract frequency features for each channel
+X shape: (n_channels, n_freq_bands)
+# Example: (14, 5)
+# 5 bands: Delta, Theta, Alpha, Beta, Gamma
+
+# Much more efficient than raw signals
+# Embeds frequency information in node features
+```
+
+#### Option 3: Spectral-Temporal Features
+
+```python
+# Spectrogram per channel
+X shape: (n_channels, n_time_frames, n_freq_bins)
+# Example: (14, 32, 30)
+# 32 time frames, 30 frequency bins per channel
+
+# Requires 3D GNN or careful reshaping
+# Captures time-frequency dynamics
+```
+
+#### Option 4: Statistical Features
+
+```python
+# Hand-crafted features per channel
+X shape: (n_channels, n_features)
+# Example: (14, 20)
+# Features: mean, variance, skewness, kurtosis, entropy, etc.
+
+# Simplest and fastest
+# Loses temporal information
+```
+
+## Network Architecture for EEG
+
+### Simple GNN (Single Layer)
+
+```
+Input: (14 channels) with EEG signals/features
+        (14 × 14) adjacency matrix
+   ↓
+GCN Layer (64 units)
+   ↓
+Global Average Pooling
+   ↓
+Dense(32) → ReLU
+   ↓
+Output (emotion class)
+```
+
+**Use when**: Limited data or computational resources.
+
+### Multi-Layer GNN
+
+```
+Input: EEG features (14, n_features)
+       Adjacency matrix (14, 14)
+   ↓
+[GCN Block 1]
+  GCN(64 units)
+  BatchNorm
+  ReLU
+   ↓
+[GCN Block 2]
+  GCN(128 units)
+  BatchNorm
+  ReLU
+   ↓
+[GCN Block 3]
+  GCN(64 units)
+  BatchNorm
+  ReLU
+   ↓
+Global Average Pooling
+   ↓
+Dense(128) → ReLU → Dropout(0.3)
+   ↓
+Dense(3, softmax) [emotion classes]
+```
+
+### Graph Attention Network (GAT)
+
+```
+Input: EEG features (14, n_features)
+       Adjacency matrix (14, 14)
+   ↓
+[Attention Layer 1]
+  Multi-head attention (8 heads)
+  Learn which channels matter
+   ↓
+[Attention Layer 2]
+  Multi-head attention (8 heads)
+   ↓
+Global Average Pooling
+   ↓
+Dense(32) → ReLU
+   ↓
+Output
+```
+
+**Advantage**: See which channel interactions are important via attention weights.
+
+### Temporal GNN (Spatio-Temporal)
+
+For dynamic graphs (connectivity changes over time):
+
+```
+Input: EEG signals (n_timesteps, n_channels)
+   ↓
+[For each time step]
+  - Compute functional connectivity (adjacency matrix)
+  - Apply GNN
+  - Produces node embeddings at each time step
+   ↓
+LSTM on node embeddings across time
+   ↓
+Global Average Pooling
+   ↓
+Emotion prediction
+```
+
+### Graph Pooling Layers
+
+Hierarchical graph structure:
+
+```
+Input: Full graph (14 nodes)
+   ↓
+GNN Layer
+   ↓
+Graph Pooling: Reduce to 8 nodes
+   ↓
+GNN Layer
+   ↓
+Graph Pooling: Reduce to 4 nodes
+   ↓
+GNN Layer
+   ↓
+Global Pooling (1 representation)
+   ↓
+Dense layers
+   ↓
+Output
+```
+
+Pooling strategies:
+- **Top-k**: Keep highest activation nodes
+- **Attention-based**: Weight importance of nodes
+- **Clustering**: Group similar nodes
+
+## Implementation Considerations
+
+### Graph Construction Algorithm
+
+```python
+import numpy as np
+from scipy.stats import pearsonr
+
+def construct_adjacency_matrix(eeg_signal, method='correlation', threshold=0.5):
+    """
+    Construct adjacency matrix from EEG
+    
+    Args:
+        eeg_signal: (n_channels, n_samples)
+        method: 'correlation', 'coherence', 'phase_sync'
+        threshold: connectivity threshold
+    """
+    n_channels = eeg_signal.shape[0]
+    A = np.zeros((n_channels, n_channels))
+    
+    if method == 'correlation':
+        for i in range(n_channels):
+            for j in range(i+1, n_channels):
+                corr, _ = pearsonr(eeg_signal[i], eeg_signal[j])
+                A[i,j] = A[j,i] = max(0, corr)  # Keep positive correlations
+    
+    # Apply threshold
+    A[A < threshold] = 0
+    
+    # Normalize (optional)
+    A = A / (A.max() + 1e-6)
+    
+    return A
+```
+
+### Handling Variable Graph Sizes
+
+EEG typically has 14-64 channels, but graphs must be fixed size for neural networks:
+
+**Solution 1**: Standardize electrode placement
+```python
+# Use standard 10-20 system
+# Always 14 or 19 channels in consistent positions
+```
+
+**Solution 2**: Interpolation to common grid
+```python
+# Interpolate from actual electrode positions to fixed positions
+# Ensures consistent graph structure
+```
+
+**Solution 3**: Padding
+```python
+# Pad smaller graphs with dummy nodes (no connections)
+```
+
+### Normalization of Adjacency Matrix
+
+Different normalization strategies affect learning:
+
+**Symmetric normalization** (standard):
+$$\tilde{A} = D^{-1/2} A D^{-1/2}$$
+
+**Row normalization**:
+$$\tilde{A} = D^{-1} A$$
+
+**Adding self-loops**:
+$$\tilde{A} = A + I$$
+
+Helps with gradient flow and stabilizes training.
+
+### Initialization and Training
+
+**Xavier initialization** for graph layers:
+```python
+weight.data.normal_(0, np.sqrt(2.0 / (in_features + out_features)))
+```
+
+**Learning rate**: Typically lower than CNNs
+- GCN: 0.0001-0.001
+- GAT: 0.001-0.01
+
+**Optimizer**: Adam often works well
+```python
+optimizer = Adam(learning_rate=0.001)
+```
+
+## Example Application: Emotion Classification with GAT
+
+### Task
+Classify EEG into emotional states using brain network structure.
+
+### Architecture
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch_geometric.nn import GATConv, global_mean_pool
+
+class EEGEmotionGAT(nn.Module):
+    def __init__(self, n_channels=14, n_features=30, n_emotions=3):
+        super().__init__()
+        
+        # Graph Attention layers
+        self.gat1 = GATConv(n_features, 64, heads=4, concat=True)
+        self.gat2 = GATConv(256, 128, heads=4, concat=True)  # 64×4=256 input
+        self.gat3 = GATConv(512, 64, heads=1)  # 128×4=512 input
+        
+        # Classification head
+        self.fc1 = nn.Linear(64, 32)
+        self.fc2 = nn.Linear(32, n_emotions)
+        self.dropout = nn.Dropout(0.3)
+    
+    def forward(self, x, edge_index):
+        """
+        Args:
+            x: node features (14, n_features)
+            edge_index: edge connectivity (2, n_edges)
+        """
+        # GAT layers with ReLU and dropout
+        x = F.relu(self.gat1(x, edge_index))
+        x = self.dropout(x)
+        
+        x = F.relu(self.gat2(x, edge_index))
+        x = self.dropout(x)
+        
+        x = self.gat3(x, edge_index)
+        
+        # Global pooling (average across nodes)
+        x = x.mean(dim=0)  # (64,)
+        
+        # Classification
+        x = F.relu(self.fc1(x))
+        x = self.dropout(x)
+        x = self.fc2(x)
+        
+        return x
+```
+
+### Data Preparation
+
+```python
+import numpy as np
+from torch_geometric.data import Data
+import torch
+
+def prepare_eeg_graph_data(eeg_signal, emotion_label):
+    """
+    Convert EEG to graph format
+    
+    Args:
+        eeg_signal: (14, 2048) - channels × time samples
+        emotion_label: scalar emotion class
+    """
+    # 1. Extract spectral features per channel
+    node_features = []
+    for ch in range(eeg_signal.shape[0]):
+        features = extract_spectral_features(eeg_signal[ch])  # (30,)
+        node_features.append(features)
+    
+    node_features = np.array(node_features)  # (14, 30)
+    
+    # 2. Construct adjacency matrix (functional connectivity)
+    A = construct_adjacency_matrix(eeg_signal, method='correlation', threshold=0.3)
+    
+    # 3. Convert to edge index format
+    edge_index = []
+    for i in range(14):
+        for j in range(14):
+            if A[i,j] > 0:
+                edge_index.append([i, j])
+    
+    edge_index = np.array(edge_index).T  # (2, n_edges)
+    
+    # 4. Create PyG Data object
+    data = Data(
+        x=torch.FloatTensor(node_features),
+        edge_index=torch.LongTensor(edge_index),
+        y=torch.LongTensor([emotion_label])
+    )
+    
+    return data
+
+def extract_spectral_features(signal, fs=256, bands=None):
+    """Extract power in frequency bands"""
+    if bands is None:
+        bands = {'delta': (0.5, 4), 'theta': (4, 8), 'alpha': (8, 13),
+                 'beta': (13, 30), 'gamma': (30, 100)}
+    
+    from scipy import signal as scipy_signal
+    
+    freqs, psd = scipy_signal.welch(signal, fs=fs, nperseg=256)
+    
+    features = []
+    for band_name, (f_low, f_high) in bands.items():
+        mask = (freqs >= f_low) & (freqs < f_high)
+        band_power = psd[mask].mean()
+        features.append(band_power)
+    
+    # Add statistical features
+    features.extend([signal.mean(), signal.std(), signal.var()])
+    
+    return np.array(features)
+
+# Training loop
+model = EEGEmotionGAT()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+criterion = nn.CrossEntropyLoss()
+
+for epoch in range(100):
+    for batch in data_loader:
+        optimizer.zero_grad()
+        
+        out = model(batch.x, batch.edge_index)
+        loss = criterion(out, batch.y)
+        
+        loss.backward()
+        optimizer.step()
+```
+
+## Advantages and Disadvantages
+
+| Aspect | GNN | CNN | LSTM | Transformer |
+|---|---|---|---|---|
+| **Brain structure** | Explicit | Implicit | Implicit | Implicit |
+| **Interpretability** | High (attention) | Medium | Low | High |
+| **Small graphs** | Good fit | OK | OK | Overkill |
+| **Scalability** | Limited (14-64 nodes) | Excellent | Good | Excellent |
+| **Temporal modeling** | Weak (static graphs) | Good (local) | Excellent | Excellent |
+| **Data requirements** | Medium (500+) | Medium-High | High | Very High |
+| **Training speed** | Fast | Fast | Slow | Medium |
+| **Flexibility** | High (custom graphs) | Medium | Low | Low |
+
+## Comparison: When to Use GNNs
+
+### GNNs are better when:
+- ✓ Brain network structure is important
+- ✓ Interpretability via channel importance is critical
+- ✓ Data is limited (fewer parameters than CNN/RNN)
+- ✓ Electrode positions/layout matters
+- ✓ Want to visualize learned connectivity patterns
+
+### Prefer alternatives when:
+- ✗ Temporal dynamics are primary focus (→ LSTM)
+- ✗ Parallel processing critical (→ Transformer)
+- ✗ Very long sequences needed (→ CNN)
+- ✗ Transfer learning desired (→ CNN/Transformer)
+- ✗ Computational efficiency paramount (→ MLP)
+
+## Advanced GNN Concepts for EEG
+
+### Dynamic Graph Neural Networks
+
+Brain connectivity changes over time:
+
+```
+Time t₁: Compute connectivity matrix A₁
+Time t₂: Compute connectivity matrix A₂
+  ...
+Time tₙ: Compute connectivity matrix Aₙ
+   ↓
+Apply GNN to each time-varying graph
+   ↓
+Aggregate temporal dynamics (LSTM, attention)
+   ↓
+Emotion prediction
+```
+
+### Heterogeneous Graphs
+
+Different node types (EEG channels + other sensor data):
+
+```
+Nodes:
+- Type 1: EEG channels (14)
+- Type 2: ECG data (1)
+- Type 3: GSR data (1)
+
+Edges:
+- EEG-to-EEG: Brain connectivity
+- EEG-to-ECG: Physiological coupling
+- ECG-to-GSR: Peripheral coupling
+
+→ Heterogeneous GNN with type-aware layers
+```
+
+### Graph Contrastive Learning
+
+Self-supervised approach:
+
+```
+1. Create two augmented graphs from same data:
+   - Augmentation 1: Drop 20% of edges
+   - Augmentation 2: Perturb features slightly
+
+2. GNN encodes both: z₁ = GNN(G₁), z₂ = GNN(G₂)
+
+3. Maximize similarity: similarity(z₁, z₂)
+
+4. Fine-tune on emotion labels with pre-trained encoder
+```
+
+## Best Practices for EEG GNNs
+
+1. **Start with anatomical connectivity**: Baseline before learning
+2. **Thresholds wisely**: Too sparse = disconnected graph; too dense = noise
+3. **Normalize adjacency matrix**: Affects gradient flow
+4. **Use attention**: Interpretability and adaptive weighting
+5. **Combine with temporal**: GNN + LSTM for full dynamics
+6. **Validate connectivity**: Ensure discovered connections make neurophysiological sense
+7. **Regularize**: Prevent overfitting with small graphs
+8. **Visualize learned patterns**: Show which connections the model uses
+
+## Summary
+
+Graph Neural Networks offer a principled way to incorporate brain network structure into EEG-based emotion recognition:
+
+**Key Strengths**:
+- Explicit modeling of spatial brain organization
+- Natural fit for electrode networks
+- Interpretable learned importance of channel relationships
+- Parameter-efficient compared to CNNs/RNNs
+- Good for understanding what the model learns
+
+**Practical Limitations**:
+- Fixed small graphs (14-64 channels)
+- Less effective for pure temporal modeling
+- Less established transfer learning compared to CNNs
+- Sensitive to graph construction method
+- May require domain expertise in connectivity
+
+**When to Use**:
+- Neuroscience focus with interpretability requirements
+- Small datasets with structural importance
+- Multi-modal integration of brain regions
+- Need to understand learned connectivity patterns
+
+**Future Directions**:
+- Dynamic graphs capturing time-varying connectivity
+- Multi-scale hierarchical GNNs
+- Combination with domain-specific priors
+- Better transfer learning for EEG
+- Integration with clinical knowledge
+
+GNNs represent the natural evolution of EEG analysis toward explicitly incorporating neurobiological structure—a key advantage for clinical and research applications where interpretability and domain alignment are paramount.
+
+---
+
+**Related Reading**: See [Hybrid Architectures and Advanced Models](05-hybrid-architectures.md) for combinations of GNNs with other approaches. For emerging paradigms, see [Trending Architectures](10-trending-architectures.md).
