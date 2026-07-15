@@ -67,6 +67,7 @@
 	- [Robust Learning Under Noisy Labels](10-special-topics/04-robust-learning-under-noisy-labels.md)
 	- [Local-Segment and Global-Trial Label Inconsistency](10-special-topics/05-local-segment-and-global-trial-label-inconsistency.md)
 	- [Source Estimation and Inverse Modeling](10-special-topics/06-source-estimation-and-inverse-modeling.md)
+	- [Active BCI: Closed-Loop Feedback and Human-Machine Co-Adaptation](10-special-topics/07-active-bci-closed-loop-feedback-and-co-adaptation.md)
 - [Discussion and Future Work](11-discussion-and-future-work/README.md)
 	- [Sample Section](11-discussion-and-future-work/sample-section.md)
 - [Conclusion](12-conclusion/README.md)

@@ -12,5 +12,6 @@ The sections in this chapter therefore emphasize modeling assumptions that are e
 4. **Robust Learning Under Noisy Labels**: How to train affective EEG models when supervision is ambiguous, inconsistent, or partially wrong
 5. **Local-Segment and Global-Trial Label Inconsistency**: How to reason about segment-level predictions when only trial-level affect labels are available
 6. **Source Estimation and Inverse Modeling**: How to map scalp EEG back to brain sources for improved spatial specificity and anatomical interpretability in affective computing
+7. **Active BCI: Closed-Loop Feedback and Human-Machine Co-Adaptation**: How intentional neural control, assistive feedback, calibration, and mutual learning change the problem from passive inference to a coupled human-machine system
 
-Taken together, these topics point toward a broader open-world view of affective EEG: models should be temporally plausible, uncertainty-aware, and capable of handling emotional structure that extends beyond the benchmark taxonomy.
+Taken together, these topics point toward a broader open-world view of affective EEG: models should be temporally plausible, uncertainty-aware, capable of handling emotional structure beyond the benchmark taxonomy, and designed for the human adaptation that arises in closed-loop use.
