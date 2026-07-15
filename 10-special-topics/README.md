@@ -11,5 +11,6 @@ The sections in this chapter therefore emphasize modeling assumptions that are e
 3. **EEG Foundation Models**: How large-scale pretraining and reusable neural representations may improve transfer, personalization, and open-world affective inference
 4. **Robust Learning Under Noisy Labels**: How to train affective EEG models when supervision is ambiguous, inconsistent, or partially wrong
 5. **Local-Segment and Global-Trial Label Inconsistency**: How to reason about segment-level predictions when only trial-level affect labels are available
+6. **Source Estimation and Inverse Modeling**: How to map scalp EEG back to brain sources for improved spatial specificity and anatomical interpretability in affective computing
 
 Taken together, these topics point toward a broader open-world view of affective EEG: models should be temporally plausible, uncertainty-aware, and capable of handling emotional structure that extends beyond the benchmark taxonomy.

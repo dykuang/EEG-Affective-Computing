@@ -1,45 +1,8 @@
-# Evaluation Tasks in EEG-Based Affective Computing
+# Generalization Settings and Evaluation Missions
 
-How an EEG affect model is evaluated depends first on what prediction task it is supposed to solve. At a high level, at least two branches should be distinguished. The first is batch prediction, where each sample is treated as a segment, trial, or clip to be predicted without explicit use of temporal dependence at inference time. The second is online prediction, where the model continuously estimates the evolving emotional state and must respect causal time order. A second axis cuts across both branches: whether the task is subject-dependent or subject-independent. This distinction is often as important as the model architecture itself, because it changes the meaning of generalization.
+After the prediction task is fixed, the next question is what must generalize. In EEG-based affective computing, training and test data can differ by trial, time, session, participant, stimulus, device, site, or dataset. These settings are not interchangeable: each holds out a different source of variation and supports a different claim about deployment.
 
-> Figure suggestion: Place a task taxonomy figure here with two main branches, batch prediction and online prediction, crossed with subject-dependent and subject-independent settings.
-
-| Axis | Branch | Core question | Typical constraint |
-| --- | --- | --- | --- |
-| Temporal formulation | Batch prediction | Can the model predict an affect label or score for a predefined segment? | No strict causal requirement at inference |
-| Temporal formulation | Online prediction | Can the model track the evolving emotional state over time? | Causal or near-causal inference |
-| Generalization target | Subject-dependent | Can the model generalize within the same person? | Training and test come from the same subject but different units |
-| Generalization target | Subject-independent | Can the model generalize to unseen people? | Test subjects are excluded from training |
-
-## Batch Prediction
-
-Batch prediction treats EEG examples as pre-segmented units. A sample may be a fixed-length window, a trial-level summary, a clip-level representation, or a collection of windows aggregated before inference. The key point is that the model is evaluated on a set of examples without the requirement that predictions be produced causally in time.
-
-This formulation is common when labels are available per trial or per clip, such as binary valence classification, multi-class emotion recognition, or regression to valence-arousal scores computed for a segment. The model may still use temporal information internally during feature extraction, but the evaluation task itself does not require online state tracking.
-
-Typical properties of batch prediction are:
-
-- each example is scored independently at evaluation time,
-- future context may be available inside the example definition,
-- performance is usually summarized over a test set rather than over a live trajectory,
-- and latency or real-time causality is not part of the task definition.
-
-Batch prediction is appropriate when the goal is clip-level recognition, benchmark comparison under fixed windows, or offline analysis of affective states.
-
-## Online Continuous Prediction
-
-Online prediction assumes that the model observes EEG as a stream and continuously updates its estimate of the current emotional state. Here the temporal order is part of the task, not just a feature of the data. The model should infer the present state using information available up to the current time point, without relying on future samples that would not be accessible in deployment.
-
-This setting is natural for affect tracking, adaptive human-computer interaction, neurofeedback, and closed-loop systems. Labels may be continuous trajectories, delayed self-reports aligned to time, or slowly varying latent affect states inferred from annotations. Compared with batch prediction, online evaluation imposes stronger constraints:
-
-- inference should be causal or explicitly near-causal,
-- prediction delay and update frequency matter,
-- temporal consistency becomes part of task success,
-- and the model should be evaluated on evolving trajectories rather than isolated examples.
-
-In practice, online prediction often overlaps with sequence modeling, state estimation, filtering, or forecasting. Even when the final output is discrete, such as stress versus non-stress, the evaluation setup is fundamentally temporal.
-
-> Figure suggestion: Add a streaming timeline here showing a causal prediction pipeline, where EEG up to time $t$ is used to estimate affect at time $t$ or $t + \Delta$.
+> Figure suggestion: Place a generalization taxonomy here showing trial, temporal, session, subject, stimulus, device, and dataset shifts.
 
 ## Subject-Dependent and Subject-Independent Settings
 
@@ -97,16 +60,16 @@ This setting is crucial when the intended application is plug-and-play affect re
 
 For online tasks, subject-independent evaluation can be combined with streaming constraints. In that case the model must both generalize to a new person and operate causally over time.
 
-## Why This Taxonomy Matters
+## Why Generalization Settings Matter
 
-These task definitions are not cosmetic. They determine what counts as leakage, which train-test split is valid, which metrics are meaningful, and what claims can be made from the results. A model that performs well under randomly shuffled batch prediction may fail under chronological online prediction. Likewise, a model that is strong in cross-trial within-subject testing may still be weak in cross-session or cross-subject deployment.
+These settings are not cosmetic. They determine what counts as leakage, which train-test split is valid, which metrics are meaningful, and what claims can be made from the results. A model that performs well on randomly shuffled trials may fail on a later session or an unseen subject.
 
 For that reason, the problem formulation should always specify at least:
 
-- whether prediction is batch or online,
-- whether evaluation is subject-dependent or subject-independent,
-- what unit of generalization is being held out, such as trials, sessions, or future time,
-- and whether the goal is classification, regression, tracking, or forecasting.
+- which source of variation is held out, such as trials, sessions, subjects, or future time;
+- whether training, validation, and testing preserve independence at that level;
+- what calibration or target-domain information is available; and
+- which generalization claim the resulting split can support.
 
 ## References
 

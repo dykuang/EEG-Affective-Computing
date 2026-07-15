@@ -47,6 +47,20 @@ Not all segments need to be uniform sliding windows. In some datasets, it is mea
 
 State-aligned segmentation, in contrast, aims to capture relatively stable intervals of affect and may be more appropriate for sustained emotion tracking. The distinction matters because onset-focused windows emphasize dynamics, while state-centered windows emphasize persistence.
 
+## Adaptive and Multi-Scale Segmentation
+
+Fixed windows are convenient, but affective EEG does not always change at a fixed rate. Adaptive segmentation uses signal changes, event boundaries, or changes in continuous annotations to define variable-duration intervals. For example, a method may place a boundary at an annotated affective transition, a stimulus change, or a detected change in spectral or spatial EEG properties.
+
+Adaptive boundaries can avoid mixing a transient response with a later steady state, but they introduce another modeling decision: the boundary detector must be specified and evaluated without using held-out labels improperly. If a detector is learned from data, fit it on the training partition and apply it unchanged to validation and test data. For online use, the detector must use only past and present samples.
+
+Multi-scale segmentation provides several views of the same recording, such as short windows for rapid changes and longer windows for stable spectral estimates. This can be implemented by training separate models, concatenating representations from several scales, or using a hierarchical temporal model. The approach can improve coverage of different affective time scales, but related windows must remain in the same evaluation group to prevent leakage.
+
+| Strategy | Best suited to | Main tradeoff |
+| --- | --- | --- |
+| Fixed-length windows | Standardized offline benchmarks | May not match changes in affective state |
+| Adaptive intervals | Event-driven or nonstationary recordings | Boundary detection can be unstable or label-dependent |
+| Multi-scale windows | Processes with fast and slow dynamics | More samples and stronger redundancy between scales |
+
 ## Label Assignment Under Segmentation
 
 Segmentation is tightly coupled to labeling. A trial-level label assigned to every short window assumes that the emotional state is constant throughout the trial. That assumption may be acceptable in some paradigms, but it is clearly questionable in others.
