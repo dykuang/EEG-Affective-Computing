@@ -49,8 +49,18 @@ This chapter provides a comprehensive survey of deep learning architectures appl
 #### Part III: Emerging Frontiers (Section 10)
 
 10. **Trending Architectures** (Section 10): The cutting edge
-    - KAN, Mamba/SSM, SNN, Foundation Models, Neural ODE, Hypernetworks
+   - KAN, Mamba/SSM, SNN, Foundation Models, Hypernetworks
     - Emerging paradigms reshaping EEG deep learning
+
+#### Part IV: Continuous and Operator Learning (Sections 11-12)
+
+11. **Neural Operator Learning** (Section 11): Function-to-function models
+   - DeepONet, Fourier and wavelet neural operators, graph neural operators
+   - Continuous signal transformation, spatial querying, cross-montage transfer, and neural fields
+
+12. **Neural Ordinary Differential Equations** (Section 12): Continuous-time dynamics
+   - Neural ODEs, latent ODEs, ODE-RNNs, neural CDEs, neural SDEs, and continuous normalizing flows
+   - Irregular sampling, continuous affect tracking, and graph-aware neural dynamics
 
 ### Generative vs. Discriminative Approaches
 
