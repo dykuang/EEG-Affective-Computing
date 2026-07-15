@@ -13,5 +13,7 @@ The sections in this chapter therefore emphasize modeling assumptions that are e
 5. **Local-Segment and Global-Trial Label Inconsistency**: How to reason about segment-level predictions when only trial-level affect labels are available
 6. **Source Estimation and Inverse Modeling**: How to map scalp EEG back to brain sources for improved spatial specificity and anatomical interpretability in affective computing
 7. **Active BCI: Closed-Loop Feedback and Human-Machine Co-Adaptation**: How intentional neural control, assistive feedback, calibration, and mutual learning change the problem from passive inference to a coupled human-machine system
+8. **Causal Discovery, Inference, and Interpretable Learning**: How directed-interaction methods, causal graphs, GNNs, distillation, and intervention-aware evaluation can make causal claims explicit and testable
+9. **Structured Geometry of Emotion Spaces**: How continuous affect can be represented on curved manifolds and discrete emotions on graphs with hierarchical, transitional, and curvature-aware structure
 
-Taken together, these topics point toward a broader open-world view of affective EEG: models should be temporally plausible, uncertainty-aware, capable of handling emotional structure beyond the benchmark taxonomy, and designed for the human adaptation that arises in closed-loop use.
+Taken together, these topics point toward a broader open-world view of affective EEG: models should be temporally plausible, uncertainty-aware, capable of representing emotion beyond a flat benchmark label space, designed for human adaptation in closed-loop use, and explicit about the limits of their causal and interpretability claims.
