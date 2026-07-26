@@ -6,7 +6,9 @@ In supervised affective computing, the model learns from labelled EEG-emotion pa
 
 This section examines the fuzziness of self-evaluation, the resulting label noise, and the practical implications for training and evaluating EEG-based emotion recognition systems.
 
-> Figure suggestion: Place a timeline here showing stimulus presentation, a possible time-varying latent affect trajectory, EEG windows, and a delayed post-trial rating. This makes the difference between a local signal window and a global self-report label explicit.
+![Trial timeline showing baseline, stimulus, a time-varying latent affect trajectory, two EEG analysis windows, and a delayed post-trial self-report.](figures/annotation_trial_timeline.svg)
+
+*Figure 1. A single trial's temporal structure. The latent affect trajectory may rise and fall; EEG windows capture local signal slices, whereas a post-trial rating collapses the whole trial into one summary value.*
 
 ## How Emotion Labels Are Typically Obtained
 
@@ -105,7 +107,9 @@ Emotions are not discrete switches. The transition from "calm" to "stressed" or 
 - adjacent categories are often confused even by humans,
 - models should ideally express uncertainty about boundary cases.
 
-> Figure suggestion: Add a rating-distribution figure here: several participants give different valence ratings to the same trial, with a wide or bimodal distribution. Contrast it with the single hard label typically passed to a classifier.
+![Distribution of valence ratings given by different participants for the same trial, contrasted with the single hard label often passed to a classifier.](figures/rating_distribution.svg)
+
+*Figure 2. Distribution of self-reported valence for a single trial. The spread and bimodality illustrate label ambiguity; the dashed vertical line shows the single hard label a classifier would receive.*
 
 ## Implications for EEG Affective Computing
 

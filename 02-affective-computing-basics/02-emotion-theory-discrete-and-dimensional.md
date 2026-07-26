@@ -6,7 +6,9 @@ Before building a system that recognizes emotion from EEG, we must decide what "
 
 This section introduces the major emotion theories, their strengths and weaknesses, and their practical implications for EEG-based recognition.
 
-> Figure suggestion: Place an emotion-map comparison here: a circumplex with valence and arousal axes beside a small set of overlapping discrete-emotion regions. The overlap should make clear that category boundaries are modelling choices, not physical borders in the brain.
+![Circumplex model with overlapping discrete-emotion regions, showing that category boundaries are modelling choices rather than physical borders.](figures/emotion_circumplex.svg)
+
+*Figure 1. Dimensional circumplex (valence vs. arousal) with overlapping discrete-emotion regions. The blurred boundaries indicate that category labels are useful modelling choices, not sharply separated neural territories.*
 
 ## The Fundamental Tension
 
@@ -99,7 +101,9 @@ Constructivist theories (e.g., Barrett's theory of constructed emotion) argue th
 
 This view has gained influence and is compatible with dimensional approaches. It does not imply that emotion is arbitrary; rather, it emphasizes that brain, body, learned concepts, and situation jointly shape an emotional episode.
 
-> Figure suggestion: Add a three-panel schematic here contrasting (1) fixed class labels, (2) continuous valence-arousal ratings, and (3) a hybrid model that predicts both a location in affect space and a coarse category.
+![Three-panel schematic contrasting discrete class labels, continuous valence-arousal ratings, and a hybrid model that outputs both coordinates and a coarse category.](figures/emotion_model_schematic.svg)
+
+*Figure 2. Three ways to represent emotion computationally. (1) Discrete classification assigns one of a fixed set of labels. (2) Dimensional regression predicts continuous coordinates. (3) A hybrid model predicts both a location in affect space and a coarse category label.*
 
 ## Which Framework for EEG-Based Affective Computing?
 

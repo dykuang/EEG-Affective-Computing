@@ -6,7 +6,9 @@ This section bridges the neuroscience and emotion theory of earlier sections wit
 
 These correlates are not deterministic rules — they are statistical regularities observed across studies, subjects, and paradigms. They provide useful starting points for feature engineering and interpretation, but they should not be treated as infallible markers.
 
-> Figure suggestion: Place a sensor-space overview here showing a 10-20 scalp map, frontal homologous pairs used for alpha asymmetry, and example frontal, central, temporal, and occipital regions. The caption should state that electrode position does not uniquely identify an underlying brain source.
+![10-20 scalp overview with frontal, central, temporal, parietal, and occipital coverage. F3 and F4 are highlighted as the homologous frontal pair commonly used for alpha-asymmetry analysis.](figures/scalp_map_overview.svg)
+
+*Figure 1. Sensor-space overview of a 10-20 montage. F3 and F4 (red) are the homologous frontal pair most often used to quantify frontal alpha asymmetry. Shaded regions indicate approximate scalp coverage; electrode position does not uniquely identify an underlying brain source.*
 
 ## Frontal Alpha Asymmetry
 
@@ -105,7 +107,9 @@ Though affective computing often uses continuous or longer-duration EEG, ERPs pr
 
 These ERP findings help establish that emotional salience can modulate time-locked EEG responses under controlled conditions. They do not guarantee that the same components will be recoverable from long, naturalistic trials or that they support reliable single-trial classification.
 
-> Figure suggestion: Add a multi-panel figure here with (1) an alpha-power spectrum and asymmetry formula, (2) a time-frequency plot aligned to an emotional event, and (3) an ERP waveform showing an enhanced late positive potential. Use simulated or properly licensed data and label each panel as an illustrative pattern rather than a diagnostic signature.
+![Multi-panel illustration of EEG-emotion correlates using simulated data: (a) frontal alpha power spectra with the asymmetry formula, (b) time-frequency response aligned to an emotional event, and (c) ERP waveform showing an enhanced late positive potential for emotional relative to neutral stimuli.](figures/eeg_correlates_panels.svg)
+
+*Figure 2. Illustrative EEG-emotion correlates from simulated data. Each panel shows a representative pattern rather than a diagnostic signature: (a) frontal alpha power spectra and the asymmetry score, (b) time-frequency power aligned to stimulus onset, and (c) an event-related potential with an enhanced late positive potential (LPP) for emotional stimuli.*
 
 ## Individual Differences
 

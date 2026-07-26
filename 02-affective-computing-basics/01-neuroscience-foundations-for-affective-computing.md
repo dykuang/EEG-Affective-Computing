@@ -6,7 +6,9 @@ Emotion is not located in a single brain region, nor does a region have one fixe
 
 This matters for EEG-based affective computing because a scalp recording is a partial, temporally precise view of that larger system. It can capture synchronized activity from superficial cortical populations, but it does not provide a direct readout of deep structures or of a person's emotional state. This section introduces the main structures and networks, then translates that neurobiology into realistic expectations for EEG analysis.
 
-> Figure suggestion: Place a lateral and medial brain schematic here. Label the amygdala, insula, anterior cingulate cortex, major prefrontal subdivisions, hypothalamus, and representative scalp electrodes; use a visual distinction between cortical regions that contribute more directly to scalp EEG and deep structures that are observed only indirectly.
+![Lateral brain systems and representative scalp EEG coverage, distinguishing cortical contributors from deep structures that are observed indirectly.](figures/emotion-brain-eeg-observability.svg)
+
+*Figure 1. Emotion-relevant cortical and subcortical systems contribute differently to what can be inferred from scalp EEG. Sensor positions provide spatial coverage, not a direct one-to-one map to individual brain structures.*
 
 ## Core Emotion-Related Brain Regions
 
@@ -54,7 +56,9 @@ Modern neuroscience treats emotion as a distributed, context-dependent process r
 
 These networks overlap and reconfigure with task demands. Scalp EEG samples parts of their cortical dynamics with millisecond resolution, but it has limited spatial specificity and reduced sensitivity to deep or radially oriented sources. Source reconstruction can support a network-level hypothesis, but it remains an ill-posed inference that depends on the head model, electrode coverage, reference, and regularization assumptions.
 
-> Figure suggestion: Add a network diagram here showing a salient stimulus entering sensory cortex, interacting with salience, valuation, and control systems, and producing both cortical EEG signals and peripheral responses. Use arrows sparingly to convey reciprocal interaction rather than a single serial pathway.
+![Distributed emotion circuit from a salient event through sensory, salience, valuation, control, and bodily regulation systems, with EEG, peripheral, and self-report measurements.](figures/distributed-emotion-circuit.svg)
+
+*Figure 2. Affective processing is distributed and reciprocal. EEG samples part of the cortical dynamics, whereas peripheral signals and self-report contribute complementary information about bodily state and subjective experience.*
 
 ## Neurotransmitter Systems
 

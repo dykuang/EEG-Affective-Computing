@@ -6,7 +6,9 @@ The EEG data used in affective computing must come from somewhere. How emotions 
 
 An induction procedure is not successful merely because a stimulus has been assigned an intended emotion. The study should test whether participants actually reported or displayed the expected change, how variable that change was, and when it occurred relative to the EEG segment being labelled.
 
-> Figure suggestion: Place a design map here that positions common paradigms by experimental control and ecological validity. Include images, film clips, music, recall, games, and social interaction; annotate the main EEG artifact and timing risks for each.
+![Design map positioning common induction paradigms by experimental control and ecological validity, with annotations of major EEG artifact and timing risks.](figures/paradigm_design_map.svg)
+
+*Figure 1. Common emotion-induction paradigms trade experimental control against ecological validity. Labels note the main EEG artifact or timing risk for each method.*
 
 ## Stimulus-Based Induction
 
@@ -139,7 +141,9 @@ Counterbalancing or randomization reduces order confounds.
 
 Plan a manipulation check before data collection. At minimum, compare condition-level self-report with the intended ordering in valence or arousal and report both the group pattern and individual variability. For continuous EEG labels, document the assumed relationship among stimulus onset, physiological response, annotation lag, and analysis windows. A model can otherwise appear to predict emotion while exploiting trial order, stimulus identity, or a late summary rating.
 
-> Figure suggestion: Add an annotated trial timeline here showing baseline, stimulus onset, expected affective peak, artifact-prone events, rating collection, and the EEG windows assigned to the trial label. Include an alternative path for continuous annotation with an explicit lag correction.
+![Annotated trial timeline with baseline, stimulus onset, expected affective peak, artifact-prone events, EEG analysis windows, post-trial rating, and an alternative continuous-annotation path with lag correction.](figures/paradigm_trial_timeline.svg)
+
+*Figure 2. Annotated trial timeline for stimulus-based induction. Green windows show EEG segments assigned to the trial label; orange crosses mark common artifact events. The continuous-annotation path records a real-time trace that still requires an explicit lag correction relative to physiology.*
 
 ## Common Affective Computing Datasets
 
