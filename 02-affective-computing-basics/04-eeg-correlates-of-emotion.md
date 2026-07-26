@@ -6,19 +6,21 @@ This section bridges the neuroscience and emotion theory of earlier sections wit
 
 These correlates are not deterministic rules — they are statistical regularities observed across studies, subjects, and paradigms. They provide useful starting points for feature engineering and interpretation, but they should not be treated as infallible markers.
 
+> Figure suggestion: Place a sensor-space overview here showing a 10-20 scalp map, frontal homologous pairs used for alpha asymmetry, and example frontal, central, temporal, and occipital regions. The caption should state that electrode position does not uniquely identify an underlying brain source.
+
 ## Frontal Alpha Asymmetry
 
-One of the most studied EEG-emotion relationships involves the balance of alpha power between left and right frontal regions.
+One of the most studied EEG-emotion relationships involves the balance of alpha power between left and right frontal regions. It is more accurately linked to approach-withdrawal tendencies and affective style than to a universal positive-versus-negative axis.
 
 ### The Basic Finding
 
-Greater relative left frontal activity (i.e., lower alpha power on the left) has been associated with:
+Greater relative left frontal activity (i.e., lower alpha power on the left) has been associated in some paradigms with:
 
 - positive affect,
 - approach motivation,
 - higher self-reported valence.
 
-Greater relative right frontal activity has been associated with:
+Greater relative right frontal activity has been associated in some paradigms with:
 
 - negative affect,
 - withdrawal motivation,
@@ -32,19 +34,19 @@ $$\text{FAA} = \ln(\alpha_{\text{right}}) - \ln(\alpha_{\text{left}})$$
 
 where $\alpha$ denotes alpha-band power at homologous frontal electrode pairs (e.g., F4 and F3).
 
-Positive FAA scores indicate relatively greater left frontal activity.
+With this convention, positive FAA scores indicate relatively greater left frontal activity. The sign reverses if the electrode order or subtraction convention is changed, so authors should always report the formula, band limits, reference, artifact-rejection procedure, and electrodes used.
 
 ### Important Caveats
 
 - The effect is statistical, not deterministic at the single-trial level.
 - Individual differences in anatomy and alpha generation affect measurement.
 - Reference choice influences asymmetry estimates.
-- The relationship is more robust for trait affect than for moment-to-moment fluctuations.
+- The relationship has often been more reliable for trait-like affective style and approach motivation than for moment-to-moment valence.
 - Not all studies replicate the simple left-positive/right-negative mapping.
 
 ## Frequency Band Power and Arousal
 
-Arousal is often linked to broader spectral changes rather than lateralized ones.
+Arousal is often linked to broader spectral changes rather than lateralized ones. These changes may reflect vigilance, attention, task difficulty, and movement as well as affect, so an emotion interpretation requires an appropriate control condition and careful artifact handling.
 
 ### General Patterns
 
@@ -69,7 +71,7 @@ Gamma-band activity (above 30 Hz) has been linked to:
 - conscious emotional experience,
 - integration of emotional information across brain regions.
 
-However, gamma is also highly susceptible to muscle artifacts, so careful preprocessing is essential.
+However, scalp gamma is highly susceptible to facial, jaw, neck, and eye-muscle artifacts. Before treating a high-frequency difference as neural, inspect its topography, timing, spectral shape, and relation to electromyography or motion; use conservative filtering and artifact procedures documented in the preprocessing chapter.
 
 ## Spatial Patterns Across Channels
 
@@ -91,7 +93,7 @@ Beyond power at individual channels, emotion affects how brain regions communica
 - **Effective connectivity** attempting to model directed influence,
 - **Graph-theoretic measures** that summarize network organization.
 
-Emotional states can shift the balance between different large-scale networks, and these shifts may be detectable in EEG connectivity measures.
+Connectivity estimates are sensitive to volume conduction, reference choice, filtering, epoch length, and common stimulus drive. Phase-lagged measures and suitable surrogate or control analyses can reduce some confounds, but they do not by themselves establish directed communication between brain regions.
 
 ## Event-Related Potentials (ERPs) and Emotion
 
@@ -101,7 +103,9 @@ Though affective computing often uses continuous or longer-duration EEG, ERPs pr
 - **N170 and EPN**: early components modulated by emotional faces and scenes,
 - **P300**: modulated by emotional relevance and novelty.
 
-These ERP findings help validate that the EEG signal does carry emotion-relevant information.
+These ERP findings help establish that emotional salience can modulate time-locked EEG responses under controlled conditions. They do not guarantee that the same components will be recoverable from long, naturalistic trials or that they support reliable single-trial classification.
+
+> Figure suggestion: Add a multi-panel figure here with (1) an alpha-power spectrum and asymmetry formula, (2) a time-frequency plot aligned to an emotional event, and (3) an ERP waveform showing an enhanced late positive potential. Use simulated or properly licensed data and label each panel as an illustrative pattern rather than a diagnostic signature.
 
 ## Individual Differences
 
@@ -131,5 +135,14 @@ It is equally important to recognize the limits:
 EEG carries measurable correlates of emotional states, particularly in frontal alpha asymmetry, frequency band power distributions, and connectivity patterns. These correlates provide useful features and interpretive anchors, but they are statistical regularities, not deterministic signatures. Their reliability varies across individuals, paradigms, and recording conditions, which is why data-driven approaches that learn features from data have become popular.
 
 ---
+
+## References
+
+- Allen, J. J. B., Coan, J. A., and Nazarian, M. (2004). Issues and assumptions on the road from raw signals to metrics of frontal EEG asymmetry in emotion. *Biological Psychology*, 67(1-2), 183-218.
+- Davidson, R. J. (1992). Anterior cerebral asymmetry and the nature of emotion. *Brain and Cognition*, 20(1), 125-151.
+- Hajcak, G., MacNamara, A., and Olvet, D. M. (2010). Event-related potentials, emotion, and emotion regulation: An integrative review. *Developmental Neuropsychology*, 35(2), 129-155.
+- Keil, A., Debener, S., Gratton, G., Junghofer, M., Kappenman, E. S., Luck, S. J., Luu, P., Miller, G. A., and Yee, C. M. (2014). Committee report: Publication guidelines and recommendations for studies using EEG and MEG. *Psychophysiology*, 51(1), 1-21.
+- Klimesch, W. (2012). Alpha-band oscillations, attention, and controlled access to stored information. *Trends in Cognitive Sciences*, 16(12), 606-617.
+- Whitham, E. M., Pope, K. J., Fitzgibbon, S. P., Lewis, T., Clark, C. R., Loveless, S., Broberg, M., Wallace, A., DeLosAngeles, D., Lillie, P., Hardy, A., Fronsko, R., Pulbrook, A., and Willoughby, J. O. (2007). Scalp electrical recording during paralysis: Quantitative evidence that EEG frequencies above 20 Hz are contaminated by EMG. *Clinical Neurophysiology*, 118(8), 1877-1888.
 
 Next: [Emotion Induction and Experimental Paradigms](05-emotion-induction-and-experimental-paradigms.md)

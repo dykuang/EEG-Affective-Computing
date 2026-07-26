@@ -4,13 +4,17 @@
 
 The EEG data used in affective computing must come from somewhere. How emotions are induced during recording strongly affects the nature, quality, and ecological validity of the resulting data. This section reviews common induction methods, their strengths and weaknesses, and their implications for EEG-based emotion recognition.
 
+An induction procedure is not successful merely because a stimulus has been assigned an intended emotion. The study should test whether participants actually reported or displayed the expected change, how variable that change was, and when it occurred relative to the EEG segment being labelled.
+
+> Figure suggestion: Place a design map here that positions common paradigms by experimental control and ecological validity. Include images, film clips, music, recall, games, and social interaction; annotate the main EEG artifact and timing risks for each.
+
 ## Stimulus-Based Induction
 
 The most common approach uses carefully selected stimuli to evoke target emotional states.
 
 ### Visual Stimuli
 
-**International Affective Picture System (IAPS)** and similar databases provide normed images rated on valence, arousal, and dominance.
+**International Affective Picture System (IAPS)** and similar databases provide images with normative ratings of valence, arousal, and dominance. Those norms are useful for selecting and balancing stimuli, but they are population summaries rather than a guarantee of an individual participant's response.
 
 Pros:
 - well-controlled,
@@ -53,6 +57,8 @@ Cons:
 ### Multi-Modal Stimuli
 
 Combining video, audio, and sometimes tactile or olfactory stimuli often produces the strongest and most reliable emotional responses.
+
+The tradeoff is attribution: when several modalities change together, a spectral or evoked EEG effect cannot easily be assigned to one sensory stream, narrative element, or emotional component. Record event markers for all meaningful stimulus boundaries and preserve them with the released data.
 
 ## Interactive and Naturalistic Paradigms
 
@@ -117,6 +123,8 @@ Always record a pre-stimulus baseline. This allows:
 - subtraction of pre-existing state effects,
 - computation of change scores relative to baseline.
 
+A baseline is a reference, not a neutral guarantee. Quiet rest can include anticipation, rumination, or drowsiness. Define its duration and timing in advance, use a consistent procedure, and inspect whether baseline quality differs systematically across conditions or participants.
+
 ### Counterbalancing and Randomization
 
 Emotion induction order matters because:
@@ -126,6 +134,12 @@ Emotion induction order matters because:
 - practice effects can change task engagement.
 
 Counterbalancing or randomization reduces order confounds.
+
+### Manipulation Checks and Timing
+
+Plan a manipulation check before data collection. At minimum, compare condition-level self-report with the intended ordering in valence or arousal and report both the group pattern and individual variability. For continuous EEG labels, document the assumed relationship among stimulus onset, physiological response, annotation lag, and analysis windows. A model can otherwise appear to predict emotion while exploiting trial order, stimulus identity, or a late summary rating.
+
+> Figure suggestion: Add an annotated trial timeline here showing baseline, stimulus onset, expected affective peak, artifact-prone events, rating collection, and the EEG windows assigned to the trial label. Include an alternative path for continuous annotation with an explicit lag correction.
 
 ## Common Affective Computing Datasets
 
@@ -137,7 +151,7 @@ Several well-known datasets use these paradigms:
 - **DREAMER**: film clips with EEG and ECG recordings
 - **AMIGOS**: combined short and long video clips with personality and mood data
 
-Each dataset makes different choices about induction method, annotation style, and EEG hardware, which affects what models can be trained and how results should be compared.
+Each dataset makes different choices about induction method, annotation style, EEG hardware, preprocessing, and train-test protocol. These differences affect what models can be trained and how results should be compared; performance numbers are not directly interchangeable across datasets.
 
 ## Implications for EEG-Based Affective Computing
 
@@ -164,11 +178,22 @@ Each dataset makes different choices about induction method, annotation style, a
 3. Use multiple trials per condition for statistical power.
 4. Consider both categorical and dimensional annotation.
 5. Be transparent about induction methods when reporting results — they strongly affect what conclusions can be drawn.
+6. Report manipulation-check results, event markers, exclusions, and the temporal rule used to assign labels to EEG windows.
 
 ## Summary
 
 Emotion induction paradigms shape the EEG data that affective computing systems learn from. Stimulus-based methods offer control but may lack ecological validity; interactive paradigms offer realism but introduce artifacts and variability. Understanding these tradeoffs is essential for interpreting model performance and for designing new data collection efforts.
 
 ---
+
+## References
+
+- Bradley, M. M., and Lang, P. J. (2007). The International Affective Picture System (IAPS) in the study of emotion and attention. In J. A. Coan and J. J. B. Allen (Eds.), *Handbook of Emotion Elicitation and Assessment* (pp. 29-46). Oxford University Press.
+- Correa, J. A. M., Abadi, M. K., Sebe, N., and Patras, I. (2018). AMIGOS: A dataset for affect, personality and mood research on individuals and groups. *IEEE Transactions on Affective Computing*, 9(1), 85-98.
+- Katsigiannis, S., and Ramzan, N. (2018). DREAMER: A database for emotion recognition through EEG and ECG signals from wireless low-cost off-the-shelf devices. *IEEE Journal of Biomedical and Health Informatics*, 22(1), 98-107.
+- Koelstra, S., Muhl, C., Soleymani, M., Lee, J.-S., Yazdani, A., Ebrahimi, T., Pun, T., Nijholt, A., and Patras, I. (2012). DEAP: A database for emotion analysis using physiological signals. *IEEE Transactions on Affective Computing*, 3(1), 18-31.
+- Soleymani, M., Lichtenauer, J., Pun, T., and Pantic, M. (2012). A multimodal database for affect recognition and implicit tagging. *IEEE Transactions on Affective Computing*, 3(1), 42-55.
+- Westermann, R., Spies, K., Stahl, G., and Hesse, F. W. (1996). Relative effectiveness and validity of mood induction procedures: A meta-analysis. *European Journal of Social Psychology*, 26(4), 557-580.
+- Zheng, W.-L., and Lu, B.-L. (2015). Investigating critical frequency bands and channels for EEG-based emotion recognition with deep neural networks. *IEEE Transactions on Autonomous Mental Development*, 7(3), 162-175.
 
 **Related Reading**: See [EEG Correlates of Emotion](04-eeg-correlates-of-emotion.md) for how different induction methods engage different EEG signatures.

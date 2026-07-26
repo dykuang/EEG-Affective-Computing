@@ -2,55 +2,59 @@
 
 ## Overview
 
-Emotion is not a single brain region or process. It arises from coordinated activity across distributed cortical and subcortical circuits. Understanding this neural architecture is important for EEG-based affective computing because it tells us which brain regions and rhythms are likely to carry emotion-relevant information — and which EEG channels may be most informative.
+Emotion is not located in a single brain region, nor does a region have one fixed emotional meaning. It emerges from interactions among systems for perception, bodily regulation, memory, valuation, attention, and action. A threatening face, for example, can recruit visual cortex, amygdala, insula, autonomic control systems, and prefrontal regions at overlapping but different times.
 
-This section introduces the key brain structures, circuits, and neurotransmitter systems involved in emotion, with emphasis on what is accessible through scalp EEG.
+This matters for EEG-based affective computing because a scalp recording is a partial, temporally precise view of that larger system. It can capture synchronized activity from superficial cortical populations, but it does not provide a direct readout of deep structures or of a person's emotional state. This section introduces the main structures and networks, then translates that neurobiology into realistic expectations for EEG analysis.
+
+> Figure suggestion: Place a lateral and medial brain schematic here. Label the amygdala, insula, anterior cingulate cortex, major prefrontal subdivisions, hypothalamus, and representative scalp electrodes; use a visual distinction between cortical regions that contribute more directly to scalp EEG and deep structures that are observed only indirectly.
 
 ## Core Emotion-Related Brain Regions
 
 ### The Amygdala
 
-The amygdala is a subcortical structure strongly associated with emotional processing, especially fear, threat detection, and salience.
+The amygdala is a collection of nuclei in the medial temporal lobe. It helps prioritize biologically or socially relevant events, supports learning about threat and reward, and interacts closely with sensory, memory, autonomic, and prefrontal systems. Calling it a "fear center" is an oversimplification: amygdala responses also occur for novelty, uncertainty, reward-related cues, and salient non-emotional events.
 
-**EEG relevance**: The amygdala is deep and its activity is not directly visible in scalp EEG. However, its output modulates cortical activity in ways that may be indirectly reflected in frontal and temporal EEG channels.
+**EEG relevance**: The amygdala is deep and spatially compact, so conventional scalp EEG cannot isolate its activity reliably. Its interactions with cortex may nevertheless alter cortical responses, particularly during the early allocation of attention to salient stimuli. A frontal or temporal scalp effect should therefore be interpreted as a cortical correlate of a broader circuit, not as a direct amygdala measurement.
 
 ### The Prefrontal Cortex (PFC)
 
-The prefrontal cortex is involved in emotion regulation, appraisal, and decision-making. Different subregions contribute differently:
+The prefrontal cortex contributes to valuation, goal maintenance, attention, and the regulation of emotional responses. Its subdivisions are functionally heterogeneous and strongly interconnected; the labels below are useful landmarks rather than independent modules:
 
 - **Dorsolateral PFC**: cognitive control and reappraisal
 - **Ventromedial PFC**: valuation and emotional decision-making
 - **Orbitofrontal cortex**: reward processing and expectation
 
-**EEG relevance**: PFC activity contributes strongly to frontal EEG channels (Fp1, Fp2, F3, F4, Fz). Frontal alpha asymmetry — a widely studied EEG emotion marker — is thought to reflect differential PFC engagement.
+**EEG relevance**: Frontal electrodes sample activity from several frontal sources, with substantial volume conduction and contributions from non-neural signals such as eye movements. Frontal alpha asymmetry is a useful research construct, but it reflects a relative spectral difference at the sensors rather than a direct measurement of left and right PFC activation. Its relation to affect is discussed in more detail in the EEG-correlates section.
 
 ### The Insula
 
-The insula is involved in interoception — the perception of internal bodily states — and is associated with emotional awareness and visceral feelings.
+The insula integrates interoceptive signals such as cardiac, respiratory, and visceral information with sensory and contextual information. It is often implicated in subjective feeling, disgust, pain, uncertainty, and the detection of personally relevant events. Its role is best understood as part of an interoceptive and salience-related system, not as a dedicated emotion detector.
 
-**EEG relevance**: Insula activity may be reflected in central and temporal electrode regions, though deep sources are always harder to localize with scalp EEG.
+**EEG relevance**: Because much of the insula lies beneath the opercula, source localization from scalp EEG is uncertain. Central and temporal sensor patterns can be compatible with insula-related processing, but they cannot establish it without converging evidence from anatomy, task design, or another modality.
 
 ### The Anterior Cingulate Cortex (ACC)
 
-The ACC plays roles in conflict monitoring, emotional salience, and autonomic regulation.
+The ACC spans several functionally distinct zones. Broadly, it participates in monitoring conflict and control demands, learning from outcomes, pain and threat processing, and coordination of autonomic responses. It frequently appears alongside the anterior insula in studies of salient, uncertain, or effortful events.
 
-**EEG relevance**: ACC activity has been linked to frontal midline theta, a rhythm sometimes associated with cognitive and emotional control.
+**EEG relevance**: Frontal midline theta is often associated with cognitive control and performance monitoring, and medial frontal generators are plausible contributors. It is not an ACC-specific signature, however: the same sensor-level pattern can arise under many task conditions.
 
 ### The Hypothalamus and Brainstem
 
-These structures regulate autonomic and endocrine responses that accompany emotion (heart rate, respiration, hormonal release).
+These structures coordinate autonomic and endocrine responses that accompany emotion, including changes in heart rate, respiration, sweating, and hormonal release. They link the brain to the body and help explain why peripheral measures such as electrocardiography and electrodermal activity can complement EEG.
 
 **EEG relevance**: These are not directly visible in scalp EEG, but their downstream effects may influence peripheral measures and, indirectly, cortical state.
 
 ## Emotion Circuits, Not Single Regions
 
-Modern neuroscience views emotion as emerging from distributed circuits rather than isolated "emotion centers." Key circuits include:
+Modern neuroscience treats emotion as a distributed, context-dependent process rather than the output of isolated "emotion centers." The following large-scale network descriptions are useful summaries, although their boundaries vary across studies:
 
 - **Salience network**: insula, ACC, amygdala — detects relevant stimuli
 - **Default mode network**: medial PFC, posterior cingulate — self-referential processing
 - **Executive control network**: dorsolateral PFC, parietal regions — regulation
 
-These networks overlap partially with EEG-observable cortical regions, but the full circuit extends beyond what scalp EEG can resolve.
+These networks overlap and reconfigure with task demands. Scalp EEG samples parts of their cortical dynamics with millisecond resolution, but it has limited spatial specificity and reduced sensitivity to deep or radially oriented sources. Source reconstruction can support a network-level hypothesis, but it remains an ill-posed inference that depends on the head model, electrode coverage, reference, and regularization assumptions.
+
+> Figure suggestion: Add a network diagram here showing a salient stimulus entering sensory cortex, interacting with salience, valuation, and control systems, and producing both cortical EEG signals and peripheral responses. Use arrows sparingly to convey reciprocal interaction rather than a single serial pathway.
 
 ## Neurotransmitter Systems
 
@@ -61,32 +65,41 @@ Several neurotransmitter systems modulate emotional states:
 - **Norepinephrine**: arousal, alertness, stress response
 - **GABA and Glutamate**: inhibitory/excitatory balance
 
-While EEG cannot directly measure neurotransmitter levels, these systems affect the cortical rhythms EEG does measure.
+These systems act across broad circuits and are not one-to-one markers of particular feelings. For example, dopamine is involved in learning and motivation as well as reward, while serotonin has diverse effects that depend on receptor type and neural pathway. EEG does not measure transmitter concentration or release directly; at most, it can reveal population-level dynamics shaped partly by neuromodulation.
 
 ## What Neuroscience Tells EEG Researchers
 
 Several practical lessons follow from the neuroscience:
 
-1. Emotion is **distributed**, so no single EEG channel or band should be expected to capture it fully.
-2. Some key structures are **subcortical** — EEG sees only their cortical projections.
-3. **Lateralization** is real but complex; frontal asymmetry is not a simple "left = positive, right = negative" rule.
-4. **Individual differences** in anatomy and function mean that group-level findings may not transfer perfectly to single subjects.
-5. **Temporal dynamics** matter: emotional processing unfolds over hundreds of milliseconds to seconds.
+1. Emotion is **distributed**, so no single channel, frequency band, or hand-picked region is likely to be sufficient.
+2. Several important contributors are **subcortical**. Scalp EEG observes cortical activity and possible downstream consequences, not those structures directly.
+3. **Lateralization** is conditional on task, person, reference scheme, and analysis choices. Frontal asymmetry is not a simple "left = positive, right = negative" rule.
+4. **Individual differences** in anatomy, baseline rhythms, appraisal, and reporting can make a group-level effect unreliable for a particular participant.
+5. **Temporal dynamics** matter. Sensory orienting, appraisal, regulation, and self-report can unfold on different time scales, from hundreds of milliseconds to minutes.
 
 ## Implications for EEG-Based Affective Computing
 
 Given the neuroscience:
 
-- Multi-channel EEG is necessary; single-channel systems discard spatial information.
-- Frontal, central, and temporal channels are likely to be most informative.
-- Time-frequency representations can capture oscillatory signatures of different circuits.
-- Individual calibration or subject-specific modeling may improve performance.
-- EEG-based emotion recognition is feasible but fundamentally limited by the deep and distributed nature of emotional circuits.
+- Prefer multi-channel recordings when the question concerns spatial patterns or connectivity; a single-channel device can be useful for a constrained application, but it cannot support broad neural claims.
+- Include frontal, central, and temporal coverage when the montage permits, while treating occipital responses carefully when visual stimuli are used because they may reflect stimulus properties rather than affect.
+- Use time-resolved spectral or time-frequency analyses when the induction procedure has meaningful temporal structure.
+- Compare subject-dependent, subject-independent, and calibrated models explicitly. Personal calibration may improve performance, but it changes the deployment claim.
+- Pair EEG with behavioral, self-report, or peripheral measures when possible. Multimodal agreement can strengthen inference, whereas disagreement can reveal a timing or measurement problem worth investigating.
 
 ## Summary
 
 Emotion arises from distributed brain circuits involving both cortical and subcortical structures. EEG can access cortical correlates of these circuits — especially in frontal and central regions — but cannot directly measure key subcortical contributors. This neuroscience perspective sets realistic expectations for what EEG-based affective computing can achieve and guides channel selection, feature design, and interpretation.
 
 ---
+
+## References
+
+- Craig, A. D. (2009). How do you feel--now? The anterior insula and human awareness. *Nature Reviews Neuroscience*, 10(1), 59-70.
+- Lindquist, K. A., Wager, T. D., Kober, H., Bliss-Moreau, E., and Barrett, L. F. (2012). The brain basis of emotion: A meta-analytic review. *Behavioral and Brain Sciences*, 35(3), 121-143.
+- Ochsner, K. N., and Gross, J. J. (2005). The cognitive control of emotion. *Trends in Cognitive Sciences*, 9(5), 242-249.
+- Pessoa, L. (2008). On the relationship between emotion and cognition. *Nature Reviews Neuroscience*, 9(2), 148-158.
+- Shackman, A. J., Salomons, T. V., Slagter, H. A., Fox, A. S., Winter, J. J., and Davidson, R. J. (2011). The integration of negative affect, pain and cognitive control in the cingulate cortex. *Nature Reviews Neuroscience*, 12(3), 154-167.
+- Van den Heuvel, M. P., and Hulshoff Pol, H. E. (2010). Exploring the brain network: A review on resting-state fMRI functional connectivity. *European Neuropsychopharmacology*, 20(8), 519-534.
 
 Next: [Emotion Theory: Discrete and Dimensional Models](02-emotion-theory-discrete-and-dimensional.md)

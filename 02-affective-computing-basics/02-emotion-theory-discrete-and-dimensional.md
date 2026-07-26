@@ -6,6 +6,8 @@ Before building a system that recognizes emotion from EEG, we must decide what "
 
 This section introduces the major emotion theories, their strengths and weaknesses, and their practical implications for EEG-based recognition.
 
+> Figure suggestion: Place an emotion-map comparison here: a circumplex with valence and arousal axes beside a small set of overlapping discrete-emotion regions. The overlap should make clear that category boundaries are modelling choices, not physical borders in the brain.
+
 ## The Fundamental Tension
 
 The central debate in emotion science can be framed as:
@@ -13,7 +15,7 @@ The central debate in emotion science can be framed as:
 - **Are emotions discrete categories** with distinct neural, physiological, and behavioral signatures?
 - **Are emotions continuous dimensions** that vary smoothly along axes such as valence and arousal?
 
-Both views have empirical support, and neither is universally correct. The right choice depends on the application.
+Both views have empirical support, and neither is universally correct. The choice should follow the scientific question, the annotation procedure, and the decision an application must make. A system that selects one of a few intervention modes may require categories; a system that tracks a changing affective state may be better served by dimensions.
 
 ## Discrete Emotion Theories
 
@@ -26,7 +28,7 @@ Paul Ekman proposed a set of **basic emotions** that are:
 - evolutionarily adaptive,
 - relatively brief in duration.
 
-The classic set includes: happiness, sadness, fear, anger, disgust, and surprise. Later extensions added emotions such as contempt, embarrassment, and pride.
+The classic set includes happiness, sadness, fear, anger, disgust, and surprise. The strength of this proposal is its clear vocabulary for prototypical expressions and events. Its limitation is that everyday experience is often weaker, mixed, culturally shaped, or context-dependent in ways that do not fit one label cleanly.
 
 ### Plutchik's Wheel of Emotions
 
@@ -56,7 +58,7 @@ James Russell proposed that emotions can be mapped onto a two-dimensional space:
 - **Valence**: pleasantness vs. unpleasantness (horizontal axis)
 - **Arousal**: activation vs. deactivation (vertical axis)
 
-Any emotional state can be located as a point in this 2D space. Discrete emotions occupy different regions of the space.
+In this framework, affective states occupy regions rather than exact points: the same label can have different intensity, context, and action tendency across people. Discrete emotion terms often cluster in characteristic areas of the space, but their regions overlap.
 
 ### The VAD Model
 
@@ -95,7 +97,9 @@ Constructivist theories (e.g., Barrett's theory of constructed emotion) argue th
 - interoceptive signals,
 - contextual information.
 
-This view has gained influence and is compatible with dimensional approaches.
+This view has gained influence and is compatible with dimensional approaches. It does not imply that emotion is arbitrary; rather, it emphasizes that brain, body, learned concepts, and situation jointly shape an emotional episode.
+
+> Figure suggestion: Add a three-panel schematic here contrasting (1) fixed class labels, (2) continuous valence-arousal ratings, and (3) a hybrid model that predicts both a location in affect space and a coarse category.
 
 ## Which Framework for EEG-Based Affective Computing?
 
@@ -141,9 +145,22 @@ The choice of emotion framework determines:
 - **Evaluation**: accuracy vs. correlation vs. agreement measures
 - **Interpretability**: discrete confusion matrices vs. dimensional error distributions
 
+For dimensional ratings, evaluate agreement as well as error. A low mean-squared error can still hide a model that misses relative ordering or systematically shrinks predictions toward the mean. Report a scale-appropriate measure such as concordance correlation, along with the rating transformation, participant-level normalization policy, and the procedure used to turn ratings into classes when discretization is used.
+
 ## Summary
 
 Emotion theory provides the conceptual vocabulary for affective computing. Discrete models simplify classification but may oversimplify emotional experience. Dimensional models capture nuance but complicate annotation and evaluation. The best choice depends on the application, the annotation resources available, and the nature of the EEG data. Many modern systems adopt a pragmatic blend of both approaches.
+
+---
+
+## References
+
+- Barrett, L. F. (2017). *How Emotions Are Made: The Secret Life of the Brain*. Houghton Mifflin Harcourt.
+- Ekman, P. (1992). An argument for basic emotions. *Cognition and Emotion*, 6(3-4), 169-200.
+- Moors, A. (2009). Theories of emotion causation: A review. *Cognition and Emotion*, 23(4), 625-662.
+- Plutchik, R. (1980). *Emotion: A Psychoevolutionary Synthesis*. Harper & Row.
+- Russell, J. A. (1980). A circumplex model of affect. *Journal of Personality and Social Psychology*, 39(6), 1161-1178.
+- Scherer, K. R. (2005). What are emotions? And how can they be measured? *Social Science Information*, 44(4), 695-729.
 
 ---
 
