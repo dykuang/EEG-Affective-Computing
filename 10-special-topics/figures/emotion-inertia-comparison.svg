@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+  <title id="title">Independent versus inertia-aware affect predictions</title>
+  <desc id="desc">Two panels compare rapidly switching independent window predictions with temporally persistent inertia-aware predictions for the same EEG trial.</desc>
+  <defs>
+    <linearGradient id="h" x2="1"><stop stop-color="#143B5D"/><stop offset="1" stop-color="#246B78"/></linearGradient>
+    <filter id="s"><feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#17324D" flood-opacity=".12"/></filter>
+  </defs>
+  <rect width="1400" height="720" fill="#F4F7F9"/>
+  <rect width="1400" height="106" fill="url(#h)"/>
+  <text x="700" y="52" text-anchor="middle" font-family="Arial" font-size="34" font-weight="700" fill="white">Emotion Inertia Across One EEG Trial</text>
+  <text x="700" y="84" text-anchor="middle" font-family="Arial" font-size="18" fill="#DDECF0">Adjacent windows should change state only when the evidence is strong enough</text>
+  <g filter="url(#s)" fill="white"><rect x="55" y="145" width="620" height="500" rx="20"/><rect x="725" y="145" width="620" height="500" rx="20"/></g>
+  <g font-family="Arial">
+    <circle cx="93" cy="190" r="15" fill="#D95757"/><text x="120" y="200" font-size="26" font-weight="700" fill="#263746">Independent windows</text>
+    <circle cx="763" cy="190" r="15" fill="#2C9A78"/><text x="790" y="200" font-size="26" font-weight="700" fill="#263746">Inertia-aware predictions</text>
+    <text x="120" y="229" font-size="17" fill="#6B7985">Each window classified in isolation</text>
+    <text x="790" y="229" font-size="17" fill="#6B7985">Previous state provides a soft temporal prior</text>
+  </g>
+  <g stroke="#D9E2E7"><path d="M105 310H625M105 405H625M105 500H625"/><path d="M775 310H1295M775 405H1295M775 500H1295"/></g>
+  <g fill="none" stroke="#768896" stroke-width="2"><path d="M105 270V555H625"/><path d="M775 270V555H1295"/></g>
+  <g font-family="Arial" font-size="16" fill="#5F6F7C">
+    <text x="68" y="315">High</text><text x="75" y="410">Mid</text><text x="72" y="505">Low</text>
+    <text x="738" y="315">High</text><text x="745" y="410">Mid</text><text x="742" y="505">Low</text>
+    <text x="365" y="590" text-anchor="middle">EEG windows →</text><text x="1035" y="590" text-anchor="middle">EEG windows →</text>
+  </g>
+  <path d="M105 492L148 315L191 490L234 395L277 308L320 493L363 401L406 312L449 494L492 397L535 316L578 492L625 398" fill="none" stroke="#D95757" stroke-width="6" stroke-linejoin="round"/>
+  <g fill="#D95757">
+    <circle cx="105" cy="492" r="6"/><circle cx="148" cy="315" r="6"/><circle cx="191" cy="490" r="6"/><circle cx="234" cy="395" r="6"/><circle cx="277" cy="308" r="6"/><circle cx="320" cy="493" r="6"/><circle cx="363" cy="401" r="6"/><circle cx="406" cy="312" r="6"/><circle cx="449" cy="494" r="6"/><circle cx="492" cy="397" r="6"/><circle cx="535" cy="316" r="6"/><circle cx="578" cy="492" r="6"/><circle cx="625" cy="398" r="6"/>
+  </g>
+  <path d="M775 490C835 485 870 472 910 445C950 418 980 394 1020 382C1065 369 1098 384 1135 407C1174 432 1208 456 1248 449C1268 445 1282 434 1295 420" fill="none" stroke="#2C9A78" stroke-width="8" stroke-linecap="round"/>
+  <path d="M775 505C835 499 875 486 915 459C955 432 985 407 1025 395C1065 383 1102 397 1140 420C1178 444 1211 469 1252 461C1270 458 1284 446 1295 433" fill="none" stroke="#2C9A78" stroke-width="22" opacity=".12"/>
+  <g font-family="Arial" font-size="17" font-weight="700">
+    <rect x="143" y="607" width="444" height="34" rx="17" fill="#FBEAEA"/><text x="365" y="630" text-anchor="middle" fill="#A43B3B">frequent label switching from noisy evidence</text>
+    <rect x="812" y="607" width="446" height="34" rx="17" fill="#E4F4EE"/><text x="1035" y="630" text-anchor="middle" fill="#26785E">persistence with gradual, evidence-led transitions</text>
+  </g>
+</svg>

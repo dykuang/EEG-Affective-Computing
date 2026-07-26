@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="820" viewBox="0 0 1500 820" role="img" aria-labelledby="title desc">
+  <title id="title">Landscape of label noise in affective EEG</title>
+  <desc id="desc">Five branches show random error, class-conditional confusion, instance-dependent ambiguity, subject or session bias, and taxonomy mismatch.</desc>
+  <defs><linearGradient id="p2" y2="1"><stop stop-color="#FCF9F0"/><stop offset="1" stop-color="#F0E9D8"/></linearGradient></defs>
+  <rect width="1500" height="820" fill="url(#p2)"/>
+  <text x="750" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#29483F">A Landscape of Label Noise</text>
+  <text x="750" y="99" text-anchor="middle" font-family="Arial" font-size="19" fill="#69776F">Different failure modes call for different countermeasures</text>
+  <path d="M750 680C720 585 728 495 750 405C775 305 752 220 750 145" fill="none" stroke="#6C7651" stroke-width="26" stroke-linecap="round"/>
+  <g fill="none" stroke="#6C7651" stroke-width="12" stroke-linecap="round">
+    <path d="M742 555C620 530 520 470 415 390"/><path d="M747 470C875 450 980 390 1085 305"/><path d="M750 395C610 360 505 280 405 210"/><path d="M756 585C900 590 1000 555 1110 500"/><path d="M752 300C830 250 890 195 925 140"/>
+  </g>
+  <g font-family="Arial">
+    <g><path d="M270 305C345 282 430 312 468 383C410 432 323 437 260 394C238 361 240 329 270 305Z" fill="#DDE8D5"/><text x="356" y="347" text-anchor="middle" font-size="21" font-weight="700" fill="#3F6037">Random error</text><text x="356" y="375" text-anchor="middle" font-size="16" fill="#546B50">inattention • miscoding</text></g>
+    <g><path d="M1030 205C1110 177 1203 210 1240 282C1180 334 1084 338 1018 289C997 255 1000 226 1030 205Z" fill="#F1DDAA"/><text x="1125" y="247" text-anchor="middle" font-size="21" font-weight="700" fill="#76591C">Class-conditional</text><text x="1125" y="275" text-anchor="middle" font-size="16" fill="#806B39">similar emotions confused</text></g>
+    <g><path d="M212 120C302 88 407 125 447 205C380 263 274 269 198 215C175 177 180 142 212 120Z" fill="#E7D2C5"/><text x="318" y="164" text-anchor="middle" font-size="21" font-weight="700" fill="#754A3C">Instance-dependent</text><text x="318" y="192" text-anchor="middle" font-size="16" fill="#805E50">mixed or weak affect</text></g>
+    <g><path d="M1070 415C1165 382 1270 420 1310 500C1240 560 1130 566 1056 510C1030 473 1035 438 1070 415Z" fill="#D5E6E0"/><text x="1178" y="459" text-anchor="middle" font-size="21" font-weight="700" fill="#315C50">Subject / session bias</text><text x="1178" y="487" text-anchor="middle" font-size="16" fill="#527067">scale use • baseline drift</text></g>
+    <g><path d="M842 95C925 63 1020 95 1057 170C994 225 895 232 828 180C805 145 810 115 842 95Z" fill="#DDD9E9"/><text x="940" y="137" text-anchor="middle" font-size="21" font-weight="700" fill="#554B71">Taxonomy mismatch</text><text x="940" y="165" text-anchor="middle" font-size="16" fill="#6B6381">missing or coarse classes</text></g>
+  </g>
+  <ellipse cx="750" cy="700" rx="240" ry="68" fill="#315C50"/>
+  <text x="750" y="693" text-anchor="middle" font-family="Georgia,serif" font-size="26" font-weight="700" fill="#FFFDF6">Observed affect label</text>
+  <text x="750" y="727" text-anchor="middle" font-family="Arial" font-size="17" fill="#DDE8D5">a mixture of signal, ambiguity, and bias</text>
+</svg>

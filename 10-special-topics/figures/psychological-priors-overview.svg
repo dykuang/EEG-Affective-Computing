@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Psychological priors for affect trajectories</title>
+  <desc id="desc">A two-panel comparison of implausible jagged window-wise affect predictions and psychologically plausible smooth, inertial, bounded trajectories.</desc>
+
+  <defs>
+    <linearGradient id="header" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#143B5D"/>
+      <stop offset="1" stop-color="#246B78"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#17324D" flood-opacity="0.12"/>
+    </filter>
+    <clipPath id="leftPlot"><rect x="118" y="275" width="610" height="390" rx="4"/></clipPath>
+    <clipPath id="rightPlot"><rect x="872" y="275" width="610" height="390" rx="4"/></clipPath>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2E6473"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="#F4F7F9"/>
+  <rect width="1600" height="132" fill="url(#header)"/>
+  <text x="800" y="58" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#FFFFFF">Psychological Priors Shape Plausible Affect Trajectories</text>
+  <text x="800" y="99" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#DDECF0">From independent window-wise predictions to structured temporal inference</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="185" width="700" height="595" rx="22" fill="#FFFFFF"/>
+    <rect x="830" y="185" width="700" height="595" rx="22" fill="#FFFFFF"/>
+  </g>
+
+  <circle cx="114" cy="229" r="16" fill="#D95757"/>
+  <path d="M106 221 L122 237 M122 221 L106 237" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  <text x="146" y="239" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#263746">Independent windows</text>
+  <text x="146" y="267" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#6B7985">Psychologically implausible high-frequency switching</text>
+
+  <circle cx="874" cy="229" r="16" fill="#2C9A78"/>
+  <path d="M866 229 L872 235 L883 221" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="906" y="239" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#263746">Prior-aware dynamics</text>
+  <text x="906" y="267" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#6B7985">Smooth, persistent, and locally bounded evolution</text>
+
+  <!-- Plot backgrounds and grids -->
+  <g stroke="#D9E2E7" stroke-width="1">
+    <path d="M118 340 H728 M118 405 H728 M118 470 H728 M118 535 H728 M118 600 H728"/>
+    <path d="M872 340 H1482 M872 405 H1482 M872 470 H1482 M872 535 H1482 M872 600 H1482"/>
+  </g>
+  <g fill="none" stroke="#768896" stroke-width="2">
+    <path d="M118 275 V665 H728"/>
+    <path d="M872 275 V665 H1482"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#5F6F7C">
+    <text x="82" y="284">High</text><text x="86" y="476">0</text><text x="84" y="665">Low</text>
+    <text x="836" y="284">High</text><text x="840" y="476">0</text><text x="838" y="665">Low</text>
+    <text x="423" y="705" text-anchor="middle">Time</text>
+    <text x="1177" y="705" text-anchor="middle">Time</text>
+    <text x="27" y="470" transform="rotate(-90 27 470)" text-anchor="middle">Affect intensity</text>
+    <text x="787" y="470" transform="rotate(-90 787 470)" text-anchor="middle">Affect intensity</text>
+  </g>
+
+  <!-- Implausible predictions -->
+  <g clip-path="url(#leftPlot)">
+    <path d="M118 500 L145 340 L172 585 L199 305 L226 555 L253 378 L280 615 L307 330 L334 520 L361 292 L388 598 L415 355 L442 560 L469 315 L496 585 L523 370 L550 625 L577 342 L604 540 L631 300 L658 590 L685 360 L712 545 L728 325"
+          fill="none" stroke="#D95757" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+    <g fill="#D95757">
+      <circle cx="145" cy="340" r="6"/><circle cx="172" cy="585" r="6"/><circle cx="199" cy="305" r="6"/>
+      <circle cx="226" cy="555" r="6"/><circle cx="253" cy="378" r="6"/><circle cx="280" cy="615" r="6"/>
+      <circle cx="307" cy="330" r="6"/><circle cx="334" cy="520" r="6"/><circle cx="361" cy="292" r="6"/>
+      <circle cx="388" cy="598" r="6"/><circle cx="415" cy="355" r="6"/><circle cx="442" cy="560" r="6"/>
+      <circle cx="469" cy="315" r="6"/><circle cx="496" cy="585" r="6"/><circle cx="523" cy="370" r="6"/>
+      <circle cx="550" cy="625" r="6"/><circle cx="577" cy="342" r="6"/><circle cx="604" cy="540" r="6"/>
+      <circle cx="631" cy="300" r="6"/><circle cx="658" cy="590" r="6"/><circle cx="685" cy="360" r="6"/>
+    </g>
+  </g>
+
+  <!-- Plausible trajectory envelope -->
+  <path d="M872 510
+           C940 485 985 450 1030 421
+           C1080 389 1127 393 1178 423
+           C1230 453 1273 512 1320 533
+           C1370 555 1427 521 1482 472
+           L1482 548
+           C1425 590 1367 616 1310 588
+           C1255 561 1214 500 1168 477
+           C1124 455 1084 452 1042 480
+           C992 514 940 554 872 580 Z"
+        fill="#2C9A78" opacity="0.12"/>
+
+  <!-- Multiple plausible trajectories -->
+  <g clip-path="url(#rightPlot)" fill="none" stroke-linecap="round">
+    <path d="M872 553 C934 533 979 492 1034 450 C1081 414 1125 421 1172 451 C1219 481 1260 541 1316 561 C1370 580 1426 547 1482 504"
+          stroke="#2C9A78" stroke-width="7"/>
+    <path d="M872 510 C930 490 976 454 1027 426 C1075 400 1120 399 1168 425 C1220 454 1264 508 1314 531 C1367 555 1428 523 1482 476"
+          stroke="#3D79B8" stroke-width="5" opacity="0.88"/>
+    <path d="M872 580 C934 561 982 522 1037 486 C1084 456 1128 459 1178 486 C1228 514 1268 570 1323 590 C1376 609 1430 578 1482 539"
+          stroke="#E2A647" stroke-width="5" opacity="0.92"/>
+  </g>
+
+  <!-- Event annotation -->
+  <path d="M1180 325 V389" stroke="#2E6473" stroke-width="3" stroke-dasharray="7 7" marker-end="url(#arrow)"/>
+  <rect x="1090" y="290" width="180" height="40" rx="20" fill="#E7F0F3"/>
+  <text x="1180" y="316" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#2E6473">salient event</text>
+
+  <!-- Labels -->
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="132" y="724" width="582" height="36" rx="18" fill="#FBEAEA"/>
+    <text x="423" y="748" text-anchor="middle" font-size="17" font-weight="700" fill="#A43B3B">noise-driven jumps • no temporal memory • unbounded local change</text>
+
+    <g>
+      <rect x="880" y="724" width="174" height="36" rx="18" fill="#E4F4EE"/>
+      <text x="967" y="748" text-anchor="middle" font-size="17" font-weight="700" fill="#26785E">smoothness</text>
+      <rect x="1065" y="724" width="174" height="36" rx="18" fill="#E8F0F9"/>
+      <text x="1152" y="748" text-anchor="middle" font-size="17" font-weight="700" fill="#356A9E">inertia</text>
+      <rect x="1250" y="724" width="224" height="36" rx="18" fill="#FBF1DF"/>
+      <text x="1362" y="748" text-anchor="middle" font-size="17" font-weight="700" fill="#9A6A21">bounded variation</text>
+    </g>
+  </g>
+
+  <text x="800" y="842" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#445967">
+    Psychological priors suppress noise-driven oscillation while preserving gradual trends and evidence-supported transitions.
+  </text>
+</svg>

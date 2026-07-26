@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="940" viewBox="0 0 1500 940" role="img" aria-labelledby="title desc">
+  <title id="title">Six-stage qualitative assessment protocol</title>
+  <desc id="desc">A circular protocol moves from claims and priors to predefined checks, aligned evidence views, baseline comparison, held-out review, and documented conclusions.</desc>
+  <defs><linearGradient id="p5" y2="1"><stop stop-color="#FCF9F0"/><stop offset="1" stop-color="#EFE8D7"/></linearGradient><marker id="a5" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#6C7651"/></marker></defs>
+  <rect width="1500" height="940" fill="url(#p5)"/>
+  <text x="750" y="62" text-anchor="middle" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#29483F">A Predeclared Qualitative Assessment Cycle</text>
+  <text x="750" y="99" text-anchor="middle" font-family="Arial" font-size="19" fill="#69776F">Turn domain expectations into falsifiable, documented behavioral checks</text>
+  <g fill="none" stroke="#6C7651" stroke-width="6" marker-end="url(#a5)">
+    <path d="M470 205C505 184 530 178 555 176"/><path d="M940 176C975 179 1000 188 1025 205"/>
+    <path d="M1172 275C1220 370 1220 540 1182 635"/><path d="M1025 740C995 754 970 760 945 760"/>
+    <path d="M555 760C520 758 495 750 465 738"/><path d="M302 645C250 545 250 375 302 275"/>
+  </g>
+  <circle cx="750" cy="475" r="165" fill="#315C50"/>
+  <text x="750" y="442" text-anchor="middle" font-family="Georgia,serif" font-size="27" font-weight="700" fill="#FFFDF6">Visible reasons</text>
+  <text x="750" y="478" text-anchor="middle" font-family="Georgia,serif" font-size="27" font-weight="700" fill="#FFFDF6">for trust, doubt,</text>
+  <text x="750" y="514" text-anchor="middle" font-family="Georgia,serif" font-size="27" font-weight="700" fill="#FFFDF6">and further testing</text>
+  <g font-family="Arial" text-anchor="middle">
+    <g><path d="M170 150C280 108 410 140 470 235C390 310 250 324 155 250C122 212 132 172 170 150Z" fill="#DDE8D5"/><text x="312" y="195" font-size="21" font-weight="700" fill="#3F6037">1 · State claims &amp; priors</text><text x="312" y="226" font-size="16" fill="#546B50">scientific • clinical • deployment</text></g>
+    <g><path d="M565 125C675 83 825 92 930 165C890 260 720 294 590 230C548 202 535 154 565 125Z" fill="#F1DDAA"/><text x="748" y="174" font-size="21" font-weight="700" fill="#76591C">2 · Predefine checks</text><text x="748" y="205" font-size="16" fill="#806B39">perturbations + case strata</text></g>
+    <g><path d="M1030 150C1140 108 1270 140 1330 235C1250 310 1110 324 1015 250C982 212 992 172 1030 150Z" fill="#D5E6E0"/><text x="1172" y="195" font-size="21" font-weight="700" fill="#315C50">3 · Align evidence views</text><text x="1172" y="226" font-size="16" fill="#527067">quality • context • uncertainty</text></g>
+    <g><path d="M1040 650C1150 608 1280 640 1340 735C1260 810 1120 824 1025 750C992 712 1002 672 1040 650Z" fill="#E7D2C5"/><text x="1182" y="695" font-size="21" font-weight="700" fill="#754A3C">4 · Compare baselines</text><text x="1182" y="726" font-size="16" fill="#805E50">agnostic • context-only • structured</text></g>
+    <g><path d="M560 700C670 658 830 665 940 740C895 838 720 865 585 800C545 772 530 728 560 700Z" fill="#DDD9E9"/><text x="750" y="748" font-size="21" font-weight="700" fill="#554B71">5 · Review held-out cases</text><text x="750" y="779" font-size="16" fill="#6B6381">success • failure • disagreement</text></g>
+    <g><path d="M160 650C270 608 400 640 460 735C380 810 240 824 145 750C112 712 122 672 160 650Z" fill="#DDE8D5"/><text x="302" y="695" font-size="21" font-weight="700" fill="#3F6037">6 · Document outcomes</text><text x="302" y="726" font-size="16" fill="#546B50">held • failed • remains uncertain</text></g>
+  </g>
+  <path d="M300 890C560 850 940 915 1200 875" fill="none" stroke="#A7BDAA" stroke-width="6" stroke-linecap="round"/>
+</svg>

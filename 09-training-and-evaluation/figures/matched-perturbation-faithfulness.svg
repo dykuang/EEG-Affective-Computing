@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="840" viewBox="0 0 1500 840" role="img" aria-labelledby="title desc">
+  <title id="title">Testing explanation faithfulness with matched perturbations</title>
+  <desc id="desc">A highlighted EEG interval and a matched control interval are perturbed separately; a faithful explanation predicts a larger output change for the highlighted evidence.</desc>
+  <defs><linearGradient id="p3" y2="1"><stop stop-color="#FCF9F0"/><stop offset="1" stop-color="#EFE8D7"/></linearGradient><marker id="a3" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#647B6D"/></marker></defs>
+  <rect width="1500" height="840" fill="url(#p3)"/>
+  <text x="750" y="62" text-anchor="middle" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#29483F">Test the Highlight, Not Just the Picture</text>
+  <text x="750" y="99" text-anchor="middle" font-family="Arial" font-size="19" fill="#69776F">Matched perturbations turn a visual explanation into a behavioral test</text>
+  <rect x="90" y="155" width="1320" height="250" rx="28" fill="#FFFDF8"/>
+  <text x="140" y="205" font-family="Georgia,serif" font-size="25" font-weight="700" fill="#315C50">Original EEG segment</text>
+  <path d="M145 300q18-62 36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0" fill="none" stroke="#497B6C" stroke-width="5"/>
+  <rect x="470" y="235" width="180" height="135" rx="18" fill="#F1DDAA" opacity=".55"/><rect x="980" y="235" width="180" height="135" rx="18" fill="#D5E6E0" opacity=".65"/>
+  <g font-family="Arial" text-anchor="middle"><text x="560" y="225" font-size="17" font-weight="700" fill="#76591C">model-highlighted interval</text><text x="1070" y="225" font-size="17" font-weight="700" fill="#315C50">matched control interval</text><text x="750" y="390" font-size="16" fill="#69776F">equal duration • comparable band power • comparable signal quality</text></g>
+  <g stroke="#647B6D" stroke-width="4" fill="none" marker-end="url(#a3)"><path d="M560 420C500 465 430 490 350 520"/><path d="M1070 420C1130 465 1200 490 1270 520"/></g>
+  <g font-family="Arial" text-anchor="middle">
+    <path d="M110 525C230 480 375 510 440 610C360 700 210 720 100 635C65 594 72 548 110 525Z" fill="#F1DDAA"/><text x="270" y="568" font-size="21" font-weight="700" fill="#76591C">Mask highlighted evidence</text><text x="270" y="600" font-size="17" fill="#806B39">prediction changes strongly</text><text x="270" y="646" font-size="29" font-weight="700" fill="#B86C50">Δ prediction = large</text>
+    <path d="M1060 525C1180 480 1325 510 1390 610C1310 700 1160 720 1050 635C1015 594 1022 548 1060 525Z" fill="#D5E6E0"/><text x="1220" y="568" font-size="21" font-weight="700" fill="#315C50">Mask control evidence</text><text x="1220" y="600" font-size="17" fill="#527067">prediction changes little</text><text x="1220" y="646" font-size="29" font-weight="700" fill="#497B6C">Δ prediction = small</text>
+  </g>
+  <circle cx="750" cy="610" r="112" fill="#315C50"/><text x="750" y="592" text-anchor="middle" font-family="Georgia,serif" font-size="23" font-weight="700" fill="#FFFDF6">Local</text><text x="750" y="624" text-anchor="middle" font-family="Georgia,serif" font-size="23" font-weight="700" fill="#FFFDF6">faithfulness</text><text x="750" y="655" text-anchor="middle" font-family="Arial" font-size="16" fill="#DDE8D5">supported</text>
+  <path d="M330 780C600 740 900 805 1170 765" fill="none" stroke="#A7BDAA" stroke-width="5" stroke-linecap="round"/>
+</svg>

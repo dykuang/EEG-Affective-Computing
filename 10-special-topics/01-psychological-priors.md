@@ -4,7 +4,9 @@ Purely data-driven affect recognition often treats each time window as an almost
 
 This section summarizes several useful priors and the kinds of modeling choices they motivate.
 
-> Figure suggestion: Place a conceptual overview figure here showing several affect trajectories over time, contrasting implausible jagged predictions with psychologically plausible smooth, inertial, and bounded trajectories.
+![Conceptual comparison of implausible jagged window-wise affect predictions and psychologically plausible smooth, inertial, and bounded trajectories.](figures/psychological-priors-overview.svg)
+
+*Figure 1. Psychological priors transform independent, noise-sensitive window-wise predictions into temporally coherent affect trajectories. Smoothness and inertia discourage rapid label switching, while bounded variation limits local changes without preventing evidence-supported transitions.*
 
 ## Emotion Inertia
 
@@ -19,7 +21,9 @@ This prior can be embedded in several ways:
 
 The main caveat is that inertia should be modeled as a soft prior rather than a hard rule. Some paradigms intentionally elicit sharp changes, and overly strong inertia can smear onset dynamics and reduce sensitivity to salient events.
 
-> Figure suggestion: Add a two-panel figure here comparing independent window-wise predictions against inertia-aware predictions on the same EEG trial.
+![Comparison of independent window-wise and inertia-aware predictions on the same EEG trial.](figures/emotion-inertia-comparison.svg)
+
+*Figure 2. Independent window-wise classification can produce rapid noise-driven label switching. An inertia-aware model treats the preceding state as a soft prior, yielding persistent predictions while retaining gradual, evidence-led transitions.*
 
 ### References
 
@@ -57,7 +61,9 @@ In a learning framework, bounded fluctuation can be expressed by constraining th
 
 This kind of prior is helpful when EEG features are noisy and model outputs otherwise become jittery. It improves interpretability and prevents implausible high-frequency switching that is more likely to reflect measurement noise than genuine affective dynamics.
 
-> Figure suggestion: Insert a trajectory illustration here with bounded local variation, highlighting first-order and second-order penalties on a valence or arousal curve.
+![A valence trajectory illustrating first-order and second-order temporal penalties.](figures/bounded-emotional-fluctuation.svg)
+
+*Figure 3. Bounded-variation regularization limits implausible local slopes and curvature. Robust penalties still permit a larger shift when supported by a salient event.*
 
 ### References
 
@@ -95,7 +101,9 @@ This prior can be embedded by combining smooth temporal models with explicit tra
 
 This is often more realistic than enforcing uniform smoothness everywhere, especially in emotion induction paradigms with clips, feedback, or trial-level manipulations.
 
-> Figure suggestion: Add a change-point diagram here showing mostly smooth evolution interrupted by a few stimulus-aligned transitions.
+![Affect trajectory with smooth stable intervals and sparse stimulus-aligned transitions.](figures/event-driven-transitions.svg)
+
+*Figure 4. Hybrid temporal modeling enforces consistency within stable intervals and relaxes smoothing near detected, stimulus-aligned change points.*
 
 ### References
 
@@ -118,7 +126,9 @@ Useful modeling consequences include:
 
 This prior is especially relevant for datasets such as DEAP, SEED, and similar paradigms where ratings are often collected after the stimulus presentation rather than continuously during it. It also interacts naturally with the local-segment versus global-trial inconsistency issue: a local segment may differ from the reported label not because it is mislabeled, but because the report reflects a later and temporally aggregated subjective summary.
 
-> Figure suggestion: Add a timeline figure here showing stimulus onset, evolving latent affect, local EEG responses, and a delayed self-report collected after the trial.
+![Timeline of stimulus presentation, latent affect, local EEG windows, and a delayed subjective report.](figures/self-assessment-lag.svg)
+
+*Figure 5. Local EEG windows sample an evolving affective state during the trial, whereas the reported label is collected afterward and may reflect temporal pooling, memory, and reporting lag.*
 
 ### References
 
@@ -139,7 +149,9 @@ This directly motivates personalized or partially personalized models:
 
 Ignoring this prior often leads to models that perform well within subject but generalize poorly across subjects. Respecting it can improve both robustness and interpretability.
 
-> Figure suggestion: Place a subject-level comparison figure here showing shared population structure plus person-specific baselines or offsets.
+![Shared population response structure expressed relative to three subject-specific affect baselines.](figures/subject-specific-baselines.svg)
+
+*Figure 6. Subjects can share a population-level response shape while differing in baseline offset, response amplitude, temporal persistence, and reporting style. Personal calibration separates these factors from the common structure.*
 
 ### References
 
@@ -175,4 +187,6 @@ Taken together, these priors suggest that EEG-based affective learning should us
 
 The key point is not that one psychological prior is always correct, but that affective learning improves when the model is prevented from representing behavior that is psychologically implausible. In many settings, even weak priors about persistence, continuity, bounded variation, and individual baselines can substantially improve sample efficiency, interpretability, and out-of-distribution robustness.
 
-> Figure suggestion: End with a summary pipeline figure here linking EEG encoder, latent dynamics, psychological priors, and final affect predictions.
+![Summary pipeline linking EEG windows, a local encoder, latent dynamics, psychological priors, subject calibration, and affect predictions.](figures/psychological-priors-pipeline.svg)
+
+*Figure 7. A psychologically structured EEG affect-learning pipeline. Psychological priors constrain the latent dynamics and training objectives, while subject calibration adapts the shared representation before final valence–arousal prediction.*

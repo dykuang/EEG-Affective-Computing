@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="860" viewBox="0 0 1500 860" role="img" aria-labelledby="title desc">
+  <title id="title">Ecosystem of robust learning strategies</title>
+  <desc id="desc">Six complementary strategy leaves surround the goal of stable affective structure: soft targets, reweighting, co-teaching, robust losses, consistency learning, and uncertainty modeling.</desc>
+  <defs><radialGradient id="sun"><stop stop-color="#FFF5BF"/><stop offset="1" stop-color="#E8BE5E"/></radialGradient><linearGradient id="p4" y2="1"><stop stop-color="#FCF9F0"/><stop offset="1" stop-color="#EFE8D7"/></linearGradient></defs>
+  <rect width="1500" height="860" fill="url(#p4)"/>
+  <text x="750" y="62" text-anchor="middle" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#29483F">An Ecosystem of Robust Strategies</text>
+  <text x="750" y="99" text-anchor="middle" font-family="Arial" font-size="19" fill="#69776F">Complementary protections work better than a single clever loss</text>
+  <circle cx="750" cy="445" r="145" fill="url(#sun)" opacity=".9"/>
+  <text x="750" y="424" text-anchor="middle" font-family="Georgia,serif" font-size="27" font-weight="700" fill="#614D20">Stable affective</text>
+  <text x="750" y="460" text-anchor="middle" font-family="Georgia,serif" font-size="27" font-weight="700" fill="#614D20">structure</text>
+  <text x="750" y="494" text-anchor="middle" font-family="Arial" font-size="16" fill="#76591C">despite imperfect labels</text>
+  <g fill="none" stroke="#728463" stroke-width="8" stroke-linecap="round">
+    <path d="M655 340C560 260 485 226 390 210"/><path d="M750 300C745 235 750 190 750 150"/><path d="M845 340C950 260 1020 235 1115 220"/>
+    <path d="M610 455C505 470 430 500 345 550"/><path d="M890 455C1000 470 1070 510 1150 565"/><path d="M750 590C750 650 750 690 750 730"/>
+  </g>
+  <g font-family="Arial" text-anchor="middle">
+    <g><path d="M195 155C300 110 420 140 478 225C402 300 278 316 184 250C150 214 158 176 195 155Z" fill="#DDE8D5" stroke="#6E8D61" stroke-width="2"/><text x="326" y="198" font-size="21" font-weight="700" fill="#3F6037">Soft targets</text><text x="326" y="228" font-size="16" fill="#546B50">represent ambiguity</text></g>
+    <g><path d="M620 105C700 62 810 70 880 142C835 230 720 268 625 215C585 184 585 132 620 105Z" fill="#F1DDAA" stroke="#B68A36" stroke-width="2"/><text x="748" y="153" font-size="21" font-weight="700" fill="#76591C">Sample reweighting</text><text x="748" y="183" font-size="16" fill="#806B39">vary influence by trust</text></g>
+    <g><path d="M1030 155C1135 110 1255 142 1315 230C1238 305 1110 315 1018 248C987 212 994 176 1030 155Z" fill="#D5E6E0" stroke="#4F8171" stroke-width="2"/><text x="1165" y="200" font-size="21" font-weight="700" fill="#315C50">Co-teaching</text><text x="1165" y="230" font-size="16" fill="#527067">two views exchange evidence</text></g>
+    <g><path d="M125 500C235 455 355 493 410 585C330 655 202 662 112 590C82 553 90 520 125 500Z" fill="#E7D2C5" stroke="#A76E55" stroke-width="2"/><text x="260" y="545" font-size="21" font-weight="700" fill="#754A3C">Robust losses</text><text x="260" y="575" font-size="16" fill="#805E50">cap harmful gradients</text></g>
+    <g><path d="M1090 510C1200 465 1320 500 1375 590C1295 665 1165 670 1078 597C1048 560 1055 530 1090 510Z" fill="#DDE8D5" stroke="#6E8D61" stroke-width="2"/><text x="1225" y="555" font-size="21" font-weight="700" fill="#3F6037">Consistency learning</text><text x="1225" y="585" font-size="16" fill="#546B50">anchor unlabeled structure</text></g>
+    <g><path d="M610 690C700 650 810 660 882 738C830 820 710 846 620 785C585 753 580 715 610 690Z" fill="#DDD9E9" stroke="#776B94" stroke-width="2"/><text x="748" y="740" font-size="21" font-weight="700" fill="#554B71">Uncertainty-aware</text><text x="748" y="770" font-size="16" fill="#6B6381">calibrate • abstain • defer</text></g>
+  </g>
+</svg>

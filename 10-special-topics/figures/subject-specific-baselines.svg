@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+  <title id="title">Shared population structure and subject-specific affect baselines</title>
+  <desc id="desc">Three subjects share a common response shape but differ in baseline offset and response amplitude.</desc>
+  <defs><linearGradient id="h5" x2="1"><stop stop-color="#143B5D"/><stop offset="1" stop-color="#246B78"/></linearGradient></defs>
+  <rect width="1400" height="720" fill="#F4F7F9"/><rect width="1400" height="106" fill="url(#h5)"/>
+  <text x="700" y="52" text-anchor="middle" font-family="Arial" font-size="34" font-weight="700" fill="white">Shared Structure, Personal Baselines</text>
+  <text x="700" y="84" text-anchor="middle" font-family="Arial" font-size="18" fill="#DDECF0">The same population-level response pattern is expressed relative to each subject</text>
+  <rect x="70" y="145" width="1260" height="505" rx="22" fill="white"/>
+  <g stroke="#D9E2E7"><path d="M150 260H980M150 370H980M150 480H980"/></g><g fill="none" stroke="#768896" stroke-width="2"><path d="M150 205V540H980"/></g>
+  <g font-family="Arial" font-size="17" fill="#5F6F7C"><text x="102" y="265">High</text><text x="115" y="375">0</text><text x="106" y="485">Low</text><text x="565" y="580" text-anchor="middle">Time after shared stimulus</text><text x="35" y="375" transform="rotate(-90 35 375)" text-anchor="middle">Affect level</text></g>
+  <path d="M150 373C260 370 310 302 385 292C470 280 510 348 590 368C675 389 748 340 820 315C875 296 923 318 980 350" fill="none" stroke="#A8B8C2" stroke-width="18" opacity=".28"/>
+  <path d="M150 300C260 297 310 229 385 219C470 207 510 275 590 295C675 316 748 267 820 242C875 223 923 245 980 277" fill="none" stroke="#3D79B8" stroke-width="6"/>
+  <path d="M150 373C260 370 310 302 385 292C470 280 510 348 590 368C675 389 748 340 820 315C875 296 923 318 980 350" fill="none" stroke="#2C9A78" stroke-width="6"/>
+  <path d="M150 460C260 457 310 389 385 379C470 367 510 435 590 455C675 476 748 427 820 402C875 383 923 405 980 437" fill="none" stroke="#E2A647" stroke-width="6"/>
+  <g stroke-width="2" stroke-dasharray="8 7"><path d="M150 300H980" stroke="#3D79B8" opacity=".5"/><path d="M150 373H980" stroke="#2C9A78" opacity=".5"/><path d="M150 460H980" stroke="#E2A647" opacity=".5"/></g>
+  <g font-family="Arial" font-size="17" font-weight="700"><text x="1005" y="305" fill="#356A9E">Subject A</text><text x="1005" y="378" fill="#26785E">Subject B</text><text x="1005" y="465" fill="#9A6A21">Subject C</text></g>
+  <path d="M1085 215V505" stroke="#A8B8C2" stroke-width="2"/><path d="M1074 215H1096M1074 505H1096" stroke="#A8B8C2" stroke-width="2"/>
+  <text x="1130" y="260" font-family="Arial" font-size="17" font-weight="700" fill="#344957">Personal calibration</text>
+  <g font-family="Arial" font-size="16" fill="#5F6F7C"><text x="1130" y="294">• baseline offset</text><text x="1130" y="326">• response amplitude</text><text x="1130" y="358">• temporal persistence</text><text x="1130" y="390">• reporting style</text></g>
+  <rect x="1035" y="430" width="235" height="72" rx="13" fill="#E7F0F3"/><text x="1152" y="460" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#2E6473">shared dynamics</text><text x="1152" y="484" text-anchor="middle" font-family="Arial" font-size="16" fill="#4F727D">+ subject parameters</text>
+  <rect x="322" y="602" width="756" height="34" rx="17" fill="#E4F4EE"/><text x="700" y="625" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#26785E">model relative change from personal baseline before inferring absolute affect</text>
+</svg>

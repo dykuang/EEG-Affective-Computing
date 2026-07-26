@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+  <title id="title">Bounded emotional fluctuation</title>
+  <desc id="desc">A valence trajectory illustrates first-order slope and second-order curvature penalties while allowing a rare event-related shift.</desc>
+  <defs>
+    <linearGradient id="h2" x2="1"><stop stop-color="#143B5D"/><stop offset="1" stop-color="#246B78"/></linearGradient>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#356A9E"/></marker>
+  </defs>
+  <rect width="1400" height="720" fill="#F4F7F9"/><rect width="1400" height="106" fill="url(#h2)"/>
+  <text x="700" y="52" text-anchor="middle" font-family="Arial" font-size="34" font-weight="700" fill="white">Bounded Emotional Fluctuation</text>
+  <text x="700" y="84" text-anchor="middle" font-family="Arial" font-size="18" fill="#DDECF0">Regularize local slope and curvature—not the existence of meaningful change</text>
+  <rect x="80" y="150" width="1240" height="495" rx="22" fill="white"/>
+  <g stroke="#D9E2E7"><path d="M150 260H1240M150 355H1240M150 450H1240M150 545H1240"/></g>
+  <g fill="none" stroke="#768896" stroke-width="2"><path d="M150 205V570H1240"/></g>
+  <g font-family="Arial" font-size="17" fill="#5F6F7C"><text x="96" y="265">Positive</text><text x="120" y="455">Neutral</text><text x="91" y="550">Negative</text><text x="695" y="610" text-anchor="middle">Time</text><text x="35" y="392" transform="rotate(-90 35 392)" text-anchor="middle">Valence</text></g>
+  <path d="M150 468C235 455 284 417 350 422C420 427 455 472 520 462C585 452 612 390 670 382C720 375 760 397 795 412C835 429 874 401 905 345C930 300 965 275 1008 295C1055 316 1080 374 1134 388C1175 399 1207 377 1240 354" fill="none" stroke="#2C9A78" stroke-width="8" stroke-linecap="round"/>
+  <path d="M150 486C235 473 284 435 350 440C420 445 455 490 520 480C585 470 612 408 670 400C720 393 760 415 795 430C835 447 874 419 905 363C930 318 965 293 1008 313C1055 334 1080 392 1134 406C1175 417 1207 395 1240 372" fill="none" stroke="#2C9A78" stroke-width="28" opacity=".10"/>
+  <g stroke="#356A9E" stroke-width="3" fill="none" marker-end="url(#a)">
+    <path d="M397 285C430 300 456 342 477 415"/><path d="M665 245C706 264 741 311 773 385"/>
+  </g>
+  <g font-family="Arial">
+    <rect x="250" y="210" width="240" height="65" rx="12" fill="#E8F0F9"/><text x="370" y="237" text-anchor="middle" font-size="18" font-weight="700" fill="#356A9E">First-order penalty</text><text x="370" y="260" text-anchor="middle" font-size="15" fill="#4D6E8C">limits large local slopes |Δy|</text>
+    <rect x="540" y="170" width="280" height="65" rx="12" fill="#FBF1DF"/><text x="680" y="197" text-anchor="middle" font-size="18" font-weight="700" fill="#9A6A21">Second-order penalty</text><text x="680" y="220" text-anchor="middle" font-size="15" fill="#806439">limits abrupt curvature |Δ²y|</text>
+    <path d="M938 210V272" stroke="#D95757" stroke-width="3" stroke-dasharray="7 6"/><rect x="848" y="175" width="180" height="38" rx="19" fill="#FBEAEA"/><text x="938" y="200" text-anchor="middle" font-size="16" font-weight="700" fill="#A43B3B">rare salient event</text>
+    <rect x="930" y="500" width="270" height="46" rx="12" fill="#E4F4EE"/><text x="1065" y="529" text-anchor="middle" font-size="17" font-weight="700" fill="#26785E">robust loss allows this shift</text>
+  </g>
+</svg>

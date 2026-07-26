@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="860" viewBox="0 0 1500 860" role="img" aria-labelledby="title desc">
+  <title id="title">Evidence ladder for interpretability and causal claims</title>
+  <desc id="desc">Increasing claims from feature importance through connectivity and directed interaction to causal effect require progressively stronger validation evidence.</desc>
+  <defs><linearGradient id="p4" y2="1"><stop stop-color="#FCF9F0"/><stop offset="1" stop-color="#F0E9D8"/></linearGradient></defs>
+  <rect width="1500" height="860" fill="url(#p4)"/>
+  <text x="750" y="62" text-anchor="middle" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#29483F">Stronger Claims Need Stronger Roots</text>
+  <text x="750" y="99" text-anchor="middle" font-family="Arial" font-size="19" fill="#69776F">A compelling visualization cannot substitute for identification and intervention</text>
+  <path d="M120 755C390 720 590 775 790 742C1020 703 1200 770 1380 730" fill="none" stroke="#A7BDAA" stroke-width="6" stroke-linecap="round"/>
+  <g font-family="Arial">
+    <path d="M175 610H520V735H140V650Q140 610 175 610Z" fill="#DDE8D5"/><text x="330" y="650" text-anchor="middle" font-size="22" font-weight="700" fill="#3F6037">Important feature</text><text x="330" y="682" text-anchor="middle" font-size="16" fill="#546B50">stability + matched perturbation</text><text x="330" y="709" text-anchor="middle" font-size="16" fill="#546B50">+ artifact control</text>
+    <path d="M400 460H790V610H300V510Q300 460 350 460Z" fill="#D5E6E0"/><text x="545" y="502" text-anchor="middle" font-size="22" font-weight="700" fill="#315C50">Functional connectivity</text><text x="545" y="535" text-anchor="middle" font-size="16" fill="#527067">replication across windows</text><text x="545" y="562" text-anchor="middle" font-size="16" fill="#527067">reference + volume-conduction controls</text>
+    <path d="M650 300H1075V460H500V355Q500 300 555 300Z" fill="#F1DDAA"/><text x="785" y="344" text-anchor="middle" font-size="22" font-weight="700" fill="#76591C">Directed interaction</text><text x="785" y="378" text-anchor="middle" font-size="16" fill="#806B39">lag + model-order sensitivity</text><text x="785" y="405" text-anchor="middle" font-size="16" fill="#806B39">multivariate controls + edge stability</text>
+    <path d="M920 145H1360V300H700V205Q700 145 760 145Z" fill="#E7D2C5"/><text x="1030" y="190" text-anchor="middle" font-size="23" font-weight="700" fill="#754A3C">Causal effect</text><text x="1030" y="224" text-anchor="middle" font-size="16" fill="#805E50">identifiable intervention design</text><text x="1030" y="251" text-anchor="middle" font-size="16" fill="#805E50">counterfactual assumptions + outcomes</text>
+  </g>
+  <path d="M145 790C300 805 445 798 560 760C675 722 745 650 805 550C875 435 955 360 1060 325C1140 298 1250 315 1360 335" fill="none" stroke="#6C7651" stroke-width="8" stroke-linecap="round"/>
+  <g font-family="Georgia,serif" font-size="20" font-weight="700" fill="#29483F"><text x="80" y="815">descriptive</text><text x="1275" y="375">interventional</text></g>
+</svg>

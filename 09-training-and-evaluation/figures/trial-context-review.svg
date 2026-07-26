@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Reviewing local affect predictions in full trial context</title>
+  <desc id="desc">Aligned tracks show stimulus events, EEG signal quality, artifact flags, window boundaries, predictions with uncertainty, and delayed trial-level labels.</desc>
+  <defs><linearGradient id="p2" y2="1"><stop stop-color="#FCF9F0"/><stop offset="1" stop-color="#F1EADB"/></linearGradient></defs>
+  <rect width="1600" height="900" fill="url(#p2)"/>
+  <text x="800" y="63" text-anchor="middle" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#29483F">See Every Window in Its Living Context</text>
+  <text x="800" y="100" text-anchor="middle" font-family="Arial" font-size="19" fill="#69776F">Aligned evidence reveals whether a local prediction is credible</text>
+  <rect x="90" y="145" width="1420" height="665" rx="28" fill="#FFFDF8"/>
+  <g font-family="Arial" font-size="18" font-weight="700" fill="#40564E"><text x="125" y="210">Stimulus &amp; events</text><text x="125" y="325">Signal quality</text><text x="125" y="435">Artifact flags</text><text x="125" y="545">EEG windows</text><text x="125" y="655">Prediction</text><text x="125" y="760">Labels</text></g>
+  <path d="M330 205H1450" stroke="#75847C" stroke-width="3"/>
+  <rect x="390" y="174" width="730" height="58" rx="14" fill="#DDE8D5"/><text x="755" y="210" text-anchor="middle" font-family="Arial" font-size="19" font-weight="700" fill="#3F6037">emotion-inducing trial</text>
+  <path d="M760 155V790" stroke="#B68A36" stroke-width="3" stroke-dasharray="8 8"/><rect x="672" y="136" width="176" height="35" rx="17" fill="#F1DDAA"/><text x="760" y="159" text-anchor="middle" font-family="Arial" font-size="16" font-weight="700" fill="#76591C">meaningful event</text>
+  <path d="M330 345C390 330 435 285 500 305C565 325 610 300 680 312C745 323 790 362 850 350C915 337 965 285 1030 304C1100 324 1148 338 1215 315C1280 294 1365 308 1450 323" fill="none" stroke="#497B6C" stroke-width="7" stroke-linecap="round"/>
+  <path d="M330 375H1450" stroke="#A7BDAA" stroke-width="2" stroke-dasharray="7 7"/><text x="1435" y="397" text-anchor="end" font-family="Arial" font-size="15" fill="#69776F">quality threshold</text>
+  <g fill="#E7D2C5"><rect x="540" y="408" width="90" height="50" rx="10"/><rect x="1070" y="408" width="125" height="50" rx="10"/></g>
+  <g font-family="Arial" font-size="15" font-weight="700" fill="#754A3C" text-anchor="middle"><text x="585" y="439">blink</text><text x="1132" y="439">muscle</text></g>
+  <g fill="#D5E6E0" stroke="#4F8171" stroke-width="2">
+    <rect x="340" y="515" width="120" height="60" rx="9"/><rect x="475" y="515" width="120" height="60" rx="9"/><rect x="610" y="515" width="120" height="60" rx="9"/><rect x="745" y="515" width="120" height="60" rx="9"/><rect x="880" y="515" width="120" height="60" rx="9"/><rect x="1015" y="515" width="120" height="60" rx="9"/><rect x="1150" y="515" width="120" height="60" rx="9"/><rect x="1285" y="515" width="120" height="60" rx="9"/>
+  </g>
+  <path d="M330 695C410 675 480 640 550 648C625 657 690 700 760 680C835 659 900 620 970 638C1045 658 1110 710 1180 695C1260 677 1340 625 1450 650" fill="none" stroke="#776B94" stroke-width="8" stroke-linecap="round"/>
+  <path d="M330 720C410 700 480 665 550 673C625 682 690 725 760 705C835 684 900 645 970 663C1045 683 1110 735 1180 720C1260 702 1340 650 1450 675" fill="none" stroke="#776B94" stroke-width="28" opacity=".13"/>
+  <path d="M330 755H1120" stroke="#B68A36" stroke-width="7" stroke-linecap="round"/><circle cx="1120" cy="755" r="11" fill="#B68A36"/><path d="M1120 755H1410" stroke="#B86C50" stroke-width="3" stroke-dasharray="8 8"/>
+  <text x="720" y="785" text-anchor="middle" font-family="Arial" font-size="16" font-weight="700" fill="#76591C">trial-level label</text><text x="1270" y="785" text-anchor="middle" font-family="Arial" font-size="16" font-weight="700" fill="#754A3C">known reporting delay</text>
+  <path d="M300 835C610 800 970 860 1300 825" fill="none" stroke="#A7BDAA" stroke-width="5" stroke-linecap="round"/>
+</svg>

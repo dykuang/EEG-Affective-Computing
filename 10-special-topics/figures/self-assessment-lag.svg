@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">Self-assessment lag and delayed subjective reports</title>
+  <desc id="desc">A timeline relates stimulus presentation, evolving latent affect, local EEG windows, temporal aggregation, and a delayed self-report after the trial.</desc>
+  <defs>
+    <linearGradient id="h4" x2="1"><stop stop-color="#143B5D"/><stop offset="1" stop-color="#246B78"/></linearGradient>
+    <marker id="arr4" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#2E6473"/></marker>
+  </defs>
+  <rect width="1400" height="760" fill="#F4F7F9"/><rect width="1400" height="106" fill="url(#h4)"/>
+  <text x="700" y="52" text-anchor="middle" font-family="Arial" font-size="34" font-weight="700" fill="white">Self-Assessment Lag and Delayed Reports</text>
+  <text x="700" y="84" text-anchor="middle" font-family="Arial" font-size="18" fill="#DDECF0">The neural response, felt state, and retrospective label need not be synchronized</text>
+  <rect x="70" y="145" width="1260" height="555" rx="22" fill="white"/>
+  <g font-family="Arial" font-size="18" font-weight="700" fill="#344957">
+    <text x="105" y="220">Stimulus</text><text x="105" y="335">Latent affect</text><text x="105" y="470">Local EEG</text><text x="105" y="595">Subjective report</text>
+  </g>
+  <path d="M255 220H1210" stroke="#768896" stroke-width="3" marker-end="url(#arr4)"/>
+  <rect x="300" y="187" width="680" height="62" rx="12" fill="#E8F0F9"/><text x="640" y="226" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#356A9E">emotion-inducing clip / trial</text>
+  <path d="M300 270V625M980 270V625" stroke="#A8B8C2" stroke-width="2" stroke-dasharray="7 7"/>
+  <g font-family="Arial" font-size="16" fill="#5F6F7C"><text x="300" y="174" text-anchor="middle">onset</text><text x="980" y="174" text-anchor="middle">trial end</text><text x="1210" y="174" text-anchor="middle">time</text></g>
+  <path d="M270 390C350 382 405 335 465 298C525 262 585 293 625 338C670 388 712 365 754 320C800 272 855 283 900 326C938 363 962 382 1005 371" fill="none" stroke="#2C9A78" stroke-width="8" stroke-linecap="round"/>
+  <path d="M270 410C350 402 405 355 465 318C525 282 585 313 625 358C670 408 712 385 754 340C800 292 855 303 900 346C938 383 962 402 1005 391" fill="none" stroke="#2C9A78" stroke-width="24" opacity=".11"/>
+  <g fill="#E7F0F3" stroke="#2E6473" stroke-width="2">
+    <rect x="300" y="440" width="72" height="54" rx="7"/><rect x="388" y="440" width="72" height="54" rx="7"/><rect x="476" y="440" width="72" height="54" rx="7"/><rect x="564" y="440" width="72" height="54" rx="7"/><rect x="652" y="440" width="72" height="54" rx="7"/><rect x="740" y="440" width="72" height="54" rx="7"/><rect x="828" y="440" width="72" height="54" rx="7"/><rect x="916" y="440" width="64" height="54" rx="7"/>
+  </g>
+  <g font-family="Arial" font-size="15" font-weight="700" fill="#2E6473"><text x="336" y="474" text-anchor="middle">w₁</text><text x="424" y="474" text-anchor="middle">w₂</text><text x="512" y="474" text-anchor="middle">w₃</text><text x="600" y="474" text-anchor="middle">w₄</text><text x="688" y="474" text-anchor="middle">w₅</text><text x="776" y="474" text-anchor="middle">w₆</text><text x="864" y="474" text-anchor="middle">w₇</text><text x="948" y="474" text-anchor="middle">w₈</text></g>
+  <path d="M640 515C730 550 865 555 1020 565" fill="none" stroke="#E2A647" stroke-width="4" marker-end="url(#arr4)"/>
+  <text x="790" y="548" text-anchor="middle" font-family="Arial" font-size="16" font-weight="700" fill="#9A6A21">temporal pooling / remembered summary</text>
+  <rect x="1030" y="548" width="210" height="82" rx="15" fill="#FBF1DF" stroke="#E2A647" stroke-width="3"/>
+  <g font-family="Arial" text-anchor="middle"><text x="1135" y="580" font-size="18" font-weight="700" fill="#9A6A21">Delayed rating</text><text x="1135" y="607" font-size="16" fill="#806439">after the trial</text></g>
+  <path d="M980 655H1135V635" fill="none" stroke="#D95757" stroke-width="3" stroke-dasharray="7 7" marker-end="url(#arr4)"/>
+  <text x="1045" y="682" text-anchor="middle" font-family="Arial" font-size="16" font-weight="700" fill="#A43B3B">reporting lag</text>
+</svg>

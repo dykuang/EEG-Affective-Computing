@@ -4,7 +4,9 @@ Accuracy, macro F1, correlation, and uncertainty intervals are necessary for eva
 
 Qualitative assessment asks whether the model's behavior is credible when viewed through scientific, clinical, psychological, and deployment-oriented expectations. It does not replace quantitative testing with attractive visualizations or expert intuition. Instead, it turns domain priors into explicit behavioral checks that a model can pass, fail, or satisfy only under limited conditions.
 
-> Figure suggestion: Show two models with matched test accuracy. One follows plausible affect trajectories and remains stable under artifact controls; the other changes with nuisance perturbations and produces implausible jumps. The figure should emphasize that headline accuracy alone cannot reveal the difference.
+![Two models with matched accuracy but contrasting temporal plausibility and artifact robustness.](figures/matched-accuracy-different-credibility.svg)
+
+*Figure 1. Equal headline accuracy can conceal fundamentally different prediction logic. A theory-aligned model follows a plausible trajectory and remains stable under artifact controls, whereas a shortcut-sensitive model produces implausible jumps and responds to nuisance perturbations.*
 
 ## From Score to Behavioral Claim
 
@@ -48,6 +50,10 @@ Qualitative review should therefore display local predictions in their source co
 
 A useful case set contains representative correct predictions, confident errors, uncertain cases, boundary cases, and examples from different subjects or sessions. Selecting only appealing successes is not qualitative evaluation; it is illustration. Predefine selection rules or sample cases systematically from performance strata.
 
+![Aligned trial-context review showing stimulus events, signal quality, artifacts, EEG windows, predictions, uncertainty, and delayed labels.](figures/trial-context-review.svg)
+
+*Figure 2. Local predictions should be reviewed inside their full trial context. Aligned tracks expose whether a change coincides with meaningful events, declining signal quality, artifacts, window boundaries, or delayed annotation.*
+
 ## Examine What the Model Uses
 
 Attribution, attention, saliency, prototypes, counterfactual perturbations, and learned graph edges can generate hypotheses about model behavior. They should be treated as evidence to be tested, not as explanations by default.
@@ -60,6 +66,10 @@ For each explanation method, ask:
 - Is the explanation consistent with the input representation, or is it an artifact of a visualization method?
 
 Paired perturbations are especially useful. For example, mask a model-highlighted alpha-band interval and a matched non-highlighted interval with equal duration and signal quality; compare the change in prediction. This tests local faithfulness rather than assuming that an attention weight or saliency map is causal.
+
+![Matched perturbation test comparing a model-highlighted EEG interval with equivalent control evidence.](figures/matched-perturbation-faithfulness.svg)
+
+*Figure 3. A visual explanation gains behavioral support when perturbing highlighted evidence changes the prediction more than perturbing a matched control interval. Equal duration and signal quality make the comparison informative.*
 
 ## Test Causal and Interpretability Claims
 
@@ -74,6 +84,10 @@ A directed EEG graph or causal explanation deserves stronger scrutiny than an or
 | Directed interaction | Lag/model-order sensitivity, multivariate controls, and edge stability |
 | Causal effect | Intervention design, counterfactual assumptions, and outcome measurement |
 | Causality-preserving distillation | Student and teacher agreement under shift or controlled perturbation, not only in-distribution logits |
+
+![Evidence ladder showing progressively stronger validation requirements for feature, connectivity, directed-interaction, and causal claims.](figures/interpretability-evidence-ladder.svg)
+
+*Figure 4. Validation burden rises with claim strength. Feature importance requires stability and perturbation tests; connectivity and directionality require additional controls; causal effects require an identifiable intervention design and explicit counterfactual assumptions.*
 
 ## Assess Emotion-Space Consistency
 
@@ -107,6 +121,10 @@ A practical protocol can be built alongside quantitative evaluation:
 6. Document which expectations held, which failed, and which remain uncertain rather than converting all observations into post hoc stories.
 
 This protocol is especially important when a model may influence a person through feedback, adaptation, or clinical decision support. Qualitative evidence can reveal whether a numerically strong model behaves in a manner that is intelligible and safe enough to justify further use.
+
+![Six-stage qualitative assessment cycle from predeclared claims to documented conclusions.](figures/qualitative-assessment-protocol.svg)
+
+*Figure 5. A predeclared qualitative assessment cycle links claims and priors to behavioral checks, aligned evidence, baseline comparisons, held-out review, and documented outcomes—including expectations that fail or remain uncertain.*
 
 ## Reporting Checklist
 

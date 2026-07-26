@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+  <title id="title">Sparse event-driven affect transitions</title>
+  <desc id="desc">A mostly smooth affect trajectory contains two sparse transitions aligned with stimulus events.</desc>
+  <defs><linearGradient id="h3" x2="1"><stop stop-color="#143B5D"/><stop offset="1" stop-color="#246B78"/></linearGradient></defs>
+  <rect width="1400" height="720" fill="#F4F7F9"/><rect width="1400" height="106" fill="url(#h3)"/>
+  <text x="700" y="52" text-anchor="middle" font-family="Arial" font-size="34" font-weight="700" fill="white">Sparse, Event-Driven Transitions</text>
+  <text x="700" y="84" text-anchor="middle" font-family="Arial" font-size="18" fill="#DDECF0">Smooth within stable intervals; flexible at evidence-supported change points</text>
+  <rect x="75" y="145" width="1250" height="500" rx="22" fill="white"/>
+  <g stroke="#D9E2E7"><path d="M145 280H1250M145 390H1250M145 500H1250"/></g><g fill="none" stroke="#768896" stroke-width="2"><path d="M145 220V550H1250"/></g>
+  <g font-family="Arial" font-size="17" fill="#5F6F7C"><text x="95" y="285">High</text><text x="108" y="395">0</text><text x="99" y="505">Low</text><text x="700" y="590" text-anchor="middle">Time</text><text x="36" y="386" transform="rotate(-90 36 386)" text-anchor="middle">Latent affect</text></g>
+  <g opacity=".11"><rect x="145" y="220" width="335" height="330" fill="#2C9A78"/><rect x="480" y="220" width="390" height="330" fill="#3D79B8"/><rect x="870" y="220" width="380" height="330" fill="#E2A647"/></g>
+  <path d="M145 458C225 443 300 425 380 434C425 439 456 427 480 405C505 382 510 315 545 299C620 265 725 281 795 310C835 327 856 348 870 374C886 404 900 470 935 485C1010 517 1135 489 1250 450" fill="none" stroke="#2C9A78" stroke-width="8" stroke-linecap="round"/>
+  <g stroke="#D95757" stroke-width="3" stroke-dasharray="8 7"><path d="M480 190V550"/><path d="M870 190V550"/></g>
+  <g font-family="Arial">
+    <rect x="386" y="160" width="188" height="40" rx="20" fill="#FBEAEA"/><text x="480" y="186" text-anchor="middle" font-size="17" font-weight="700" fill="#A43B3B">stimulus onset</text>
+    <rect x="776" y="160" width="188" height="40" rx="20" fill="#FBEAEA"/><text x="870" y="186" text-anchor="middle" font-size="17" font-weight="700" fill="#A43B3B">feedback event</text>
+    <text x="310" y="530" text-anchor="middle" font-size="18" font-weight="700" fill="#26785E">stable interval</text><text x="675" y="530" text-anchor="middle" font-size="18" font-weight="700" fill="#356A9E">stable interval</text><text x="1060" y="530" text-anchor="middle" font-size="18" font-weight="700" fill="#9A6A21">stable interval</text>
+    <rect x="372" y="600" width="656" height="34" rx="17" fill="#E7F0F3"/><text x="700" y="623" text-anchor="middle" font-size="17" font-weight="700" fill="#2E6473">change-point gate relaxes smoothing only near detected events</text>
+  </g>
+</svg>

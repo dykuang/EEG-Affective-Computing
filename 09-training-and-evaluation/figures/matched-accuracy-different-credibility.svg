@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="840" viewBox="0 0 1600 840" role="img" aria-labelledby="title desc">
+  <title id="title">Matched accuracy can conceal different model credibility</title>
+  <desc id="desc">Two models have the same test accuracy, but one follows a plausible stable trajectory while the other jumps implausibly and responds strongly to nuisance artifacts.</desc>
+  <defs><linearGradient id="paper" y2="1"><stop stop-color="#FCF9F0"/><stop offset="1" stop-color="#F0E9D8"/></linearGradient><filter id="soft"><feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#53685B" flood-opacity=".14"/></filter></defs>
+  <rect width="1600" height="840" fill="url(#paper)"/>
+  <path d="M0 112C260 74 470 145 735 110S1190 72 1600 120V0H0Z" fill="#315C50"/>
+  <text x="800" y="58" text-anchor="middle" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#FFFDF6">Same Accuracy, Different Scientific Credibility</text>
+  <text x="800" y="95" text-anchor="middle" font-family="Arial" font-size="19" fill="#E5EFE8">Headline performance does not reveal what a model learned</text>
+  <g filter="url(#soft)" fill="#FFFDF8"><rect x="65" y="175" width="700" height="555" rx="26"/><rect x="835" y="175" width="700" height="555" rx="26"/></g>
+  <g font-family="Georgia,serif" text-anchor="middle"><text x="415" y="225" font-size="29" font-weight="700" fill="#315C50">Model A · theory-aligned</text><text x="1185" y="225" font-size="29" font-weight="700" fill="#754A3C">Model B · shortcut-sensitive</text></g>
+  <g font-family="Arial" text-anchor="middle"><ellipse cx="415" cy="275" rx="128" ry="38" fill="#DDE8D5"/><text x="415" y="282" font-size="21" font-weight="700" fill="#3F6037">Test accuracy 82%</text><ellipse cx="1185" cy="275" rx="128" ry="38" fill="#E7D2C5"/><text x="1185" y="282" font-size="21" font-weight="700" fill="#754A3C">Test accuracy 82%</text></g>
+  <g stroke="#DDD8CA"><path d="M125 390H705M125 490H705M125 590H705"/><path d="M895 390H1475M895 490H1475M895 590H1475"/></g>
+  <g fill="none" stroke="#7A877F" stroke-width="2"><path d="M125 340V630H705"/><path d="M895 340V630H1475"/></g>
+  <path d="M125 552C210 535 268 468 345 450C425 432 480 470 540 490C600 510 650 475 705 430" fill="none" stroke="#497B6C" stroke-width="9" stroke-linecap="round"/>
+  <path d="M895 555L945 380L995 575L1045 405L1095 548L1145 370L1195 565L1245 410L1295 580L1345 390L1395 555L1445 410L1475 520" fill="none" stroke="#B86C50" stroke-width="8" stroke-linejoin="round"/>
+  <g font-family="Arial" text-anchor="middle">
+    <path d="M168 665Q415 710 662 665" fill="none" stroke="#6E8D61" stroke-width="5"/><text x="415" y="692" font-size="18" font-weight="700" fill="#3F6037">smooth when context is stable</text>
+    <path d="M938 665Q1185 710 1432 665" fill="none" stroke="#A76E55" stroke-width="5"/><text x="1185" y="692" font-size="18" font-weight="700" fill="#754A3C">implausible local switching</text>
+    <rect x="260" y="748" width="310" height="42" rx="21" fill="#D5E6E0"/><text x="415" y="775" font-size="17" font-weight="700" fill="#315C50">stable under artifact controls</text>
+    <rect x="1005" y="748" width="360" height="42" rx="21" fill="#F1DDAA"/><text x="1185" y="775" font-size="17" font-weight="700" fill="#76591C">prediction follows nuisance perturbation</text>
+  </g>
+</svg>
