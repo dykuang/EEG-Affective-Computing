@@ -2,140 +2,54 @@
 
 ## Overview
 
-Optimization requires gradients, and backpropagation is the mechanism that computes them efficiently for multilayer models. Without backpropagation, training modern deep networks would be computationally infeasible.
+Gradient-based optimization is only useful if a model can calculate how each parameter affects its loss. Backpropagation makes that calculation practical by applying the chain rule through a network in reverse order. It is the mechanism that turns a layered computation into trainable parameters, and it also explains several of the most common failures of deep models.
 
-This section explains backpropagation as repeated application of the chain rule through a computation graph, then connects it to practical training issues such as vanishing gradients, exploding gradients, normalization, and stable optimization for EEG data.
+## From a Forward Pass to a Gradient
 
-## Forward Computation and Computational Graphs
+Consider a two-layer network:
 
-A neural network can be viewed as a directed graph of operations. For a simple two-layer network,
+$$h = \sigma(W_1x+b_1), \qquad \hat{y}=W_2h+b_2, \qquad \mathcal{L}=\ell(\hat{y},y).$$
 
-$$h = \sigma(W_1 x + b_1),$$
-$$\hat{y} = W_2 h + b_2,$$
-$$\mathcal{L} = \ell(\hat{y}, y).$$
+The forward pass calculates the hidden state, prediction, and loss. The backward pass asks how a small change to each earlier quantity would change that loss. For a nested computation, the chain rule gives
 
-The **forward pass** computes intermediate values and the final loss.
+$$\frac{\partial \mathcal{L}}{\partial W} = \frac{\partial \mathcal{L}}{\partial \hat{y}}\cdot\frac{\partial \hat{y}}{\partial h}\cdot\frac{\partial h}{\partial W}.$$
 
-## The Chain Rule
+In a layered network, define $z^{(l)}=W^{(l)}h^{(l-1)}+b^{(l)}$ and $h^{(l)}=\sigma(z^{(l)})$. The backward pass propagates an error signal $\delta^{(l)}=\partial\mathcal{L}/\partial z^{(l)}$, producing
 
-Backpropagation relies on the chain rule. If
+$$\frac{\partial \mathcal{L}}{\partial W^{(l)}}=\delta^{(l)}(h^{(l-1)})^T, \qquad \frac{\partial \mathcal{L}}{\partial b^{(l)}}=\delta^{(l)},$$
 
-$$\mathcal{L} = \mathcal{L}(\hat{y}(h(W))),$$
+with the recursion
 
-then
+$$\delta^{(l)}=((W^{(l+1)})^T\delta^{(l+1)})\odot\sigma'(z^{(l)}).$$
 
-$$\frac{\partial \mathcal{L}}{\partial W} = \frac{\partial \mathcal{L}}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial h} \cdot \frac{\partial h}{\partial W}.$$
+By caching forward values and reusing downstream derivatives, backpropagation avoids recomputing the same work for each parameter. Automatic-differentiation systems in PyTorch and TensorFlow automate this bookkeeping, but they still rely on this principle.
 
-This allows gradients to be decomposed into local derivatives and propagated backward through the graph.
+## When Gradients Do Not Travel Well
 
-## Backpropagation in a Layered Network
+The recursion above multiplies many derivative terms. When those terms are repeatedly small, gradients vanish before reaching early layers; when they are repeatedly large, gradients explode and produce unstable updates. Saturated sigmoid or tanh units, deep temporal models, long sequences, and poorly scaled inputs can make either problem more likely.
 
-For a layer
+Several design choices improve gradient flow. ReLU-like activations reduce saturation. Careful initialization keeps initial signal magnitudes in a useful range. Batch or layer normalization stabilizes intermediate representations, while residual connections provide short paths through deep networks. For unstable recurrent or temporal models, gradient clipping limits the update magnitude:
 
-$$z^{(l)} = W^{(l)} h^{(l-1)} + b^{(l)}, \qquad h^{(l)} = \sigma(z^{(l)}),$$
+$$g \leftarrow g\cdot\min\left(1,\frac{c}{\|g\|}\right).$$
 
-the backward pass computes an error signal
+These techniques help, but trainability is not a property of architecture alone. Batch size, optimizer, learning-rate schedule, data ordering, and regularization also determine how the model evolves during training.
 
-$$\delta^{(l)} = \frac{\partial \mathcal{L}}{\partial z^{(l)}}.$$
+## EEG-Specific Training Considerations
 
-Then the parameter gradients are
+EEG signals can vary sharply in amplitude across channels, sessions, and participants. Artifacts may dominate the loss, noisy labels can send misleading gradient signals, and heterogeneous batches can encourage incompatible updates. Channel-wise normalization, artifact-aware preprocessing, balanced batches across classes or subjects, and appropriate loss weighting make the gradients more meaningful before any optimizer is applied.
 
-$$\frac{\partial \mathcal{L}}{\partial W^{(l)}} = \delta^{(l)} (h^{(l-1)})^T,$$
-$$\frac{\partial \mathcal{L}}{\partial b^{(l)}} = \delta^{(l)}.$$
-
-The error recursion is
-
-$$\delta^{(l)} = \left((W^{(l+1)})^T \delta^{(l+1)}\right) \odot \sigma'(z^{(l)}).$$
-
-This recursive structure makes backpropagation efficient: every layer reuses downstream information instead of recomputing gradients from scratch.
-
-## Why Backpropagation Scales
-
-Naive differentiation would be extremely expensive for large networks. Backpropagation avoids repeated work by caching forward activations and propagating derivatives once. This makes deep learning practical even with millions of parameters.
-
-## Gradient Flow Problems
-
-### Vanishing Gradients
-
-If repeated derivatives are small, gradients shrink rapidly as they move backward through depth or time. This makes early layers learn very slowly.
-
-This is especially common with:
-
-- sigmoid activations,
-- tanh in saturated regimes,
-- deep recurrent models.
-
-### Exploding Gradients
-
-If repeated derivatives are large, gradients can grow uncontrollably. This causes unstable parameter updates and numerical problems.
-
-Both issues matter in EEG models, particularly when:
-
-- using deep temporal architectures,
-- training on long sequences,
-- working with poorly normalized signals.
-
-## Practical Responses to Gradient Problems
-
-### Activation Choice
-
-ReLU-like activations reduce saturation and often help gradient flow.
-
-### Initialization
-
-Good initialization keeps the scale of activations and gradients under control at the start of training.
-
-### Normalization
-
-Batch normalization, layer normalization, and related techniques help stabilize intermediate representations and training dynamics.
-
-### Residual Connections
-
-Skip connections make it easier for gradients to propagate through deep networks.
-
-### Gradient Clipping
-
-For recurrent or unstable models, gradient clipping limits the update magnitude:
-
-$$g \leftarrow g \cdot \min\left(1, \frac{c}{\|g\|}\right).$$
-
-## Training Dynamics Beyond the Formula
-
-Backpropagation provides gradients, but training behavior also depends on:
-
-- optimizer choice,
-- batch size,
-- learning rate schedule,
-- normalization scheme,
-- regularization,
-- data ordering.
-
-Thus, trainability is not just a property of the architecture; it emerges from the interaction of model, objective, and optimization procedure.
-
-## Backpropagation in EEG Context
-
-EEG data presents several challenges for gradient-based learning:
-
-- signals can have large amplitude variability across channels,
-- artifacts may dominate gradients if preprocessing is weak,
-- labels may be noisy, giving misleading gradient signals,
-- subject heterogeneity may produce conflicting update directions.
-
-Useful mitigation strategies include:
-
-- channel-wise normalization,
-- robust preprocessing before model training,
-- balanced batching across subjects or classes,
-- loss reweighting for imbalanced labels,
-- shorter warm-up phases for learning rate schedules.
-
-## Automatic Differentiation
-
-Modern frameworks such as PyTorch and TensorFlow implement automatic differentiation. Conceptually, however, they are still applying backpropagation through a computation graph. Understanding the underlying mechanism remains important because many model pathologies are gradient pathologies.
+Monitoring training is equally important. A declining loss does not prove that the model is learning emotion-related structure; it may be exploiting subject identity or session artifacts. Training curves, gradient norms, and held-out subject performance provide complementary evidence about whether optimization is stable and useful.
 
 ## Summary
 
-Backpropagation is the engine of deep learning optimization. It turns layered nonlinear computation into efficient gradient updates, but also exposes networks to trainability problems such as vanishing and exploding gradients. These issues become especially important in EEG applications because signals are noisy, labels are limited, and temporal depth can be substantial. The next question is whether fitting the training data actually leads to good performance on unseen data.
+Backpropagation efficiently computes gradients by applying the chain rule from the loss back through each layer. Its recursive nature makes deep learning scalable, but also creates vanishing and exploding gradient risks. Sound initialization, normalization, residual paths, and data preparation help convert a mathematically valid gradient into a stable learning signal.
+
+## References
+
+- He, K., Zhang, X., Ren, S., and Sun, J. (2015). Delving deep into rectifiers: Surpassing human-level performance on ImageNet classification. *IEEE International Conference on Computer Vision*.
+- Hochreiter, S. (1991). *Untersuchungen zu dynamischen neuronalen Netzen*. Diploma thesis, Technical University of Munich.
+- Ioffe, S., and Szegedy, C. (2015). Batch normalization: Accelerating deep network training by reducing internal covariate shift. *International Conference on Machine Learning*.
+- Rumelhart, D. E., Hinton, G. E., and Williams, R. J. (1986). Learning representations by back-propagating errors. *Nature*, 323, 533-536.
 
 ---
 

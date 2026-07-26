@@ -2,165 +2,66 @@
 
 ## Overview
 
-A deep model can achieve very low training loss and still fail badly on new data. This is the central problem of **generalization**. In EEG-based affective computing, generalization is particularly difficult because datasets are often small, label quality is imperfect, and subject-to-subject variability is large.
+The purpose of a learning system is not to reproduce its training data; it is to make reliable predictions on data it has not seen. This ability is called generalization. In EEG-based affective computing, it is particularly difficult because recordings are noisy, participant pools are often small, and the relationship between EEG and reported emotion can differ across people and sessions.
 
-This section introduces overfitting, generalization, bias-variance tradeoffs, and practical regularization strategies.
+## The Gap Between Training and New Data
 
-## Training Error vs. Test Error
+Training error measures performance on the examples used to fit a model. Test error measures performance on held-out examples that were not used for fitting or model selection. When training performance continues to improve while held-out performance stagnates or worsens, the model is overfitting: it has captured details of the training set that do not transfer.
 
-- **Training error** measures performance on the data used for fitting.
-- **Test error** measures performance on unseen data.
+In the language of empirical risk, the generalization gap is
 
-A model **overfits** when training error becomes very low while test error remains high or worsens.
+$$R(\theta)-\hat{R}_n(\theta),$$
 
-This typically means the model has learned dataset-specific quirks rather than robust emotion-related structure.
+the difference between the unknown population risk and the observed training risk. A small gap is desirable, but it cannot be inferred from training accuracy alone. It must be estimated with a validation design that matches the intended use of the model.
 
-## Generalization Gap
+EEG provides many ways for an apparent success to be misleading. A classifier may recognize participant identity rather than emotion, exploit session-specific noise, or benefit from preprocessing information that leaked across a train-test boundary. Such a model can achieve impressive within-dataset scores while failing on a new participant or recording session.
 
-The **generalization gap** is the difference between expected performance on new data and observed performance on training data.
+## Capacity, Bias, and Variance
 
-Conceptually,
+The bias-variance perspective provides a useful, if simplified, way to think about this problem. A model with high bias is too constrained to capture a meaningful pattern and underfits: both training and test performance are poor. A model with high variance is too sensitive to the particular training sample and overfits: training performance is strong, but test performance is weak.
 
-$$\text{generalization gap} = R(\theta) - \hat{R}_n(\theta).$$
+Capacity grows with architectural flexibility, including depth, width, and the number of adjustable parameters. More capacity can model complex relationships, but it also makes it easier to memorize artifacts or sampling quirks. EEG is a demanding regime because high-dimensional inputs and correlated channels are commonly paired with a small number of participants and subjective annotations. A smaller, well-matched model can therefore generalize better than a much larger one.
 
-A small gap is desirable, but in EEG it can be hard to obtain because:
+## Regularization as Controlled Flexibility
 
-- the training sample may not represent the full population,
-- subjects differ strongly,
-- recording setups and stimulus protocols vary,
-- emotional labels are noisy and subjective.
+Regularization places useful constraints on the fitting process. L2 weight decay, for example, adds a penalty for large parameter values:
 
-## Bias, Variance, and Capacity
+$$\mathcal{L}_{\text{reg}}=\mathcal{L}+\lambda\|\theta\|_2^2.$$
 
-A useful conceptual lens is the **bias-variance tradeoff**.
+Dropout randomly suppresses units during training, discouraging fragile co-adaptation. Early stopping halts training when validation performance stops improving, which is often one of the most effective practical defenses against overfitting in small EEG datasets. Data augmentation can further expose the model to plausible variation, such as temporal jitter, modest additive noise, frequency perturbations, or masked channels and time spans. Each augmentation must preserve the target label under the scientific assumptions of the task; a transformation that changes affect-relevant content is not a valid regularizer.
 
-- **High bias**: the model is too simple and underfits.
-- **High variance**: the model is too sensitive to the training sample and overfits.
+Normalization and architectural control also matter. Properly scaled inputs make optimization more stable, and a deliberately small model may be the most appropriate form of regularization when data are limited. These methods do not eliminate the need for a sound evaluation protocol.
 
-Model capacity increases with depth, width, and architectural flexibility. More capacity helps fit complex EEG patterns, but also raises the risk of memorization.
+## Validation Is Part of the Model
 
-## Why Overfitting Is Common in EEG
+For EEG, the train-test split determines the claim a result can support. Subject-dependent evaluation asks whether a model can predict new trials from participants represented in training. Subject-independent evaluation asks whether it transfers to a previously unseen participant. Leave-one-subject-out and session-aware protocols make these distinctions explicit.
 
-EEG-based affective computing often combines:
+Preprocessing must respect the same boundary. Normalization statistics, feature selection, and hyperparameter choices should be estimated using training data only and then applied to held-out data. Otherwise, information leakage produces overly optimistic estimates of generalization. The correct protocol is not universally the strictest one; it is the one that matches the deployment or scientific question and is reported clearly.
 
-- high-dimensional inputs,
-- relatively small subject pools,
-- many correlated channels,
-- noisy annotations,
-- strong inter-subject distribution shift.
+## Inductive Bias and Label Quality
 
-This is exactly the kind of regime in which overfitting becomes severe. A model may learn:
+Architectures generalize partly because they encode inductive biases. Convolutional networks favor local structure, recurrent models favor sequential dependence, graph neural networks favor a specified relational structure, and Transformers allow flexible contextual interaction. A well-matched bias can reduce the amount of data needed, provided the structural assumption is justified for the EEG representation being used.
 
-- subject identity instead of emotion,
-- session-specific noise,
-- artifact patterns,
-- dataset collection biases.
+Finally, apparent overfitting may reflect label noise rather than model capacity alone. Emotion labels can vary because of self-report uncertainty, coarse rating scales, delayed responses, and individual or cultural interpretation. Robust losses, uncertainty-aware modeling, and semi- or self-supervised approaches can help, but they do not turn an ambiguous target into a precise ground truth.
 
-## Underfitting vs. Overfitting
+## Practical Guidance
 
-### Underfitting
-
-A model underfits when both training and test performance are poor. Causes include:
-
-- insufficient capacity,
-- poor feature representation,
-- optimization failure,
-- inappropriate loss design.
-
-### Overfitting
-
-A model overfits when training performance is strong but test performance is weak. Causes include:
-
-- too much model capacity relative to data,
-- weak regularization,
-- leakage across train/test partitions,
-- spurious subject or session cues.
-
-## Regularization Strategies
-
-### Weight Decay
-
-L2 regularization penalizes large weights:
-
-$$\mathcal{L}_{\text{reg}} = \mathcal{L} + \lambda \|\theta\|_2^2.$$
-
-This encourages smoother, less extreme solutions.
-
-### Dropout
-
-Dropout randomly suppresses units during training. It reduces co-adaptation and often improves robustness in EEG classifiers with limited data.
-
-### Early Stopping
-
-Training is stopped when validation performance stops improving. This is one of the most practical defenses against overfitting in EEG.
-
-### Data Augmentation
-
-For EEG, augmentation may include:
-
-- temporal jittering,
-- additive noise,
-- frequency perturbation,
-- masking channels or time spans,
-- mixup or manifold mixup.
-
-### Normalization and Standardization
-
-Proper input scaling reduces training instability and can improve generalization indirectly.
-
-### Architectural Control
-
-Sometimes the best regularizer is simply a smaller model.
-
-## Validation Protocols Matter
-
-In EEG, bad evaluation design can create the illusion of generalization.
-
-Important protocol choices include:
-
-- subject-dependent vs. subject-independent evaluation,
-- leave-one-subject-out validation,
-- session-aware splits,
-- leakage prevention during normalization and preprocessing.
-
-A model that generalizes within a subject may fail completely across subjects.
-
-## The Role of Inductive Bias
-
-Architectures generalize partly because they encode assumptions:
-
-- CNNs assume locality,
-- RNNs assume sequence structure,
-- GNNs assume graph structure,
-- Transformers assume flexible contextual interaction.
-
-Good inductive bias can reduce sample complexity. For EEG, a well-matched architecture often generalizes better than a larger but less structured model.
-
-## Label Noise and Weak Supervision
-
-Emotion labels are often noisy because they depend on:
-
-- self-report variability,
-- coarse annotation scales,
-- delayed or averaged responses,
-- cultural and personal interpretation.
-
-Thus, part of the apparent overfitting problem may actually be fitting label noise. This motivates robust losses, uncertainty-aware modeling, and semi/self-supervised methods.
-
-## Practical EEG Guidelines
-
-To reduce overfitting in EEG affective computing:
-
-1. prefer subject-aware validation,
-2. start from simpler models before scaling up,
-3. use early stopping and weight decay routinely,
-4. monitor train/validation divergence,
-5. test whether the model is learning emotion or subject identity,
-6. use augmentation and unlabeled data where possible.
+1. Define whether the intended claim is within-subject, cross-subject, or cross-session generalization.
+2. Split data by the relevant participant and session groups before fitting preprocessing or selecting models.
+3. Begin with a simple baseline, then add capacity only when validation evidence supports it.
+4. Use early stopping and weight decay routinely, and monitor the divergence between training and validation performance.
+5. Test plausible shortcuts, including whether a model can predict subject identity from the representation.
 
 ## Summary
 
-Generalization is the real goal of learning, not low training loss alone. Overfitting is especially dangerous in EEG-based affective computing because data are scarce and heterogeneous. Regularization, validation design, and inductive bias all play central roles in making deep models useful beyond the training set. The next step is to examine the major learning paradigms that determine what supervision signal is available in the first place.
+Generalization, rather than low training loss, is the real criterion for a useful EEG model. Regularization, inductive bias, label quality, and validation protocol work together to determine whether a learned pattern survives outside the training set. The next section considers how the source of supervision further shapes what a model can learn.
+
+## References
+
+- Cawley, G. C., and Talbot, N. L. C. (2010). On over-fitting in model selection and subsequent selection bias in performance evaluation. *Journal of Machine Learning Research*, 11, 2079-2107.
+- Goodfellow, I., Bengio, Y., and Courville, A. (2016). *Deep Learning*. MIT Press.
+- Lotte, F., Bougrain, L., Clerc, M., et al. (2018). A review of classification algorithms for EEG-based brain-computer interfaces: A 10 year update. *Journal of Neural Engineering*, 15(3), 031005.
+- Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., and Salakhutdinov, R. (2014). Dropout: A simple way to prevent neural networks from overfitting. *Journal of Machine Learning Research*, 15, 1929-1958.
 
 ---
 

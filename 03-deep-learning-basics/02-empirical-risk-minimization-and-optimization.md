@@ -2,164 +2,72 @@
 
 ## Overview
 
-Once a neural network architecture is specified, learning becomes an optimization problem. We choose model parameters so that predictions align well with observed training data. The dominant framework for this is **empirical risk minimization**.
+After choosing a neural-network architecture, learning becomes a question of preference: among all possible parameter settings, which one should the model prefer? Empirical risk minimization (ERM) answers by selecting parameters that make costly mistakes rare on the observed data. It is the organizing principle behind most modern deep-learning training procedures.
 
-For EEG-based affective computing, this perspective is essential because model behavior is shaped not only by architecture, but by the loss function, training distribution, and optimization dynamics.
+For EEG-based affective computing, this viewpoint makes an important distinction visible. A model is shaped not only by its architecture, but also by the errors its loss function rewards, the data distribution represented by the training set, and the behavior of the optimizer used to reduce that loss.
 
-## Population Risk and Empirical Risk
+## From the Ideal Objective to Training Data
 
-Suppose data pairs $(x, y)$ are drawn from an unknown distribution $\mathcal{D}$. Let $f_\theta(x)$ be a model parameterized by $\theta$, and let $\ell(f_\theta(x), y)$ be a loss.
-
-The ideal objective is the **population risk**:
+Let $f_\theta(x)$ be a model with parameters $\theta$, and let $\ell(f_\theta(x), y)$ measure the cost of predicting $f_\theta(x)$ when the target is $y$. If examples were drawn from a known distribution $\mathcal{D}$, the ideal objective would be the population risk
 
 $$R(\theta) = \mathbb{E}_{(x,y) \sim \mathcal{D}}[\ell(f_\theta(x), y)].$$
 
-But $\mathcal{D}$ is unknown. In practice we minimize the **empirical risk** over a dataset of size $n$:
+The distribution is unknown, so training replaces this expectation with the average loss on a dataset of $n$ examples:
 
 $$\hat{R}_n(\theta) = \frac{1}{n} \sum_{i=1}^n \ell(f_\theta(x_i), y_i).$$
 
-This is the basic learning principle behind most deep learning systems.
+Minimizing $\hat{R}_n$ is ERM. It is sensible because the training set is the available evidence, but it is not identical to minimizing $R$. A model can fit the observed trials closely while performing poorly for new sessions or new participants. This gap is especially important for EEG, where subjective labels, artifacts, and participant differences can distort the training sample.
 
-## Loss Functions
+## Losses Specify What Counts as an Error
 
-The choice of loss determines what errors matter.
+The loss function translates the scientific task into an optimization target. For $K$-class emotion classification, cross-entropy compares the predicted class probabilities $\hat{p}_k$ with a one-hot target $y_k$:
 
-### Classification Loss
+$$\ell_{\text{CE}} = - \sum_{k=1}^{K} y_k \log \hat{p}_k.$$
 
-For emotion classification with $K$ classes, the standard choice is cross-entropy:
-
-$$\ell_{\text{CE}} = - \sum_{k=1}^{K} y_k \log \hat{p}_k,$$
-
-where $\hat{p}_k$ is the predicted probability of class $k$.
-
-### Regression Loss
-
-For continuous valence or arousal prediction, a common choice is mean squared error:
+For continuous valence or arousal scores, mean squared error is a common choice:
 
 $$\ell_{\text{MSE}} = \|y - \hat{y}\|^2.$$
 
-### Contrastive or Representation Losses
+Representation-learning objectives can instead encourage related EEG segments to have nearby embeddings and unrelated segments to be separated. There is no universally correct loss: its assumptions must match the target, the label quality, and the consequences of different errors. Class imbalance or unreliable self-reports, for example, may require weighting, robust losses, or a revised target definition rather than merely longer training.
 
-In self-supervised or metric learning settings, objectives may encourage similar samples to have nearby embeddings and dissimilar samples to be separated.
+## Searching for Good Parameters
 
-## Why ERM Matters for EEG
-
-In EEG-based affective computing, empirical risk minimization is complicated by:
-
-- label noise from subjective emotion annotations,
-- distribution shift across subjects and recording sessions,
-- class imbalance,
-- small sample regimes,
-- noisy inputs with artifacts.
-
-Minimizing empirical risk too aggressively can fit spurious correlations rather than emotion-relevant structure.
-
-## Optimization as Parameter Search
-
-Neural learning seeks
+Deep networks are trained by seeking
 
 $$\theta^* = \arg\min_\theta \hat{R}_n(\theta).$$
 
-For deep networks, this objective is high-dimensional and nonconvex. Closed-form solutions are unavailable, so we rely on iterative gradient-based optimization.
-
-## Gradient Descent
-
-The simplest update rule is gradient descent:
+The objective is high-dimensional and nonconvex, so closed-form solutions are usually unavailable. Gradient descent moves parameters in the direction that locally reduces the empirical risk:
 
 $$\theta_{t+1} = \theta_t - \eta \nabla_\theta \hat{R}_n(\theta_t),$$
 
-where $\eta$ is the learning rate.
+where $\eta$ is the learning rate. Computing this gradient across an entire dataset at every step is expensive, so stochastic gradient descent (SGD) estimates it with a mini-batch $\mathcal{B}$:
 
-The gradient tells us how parameters should change locally to reduce loss. In large datasets, computing the full gradient is expensive.
+$$\theta_{t+1} = \theta_t - \eta \nabla_\theta \hat{R}_{\mathcal{B}}(\theta_t).$$
 
-## Stochastic Gradient Descent
+Mini-batches make training feasible and introduce noise into the updates. Momentum smooths updates by accumulating past gradients, while Adam adapts step sizes using running estimates of gradient moments. AdamW combines this adaptive behavior with decoupled weight decay. These optimizers are useful tools, not substitutes for a sound objective or validation design.
 
-Instead of using the full dataset, **stochastic gradient descent** uses mini-batches:
+## Why Optimization Is Fragile in EEG Studies
 
-$$\theta_{t+1} = \theta_t - \eta \nabla_\theta \hat{R}_{\mathcal{B}}(\theta_t),$$
+The optimization landscape depends on initialization, parameterization, and the data seen in each batch. Xavier/Glorot and He initialization schemes aim to keep activations and gradients well scaled at the start of training. Learning-rate schedules, normalization, and batch construction then influence whether training remains stable.
 
-where $\mathcal{B}$ is a batch sampled from the training set.
+EEG makes these choices consequential. A small number of participants can leave a large model underconstrained; batches that mix heterogeneous subjects can produce conflicting update directions; artifacts or label noise can dominate the gradient. Channel-wise normalization, balanced or subject-aware sampling, robust preprocessing, and early stopping are therefore parts of the optimization procedure, not mere implementation details.
 
-This introduces noise into optimization, but that noise is often beneficial:
-
-- it reduces computation per step,
-- it helps escape sharp local regions,
-- it may improve generalization.
-
-## Common Optimizers
-
-### SGD with Momentum
-
-Momentum accumulates past gradients:
-
-$$v_{t+1} = \mu v_t - \eta \nabla_\theta \hat{R}_{\mathcal{B}}(\theta_t),$$
-$$\theta_{t+1} = \theta_t + v_{t+1}.$$
-
-### Adam
-
-Adam adapts learning rates per parameter using first and second moments of the gradient. It is widely used in EEG studies because it is easy to tune and works well in noisy settings.
-
-### RMSProp and AdamW
-
-These are variants that often improve training stability or regularization behavior.
-
-## Optimization Landscape
-
-Deep learning objectives are nonconvex. This means:
-
-- many local minima and saddle points may exist,
-- optimization depends on initialization,
-- different runs may converge to different solutions,
-- low training loss does not guarantee good generalization.
-
-In practice, modern deep learning often succeeds despite nonconvexity because many solutions are good enough, but their generalization properties can differ substantially.
-
-## Initialization and Conditioning
-
-Optimization quality depends strongly on initialization. Poor initialization can lead to:
-
-- exploding activations,
-- vanishing activations,
-- unstable gradients,
-- slow convergence.
-
-Common initialization schemes such as Xavier/Glorot and He initialization are designed to keep signal magnitudes stable through depth.
-
-## EEG-Specific Optimization Issues
-
-For EEG, optimization can be unusually fragile because:
-
-- sample counts are often low relative to model size,
-- mini-batches may mix heterogeneous subjects,
-- emotional labels may be weak or inconsistent,
-- artifacts can dominate gradients if not controlled.
-
-Useful responses include:
-
-- subject-aware batching,
-- careful normalization,
-- robust loss functions,
-- balanced sampling,
-- early stopping.
-
-## Regularized Objective Functions
-
-In practice, one often minimizes a regularized risk:
+Often the objective also includes an explicit penalty:
 
 $$\hat{R}_n^{\text{reg}}(\theta) = \hat{R}_n(\theta) + \lambda \Omega(\theta),$$
 
-where $\Omega(\theta)$ could be:
-
-- L2 weight decay,
-- L1 sparsity,
-- smoothness penalties,
-- domain-specific priors.
-
-This links optimization directly to generalization.
+where $\Omega(\theta)$ may be L2 weight decay, an L1 sparsity penalty, or a domain-specific constraint. This connects fitting the data directly to the broader question of generalization.
 
 ## Summary
 
-Empirical risk minimization frames deep learning as loss minimization on data. Optimization algorithms such as SGD and Adam make this feasible in practice, but they do not solve the deeper issues of stability, trainability, and generalization automatically. To understand how gradients are actually computed through layered models, we next turn to backpropagation.
+ERM turns learning into the minimization of a loss over observed data, while gradient-based optimization makes that minimization practical for large networks. The resulting model reflects the loss, data, optimizer, and regularization choices together. The next section explains how the gradients required by these updates are computed efficiently through layered networks.
+
+## References
+
+- Bottou, L. (2010). Large-scale machine learning with stochastic gradient descent. In *Proceedings of COMPSTAT 2010*.
+- Kingma, D. P., and Ba, J. (2015). Adam: A method for stochastic optimization. *International Conference on Learning Representations*.
+- Loshchilov, I., and Hutter, F. (2019). Decoupled weight decay regularization. *International Conference on Learning Representations*.
+- Vapnik, V. N. (1998). *Statistical Learning Theory*. Wiley.
 
 ---
 
