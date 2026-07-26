@@ -24,6 +24,8 @@ $$\delta^{(l)}=((W^{(l+1)})^T\delta^{(l+1)})\odot\sigma'(z^{(l)}).$$
 
 By caching forward values and reusing downstream derivatives, backpropagation avoids recomputing the same work for each parameter. Automatic-differentiation systems in PyTorch and TensorFlow automate this bookkeeping, but they still rely on this principle.
 
+![A neural network carries activations from EEG input to loss in the forward pass, then propagates gradient signals from loss to earlier layers in the backward pass.](figures/forward-and-backward-pass.svg)
+
 ## When Gradients Do Not Travel Well
 
 The recursion above multiplies many derivative terms. When those terms are repeatedly small, gradients vanish before reaching early layers; when they are repeatedly large, gradients explode and produce unstable updates. Saturated sigmoid or tanh units, deep temporal models, long sequences, and poorly scaled inputs can make either problem more likely.

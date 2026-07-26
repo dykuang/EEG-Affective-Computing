@@ -41,7 +41,9 @@ Feature engineering for affective EEG is especially challenging because emotiona
 - **Temporal dynamics matter**: How features evolve over time can be as informative as their instantaneous values.
 - **Complementary modalities help**: EEG alone may be insufficient; peripheral and behavioral signals provide synergistic information.
 
-> Figure suggestion: Place a feature taxonomy diagram here showing the hierarchy from raw EEG → time/frequency/time-frequency/spatial/relational features → feature fusion → model input.
+![Feature taxonomy from raw EEG through time, frequency, time-frequency, differential entropy, relational, nonlinear, and multimodal features to feature fusion and model input.](figures/feature_taxonomy.svg)
+
+*Figure 1. Feature taxonomy for EEG-based affective computing. Raw EEG is transformed into diverse feature families, optionally fused, and then passed to a model.*
 
 ### Hand-Crafted vs. Learned Representations
 

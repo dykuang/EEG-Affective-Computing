@@ -2,7 +2,9 @@
 
 Differential Entropy (DE) is arguably the single most influential feature in modern EEG-based affective computing. Since its popularization through the SEED dataset and related benchmarks, DE has become the de facto standard spectral feature for emotion recognition, consistently outperforming traditional band power features in many comparative studies. This section explains what DE is, why it works well for EEG, how it is typically computed, and what its limitations are.
 
-> Figure suggestion: Place a figure comparing the distributions of DE features vs. raw band powers for several EEG channels, illustrating how DE tends to produce more Gaussian-like distributions.
+![Comparison of distributions for raw band power, log band power, and differential entropy features, showing that DE is closer to Gaussian.](figures/differential_entropy_comparison.svg)
+
+*Figure 1. Distributions of raw band power, log band power, and differential entropy (z-scored). DE tends to be more Gaussian-like, which often benefits downstream classifiers.*
 
 ## Information-Theoretic Definition
 
@@ -133,7 +135,9 @@ Several factors contribute to DE's empirical success:
 3. **Additivity**: Under independence, DE adds across independent frequency components, providing a principled way to combine information across bands.
 4. **Information-theoretic interpretation**: DE quantifies the average uncertainty (or complexity) of the signal in each band, which aligns conceptually with the idea that emotional states modulate the information content of brain signals.
 
-> Figure suggestion: Add a bar chart comparing classification accuracy using DE features vs. raw band power vs. log band power across multiple benchmark datasets (DEAP, SEED, DREAMER, etc.).
+![Bar chart comparing classification accuracy of DE, log band power, and raw band power across DEAP, SEED, SEED-IV, DREAMER, and AMIGOS (illustrative).](figures/differential_entropy_comparison.svg)
+
+*Figure 2. Illustrative benchmark comparison of DE, log band power, and raw band power. DE typically matches or exceeds the alternatives across datasets.*
 
 ## Multi-Scale and Hierarchical DE
 

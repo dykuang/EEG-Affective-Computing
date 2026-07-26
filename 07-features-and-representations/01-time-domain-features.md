@@ -2,7 +2,9 @@
 
 Time-domain features are the most straightforward representation of EEG signals. They operate directly on the raw voltage time series without transformation into other domains, making them computationally cheap and easy to interpret. While they may lack the spectral specificity of frequency-domain features, time-domain features capture waveform morphology, transient events, and basic statistical properties that are often lost in spectral averaging.
 
-> Figure suggestion: Place a schematic showing raw EEG traces with annotated time-domain features such as amplitude range, zero-crossings, and peak-to-peak intervals.
+![Raw EEG trace annotated with time-domain features: amplitude range, zero crossings, and peak-to-peak interval.](figures/time_domain_features.svg)
+
+*Figure 1. Left: a raw EEG trace with annotated time-domain features. Right: illustrative discriminability (mutual information) of several time-domain feature families across benchmark datasets.*
 
 ## Statistical Moments
 
@@ -138,7 +140,7 @@ Summary statistics of these difference signals (mean, variance, mobility) can se
 | Electrode selection | Some features (e.g., skewness) may be more informative at specific regions |
 | Normalization | Per-subject normalization is often needed due to large individual differences |
 
-> Figure suggestion: Add a comparison bar chart showing the discriminability (e.g., F-score or mutual information with emotion labels) of different time-domain feature families across several benchmark datasets.
+The right panel of Figure 1 above shows an illustrative comparison of discriminability (mutual information with emotion labels) for several time-domain feature families across benchmark datasets.
 
 ## Summary
 

@@ -2,7 +2,9 @@
 
 Most EEG features treat each channel as an independent source of information. However, the brain is a network: emotional processing involves coordinated activity across distributed regions, and these interactions are at least as informative as local spectral properties. Relation-based features capture the dependencies, synchronizations, and connectivity patterns between EEG channels, providing a fundamentally different and complementary view of brain dynamics during emotional processing.
 
-> Figure suggestion: Place a figure showing a connectome visualization—either functional connectivity matrices or graph-based brain networks—comparing connectivity patterns across different emotional states.
+![Functional connectivity matrices for neutral, happy, and sad states across selected frontal, central, and parietal electrodes.](figures/connectivity_states.svg)
+
+*Figure 1. Functional connectivity matrices for three emotional states. Connectivity patterns differ across states, reflecting coordinated network-level activity.*
 
 ## Why Relations Matter for Affective EEG
 
@@ -97,7 +99,9 @@ wPLI has become the preferred phase-based connectivity measure in many EEG studi
 | Coherence | [0, 1] | No | No | Frequency-specific |
 | Imaginary coherence | [0, 1] | Yes | No | Frequency-specific |
 
-> Figure suggestion: Include a comparison matrix showing PLV, PLI, and wPLI connectivity matrices for the same EEG segment to illustrate differences in the detected connectivity patterns.
+![PLV, PLI, and wPLI connectivity matrices for the same EEG segment, illustrating how each measure highlights different synchronization patterns.](figures/plv_pli_wpli.svg)
+
+*Figure 2. Phase synchronization matrices for the same segment. PLV is the most inclusive; PLI drops zero-lag interactions; wPLI weights phase differences by magnitude.*
 
 ## Mutual Information and Nonlinear Coupling
 
@@ -232,7 +236,9 @@ An emerging approach is to use the full pattern of connectivity (the connectome 
 | Surrogate testing | Use phase-randomized surrogates to establish significance thresholds for connectivity |
 | Combination with spectral features | Connectivity features complement spectral features; fused representations often outperform either alone |
 
-> Figure suggestion: Include a combined feature importance plot showing the relative contribution of spectral features vs. connectivity features for predicting valence and arousal in a representative benchmark.
+![Relative importance of spectral versus connectivity features for predicting valence and arousal in a representative benchmark.](figures/feature_importance_spectral_connectivity.svg)
+
+*Figure 3. Feature-importance comparison between spectral and connectivity features. Connectivity tends to contribute more strongly to arousal prediction, while spectral features dominate valence in this illustrative benchmark.*
 
 ## Summary
 

@@ -2,7 +2,9 @@
 
 While frequency-domain features reveal the spectral content of an EEG segment and time-domain features capture waveform morphology, time-frequency features jointly resolve signal properties in both time and frequency. This is crucial for affective computing because emotional states are dynamic: spectral properties shift over time as emotions unfold, and these transient changes are averaged away in static spectral estimates. Time-frequency representations make it possible to track how the spectrum evolves and to capture transient oscillatory events that are characteristic of emotional processing.
 
-> Figure suggestion: Place a time-frequency spectrogram of a representative EEG channel during an emotion induction procedure, showing how power in different bands evolves over time.
+![Time-frequency spectrogram of a representative EEG channel during an emotion induction procedure, showing evolving power in theta, alpha, beta, and gamma bands.](figures/time_frequency_spectrogram.svg)
+
+*Figure 1. STFT spectrogram aligned to an emotion induction procedure. Power shifts across bands illustrate the dynamic spectral changes that time-frequency features capture.*
 
 ## Short-Time Fourier Transform (STFT)
 
@@ -130,7 +132,9 @@ CSP is a staple of motor imagery BCI but has been adapted for affective computin
 
 The Filter Bank CSP (FBCSP) extends CSP by applying it to multiple frequency sub-bands and selecting the most discriminative features, a strategy that aligns naturally with the spectral nature of affective EEG.
 
-> Figure suggestion: Add a comparison figure showing the time-frequency resolution trade-off across STFT, CWT, and HHT for the same EEG segment.
+![Time-frequency resolution trade-off for STFT, CWT, and HHT on the same EEG segment, showing fixed, multi-resolution, and adaptive ridges respectively.](figures/time_frequency_resolution_tradeoff.svg)
+
+*Figure 2. Comparative time-frequency ridges for the same EEG segment. STFT uses a fixed window, CWT provides multi-resolution scaling, and HHT offers adaptive, data-driven ridges.*
 
 ## Comparison of Time-Frequency Methods
 

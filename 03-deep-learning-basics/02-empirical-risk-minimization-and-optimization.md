@@ -18,6 +18,8 @@ $$\hat{R}_n(\theta) = \frac{1}{n} \sum_{i=1}^n \ell(f_\theta(x_i), y_i).$$
 
 Minimizing $\hat{R}_n$ is ERM. It is sensible because the training set is the available evidence, but it is not identical to minimizing $R$. A model can fit the observed trials closely while performing poorly for new sessions or new participants. This gap is especially important for EEG, where subjective labels, artifacts, and participant differences can distort the training sample.
 
+![An unknown population supplies a finite EEG training sample for empirical-risk minimization, while held-out participants and sessions provide evidence about population risk and generalization.](figures/population-and-empirical-risk.svg)
+
 ## Losses Specify What Counts as an Error
 
 The loss function translates the scientific task into an optimization target. For $K$-class emotion classification, cross-entropy compares the predicted class probabilities $\hat{p}_k$ with a one-hot target $y_k$:

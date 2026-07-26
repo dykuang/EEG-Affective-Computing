@@ -28,6 +28,8 @@ $$\hat{y} = f_{\text{out}}(W^{(L)}h^{(L-1)} + b^{(L)}).$$
 
 The vectors $h^{(1)}, h^{(2)}, \dots$ are called hidden representations. Each layer converts the output of the preceding layer into a new feature space that may be more useful for the task. For EEG, early layers might respond to local waveform or spectral patterns, later layers might combine information across channels, and the final layers might emphasize patterns that help distinguish emotion-related states. These are useful intuitions rather than a guarantee that every layer has a single, easily named meaning.
 
+![Multichannel EEG is transformed through learned hidden representations before producing emotion probabilities. Hidden-layer descriptions are conceptual rather than fixed physiological labels.](figures/eeg-learned-representations.svg)
+
 ## Capacity: Depth and Width
 
 The expressive capacity of a network is shaped most visibly by its width, the number of units in a layer, and its depth, the number of successive layers. A wide layer can combine many nonlinear features in parallel. Depth instead builds complex functions by repeatedly composing simpler transformations. This compositional structure is one reason deep networks can represent some structured functions far more efficiently than a single, very wide hidden layer.

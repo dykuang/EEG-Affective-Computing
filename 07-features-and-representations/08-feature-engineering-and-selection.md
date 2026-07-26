@@ -2,7 +2,9 @@
 
 The preceding sections describe a rich palette of EEG features spanning time, frequency, time-frequency, information-theoretic, relational, multimodal, and nonlinear domains. The challenge is not generating features—it is managing the resulting high-dimensional feature space. This section covers strategies for transforming, selecting, and combining features to produce representations that are compact, discriminative, and generalizable.
 
-> Figure suggestion: Include a feature engineering pipeline diagram showing: raw features → preprocessing/normalization → dimensionality reduction → feature selection → fused representation → model.
+![Feature engineering pipeline: raw features → preprocessing/normalization → dimensionality reduction → feature selection → fused representation → model.](figures/feature_engineering_pipeline.svg)
+
+*Figure 1. Typical feature engineering pipeline for affective EEG. Each stage shapes the representation that is ultimately passed to the classifier or regression model.*
 
 ## The Curse of Dimensionality in Affective EEG
 
@@ -82,7 +84,9 @@ UMAP is computationally faster than t-SNE and better preserves global structure,
 | t-SNE | No | Nonlinear | Visualization (2D/3D only) |
 | UMAP | Semi | Nonlinear | Visualization and feature preprocessing |
 
-> Figure suggestion: Add PCA and t-SNE plots showing the separability of emotional states in reduced feature spaces.
+![PCA and t-SNE projections of an illustrative affective EEG feature set, showing the separability of emotional states in reduced spaces.](figures/pca_tsne_projections.svg)
+
+*Figure 2. Two-dimensional projections of high-dimensional EEG features. PCA preserves global variance; t-SNE emphasizes local neighborhood structure.*
 
 ## Feature Selection
 
@@ -165,7 +169,9 @@ $$\mathbf{y} = \text{softmax}\left( W_2 \mathbf{z} + b_2 \right)$$
 
 Multilayer fusion networks can discover nonlinear interactions between feature domains but require careful regularization with small datasets.
 
-> Figure suggestion: Compare early fusion, late fusion, and hierarchical fusion diagrams with performance metrics from a representative study.
+![Comparison of early, late, and hierarchical fusion strategies with illustrative cross-subject accuracies from a representative benchmark.](figures/fusion_strategy_comparison.svg)
+
+*Figure 3. Illustrative performance comparison of fusion strategies. Hierarchical fusion often outperforms simple early or late fusion by preserving domain structure.*
 
 ## Domain Adaptation and Feature Alignment
 

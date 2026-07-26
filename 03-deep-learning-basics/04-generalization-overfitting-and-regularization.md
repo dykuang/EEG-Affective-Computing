@@ -38,6 +38,8 @@ For EEG, the train-test split determines the claim a result can support. Subject
 
 Preprocessing must respect the same boundary. Normalization statistics, feature selection, and hyperparameter choices should be estimated using training data only and then applied to held-out data. Otherwise, information leakage produces overly optimistic estimates of generalization. The correct protocol is not universally the strictest one; it is the one that matches the deployment or scientific question and is reported clearly.
 
+![A trial-random split tests new trials from known participants, whereas a subject-held-out split tests transfer to a previously unseen participant.](figures/subject-held-out-validation.svg)
+
 ## Inductive Bias and Label Quality
 
 Architectures generalize partly because they encode inductive biases. Convolutional networks favor local structure, recurrent models favor sequential dependence, graph neural networks favor a specified relational structure, and Transformers allow flexible contextual interaction. A well-matched bias can reduce the amount of data needed, provided the structural assumption is justified for the EEG representation being used.

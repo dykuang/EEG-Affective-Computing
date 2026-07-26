@@ -2,7 +2,9 @@
 
 Linear methods—correlation, Fourier analysis, band power—capture much of the structure in EEG signals, but the brain is fundamentally a nonlinear dynamical system. Nonlinear and complexity features attempt to characterize aspects of the EEG that linear methods miss: the irregularity, predictability, self-similarity, and chaotic properties that may carry information about emotional states.
 
-> Figure suggestion: Include a conceptual illustration comparing a regular (predictable) time series, a random time series, and a complex (deterministic but unpredictable) time series, showing that complexity measures can distinguish the third from the first two.
+![Conceptual illustration of regular, random, and complex time series, showing that complexity measures distinguish deterministic-but-unpredictable signals from both periodic and random signals.](figures/signal_complexity_types.svg)
+
+*Figure 1. Conceptual comparison of signal classes. Nonlinear complexity measures can separate complex, deterministic-but-unpredictable dynamics from pure periodicity or randomness.*
 
 ## Why Nonlinear Features?
 
@@ -159,7 +161,9 @@ From the recurrence plot, several quantitative measures are derived:
 
 RQA features have been applied to emotion recognition, with findings such as higher determinism during focused emotional states and lower determinism during rest.
 
-> Figure suggestion: Show example recurrence plots for EEG during neutral, happy, and sad states, with corresponding RQA measure values.
+![Recurrence plots for neutral, happy, and sad EEG states with corresponding RQA measure values.](figures/recurrence_plots.svg)
+
+*Figure 2. Example recurrence plots and RQA measures (RR, DET, LAM) for three emotional states. Recurrence structure differs across states.*
 
 ## Lyapunov Exponents
 

@@ -2,7 +2,9 @@
 
 Frequency-domain features are arguably the most important class of features in EEG-based affective computing. The rhythmic nature of brain activity, organized into canonical frequency bands (delta, theta, alpha, beta, gamma), makes spectral representations a natural and neuroscience-grounded choice for characterizing emotional states.
 
-> Figure suggestion: Place a figure here showing the power spectrum of a representative EEG channel with the canonical frequency bands highlighted in different colors.
+![Power spectral density of a representative EEG channel with canonical frequency bands highlighted in different colors.](figures/frequency_bands_psd.svg)
+
+*Figure 1. Power spectrum of a representative EEG channel. Colored bands correspond to the canonical delta, theta, alpha, beta, and gamma ranges.*
 
 ## The Fourier Transform and Power Spectral Density
 
@@ -122,7 +124,9 @@ Bicoherence features have been explored for EEG emotion recognition, particularl
 | Log transformation | Apply $\log$ to band powers to improve normality before statistical modeling |
 | Reference scheme | Spectral features depend on the EEG reference; be consistent within a study |
 
-> Figure suggestion: Include a topomap grid showing the spatial distribution of alpha, beta, and gamma band power across different emotional states.
+![Topomap grid showing alpha, beta, and gamma band power spatial distributions under low and high arousal conditions.](figures/band_power_topomaps.svg)
+
+*Figure 2. Spatial distribution of alpha, beta, and gamma power for low- vs. high-arousal states (illustrative). Color intensity indicates relative band power.*
 
 ## Summary
 

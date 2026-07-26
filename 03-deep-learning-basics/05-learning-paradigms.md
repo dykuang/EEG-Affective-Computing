@@ -59,6 +59,8 @@ In practice, they often form a sequence:
 2. **Semi-supervised learning**, when appropriate, introduces limited task labels while using additional unlabeled trials.
 3. **Supervised learning** fine-tunes and evaluates the model against the final emotion-prediction objective.
 
+![Raw EEG supports self-supervised pretraining, followed when appropriate by semi-supervised adaptation and supervised fine-tuning with emotion labels and held-out evaluation.](figures/combined-learning-pipeline.svg)
+
 This pattern respects the common imbalance between plentiful recordings and limited reliable annotations. The right choice depends on the scientific question, the reliability of labels, and the similarity of the available unlabeled data to the intended deployment setting.
 
 ## Summary
