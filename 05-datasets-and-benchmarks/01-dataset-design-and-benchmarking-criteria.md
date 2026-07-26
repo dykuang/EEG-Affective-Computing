@@ -4,7 +4,9 @@ EEG-based affective computing is shaped as much by the dataset as by the model. 
 
 This section summarizes the main dimensions along which affective EEG datasets differ and explains how those differences affect benchmarking.
 
-> Figure suggestion: Place a benchmark landscape figure here showing major dataset dimensions such as elicitation paradigm, label type, number of subjects, number of sessions, and recording duration.
+![Benchmark landscape showing major dataset dimensions: elicitation paradigm, label type, temporal annotation, subject coverage, session coverage, and recording context.](figures/benchmark_landscape.svg)
+
+*Figure 1. Major dimensions along which affective EEG datasets differ. Each dimension constrains the tasks and generalization claims a benchmark can support.*
 
 ## Core Dimensions of Dataset Design
 
@@ -70,7 +72,9 @@ The number of subjects matters, but so does the structure of their recordings. A
 
 For benchmarking, the key question is not only dataset size, but whether the dataset spans the variability that the intended application will face.
 
-> Figure suggestion: Add a matrix here comparing datasets by number of subjects and number of sessions per subject, highlighting which benchmarks support cross-subject versus cross-session claims.
+![Scatter matrix comparing common affective EEG datasets by number of subjects and sessions per subject. Marker area is proportional to total trials; color indicates single- vs. multi-session design.](figures/dataset_subject_session_matrix.svg)
+
+*Figure 2. Common datasets plotted by subject count and session count. Single-session datasets (coral) primarily support cross-subject claims, whereas multi-session datasets (teal) also allow cross-session robustness to be studied.*
 
 ## Benchmarking Criteria
 

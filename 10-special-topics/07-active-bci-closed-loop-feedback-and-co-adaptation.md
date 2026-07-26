@@ -4,7 +4,9 @@ Much of affective EEG research is passive: the machine observes a person's signa
 
 In a closed-loop system, the person learns how to produce usable neural patterns while the decoder learns how to interpret that person's signals. Neither side is fixed. Calibration, feedback design, shared control, and safety constraints are therefore central parts of the problem formulation.
 
-> Figure suggestion: Show a closed loop from user intention and neural activity to EEG acquisition, decoder, shared-control policy, device or feedback output, perception, user adaptation, and back to neural activity.
+![Closed-loop active BCI cycle: user intention generates neural activity, EEG is acquired and decoded, a shared-control policy drives a device or feedback, the user perceives the result and adapts, and the cycle repeats.](figures/closed_loop_bci.svg)
+
+*Figure 1. Closed-loop active BCI. The user and decoder co-adapt through continuous feedback; both sides of the loop change over time.*
 
 ## From Passive Inference to Active Interaction
 
