@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Teacher-student knowledge distillation workflow</title>
+  <desc id="desc">The same EEG segment is sent to a frozen teacher and a compact student. Teacher soft probabilities and hard labels supervise the student during training, while only the student is used at deployment.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#334155"/></marker>
+    <style>
+      .title { font: 700 25px sans-serif; fill: #172033; }
+      .label { font: 700 18px sans-serif; fill: #172033; }
+      .body { font: 16px sans-serif; fill: #334155; }
+      .small { font: 14px sans-serif; fill: #475569; }
+      .box { stroke-width: 2; rx: 12; }
+      .arrow { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1200" height="560" fill="#f8fafc"/>
+  <text x="60" y="55" class="title">Training: transfer a rich teacher signal to a deployable student</text>
+  <rect x="60" y="185" width="175" height="125" class="box" fill="#e0f2fe" stroke="#0284c7"/>
+  <path d="M85 255 C102 214 121 295 140 248 S177 208 205 252" fill="none" stroke="#0369a1" stroke-width="4"/>
+  <text x="147" y="340" text-anchor="middle" class="label">EEG segment x</text>
+  <path d="M235 230 L325 155" class="arrow"/>
+  <path d="M235 270 L325 360" class="arrow"/>
+  <rect x="330" y="78" width="285" height="165" class="box" fill="#ede9fe" stroke="#7c3aed"/>
+  <text x="472" y="118" text-anchor="middle" class="label">Frozen teacher</text>
+  <text x="472" y="148" text-anchor="middle" class="body">large CNN / Transformer / GNN</text>
+  <rect x="372" y="171" width="200" height="42" rx="8" fill="#ddd6fe"/>
+  <text x="472" y="198" text-anchor="middle" class="body">logits zₜ</text>
+  <rect x="330" y="318" width="285" height="165" class="box" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="472" y="358" text-anchor="middle" class="label">Compact student</text>
+  <text x="472" y="388" text-anchor="middle" class="body">wearable-ready CNN / TCN</text>
+  <rect x="372" y="411" width="200" height="42" rx="8" fill="#bbf7d0"/>
+  <text x="472" y="438" text-anchor="middle" class="body">logits zₛ</text>
+  <path d="M615 192 L730 224" class="arrow"/>
+  <path d="M615 432 L730 337" class="arrow"/>
+  <rect x="735" y="166" width="240" height="230" class="box" fill="#fff7ed" stroke="#ea580c"/>
+  <text x="855" y="207" text-anchor="middle" class="label">Student loss</text>
+  <text x="855" y="244" text-anchor="middle" class="body">hard-label cross-entropy</text>
+  <line x1="770" y1="266" x2="940" y2="266" stroke="#fed7aa" stroke-width="2"/>
+  <text x="855" y="298" text-anchor="middle" class="body">soft-target KL divergence</text>
+  <text x="855" y="326" text-anchor="middle" class="small">temperature T, weight alpha</text>
+  <path d="M975 282 L1050 282" class="arrow"/>
+  <rect x="1055" y="220" width="105" height="124" class="box" fill="#fef3c7" stroke="#d97706"/>
+  <text x="1107" y="262" text-anchor="middle" class="label">Update</text>
+  <text x="1107" y="290" text-anchor="middle" class="body">student</text>
+  <text x="1107" y="316" text-anchor="middle" class="body">only</text>
+  <path d="M930 90 L1080 90 L1080 165" fill="none" stroke="#16a34a" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#arrow)"/>
+  <text x="1005" y="74" text-anchor="middle" class="small">deployment: teacher removed</text>
+  <text x="60" y="520" class="small">Both networks are supervised during training; the compact student alone receives new EEG at inference time.</text>
+</svg>

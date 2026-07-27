@@ -14,3 +14,4 @@ The common requirement is human-centered evaluation. Future systems should be ju
 4. **Continual Learning, Lifelong Adaptation, and Neural Drift**: How models and users can adapt safely as physiology, sensors, tasks, and strategies change over time.
 5. **Neurotechnology Governance, Privacy, and Human Agency**: How consent, data minimization, control, fairness, accountability, and meaningful override should shape future systems.
 6. **Causal and Mechanistic Affective Neurotechnology**: How interventions, causal designs, and mechanistic validation can move the field beyond correlational prediction.
+7. **A Blueprint for BCI Foundation Systems**: How EEG-based BCI can adopt the durable systems lessons of LLM progress through governed data, reusable backbones, reversible personalization, bounded agents, and human-centered evaluation.

@@ -62,6 +62,12 @@ This chapter provides a comprehensive survey of deep learning architectures appl
    - Neural ODEs, latent ODEs, ODE-RNNs, neural CDEs, neural SDEs, and continuous normalizing flows
    - Irregular sampling, continuous affect tracking, and graph-aware neural dynamics
 
+#### Part V: Efficient Deployment (Section 13)
+
+13. **Knowledge Distillation** (Section 13): Teacher-student transfer
+   - Soft targets, feature matching, attention transfer, and relation distillation
+   - Compact, wearable-ready EEG models with matched efficiency and generalization evaluation
+
 ### Generative vs. Discriminative Approaches
 
 | Aspect | Discriminative Models | Generative Models |
