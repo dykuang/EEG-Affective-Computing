@@ -16,5 +16,6 @@ The sections in this chapter therefore emphasize modeling assumptions that are e
 8. **Causal Discovery, Inference, and Interpretable Learning**: How directed-interaction methods, causal graphs, GNNs, distillation, and intervention-aware evaluation can make causal claims explicit and testable
 9. **Structured Geometry of Emotion Spaces**: How continuous affect can be represented on curved manifolds and discrete emotions on graphs with hierarchical, transitional, and curvature-aware structure
 10. **LLM-Inspired Techniques for EEG**: Which techniques from the LLM ecosystem can support grounded EEG systems, where their analogies fail, and how to evaluate them responsibly
+11. **Multi-Label and Multi-Task Learning**: How co-occurring affect labels, auxiliary objectives, missing annotations, temporal granularity, and task interference should shape supervised EEG learning
 
 Taken together, these topics point toward a broader open-world view of affective EEG: models should be temporally plausible, uncertainty-aware, capable of representing emotion beyond a flat benchmark label space, designed for human adaptation in closed-loop use, and explicit about the limits of their causal and interpretability claims.
