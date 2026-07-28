@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-07-26T20:30:22.047780</dc:date>
+    <dc:date>2026-07-28T09:05:10.325702</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ Q 26.856 113.376 26.856 118.752
 L 26.856 218.208 
 Q 26.856 223.584 32.472 223.584 
 z
-" clip-path="url(#pc198e30c73)" style="fill: #ffffff; stroke: #3498db; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p8f62283f28)" style="fill: #ffffff; stroke: #3498db; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 172.872 223.584 
@@ -53,7 +53,7 @@ Q 167.256 113.376 167.256 118.752
 L 167.256 218.208 
 Q 167.256 223.584 172.872 223.584 
 z
-" clip-path="url(#pc198e30c73)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p8f62283f28)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 313.272 223.584 
@@ -66,7 +66,7 @@ Q 307.656 113.376 307.656 118.752
 L 307.656 218.208 
 Q 307.656 223.584 313.272 223.584 
 z
-" clip-path="url(#pc198e30c73)" style="fill: #ffffff; stroke: #e9c46a; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p8f62283f28)" style="fill: #ffffff; stroke: #e9c46a; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 453.672 223.584 
@@ -79,7 +79,7 @@ Q 448.056 113.376 448.056 118.752
 L 448.056 218.208 
 Q 448.056 223.584 453.672 223.584 
 z
-" clip-path="url(#pc198e30c73)" style="fill: #ffffff; stroke: #e76f51; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p8f62283f28)" style="fill: #ffffff; stroke: #e76f51; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 608.112 223.584 
@@ -92,7 +92,7 @@ Q 602.496 113.376 602.496 118.752
 L 602.496 218.208 
 Q 602.496 223.584 608.112 223.584 
 z
-" clip-path="url(#pc198e30c73)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p8f62283f28)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
     <path d="M 748.512 223.584 
@@ -105,7 +105,7 @@ Q 742.896 113.376 742.896 118.752
 L 742.896 218.208 
 Q 742.896 223.584 748.512 223.584 
 z
-" clip-path="url(#pc198e30c73)" style="fill: #ffffff; stroke: #3498db; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p8f62283f28)" style="fill: #ffffff; stroke: #3498db; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- Causal Discovery and Interpretable Learning Pipeline -->
@@ -1011,7 +1011,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pc198e30c73">
+  <clipPath id="p8f62283f28">
    <rect x="7.2" y="7.2" width="842.4" height="302.4"/>
   </clipPath>
  </defs>

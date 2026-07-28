@@ -7,6 +7,10 @@ to govern how a researcher and AI agent carry it out.
 
 ## Operating Principles
 
+![Five operating principles of the AI Collaboration Protocol: Human Ownership, Bounded AI Execution, Evidence Before Claims, Fair Comparisons, and No Silent Optimization.](figures/ai-protocol-principles.svg)
+
+*Figure 1. The five operating principles that govern all AI-assisted research under this protocol. Each principle defines a boundary between human scientific judgment and automated agent execution.*
+
 - **Human ownership of scientific judgment.** The researcher approves the
   research question, data use, evaluation protocol, material design changes,
   conclusions, external communication, and destructive operations.
@@ -105,10 +109,18 @@ written decision recorded in the experiment log.
 | G4: interpretation | Results table, uncertainty analysis, and claim-to-evidence map | Scientific interpretation and manuscript wording |
 | G5: cleanup | Candidate files, sizes, provenance, and retention plan | Any deletion or irreversible cleanup |
 
+![Approval gate flow chart (G0–G5) showing the sequential checkpoints where the agent prepares evidence and the researcher makes decisions.](figures/ai-protocol-gates.svg)
+
+*Figure 2. The six approval gates (G0–G5) form a sequential decision chain. At each gate, the agent prepares evidence and proposed next steps; the researcher reviews and decides whether to proceed. No material experiment advances without passing its gate.*
+
 The agent may proceed without a new gate only for a previously approved,
 reversible run that stays within the locked protocol and compute budget.
 
 ## Automation Route
+
+![Three-phase automation route: Phase A establishes a trustworthy baseline, Phase B runs controlled improvement experiments, and Phase C performs final evaluation and interpretation.](figures/ai-protocol-phases.svg)
+
+*Figure 3. The automation route progresses through three phases, each gated by designated approval checkpoints. Failed and inconclusive trials are retained in the experiment ledger throughout.*
 
 ### Phase A: Establish a Trustworthy Baseline
 

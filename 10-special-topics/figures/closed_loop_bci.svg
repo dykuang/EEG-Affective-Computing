@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-07-26T20:30:21.741592</dc:date>
+    <dc:date>2026-07-28T09:05:10.026770</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ Q 309.6072 79.261714 309.6072 84.363429
 L 309.6072 121.350857 
 Q 309.6072 126.452571 315.1944 126.452571 
 z
-" clip-path="url(#p2895871278)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p82f2740025)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 448.257471 196.601143 
@@ -53,7 +53,7 @@ Q 442.670271 149.410286 442.670271 154.512
 L 442.670271 191.499429 
 Q 442.670271 196.601143 448.257471 196.601143 
 z
-" clip-path="url(#p2895871278)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p82f2740025)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 448.257471 336.898286 
@@ -66,7 +66,7 @@ Q 442.670271 289.707429 442.670271 294.809143
 L 442.670271 331.796571 
 Q 442.670271 336.898286 448.257471 336.898286 
 z
-" clip-path="url(#p2895871278)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p82f2740025)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 315.1944 407.046857 
@@ -79,7 +79,7 @@ Q 309.6072 359.856 309.6072 364.957714
 L 309.6072 401.945143 
 Q 309.6072 407.046857 315.1944 407.046857 
 z
-" clip-path="url(#p2895871278)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p82f2740025)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 182.131329 336.898286 
@@ -92,7 +92,7 @@ Q 176.544129 289.707429 176.544129 294.809143
 L 176.544129 331.796571 
 Q 176.544129 336.898286 182.131329 336.898286 
 z
-" clip-path="url(#p2895871278)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p82f2740025)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
     <path d="M 182.131329 196.601143 
@@ -105,7 +105,7 @@ Q 176.544129 149.410286 176.544129 154.512
 L 176.544129 191.499429 
 Q 176.544129 196.601143 182.131329 196.601143 
 z
-" clip-path="url(#p2895871278)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p82f2740025)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_8">
     <path d="M 182.131329 196.601143 
@@ -118,7 +118,7 @@ Q 176.544129 149.410286 176.544129 154.512
 L 176.544129 191.499429 
 Q 176.544129 196.601143 182.131329 196.601143 
 z
-" clip-path="url(#p2895871278)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p82f2740025)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_9">
     <path d="M 182.131329 336.898286 
@@ -131,7 +131,7 @@ Q 176.544129 289.707429 176.544129 294.809143
 L 176.544129 331.796571 
 Q 176.544129 336.898286 182.131329 336.898286 
 z
-" clip-path="url(#p2895871278)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p82f2740025)" style="fill: #ffffff; stroke: #2a9d8f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- Closed-Loop Active BCI -->
@@ -1334,7 +1334,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p2895871278">
+  <clipPath id="p82f2740025">
    <rect x="7.2" y="7.2" width="698.4" height="446.4"/>
   </clipPath>
  </defs>
