@@ -138,7 +138,21 @@
 
 ---
 
-## 11. Review Checklist
+## 11. Repository Navigation Summary
+
+> The agent must produce and maintain a `REPOSITORY.md` at project root. Create it in Phase A; keep it current through Phase C.
+
+- **Directory map:** Purpose of each top-level directory and which modules contain core logic, utilities, and experiment scripts.
+- **Key files:** Table mapping important scripts to their role (data loading, model, training, evaluation, config).
+- **Checkpoint & artifact paths:** Exact paths and naming convention (e.g., `checkpoints/{run_id}/best_model.pt`). Include disk-space notes when relevant.
+- **Environment:** Pointer to `requirements.txt`, `environment.yml`, or `pyproject.toml`.
+- **Reproduce a run:** Minimal command to reproduce training/evaluation from a run ID in the ledger.
+
+> Update whenever directories, checkpoint paths, scripts, or dependencies change.
+
+---
+
+## 12. Review Checklist
 
 Before declaring results, verify:
 
@@ -153,7 +167,7 @@ Before declaring results, verify:
 
 ---
 
-## 12. Open Issues
+## 13. Open Issues
 
 | Issue | Severity | Owner | Notes |
 | --- | --- | --- | --- |
