@@ -184,6 +184,39 @@ evidence and its limitation.
 | --- | --- | --- | --- | --- |
 | [Claim] | [Run IDs/path] | [Metric/test] | [Scope] | [Name/date] |
 
+### Repository Navigation Summary
+
+The agent must produce and maintain a summary file (e.g., `REPOSITORY.md` or
+`CODE_STRUCTURE.md` at the project root) that helps any collaborator — human or
+agent — orient themselves in the codebase. The file must be created during Phase A
+and kept up to date through Phase C.
+
+**Required contents:**
+
+- **Code structure overview.** A concise introduction to the repository layout:
+  purpose of each top-level directory, which modules implement core logic vs.
+  utilities vs. experiment scripts, and the intended entry point for each phase
+  of the study.
+- **Key files and their roles.** A table or bullet list mapping the most important
+  scripts and modules to their function (e.g., data loading, model definition,
+  training loop, evaluation, configuration).
+- **Checkpoint and artifact locations.** The exact directory paths where model
+  checkpoints (`*.pt`, `*.ckpt`, `*.pth`), optimizer states, log files, and
+  serialized result artifacts are saved during training. Include the naming
+  convention (e.g., `checkpoints/{run_id}/best_model.pt`) and disk space notes
+  when relevant.
+- **Environment and dependencies.** A pointer to the environment specification
+  file (`requirements.txt`, `environment.yml`, `pyproject.toml`, etc.) and any
+  known compatibility constraints.
+- **How to reproduce a run.** A minimal command or script reference that, given
+  a run ID in the experiment ledger, reproduces training or evaluation from the
+  saved configuration and checkpoint.
+
+**Maintenance rule.** The agent must update the summary whenever a new directory
+appears, a checkpoint path changes, a major script is added or renamed, or a
+dependency is introduced. The researcher may request a review of the summary
+file at any approval gate.
+
 ## Review Checklist
 
 Before declaring a result, the agent and researcher jointly verify:
