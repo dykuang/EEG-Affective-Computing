@@ -25,6 +25,9 @@ to govern how a researcher and AI agent carry it out.
   design explicitly changes one of them.
 - **No silent optimization.** Model selection uses training and validation data.
   Test-set results are reserved for the approved final evaluation.
+- **Ask for confirmation, do not assume.** When the agent encounters confusions
+  or inconsistencies in instructions, data, or results, it must ask the
+  researcher for confirmation rather than silently assuming an interpretation.
 
 ## Project Card
 

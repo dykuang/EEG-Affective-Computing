@@ -88,6 +88,8 @@
 ## 8. Automation Route
 
 > The AI agent may execute within these phases. It must pause at each gate for human approval. No material experiment advances without its gate.
+>
+> **Ask for confirmation, do not assume.** When the agent encounters confusions or inconsistencies in instructions, data, or results, it must ask the researcher for confirmation rather than silently assuming an interpretation.
 
 ### Phase A — Baseline
 
