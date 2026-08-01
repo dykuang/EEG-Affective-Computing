@@ -146,6 +146,27 @@ Because direct local supervision is missing, representation learning becomes eve
 
 This reduces over-reliance on copied trial labels as the sole learning signal.
 
+### 6. Designing Aggregation Functions
+
+Even when the modeling strategy explicitly aggregates segment-level representations into a trial-level prediction, the choice of aggregation function can substantially change results. The REFED dataset provides direct evidence for this challenge: it confirms that the segment-majority label—the label that would result from a simple majority vote over individual window predictions—often does not match the observed trial-level label. This mismatch is not an annotation error but a signal that naive aggregation can misrepresent the relationship between local and global affect.
+
+**The risk of naive aggregation.** Simple pooling strategies such as majority voting, unweighted averaging, or max-pooling implicitly assume that every segment contributes equally to the trial label, or that a single most-salient segment determines it. These assumptions are rarely justified. A segment drawn from an emotional peak, a recovery period, or a transitional moment may carry very different relevance to the final self-report, and treating them uniformly can dilute or distort the aggregated prediction.
+
+**Confidence-weighted and uncertainty-aware aggregation.** Some datasets provide segment-level information beyond a hard label. In SEED-V, for instance, segment annotations are not actual ground-truth labels but confidence scores or soft indicators. These can be aggregated into a trial-level prediction through straightforward weighted averaging, where more confident segments contribute more strongly to the final vote. This approach naturally down-weights ambiguous or transitional windows without requiring explicit segment-level ground truth.
+
+**Prior-informed weighting schemes.** When additional domain knowledge is available, the aggregation weights can incorporate psychologically or physiologically motivated priors:
+
+- **Recency**: later segments may receive higher weight if self-reports are known to be influenced by the most recent experience (a recency effect).
+- **Intensity**: segments with higher predicted arousal, larger physiological responses, or stronger stimulus features can be up-weighted if peak moments drive the overall appraisal.
+- **Stability**: segments where the affective state is stable (low variance across neighboring windows) may be weighted more than volatile transition periods.
+- **Stimulus alignment**: when the induction stimulus timeline is known, segments aligned with emotionally salient events (e.g., the climax of a video clip) can be assigned higher weights.
+
+These priors should be declared and justified rather than tuned post hoc to improve test performance.
+
+**Learned aggregation.** Rather than hand-designing an aggregation rule, a neural network can learn to combine segment predictions or embeddings into a trial-level output. Attention-based pooling, set transformers, or recurrent aggregation modules can discover which segments matter most from the data itself. The learned weights then become an interpretable byproduct—they can be inspected to understand which parts of the trial drive the global prediction. This approach is particularly attractive when the aggregation mechanism is unknown or likely to vary across participants, stimuli, or emotion dimensions.
+
+Regardless of the method, the aggregation function should be reported transparently: whether it is fixed, prior-informed, or learned; what information it consumes (segment predictions, confidences, embeddings, or auxiliary signals); and how its parameters, if any, are fitted and validated.
+
 ## Evaluation Challenges
 
 This topic also changes how local prediction should be evaluated. If only global labels are available, then window-level accuracy against copied trial labels is not a trustworthy measure of true local affect recognition.

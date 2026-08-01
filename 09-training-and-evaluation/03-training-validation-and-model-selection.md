@@ -36,6 +36,8 @@ Useful search strategies include informed grids for small spaces, random search 
 
 Early stopping selects the checkpoint with the best validation performance or lowest validation loss. It is a form of model selection, so the validation rule, patience, maximum epochs, and selected checkpoint should be reported. Do not select an epoch by looking at test performance across training history.
 
+When the dataset is small or extremely limited and setting aside a validation partition would sacrifice too many training examples, one may instead monitor the training loss and stop when it plateaus or when its rate of decrease falls below a predefined threshold. This approach avoids further partitioning the data but provides no protection against overfitting—the training loss can continue to decrease while generalization degrades. If training-based early stopping is used, the protocol should be disclosed explicitly, and the final model should ideally be evaluated through a nested cross-validation or leave-one-subject-out scheme that still separates model selection from performance estimation.
+
 When training is stochastic, repeat training with several random seeds. A single favorable seed does not estimate expected performance. Report the seed policy, aggregation method, and variation across seeds in addition to variation across independent subjects or sessions.
 
 ## Calibration and Personalization

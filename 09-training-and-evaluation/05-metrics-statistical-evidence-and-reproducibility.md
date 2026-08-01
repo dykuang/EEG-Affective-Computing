@@ -21,6 +21,18 @@ Windows from the same trial or recording are dependent. Compute scores at a unit
 
 Report the aggregation rule explicitly. For example, state whether window scores are averaged within each subject before computing a population mean, whether subjects are weighted equally, and how sessions or missing classes are handled.
 
+### Segment-Level, Trial-Level, and Subject-Level Metrics
+
+The same model can produce very different reported performance depending on whether the metric is computed at the segment (window), trial, or subject level, and on how predictions are aggregated across those levels.
+
+**Segment-level evaluation** computes a prediction for every sliding window independently, then pools all window predictions to calculate a single metric. This is the most common reporting practice but also the most optimistic: a model that correctly classifies many easy windows from a few subjects can achieve high segment-level accuracy while failing entirely on harder subjects or trials. It also inflates the effective sample size, producing misleadingly narrow confidence intervals.
+
+**Trial-level evaluation** aggregates window predictions within a trial—for example, by majority vote or mean predicted score—and computes the metric across trials. This aligns better with applications where the goal is to recognize the emotion evoked by a whole stimulus or recording segment. However, aggregation rules (vote threshold, how ties are broken, whether all windows are equally weighted) must be specified, as they can change the result.
+
+**Subject-level evaluation** computes one score per subject and then summarizes across subjects. This is the most conservative level: it treats each subject as a single observation and directly answers the question, "How well does the model perform for a new person?" Subject-level metrics are recommended when the generalization claim is subject-independent.
+
+The level should match the intended use case and the generalization claim. A model evaluated only at the segment level cannot claim subject-independent generalization, and a model evaluated only at the subject level may hide useful within-subject dynamics. Whenever feasible, report performance at more than one level—for instance, segment-level detail alongside subject-level aggregates—so that readers can assess both fine-grained behavior and population-level reliability.
+
 ## Quantify Uncertainty and Compare Methods
 
 Use uncertainty estimates that resample or vary the correct independent unit. Suitable methods include confidence intervals across held-out subjects or sessions, hierarchical or grouped bootstrap procedures, and repeated outer cross-validation when justified by the data structure.
