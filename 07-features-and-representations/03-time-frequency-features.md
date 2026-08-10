@@ -157,6 +157,30 @@ The Filter Bank CSP (FBCSP) extends CSP by applying it to multiple frequency sub
 | Normalization | Per-trial or per-subject normalization of time-frequency maps is recommended |
 | Visualization | Always visually inspect time-frequency representations to verify feature quality |
 
+## Feature Tokenization for Small EEG Datasets
+
+Time-frequency representations are often converted directly into dense vectors or presented to a neural network. For small EEG datasets, a more data-efficient alternative is to build a finite library of recurring local patterns and represent each segment by the tokens that it contains. Here, a *feature token* is not a word and does not have a universal meaning. It is a learned prototype of a waveform, spectrum, or time-frequency patch, together with metadata such as its channel or sensor location, frequency range, time scale, and signal-quality statistics.
+
+### Bag-of-Waves as a Feature Token Library
+
+The bag-of-waves (BOW) representation provides a useful example. Short EEG windows are normalized and matched, allowing temporal shifts when appropriate, to a learned dictionary of waveform prototypes. Each longer segment is then represented by an occurrence vector:
+
+$$h_k(s) = \sum_{t \in s} \mathbf{1}\left[q(x_t) = k\right]$$
+
+where $q$ assigns window $x_t$ to token $k$, and $h_k(s)$ counts how often token $k$ occurs in segment $s$. Counts can be converted to rates, TF-IDF-like weights, or normalized frequencies before fitting a linear model. The resulting representation is compact, compatible with regularized logistic regression, and interpretable: an important feature can be inspected by displaying the waveform prototype and its occurrence rate in each class.
+
+The same idea can tokenize time-frequency features rather than raw waveforms. For example, a token library can be learned from short STFT patches, wavelet-coefficient patches, band-power trajectories, or concatenated channel-frequency patches. A token may therefore represent a transient alpha increase, a stable theta pattern, or a characteristic cross-channel spectral configuration. For an affective EEG segment, the feature vector can be a histogram of these local tokens, optionally augmented with coarse order information such as token transitions or counts in successive temporal bins.
+
+The approach is especially attractive when the number of subjects is small but each recording contains many windows. It turns repeated local structure into evidence that a low-capacity classifier can use without learning a large neural encoder from scratch. Cano Achuri et al. provide a recent EEG example in which shift-invariant waveform dictionaries and occurrence counts form interpretable bag-of-waves biomarkers for mouse neurological disease models ([Cano Achuri et al., 2026](https://doi.org/10.1088/1741-2552/ae4d8c)). The task and species differ from affective computing, so the paper should be read as a representation-learning example rather than as evidence that the same tokens transfer across datasets.
+
+### Design and Validation Constraints
+
+Tokenization does not remove the small-sample problem. The dictionary, token frequencies, normalization parameters, and any token-selection rule must be learned inside each training fold. Splits should be grouped by subject, and usually by session, to prevent highly overlapping windows from placing the same participant in both training and test data. A class-conditional dictionary can improve discrimination but may also encode class-specific artifacts; a shared dictionary is often a more conservative starting point for affective EEG.
+
+The histogram discards the order and precise timing of events. This is useful for stable phenotype or trial-level classification, but it may be inadequate when the emotional trajectory matters. Compare token histograms with time-binned histograms, transition features, or a small sequence model, and report performance at the subject or trial level rather than treating correlated windows as independent samples. Keep the library small enough to support repeated cross-validation, inspect token occupancy and stability across folds, and compare against simple band-power and raw-feature baselines.
+
+This feature-library view connects naturally to the LLM-inspired discussion in [Section 10: LLM-Inspired Techniques for EEG](../10-special-topics/10-llm-inspired-techniques-for-eeg.md). Section 10 discusses neural tokenization, metadata, self-supervised learning, and the limits of importing language analogies. The present approach is a deliberately modest version of that idea: tokens are data-derived measurement patterns for statistical reuse, not semantic words, and their validity must be demonstrated for the target subjects, devices, references, and tasks.
+
 ## Summary
 
 Time-frequency features bridge the gap between static spectral features and raw time-domain signals, enabling the capture of dynamic spectral changes that accompany emotional processing. The STFT remains the most practical choice for many applications, while wavelet-based methods offer theoretical advantages in resolution, and HHT provides an adaptive alternative for nonlinear signals. For affective computing, the key is to match the time-frequency resolution to the expected time scale of emotional dynamics—typically on the order of seconds, not milliseconds.
