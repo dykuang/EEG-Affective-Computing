@@ -65,6 +65,7 @@
 	- [Metrics, Statistical Evidence, and Reproducibility](09-training-and-evaluation/05-metrics-statistical-evidence-and-reproducibility.md)
 	- [Qualitative Assessment and Theory-Aligned Validation](09-training-and-evaluation/06-qualitative-assessment-and-theory-aligned-validation.md)
 	- [Transfer Learning and Few/Zero-Shot Learning](09-training-and-evaluation/07-transfer-learning-and-few-shot-learning.md)
+	- [Useful Platforms and Tools](09-training-and-evaluation/08-useful-platforms-and-tools.md)
 - [Special-topics](10-special-topics/README.md)
 	- [Psychological Priors](10-special-topics/01-psychological-priors.md)
 	- [General Class Discovery](10-special-topics/02-general-class-discovery.md)
