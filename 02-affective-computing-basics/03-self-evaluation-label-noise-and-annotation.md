@@ -6,7 +6,7 @@ In supervised affective computing, the model learns from labelled EEG-emotion pa
 
 This section examines the fuzziness of self-evaluation, the resulting label noise, and the practical implications for training and evaluating EEG-based emotion recognition systems.
 
-![Trial timeline showing baseline, stimulus, a time-varying latent affect trajectory, two EEG analysis windows, and a delayed post-trial self-report.](figures/annotation_trial_timeline.svg)
+![Trial timeline showing baseline, stimulus, a time-varying latent affect trajectory, two EEG analysis windows, and a delayed post-trial self-report.](figures/annotation-trial-timeline.png)
 
 *Figure 1. A single trial's temporal structure. The latent affect trajectory may rise and fall; EEG windows capture local signal slices, whereas a post-trial rating collapses the whole trial into one summary value.*
 

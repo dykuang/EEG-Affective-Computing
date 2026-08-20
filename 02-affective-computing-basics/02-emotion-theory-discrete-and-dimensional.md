@@ -101,7 +101,7 @@ Constructivist theories (e.g., Barrett's theory of constructed emotion) argue th
 
 This view has gained influence and is compatible with dimensional approaches. It does not imply that emotion is arbitrary; rather, it emphasizes that brain, body, learned concepts, and situation jointly shape an emotional episode.
 
-![Three-panel schematic contrasting discrete class labels, continuous valence-arousal ratings, and a hybrid model that outputs both coordinates and a coarse category.](figures/emotion_model_schematic.svg)
+![Three-panel schematic contrasting discrete class labels, continuous valence-arousal ratings, and a hybrid model that outputs both coordinates and a coarse category.](figures/emotion-model-schematic.png)
 
 *Figure 2. Three ways to represent emotion computationally. (1) Discrete classification assigns one of a fixed set of labels. (2) Dimensional regression predicts continuous coordinates. (3) A hybrid model predicts both a location in affect space and a coarse category label.*
 
