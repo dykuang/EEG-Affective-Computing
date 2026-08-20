@@ -39,7 +39,7 @@ As a result, emotionally relevant brain activity may be subtle compared with noi
 - task noncompliance,
 - emotional self-report inconsistency.
 
-<!-- Figure suggestion: Add an artifact gallery with short aligned EEG traces labeled EOG blink, eye movement, EMG, ECG leakage, motion/electrode shift, and 50/60 Hz line noise. Include small sketches of the likely source or recording setup beside each trace, and keep the neural EEG trace visually distinct from the contaminating component. -->
+![Artifact gallery. Aligned EEG traces illustrate common contamination sources, including EOG blinks and eye movements, EMG, ECG leakage, electrode or cable motion, and 50/60 Hz line noise. The traces are paired with source labels so physiological, environmental, and movement artifacts can be distinguished from neural signal.](figures/artifact-gallery.png)
 
 ## Signal-to-Noise Ratio
 
@@ -51,7 +51,7 @@ Low SNR means that the neural activity of interest contributes only a small frac
 
 In affective computing, this is especially problematic because emotional effects are often subtler than motor or visual evoked responses.
 
-<!-- Figure suggestion: Add a signal-mixture schematic showing a weak neural component combined with EOG, EMG, line noise, and motion artifact to form the observed scalp recording. Include a second panel showing attenuation and spatial mixing through brain tissue, skull, and scalp, ending with a low-SNR waveform. -->
+![Signal mixture and volume conduction. A weak neural component is combined with EOG, EMG, line noise, and motion artifacts to form the observed scalp recording. A second panel shows attenuation and spatial mixing as the signal passes through brain tissue, cerebrospinal fluid, skull, and scalp, yielding a low-SNR waveform at the electrode.](figures/mixture-volume-conduction.png)
 
 ## EEG Frequency Bands
 
@@ -65,7 +65,7 @@ Although exact boundaries vary across studies, EEG is commonly analyzed in bands
 
 These bands are useful abstractions, but low SNR means that estimated band power can be strongly affected by artifacts and preprocessing decisions.
 
-<!-- Figure suggestion: Add a frequency-axis diagram spanning 0.5 Hz to the gamma range, with delta, theta, alpha, beta, and gamma bands marked using restrained colors. Pair it with a representative power spectrum and note that boundaries vary across studies and that artifact energy can overlap these bands. -->
+![EEG frequency bands and power spectrum. The horizontal axis spans the typical EEG range from delta (about 0.5–4 Hz) through theta, alpha, beta, and gamma. Each band is marked along the axis and illustrated with a representative power spectrum. Exact boundaries vary across studies, and artifact energy can overlap the bands, so interpretation should be paired with careful preprocessing.](figures/frequency-spectrum.png)
 
 ## Why Low SNR Matters for Modeling
 
@@ -105,7 +105,7 @@ Thus, EEG modeling is never only a modeling problem. It is also a signal quality
 - subject-aware validation,
 - augmentation that respects signal structure.
 
-<!-- Figure suggestion: Add a three-stage pipeline showing acquisition, preprocessing, and modeling, with the effective SNR improving after contact-quality checks, filtering, artifact handling, and robust validation. Mark the failure mode at each stage: artifact-driven features, nuisance-dominated representations, and subject-specific overfitting. -->
+![Three-stage SNR pipeline. Acquisition, preprocessing, and modeling each offer opportunities to improve effective signal-to-noise ratio. Contact-quality checks and clean acquisition reduce physiological and environmental artifacts at the start. Filtering, artifact rejection, ICA, rereferencing, and baseline correction further separate signal from noise. Robust feature extraction, regularization, and subject-aware validation keep downstream models from overfitting nuisance patterns or subject-specific artifacts.](figures/3-stage-pipeline.png)
 
 ## Event-Related vs. Ongoing EEG
 

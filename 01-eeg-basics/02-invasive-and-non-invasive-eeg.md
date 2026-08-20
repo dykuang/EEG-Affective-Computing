@@ -4,7 +4,7 @@
 
 Not all electrophysiological recordings called “EEG-like” are obtained in the same way. A central distinction is between **invasive** and **non-invasive** recordings. For affective computing, most practical systems use non-invasive scalp EEG, but understanding the full spectrum of recording paradigms helps clarify tradeoffs in spatial accuracy, signal fidelity, safety, and usability.
 
-<!-- Figure suggestion: Add an anatomical cross-section comparing scalp EEG, ECoG, and SEEG/depth recording. Show electrode locations from outside the scalp to the cortical surface and deeper brain regions, with callouts for invasiveness, spatial precision, signal fidelity, and typical use context. Use one shared brain outline so the recording locations can be compared directly. -->
+![Anatomical comparison of recording methods. A shared brain cross-section shows scalp EEG electrodes on the surface, ECoG electrodes resting on the cortical surface, and depth electrodes reaching deeper structures. Callouts summarize invasiveness, spatial precision, signal fidelity, and typical clinical or research use for each method.](figures/anatomical-comparisons.png)
 
 ## Non-Invasive EEG
 
@@ -69,7 +69,7 @@ Even if most EEG affective computing research uses non-invasive systems, invasiv
 | **Cost and logistics** | Moderate to low | High |
 | **Affective computing practicality** | Excellent | Limited |
 
-<!-- Figure suggestion: Add a trade-off continuum from invasive intracranial recording to consumer wearable EEG. Use a horizontal path with decreasing spatial precision and signal fidelity but increasing safety, comfort, portability, and deployment scalability. Place clinical scalp EEG and research-grade portable EEG between the two endpoints. -->
+![Recording-system trade-off continuum. From invasive intracranial systems on the left to consumer wearable headsets on the right, spatial precision and signal fidelity decrease while safety, comfort, portability, and scalability increase. Clinical scalp EEG and research-grade portable EEG sit in the middle of the continuum.](figures/tradeoff-continuum.png)
 
 ## Relevance to Wearable Affective Computing
 

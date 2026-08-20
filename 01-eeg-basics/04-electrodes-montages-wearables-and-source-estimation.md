@@ -42,7 +42,7 @@ Reference choice affects:
 - spatial interpretability,
 - downstream model features.
 
-<!-- Figure suggestion: Add a small signal example in which the same three electrode recordings are re-expressed with a single reference, linked-mastoid reference, common-average reference, and bipolar derivations. Use arrows or equations to show that rereferencing changes voltage values and channel relationships without creating new neural information. -->
+![Montages and referencing. The same three electrode recordings are re-expressed using a single reference, linked-mastoid reference, common-average reference, and bipolar derivations. The comparison shows how rereferencing changes voltage values and channel relationships without creating new neural information.](figures/montages-referencing-1.png)
 
 ## Channel Density Tradeoffs
 
@@ -150,7 +150,7 @@ For most low-channel affective computing systems, it is safer to interpret model
 
 rather than claiming precise neural localization.
 
-<!-- Figure suggestion: Add an interpretation ladder for wearable EEG, progressing from directly observed channel and scalp-region patterns to frequency content and connectivity proxies, then to coarse regional inference, with precise source localization shown as the least supported claim. Use confidence or evidence-strength labels rather than implying a strict quantitative scale. -->
+![Interpretation ladder for wearable EEG. Evidence strength decreases from directly observed channel and scalp-region patterns through frequency content and connectivity proxies to coarse regional inference, with precise source localization shown as the least supported claim. Confidence labels indicate interpretive caution rather than a strict quantitative scale.](figures/interpretation-ladder.png)
 
 ## Summary
 
