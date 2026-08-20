@@ -6,6 +6,8 @@ EEG quality depends strongly on how and where signals are recorded. Electrode pl
 
 This section introduces the standard electrode system, wearable EEG tradeoffs, and the role and limits of source estimation in low-channel portable settings.
 
+<!-- Figure suggestion: Add a side-by-side comparison of a high-density research cap and a sparse wearable headset on a head silhouette. Annotate channel count, coverage, setup time, comfort, motion sensitivity, and the kinds of spatial claims each system can reasonably support. -->
+
 ## Electrode Placement and the 10-20 System
 
 The international 10-20 system defines standardized electrode positions across the scalp. Labels such as Fp1, F3, Cz, P4, and O2 indicate approximate anatomical regions:
@@ -19,6 +21,8 @@ The international 10-20 system defines standardized electrode positions across t
 - **z**: midline
 
 This standardization improves reproducibility across studies and makes channel-level interpretations easier.
+
+<!-- Figure suggestion: Add a clean top-down scalp diagram of the international 10-20 system. Mark Fp, F, C, P, O, and T regions, label representative electrodes such as Fp1, F3, Cz, P4, and O2, and show the nasion, inion, and left/right preauricular landmarks used to construct the layout. -->
 
 ## Montages and Referencing
 
@@ -37,6 +41,8 @@ Reference choice affects:
 - channel correlation structure,
 - spatial interpretability,
 - downstream model features.
+
+<!-- Figure suggestion: Add a small signal example in which the same three electrode recordings are re-expressed with a single reference, linked-mastoid reference, common-average reference, and bipolar derivations. Use arrows or equations to show that rereferencing changes voltage values and channel relationships without creating new neural information. -->
 
 ## Channel Density Tradeoffs
 
@@ -96,6 +102,8 @@ This is often framed as an **inverse problem**:
 - **forward problem**: given sources, predict scalp potentials,
 - **inverse problem**: given scalp potentials, infer likely sources.
 
+<!-- Figure suggestion: Add a forward/inverse-problem diagram. In the forward direction, show candidate cortical sources passing through a head model to generate scalp potentials; in the inverse direction, show one scalp pattern branching to multiple plausible source configurations. Label the inverse problem as ill-posed and identify head model, electrode positions, coverage, and regularization as constraints. -->
+
 The inverse problem is ill-posed because many source configurations can produce similar scalp measurements.
 
 ## Why Source Estimation Is Difficult
@@ -141,6 +149,8 @@ For most low-channel affective computing systems, it is safer to interpret model
 - connectivity proxies,
 
 rather than claiming precise neural localization.
+
+<!-- Figure suggestion: Add an interpretation ladder for wearable EEG, progressing from directly observed channel and scalp-region patterns to frequency content and connectivity proxies, then to coarse regional inference, with precise source localization shown as the least supported claim. Use confidence or evidence-strength labels rather than implying a strict quantitative scale. -->
 
 ## Summary
 

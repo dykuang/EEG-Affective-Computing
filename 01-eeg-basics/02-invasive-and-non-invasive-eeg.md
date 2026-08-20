@@ -4,6 +4,8 @@
 
 Not all electrophysiological recordings called “EEG-like” are obtained in the same way. A central distinction is between **invasive** and **non-invasive** recordings. For affective computing, most practical systems use non-invasive scalp EEG, but understanding the full spectrum of recording paradigms helps clarify tradeoffs in spatial accuracy, signal fidelity, safety, and usability.
 
+<!-- Figure suggestion: Add an anatomical cross-section comparing scalp EEG, ECoG, and SEEG/depth recording. Show electrode locations from outside the scalp to the cortical surface and deeper brain regions, with callouts for invasiveness, spatial precision, signal fidelity, and typical use context. Use one shared brain outline so the recording locations can be compared directly. -->
+
 ## Non-Invasive EEG
 
 Non-invasive EEG places electrodes on the scalp to measure voltage differences without penetrating tissue.
@@ -66,6 +68,8 @@ Even if most EEG affective computing research uses non-invasive systems, invasiv
 | **Signal fidelity** | Lower | Higher |
 | **Cost and logistics** | Moderate to low | High |
 | **Affective computing practicality** | Excellent | Limited |
+
+<!-- Figure suggestion: Add a trade-off continuum from invasive intracranial recording to consumer wearable EEG. Use a horizontal path with decreasing spatial precision and signal fidelity but increasing safety, comfort, portability, and deployment scalability. Place clinical scalp EEG and research-grade portable EEG between the two endpoints. -->
 
 ## Relevance to Wearable Affective Computing
 

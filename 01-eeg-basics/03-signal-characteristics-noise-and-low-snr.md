@@ -39,6 +39,8 @@ As a result, emotionally relevant brain activity may be subtle compared with noi
 - task noncompliance,
 - emotional self-report inconsistency.
 
+<!-- Figure suggestion: Add an artifact gallery with short aligned EEG traces labeled EOG blink, eye movement, EMG, ECG leakage, motion/electrode shift, and 50/60 Hz line noise. Include small sketches of the likely source or recording setup beside each trace, and keep the neural EEG trace visually distinct from the contaminating component. -->
+
 ## Signal-to-Noise Ratio
 
 SNR is often described conceptually as
@@ -48,6 +50,8 @@ $$\mathrm{SNR} = \frac{\text{power of desired signal}}{\text{power of noise}}.$$
 Low SNR means that the neural activity of interest contributes only a small fraction of the observed variance.
 
 In affective computing, this is especially problematic because emotional effects are often subtler than motor or visual evoked responses.
+
+<!-- Figure suggestion: Add a signal-mixture schematic showing a weak neural component combined with EOG, EMG, line noise, and motion artifact to form the observed scalp recording. Include a second panel showing attenuation and spatial mixing through brain tissue, skull, and scalp, ending with a low-SNR waveform. -->
 
 ## EEG Frequency Bands
 
@@ -60,6 +64,8 @@ Although exact boundaries vary across studies, EEG is commonly analyzed in bands
 - **Gamma**: above 30 Hz
 
 These bands are useful abstractions, but low SNR means that estimated band power can be strongly affected by artifacts and preprocessing decisions.
+
+<!-- Figure suggestion: Add a frequency-axis diagram spanning 0.5 Hz to the gamma range, with delta, theta, alpha, beta, and gamma bands marked using restrained colors. Pair it with a representative power spectrum and note that boundaries vary across studies and that artifact energy can overlap these bands. -->
 
 ## Why Low SNR Matters for Modeling
 
@@ -98,6 +104,8 @@ Thus, EEG modeling is never only a modeling problem. It is also a signal quality
 - regularization,
 - subject-aware validation,
 - augmentation that respects signal structure.
+
+<!-- Figure suggestion: Add a three-stage pipeline showing acquisition, preprocessing, and modeling, with the effective SNR improving after contact-quality checks, filtering, artifact handling, and robust validation. Mark the failure mode at each stage: artifact-driven features, nuisance-dominated representations, and subject-specific overfitting. -->
 
 ## Event-Related vs. Ongoing EEG
 

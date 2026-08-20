@@ -6,6 +6,8 @@ Electroencephalography (EEG) records electrical activity associated with neural 
 
 This section introduces what EEG physically measures, why it differs from other neuroimaging modalities, and why it is particularly relevant for emotion-related brain analysis.
 
+![From cortical activity to scalp EEG. Synchronized synaptic input to aligned pyramidal neurons creates a macroscopic electrical field that propagates through brain tissue, cerebrospinal fluid, skull, and scalp before being recorded as a multichannel voltage trace. The inset contrasts a single-neuron action potential with the slower population-level postsynaptic activity that dominates scalp EEG.](figures/biophysical-origin.svg)
+
 ## The Biophysical Origin of EEG
 
 Individual neurons generate action potentials, but scalp EEG is dominated less by isolated spikes and more by the aggregate synchronous activity of large populations of neurons. When many similarly oriented pyramidal neurons in cortex receive synaptic input, their extracellular currents sum and create dipole-like fields.
@@ -42,6 +44,8 @@ EEG also has clear limitations:
 
 These limitations shape later modeling and preprocessing choices.
 
+![Modality trade-off map. Temporal resolution increases to the right and spatial resolution increases upward; marker size reflects typical cost. EEG offers excellent temporal resolution and moderate-to-low spatial resolution at relatively low cost, making it practical for affective computing compared with MEG, fMRI, ECoG/intracranial EEG, and fNIRS.](figures/modality-comparison.svg)
+
 ## EEG Compared with Other Brain Measurement Modalities
 
 | Modality | Temporal Resolution | Spatial Resolution | Invasiveness | Typical Cost | Affective Computing Relevance |
@@ -68,6 +72,8 @@ EEG supports both:
 - **offline analysis**, where signals are processed after acquisition, and
 - **online inference**, where emotion is estimated during interaction.
 
+![Affective-computing workflow. A stimulus or interaction is followed by EEG acquisition, preprocessing and artifact handling, feature representation, model inference, and finally an emotion estimate (valence, arousal, dominance, or discrete category). The lower branch separates offline batch analysis from online low-latency inference.](figures/affective-computing-workflow.svg)
+
 ## Core Measurement Concepts
 
 A few basic terms are important early:
@@ -79,6 +85,8 @@ A few basic terms are important early:
 - **Bandwidth**: the frequency range retained after acquisition and preprocessing.
 
 These choices strongly affect data quality and downstream model behavior.
+
+![Core measurement concepts. Top left: electrode positions on a 10-20 layout with a reference electrode highlighted. Top right: a montage expressed as bipolar channel combinations. Bottom left: the same continuous waveform sampled at high and low rates. Bottom right: a power spectrum with the retained bandwidth shaded and the 50/60 Hz notch removed.](figures/measurement-concepts.svg)
 
 ## Summary
 
