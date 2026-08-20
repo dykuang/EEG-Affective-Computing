@@ -50,6 +50,37 @@ Use confidence thresholds, teacher-student consistency checks, or repeated clust
 | Contrastive | Agreement between related views | Learns invariances and can use large unlabeled corpora | Positive-pair and augmentation assumptions may be wrong |
 | Pseudo-label | Data-derived or teacher-derived target | Can exploit latent structure and teacher confidence | Confirmation bias and artifact-driven labels |
 
+## Representation Learning for Affective EEG
+
+Representation learning aims to construct an embedding in which EEG segments that are relevant to the scientific task are close, while nuisance variation is separated or made easier to adapt away. It is broader than a particular training paradigm: the representation may be learned through supervised labels, self-supervised pretraining, contrastive objectives, multi-task learning, or a combination of these. The downstream classifier or regressor is then only one possible consumer of the learned representation.
+
+For affective EEG, the representation should reflect both the structure of the signal and the structure of emotion. A useful embedding may preserve temporal, spectral, and spatial information while organizing samples according to valence, arousal, or another theory-informed affect space. This can be more transferable than optimizing a classifier for the label vocabulary of one dataset, especially when datasets use different discrete categories, rating scales, channel layouts, or sampling conventions.
+
+### V-A-Guided Contrastive Learning
+
+Valence-arousal (V-A) coordinates provide one way to connect heterogeneous emotion annotations. Discrete categories can be assigned or mapped to approximate locations in the V-A plane, while continuous ratings can be used directly. Instead of treating every non-identical label as an equally strong negative, a soft-weighted contrastive objective can make emotionally similar samples attract one another more strongly than emotionally distant samples. The result is an embedding with a graded notion of affective similarity rather than only dataset-specific class boundaries.
+
+The choice of positive and negative relationships remains a scientific assumption. V-A proximity does not guarantee equivalence in appraisal, physiology, or temporal dynamics, and labels inherited from a whole trial may not apply to every local window. Report the mapping from labels to V-A coordinates, the temperature and weighting rules of the contrastive loss, the augmentations used, and whether subject or session identity is controlled in pair construction.
+
+### EMOD as a Cross-Dataset Example
+
+[EMOD](https://doi.org/10.1609/aaai.v40i21.38796) is a recent example of affect-aware representation learning. Chen et al. (2026) propose a unified EEG emotion representation framework that projects discrete and continuous emotion labels into a common valence-arousal space and uses V-A-guided soft-weighted supervised contrastive learning. Its Triple-Domain Encoder and Spatial-Temporal Transformer integrate temporal, spectral, and spatial information while accommodating heterogeneous EEG formats. The authors pretrain on eight public EEG datasets and evaluate on three benchmark datasets, making the work relevant to cross-dataset transfer rather than only within-dataset classification.
+
+EMOD should be understood as an example of a representation-learning strategy, not automatically as a foundation model. Its cross-dataset pretraining and reusable affective embedding illustrate how a foundation-model program could begin: first define representations that transfer across recording conditions and label schemes, then test whether a larger and more diverse pretrained backbone supports many downstream tasks. The model still needs evidence about subject-disjoint pretraining, task and dataset overlap, calibration, robustness, and transfer to affective settings not represented during training.
+
+### Validation of Learned Representations
+
+Representation quality should be assessed separately from the accuracy of one attached head. Useful checks include:
+
+- linear probing with the encoder frozen, followed by controlled fine-tuning and parameter-efficient adaptation;
+- cross-subject, cross-session, cross-device, and cross-dataset evaluation with the held-out unit matching the claim;
+- label-budget curves showing how much performance is available with few labeled trials;
+- ablations of the affect-space mapping, contrastive weighting, augmentations, and temporal, spectral, or spatial encoder components;
+- tests for shortcut learning, such as predicting subject, dataset, channel montage, or artifact status from the embedding; and
+- embedding stability across random seeds, preprocessing choices, and reasonable label perturbations.
+
+Pretraining data and downstream test data must be separated according to the declared protocol. If unlabeled target recordings are used during pretraining, that is transductive or domain-adaptive evaluation and should not be reported as pure unseen-target generalization. These controls connect representation learning directly to the leakage and evidence principles developed elsewhere in this chapter.
+
 ## Reinforcement Learning
 
 Reinforcement learning learns a policy that selects actions from observations in order to maximize cumulative reward. In affective EEG, the observation may include current EEG features and interaction context; an action may adapt a stimulus, select a training exercise, change feedback, or request a calibration measurement. The objective is not simply to classify emotion accurately at each step, but to choose interventions that improve a longer-term outcome.
@@ -72,5 +103,6 @@ These paradigms can be combined. For example, an encoder may be pretrained with 
 ## References
 
 - Banville, H., Chehab, O., Hyvarinen, A., Engemann, D. A., and Gramfort, A. (2021). Uncovering the structure of clinical EEG signals with self-supervised learning. Journal of Neural Engineering, 18(4), 046020.
+- Chen, Y., Zhao, S., Li, S., and Pan, G. (2026). EMOD: A Unified EEG Emotion Representation Framework Leveraging V-A Guided Contrastive Learning. Proceedings of the AAAI Conference on Artificial Intelligence, 40(21), 17427-17435. https://doi.org/10.1609/aaai.v40i21.38796
 - Lotte, F., Bougrain, L., Clerc, M., et al. (2018). A review of classification algorithms for EEG-based brain-computer interfaces: A 10 year update. Journal of Neural Engineering, 15(3), 031005.
 - Sutton, R. S., and Barto, A. G. (2018). Reinforcement Learning: An Introduction. MIT Press.

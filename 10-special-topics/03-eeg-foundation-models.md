@@ -63,6 +63,10 @@ Self-supervised learning is currently the most defensible route because it does 
 
 These approaches aim to capture general neural structure before any affective labels are used.
 
+Representation learning for affective EEG provides an important bridge between task-specific emotion models and broader foundation models. For example, [EMOD](https://doi.org/10.1609/aaai.v40i21.38796) uses a unified valence-arousal space and V-A-guided soft-weighted supervised contrastive learning to organize heterogeneous emotion annotations into a transferable embedding. Its pretraining across eight public EEG datasets illustrates a useful intermediate step: representations can become reusable across datasets and label schemes before the field attempts truly broad, multi-task EEG foundation models. The work is discussed in more detail in [Chapter 09's section on representation learning](../09-training-and-evaluation/02-training-paradigms-for-affective-eeg.md#representation-learning-for-affective-eeg).
+
+This connection also clarifies the boundary between the two ideas. Affective representation learning may use labels and target emotion structure, whereas a foundation model is expected to support a wider range of downstream tasks and domains. An EMOD-like affective encoder could serve as an initialization, an adapter, or an affect-specific branch of a larger foundation model, but transfer claims still require subject-, dataset-, and task-disjoint evaluation where appropriate. The representation should be tested with frozen probing, low-label adaptation, and robustness analyses rather than inferred from one benchmark score.
+
 ### Generative Pretraining
 
 Generative models such as VAEs, autoregressive models, diffusion models, or masked autoencoders can learn compressed latent spaces or plausible signal priors. For affective applications, generative pretraining may be useful for denoising, missing-channel imputation, uncertainty estimation, and adaptation to low-resource downstream tasks.
@@ -172,4 +176,5 @@ For affective computing, the key question is not whether the field can imitate l
 - Cui, W., Wang, Z., Wang, J., and others. (2024). Large brain model for learning generic representations with tremendous EEG data in BCI. arXiv preprint arXiv:2405.18765.
 - Yang, C., Yang, X., and others. (2024). EEGPT: Towards scalable and generalizable EEG foundation models. arXiv preprint arXiv:2408.00806.
 - Banville, H., Chehab, O., Hyvarinen, A., Engemann, D.-A., and Gramfort, A. (2021). Uncovering the structure of clinical EEG signals with self-supervised learning. Journal of Neural Engineering, 18(4), 046020.
+- Chen, Y., Zhao, S., Li, S., and Pan, G. (2026). EMOD: A Unified EEG Emotion Representation Framework Leveraging V-A Guided Contrastive Learning. Proceedings of the AAAI Conference on Artificial Intelligence, 40(21), 17427-17435. https://doi.org/10.1609/aaai.v40i21.38796
 - Wang, Y., Jung, T.-P., and others. (2024). Large language model-inspired neural foundation models for brain signals: opportunities and challenges. arXiv preprint arXiv:2403.XXXX.
