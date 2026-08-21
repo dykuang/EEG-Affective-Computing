@@ -4,6 +4,10 @@
 
 The landscape of deep learning is evolving rapidly. Beyond the established architectures (MLP, CNN, RNN, Transformer, GNN), a new wave of models is emerging with fundamentally different design principles. This section surveys trending architectures that are beginning to impact EEG-based affective computing, discussing their theoretical motivation, practical potential, and current limitations.
 
+![KAN and Mamba architectures for affective EEG. The diagram should use two panels: a Kolmogorov-Arnold network that routes engineered EEG features through learnable spline functions on edges to interpretable outputs, and a Mamba selective state-space block that processes long EEG sequences through input projection, local convolution, selective state-space scan, gating, residual connection, and readout.](figures/kan-and-mamba-eeg-architectures.png)
+
+**Figure 8.10: KAN and Mamba architectures for affective EEG.** KANs learn interpretable edge functions for compact feature models, while selective state-space models provide linear-scaling sequence processing for long EEG recordings.
+
 ## Kolmogorov-Arnold Networks (KANs)
 
 ### Motivation

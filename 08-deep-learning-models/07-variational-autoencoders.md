@@ -4,6 +4,10 @@
 
 Variational Autoencoders learn a probabilistic latent representation of EEG data. Unlike standard autoencoders, VAEs impose structure on the latent space, encouraging it to follow a prior distribution (typically Gaussian). This structured latent space enables controlled generation, interpolation, and factor disentanglement — all highly valuable for EEG-based affective computing.
 
+![Conditional variational autoencoder for EEG. The diagram should show an EEG segment entering an encoder that outputs latent mean and variance, a reparameterization sampling step, a structured latent space optionally conditioned on emotion labels, and a decoder that reconstructs or generates multichannel EEG. Show reconstruction loss and KL-divergence regularization.](figures/vae-eeg-architecture.png)
+
+**Figure 8.7: Conditional variational autoencoder for EEG.** A VAE encodes EEG into a probabilistic latent distribution, samples a structured code, and decodes it for reconstruction or condition-controlled generation.
+
 ## Theoretical Foundations
 
 ### Standard Autoencoder vs. VAE

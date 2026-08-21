@@ -4,6 +4,10 @@
 
 Transformer models revolutionized deep learning by replacing recurrent mechanisms with attention mechanisms. Unlike RNNs that process sequences sequentially, Transformers process all time steps in parallel, enabling efficient training on long sequences. Recent advances have made Transformers increasingly popular for EEG analysis, offering both computational efficiency and strong performance.
 
+![Transformer architecture for affective EEG. The diagram should show EEG time patches or spectral tokens combined with positional and electrode information, passed through stacked multi-head self-attention, feed-forward, normalization, and residual blocks, then pooled or read through a classification token for emotion prediction. Include an attention map connecting distant time patches.](figures/transformer-eeg-architecture.png)
+
+**Figure 8.4: Transformer architecture for affective EEG.** EEG tokens with temporal and spatial position information are processed by self-attention blocks that model global relationships before task-specific readout.
+
 ## Theoretical Foundations
 
 ### Self-Attention Mechanism

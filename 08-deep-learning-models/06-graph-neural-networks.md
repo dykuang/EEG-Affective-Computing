@@ -4,6 +4,10 @@
 
 Graph Neural Networks represent a paradigm shift in modeling EEG data by explicitly leveraging the spatial structure of brain networks. Unlike CNNs that treat channels as a sequence or Transformers that ignore spatial relationships, GNNs model EEG channels as nodes in a graph with connections based on functional or anatomical brain connectivity. This section explores how GNNs can capture the graph structure of brain networks for improved emotion recognition.
 
+![Graph neural network architecture for affective EEG. The diagram should show electrodes positioned on a scalp map as graph nodes, channel or band-power features at each node, edges from anatomical distance or functional connectivity, stacked graph-convolution or graph-attention message-passing layers, graph pooling, and an emotion prediction head. Include an optional dynamic adjacency update.](figures/gnn-eeg-architecture.png)
+
+**Figure 8.6: Graph neural network architecture for affective EEG.** EEG channels become graph nodes whose features are exchanged through anatomical or functional connections before graph-level affect classification or regression.
+
 ## Theoretical Foundations
 
 ### Graph Representation

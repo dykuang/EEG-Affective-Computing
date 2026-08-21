@@ -4,6 +4,10 @@
 
 Recurrent Neural Networks process sequences by maintaining hidden state across time steps. Unlike CNNs that apply the same operation across the signal, RNNs process EEG data sequentially, with each time step influencing subsequent processing. Long Short-Term Memory (LSTM) networks address the vanishing gradient problem of vanilla RNNs, making them ideal for capturing long-term dependencies in EEG signals.
 
+![Recurrent architecture for affective EEG. The diagram should show sequential EEG feature vectors entering repeated LSTM or GRU cells, with hidden-state and cell-state connections across time, optional bidirectional processing, temporal pooling or attention, and an emotion-class or continuous-state output. Annotate the input time steps and the causal versus bidirectional variants.](figures/rnn-lstm-eeg-architecture.png)
+
+**Figure 8.3: Recurrent architecture for affective EEG.** LSTM or GRU cells propagate a learned hidden state through EEG time steps to represent temporal affect dynamics.
+
 ## Theoretical Foundations
 
 ### Vanilla RNN

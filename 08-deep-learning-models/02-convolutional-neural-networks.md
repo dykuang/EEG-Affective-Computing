@@ -4,6 +4,10 @@
 
 Convolutional Neural Networks excel at automatically extracting features from raw data through learnable filters. For EEG, CNNs can learn spatial patterns across electrode channels and temporal patterns within the signal, reducing the need for manual feature engineering.
 
+![CNN architecture for affective EEG. The diagram should show a multichannel EEG time series or channel-by-time matrix entering temporal convolution, spatial or depthwise channel convolution, normalization and pooling blocks, global pooling, and a classifier or valence-arousal regression head. Include feature-map shapes and distinguish temporal from spatial filtering.](figures/cnn-eeg-architecture.png)
+
+**Figure 8.2: CNN architecture for affective EEG.** Convolutional blocks learn local temporal and spatial EEG patterns before pooled feature maps are mapped to an affective prediction.
+
 ## Theoretical Foundations
 
 ### Convolution Operation

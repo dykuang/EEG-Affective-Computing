@@ -4,6 +4,10 @@
 
 Flow-based and diffusion models represent the most recent and powerful class of generative models. **Flow-based models** use invertible transformations with exact likelihood computation, while **diffusion models** learn to reverse a gradual noising process. Both produce state-of-the-art sample quality and have unique advantages for EEG-based affective computing — from clean signal reconstruction to uncertainty-aware emotion prediction.
 
+![Flow and diffusion architectures for EEG. The diagram should use two panels: an invertible normalizing flow mapping EEG through repeated coupling blocks to a latent Gaussian with exact likelihood, and a diffusion model showing forward noise addition to EEG followed by a conditioned denoising network that reverses the process. Label applications such as anomaly detection, imputation, and conditional synthesis.](figures/flow-and-diffusion-eeg-architectures.png)
+
+**Figure 8.9: Flow and diffusion architectures for EEG.** Flows map EEG and latent variables bijectively for exact density estimation, whereas diffusion models learn to reverse a staged corruption process for generation and denoising.
+
 ## Part 1: Flow-based Models
 
 ### Theoretical Foundations

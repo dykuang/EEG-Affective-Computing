@@ -4,6 +4,10 @@
 
 Multi-Layer Perceptrons represent the foundation of deep learning. They are fully connected neural networks where information flows in one direction—from input to output through hidden layers. While simple compared to modern architectures, MLPs remain effective for EEG-based affective computing when combined with appropriate feature engineering.
 
+![MLP architecture for affective EEG. The diagram should show hand-crafted EEG features such as band power, asymmetry, entropy, and statistical features concatenated into a vector, followed by fully connected hidden layers with nonlinear activations and dropout, and ending in emotion-class probabilities or continuous valence-arousal outputs.](figures/mlp-eeg-architecture.png)
+
+**Figure 8.1: MLP architecture for affective EEG.** A multilayer perceptron maps a fixed vector of engineered EEG features through dense nonlinear layers to a classification or regression output.
+
 ## Theoretical Foundations
 
 ### Architecture Structure

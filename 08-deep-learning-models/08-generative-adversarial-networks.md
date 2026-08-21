@@ -4,6 +4,10 @@
 
 Generative Adversarial Networks frame generation as a competitive game between two networks: a **generator** that creates synthetic EEG and a **discriminator** that distinguishes real from fake. Through adversarial training, the generator learns to produce increasingly realistic EEG signals. GANs excel at data augmentation, domain adaptation, and artifact removal in EEG-based affective computing.
 
+![Conditional GAN architecture for EEG. The diagram should show random latent noise and an optional emotion or subject condition entering a convolutional generator that produces multichannel synthetic EEG, alongside real EEG entering a discriminator with the generated sample. Show the adversarial feedback loop, optional class conditioning, and the separation of training from sampling.](figures/gan-eeg-architecture.png)
+
+**Figure 8.8: Conditional GAN architecture for EEG.** A generator synthesizes conditioned EEG from latent noise while a discriminator learns to distinguish generated and real recordings through adversarial training.
+
 ## Theoretical Foundations
 
 ### The Adversarial Game

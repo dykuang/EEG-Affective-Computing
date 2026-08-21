@@ -4,6 +4,10 @@ Most neural networks learn a finite-dimensional map: a fixed-size EEG tensor ent
 
 Neural operators do not replace CNNs, Transformers, or GNNs for every affective task. They are most compelling when the input-output relation is naturally functional: reconstruction of missing channels, continuous signal transformation, cross-device translation, neural-field modeling, or learning dynamics that should transfer across resolutions.
 
+![Neural operator architecture for affective EEG. The diagram should show multichannel EEG samples with time coordinates, electrode locations, sampling-rate metadata, and missing-channel masks entering a coordinate-aware operator encoder such as a DeepONet branch-trunk pair or Fourier-graph operator blocks. Query coordinates should produce continuous denoised, imputed, translated, or affect-state outputs.](figures/neural-operator-eeg-architecture.png)
+
+**Figure 8.11: Neural operator architecture for affective EEG.** Coordinate-aware neural operators map sampled EEG functions to continuous outputs at requested times, electrode locations, or resolutions rather than assuming one fixed input grid.
+
 ## Operator Learning Intuition
 
 Let $u$ be an input function, such as a multichannel EEG signal over time and electrode location, and let $v$ be an output function. A neural operator learns

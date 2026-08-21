@@ -18,7 +18,7 @@ The soft distribution preserves information that a one-hot label discards. For e
 
 ![A frozen high-capacity teacher and a compact student receive the same EEG segment. The student learns both the hard emotion label and the teacher's temperature-softened output distribution; only the student is deployed.](figures/knowledge-distillation-overview.svg)
 
-*Figure: Basic knowledge-distillation workflow. The teacher is used only while training, so its computational cost need not be paid on the target device.*
+**Figure 8.13: Basic knowledge-distillation workflow.** The teacher is used only while training, so its computational cost need not be paid on the target device.
 
 The common objective combines ordinary supervised loss with a divergence between softened outputs:
 
@@ -65,7 +65,7 @@ This is useful when a large teacher learns stable relationships between EEG wind
 
 ![A high-density, high-capacity teacher transfers soft outputs, temporal features, and electrode or sample relationships to a compact student that can consume fewer channels or shorter windows. Projection modules are used only during training.](figures/eeg-distillation-signals.svg)
 
-*Figure: EEG-specific distillation can transfer predictions, representations, and relations. The student may use a smaller input or architecture, but each mismatch must be represented explicitly rather than hidden by zero filling or undocumented channel dropping.*
+**Figure 8.14: EEG-specific distillation signals.** Distillation can transfer predictions, representations, and relations. The student may use a smaller input or architecture, but each mismatch must be represented explicitly rather than hidden by zero filling or undocumented channel dropping.
 
 ## Distillation Designs for Affective EEG
 

@@ -10,6 +10,10 @@ Advanced EEG-based affective computing often requires combining multiple archite
 
 This section explores practical hybrid architectures that achieve state-of-the-art performance on EEG affective computing tasks.
 
+![CNN-LSTM hybrid architecture for affective EEG. The diagram should show raw multichannel EEG entering convolution and pooling blocks for spatial-temporal feature extraction, reshaped feature sequences entering an LSTM or bidirectional LSTM, optional attention over time, and classification or multitask emotion heads. Mark the complementary roles of the CNN and recurrent modules.](figures/cnn-lstm-hybrid-eeg-architecture.png)
+
+**Figure 8.5: CNN-LSTM hybrid architecture for affective EEG.** A convolutional front end extracts local spatial-temporal features, while a recurrent back end models their evolution before an affective readout.
+
 ## CNN-LSTM Hybrid Architecture
 
 ### Motivation
