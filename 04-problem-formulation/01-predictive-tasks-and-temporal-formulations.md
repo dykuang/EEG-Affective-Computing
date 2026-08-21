@@ -4,6 +4,18 @@ A problem formulation specifies more than an input tensor and a label. It states
 
 This section defines the main predictive formulations. Generalization settings, such as cross-subject or cross-session evaluation, are treated separately in the next section.
 
+## Specify the Prediction Contract
+
+Before choosing a model, write down the prediction contract:
+
+- **Input:** which channels, preprocessing operations, context variables, and history are available;
+- **Target:** what quantity is predicted, at what time, and from which annotation source;
+- **Output:** a class, score, trajectory, distribution, ranking, or abstention decision;
+- **Latency:** how long after the relevant signal or event a prediction may be produced; and
+- **Evaluation unit:** the trial, window, session, subject, or interaction on which performance is aggregated.
+
+Two studies can use identical EEG recordings but define different problems if one predicts a trial label offline and the other predicts a future state causally during interaction. This contract should be fixed before test data are inspected or thresholds are selected.
+
 ## Classification
 
 Classification maps an EEG example to one of a finite set of affective categories. Examples include high versus low valence, positive-neutral-negative emotion, or discrete categories such as happiness, sadness, fear, and neutral affect.
@@ -18,6 +30,12 @@ $$
 
 The unit $x_i$ may be an entire trial, an epoch, a fixed window, or a sequence. Its temporal boundaries and label rule must be reported.
 
+### Label Granularity and Inheritance
+
+Labels may be attached to a stimulus, trial, time interval, window, or participant. Copying a trial-level label onto every window creates a weak assumption that the target is constant within the trial. It may be useful for window-level classification, but it should not be presented as evidence that the model resolves rapid affective transitions.
+
+For continuous annotations, report annotation delay, sampling interval, smoothing, aggregation, and inter-rater or test-retest reliability. If multiple annotators provide labels, preserve disagreement when possible instead of reducing it immediately to a single hard class. Soft targets, label distributions, ordinal targets, or uncertainty intervals may better represent the supervision available.
+
 ## Regression
 
 Regression predicts a continuous affective quantity, commonly valence, arousal, dominance, liking, stress intensity, or an aggregated rating score. It is appropriate when the target scale carries meaningful order or distance that would be lost by discretizing it.
@@ -27,6 +45,8 @@ For a continuous target $y_i \in \mathbb{R}$, the model estimates
 $$
 \hat{y}_i = f(x_i).
 $$
+
+Regression can also predict a conditional distribution rather than a point estimate. For example, a model may output $p(y_i \mid x_i)$ or a mean and variance, allowing it to distinguish an uncertain estimate from a confident estimate with the same predicted mean. This is useful when ratings are noisy, annotator disagreement is substantial, or the input is out of distribution.
 
 Report the rating scale, its range, any rescaling or normalization, and whether normalization was fitted per subject, per session, or on training data only. A model that predicts normalized within-subject ratings answers a different question from one that predicts the original population-scale ratings.
 
@@ -44,7 +64,7 @@ $$
 \hat{s}_t = f(x_{\leq t}).
 $$
 
-The target may be a continuous annotation, a slowly varying latent state, or a sequence of discrete states. Specify the update interval, input window, prediction latency, label-alignment rule, smoothing, and whether every operation is causal. Tracking should be evaluated over trajectories, not only as independent shuffled windows.
+The target may be a continuous annotation, a slowly varying latent state, or a sequence of discrete states. Specify the update interval, input window, prediction latency, label-alignment rule, smoothing, and whether every operation is causal. Tracking should be evaluated over trajectories, not only as independent shuffled windows. Also report the warm-up period, overlap between successive inputs, buffering delay, and whether smoothing uses future samples.
 
 ## Forecasting
 
@@ -54,7 +74,7 @@ $$
 \hat{s}_{t + \Delta} = f(x_{\leq t}).
 $$
 
-Forecasting is relevant for proactive human-computer interaction, adaptive interventions, and early warning systems. It should not be conflated with delayed state tracking: the target time, forecast horizon, and information cutoff must be explicit. Performance should be compared with simple persistence or recent-state baselines, since slowly changing affect can make these baselines strong.
+Forecasting is relevant for proactive human-computer interaction, adaptive interventions, and early warning systems. It should not be conflated with delayed state tracking: the target time, forecast horizon, and information cutoff must be explicit. Performance should be compared with simple persistence or recent-state baselines, since slowly changing affect can make these baselines strong. Treat the horizon as part of the task: a 1-second forecast for interface timing is not equivalent to a 30-second forecast for early intervention.
 
 ## Temporal Task Comparison
 
@@ -63,6 +83,22 @@ Forecasting is relevant for proactive human-computer interaction, adaptive inter
 | Batch classification or regression | Defined by the pre-segmented example | May be within the declared example | Category or score | Grouped held-out examples |
 | State tracking | Current time $t$ | No for causal claims | Current state trajectory | Chronological trajectory evaluation |
 | Forecasting | Future time $t + \Delta$ | No beyond time $t$ | Future state trajectory | Horizon-specific chronological evaluation |
+
+## Structured and Multi-Task Targets
+
+Affective targets often have related structure. Valence and arousal may be predicted jointly; continuous ratings may be combined with a discrete category; and an auxiliary signal-quality or subject-invariant objective may regularize the representation. A multi-task formulation can be written as
+
+$$
+\mathcal{L} = \lambda_1 \mathcal{L}_{\mathrm{class}} + \lambda_2 \mathcal{L}_{\mathrm{reg}} + \lambda_3 \mathcal{L}_{\mathrm{quality}}.
+$$
+
+The additional tasks must have a scientific purpose. Reporting only a combined score can hide whether one target improved while another degraded. Define task weights using training data or a predeclared rule, and evaluate every output separately. Ordinal labels, valence-arousal coordinates, label distributions, and pairwise preferences are alternatives to treating all categories as unrelated.
+
+## Baselines and Leakage Checks
+
+Every predictive formulation should include baselines that expose how much the task can be solved without the proposed model. Depending on the setting, useful baselines include majority or class-prior prediction, subject mean, recent-state persistence, linear or regularized models, handcrafted features, and context-only models.
+
+Check whether performance can be explained by non-neural shortcuts. Examples include stimulus identity, trial order, participant identity, session markers, channel quality, or preprocessing statistics computed using held-out data. A strong result should survive a leakage audit and, where relevant, a negative-control task such as predicting shuffled labels or an explicitly nuisance variable.
 
 ## Choose a Task That Matches the Labels
 

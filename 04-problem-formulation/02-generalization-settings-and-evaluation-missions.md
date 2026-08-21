@@ -21,6 +21,19 @@ These two settings should never be mixed implicitly. A paper that reports high w
 | Subject-dependent | Same subject, different held-out units | Personalization and within-person stability | Inflated scores from trial or temporal leakage |
 | Subject-independent | Different subjects in train and test | Cross-person robustness | Hidden calibration or identity leakage |
 
+## Calibration Regimes
+
+Subject-independent does not necessarily mean zero personalization. A deployment may allow no target-subject data, a short labeled calibration period, unlabeled target recordings for normalization, or continual confirmed feedback. These are different missions and should be named explicitly:
+
+| Regime | Target information available | Typical claim |
+| --- | --- | --- |
+| Zero-shot | No target-subject recordings or labels | Immediate transfer to a new user |
+| Unsupervised adaptation | Unlabeled target recordings only | Robust normalization or representation alignment |
+| Few-shot calibration | A small, declared set of labeled target trials | Reduced setup burden for personalization |
+| Continual adaptation | Feedback arrives during later use | Long-term maintenance under drift |
+
+Target data used for calibration must be separated from the final evaluation period. Otherwise, a result described as zero-shot or few-shot may include hidden access to the test distribution.
+
 ## Subject-Dependent Missions
 
 Within subject-dependent evaluation, several distinct missions should be separated because they test different kinds of generalization.
@@ -62,6 +75,18 @@ This setting is crucial when the intended application is plug-and-play affect re
 
 For online tasks, subject-independent evaluation can be combined with streaming constraints. In that case the model must both generalize to a new person and operate causally over time.
 
+## Nested Validation and Grouped Splits
+
+All operations that learn from data belong inside the training boundary. This includes normalization, feature selection, channel selection, augmentation statistics, threshold selection, hyperparameter tuning, early-stopping decisions, and calibration. A grouped split should be applied before window extraction or, at minimum, before windows from the same trial or session can cross partitions.
+
+When model choices are tuned repeatedly, use nested validation or a predeclared development set. The outer test groups should be opened once for final evaluation. Reporting the best result across many split seeds, subjects, or metrics without accounting for selection produces an optimistic estimate.
+
+## Composed Distribution Shifts
+
+Real deployment often combines shifts. A new user may also use a different device in a home environment after a delay of several months. Report whether the protocol holds out one shift at a time or composes several shifts, and avoid claiming robustness to an untested combination. A useful evaluation matrix crosses axes such as subject, session, device, stimulus, site, and time.
+
+The taxonomy is also a guide to diagnosis. A failure across subjects but not sessions suggests inter-person variability; a failure across sessions but not trials suggests drift or acquisition instability; a failure across devices may reflect montage, reference, sampling, or hardware differences rather than a missing model capacity.
+
 ## Why Generalization Settings Matter
 
 These settings are not cosmetic. They determine what counts as leakage, which train-test split is valid, which metrics are meaningful, and what claims can be made from the results. A model that performs well on randomly shuffled trials may fail on a later session or an unseen subject.
@@ -72,6 +97,12 @@ For that reason, the problem formulation should always specify at least:
 - whether training, validation, and testing preserve independence at that level;
 - what calibration or target-domain information is available; and
 - which generalization claim the resulting split can support.
+
+## Reporting Template
+
+A reproducible report should state the grouping key, number of groups, train-validation-test counts, chronological order where relevant, target-domain data available for calibration, preprocessing fit boundaries, and the unit used to aggregate metrics. Also report uncertainty across groups, not only the pooled mean: per-subject or per-session distributions can reveal whether a model works broadly or only for a subset of participants.
+
+If a model abstains or requests recalibration, include abstention rate, coverage, performance at fixed coverage, and recovery after signal-quality failure. These measures are often more informative for deployment than a forced prediction on every window.
 
 ## References
 
