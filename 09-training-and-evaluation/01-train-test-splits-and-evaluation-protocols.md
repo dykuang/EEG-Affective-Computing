@@ -4,7 +4,7 @@ Once the prediction task has been defined, the next question is how to evaluate 
 
 For beginners, a useful way to think about this chapter is the following: first decide what the model is allowed to know, then decide what kind of novelty it should face at test time, and only then choose a split. This section follows that logic and connects the task taxonomy introduced in Chapter 4 to practical train-test designs and reporting conventions.
 
-![Mapping from affective EEG task types to their valid held-out units, key protocol rules, and typical evaluation metrics.](figures/task_split_mapping.svg)
+![Mapping from affective EEG task types to their valid held-out units, key protocol rules, and typical evaluation metrics.](figures/task-metrics.png)
 
 *Figure 1. Task-split-metrics mapping. The generalization claim determines which unit must be held out, and the task type determines the metrics that should be reported.*
 
@@ -69,7 +69,7 @@ Within-subject online evaluation is often the natural choice for personalized mo
 
 Online subject-independent evaluation is the hardest of the common settings because it combines both kinds of novelty at once. The subject must be unseen, and the test data must be processed as a causal stream. This is also one of the most realistic protocols for general-purpose deployment, because it approximates what happens when a new user begins interacting with a real system. If the method allows personalization after deployment, the adaptation budget should be stated explicitly. For example, the protocol should say how many initial seconds, trials, or labeled calibration samples are available before the real evaluation begins.
 
-![Chronological streaming evaluation protocol with optional warm-up, optional calibration, and two distinct branches: pure subject-independent inference and calibrated subject-adaptive inference.](figures/streaming_evaluation_protocol.svg)
+![Chronological streaming evaluation protocol with optional warm-up, optional calibration, and two distinct branches: pure subject-independent inference and calibrated subject-adaptive inference.](figures/streaming-evaluation-protocol.png)
 
 *Figure 2. Online evaluation protocol. Windows are processed in causal order after an optional warm-up; a short calibration phase may be declared, but pure subject-independent inference uses no target-subject data.*
 

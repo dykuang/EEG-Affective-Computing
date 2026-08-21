@@ -4,7 +4,7 @@ A well-trained affective EEG model on one dataset rarely transfers seamlessly to
 
 This section covers the three interconnected paradigms that are most relevant when labeled data from the target condition are scarce or absent: **domain adaptation** (aligning distributions), **few-shot learning** (learning from a handful of labeled examples), and **zero-shot learning** (recognizing unseen classes without any labeled instances). We treat them together because in affective EEG they are often combined: a model may first adapt its feature space across subjects via domain adaptation, then classify a new emotion category from only three calibration trials via few-shot inference.
 
-![Overview of transfer learning strategies for affective EEG: from source-domain pretraining through domain alignment to few-shot and zero-shot generalization.](figures/transfer-learning-overview.svg)
+![Overview of transfer learning strategies for affective EEG: from source-domain pretraining through domain alignment to few-shot and zero-shot generalization.](figures/transfer-learning-overview1.png)
 
 *Figure 1. Transfer learning for affective EEG spans a spectrum from full source-domain supervision (left) to target-domain generalization with few or no labels (right). Domain adaptation aligns feature distributions; few-shot learning classifies from scant examples; zero-shot learning recognizes unseen emotion classes through semantic descriptors.*
 
@@ -76,7 +76,7 @@ The discriminator is trained to identify which domain a feature vector comes fro
 
 **Domain-Adversarial Adaptation for EEG.** In affective EEG, the discriminator is typically trained to distinguish subjects, sessions, or datasets. The feature extractor can be a CNN, an LSTM, or a GNN, and the classifier and discriminator share the same feature backbone.
 
-![Architecture of domain-adversarial adaptation for EEG: a shared feature extractor feeds both a label classifier and a domain discriminator connected via gradient reversal.](figures/domain-adversarial-eeg.svg)
+![Architecture of domain-adversarial adaptation for EEG: a shared feature extractor feeds both a label classifier and a domain discriminator connected via gradient reversal.](figures/domain-adversarial-eeg.png)
 
 *Figure 2. Domain-adversarial neural network adapted for affective EEG. The feature extractor (e.g., a temporal-spatial CNN) produces representations that must (a) predict the emotion label accurately via the classifier head and (b) make the domain (subject/session/dataset) unidentifiable to the discriminator. The gradient reversal layer enables one-pass training.*
 
@@ -118,7 +118,7 @@ Training uses episodic sampling: each episode draws a random subset of classes a
 
 **Relation Networks.** Instead of a fixed distance metric, relation networks learn a *relation module* $g$ that takes a concatenated query–support pair and outputs a scalar relation score. This can capture nonlinear class boundaries that Euclidean distance misses.
 
-![Prototypical network for EEG emotion few-shot learning: support examples define class prototypes; query examples are classified by proximity in the learned embedding space.](figures/few-shot-prototypical-eeg.svg)
+![Prototypical network for EEG emotion few-shot learning: support examples define class prototypes; query examples are classified by proximity in the learned embedding space.](figures/few-shot-prototypical-eeg.png)
 
 *Figure 3. Episodic few-shot learning with prototypical networks for EEG. During meta-training, episodes sample $K$ classes each with $N$ support examples. The embedding network (e.g., a CNN-LSTM) maps EEG windows to a space where each class forms a compact cluster around its prototype. At test time, a new subject's few calibration trials define prototypes for real-time classification.*
 
@@ -180,7 +180,7 @@ $$
 
 An EEG encoder trained to predict VAD coordinates from brain signals can, in principle, recognize *any* emotion whose VAD profile is known, even if that emotion never appeared in the training data.
 
-![Zero-shot emotion recognition via VAD semantic space: the EEG encoder maps signals to VAD coordinates; unseen emotion classes are recognized by their VAD profiles.](figures/zero-shot-vad-eeg.svg)
+![Zero-shot emotion recognition via VAD semantic space: the EEG encoder maps signals to VAD coordinates; unseen emotion classes are recognized by their VAD profiles.](figures/zero-shot-vad-eeg.png)
 
 *Figure 4. Zero-shot emotion recognition through a shared valence-arousal-dominance semantic space. An EEG encoder is trained to predict VAD coordinates from brain signals using seen emotion classes. At test time, an unseen emotion (e.g., "awe") is recognized by comparing the predicted VAD coordinates to its known semantic profile.*
 
@@ -205,7 +205,7 @@ In real affective EEG deployments, these paradigms are rarely used in isolation.
 3. **Few-shot calibration**: Collect 3–5 trials per emotion category from a new user. Use prototypical networks or MAML to fine-tune a lightweight classifier head.
 4. **Zero-shot extension**: For emotion categories not covered in calibration, fall back to VAD-coordinate-based zero-shot inference.
 
-![End-to-end pipeline combining domain adaptation, few-shot calibration, and zero-shot inference for personalized affective EEG.](figures/transfer-fewshot-pipeline.svg)
+![End-to-end pipeline combining domain adaptation, few-shot calibration, and zero-shot inference for personalized affective EEG.](figures/transfer-fewshot-pipeline.png)
 
 *Figure 5. A unified pipeline for affective EEG transfer. Source pretraining on large corpora is followed by domain adaptation to the target device/subject, few-shot calibration from minimal labeled examples, and zero-shot inference for unseen emotion categories via semantic embedding.*
 

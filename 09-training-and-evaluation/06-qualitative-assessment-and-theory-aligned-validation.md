@@ -122,7 +122,7 @@ A practical protocol can be built alongside quantitative evaluation:
 
 This protocol is especially important when a model may influence a person through feedback, adaptation, or clinical decision support. Qualitative evidence can reveal whether a numerically strong model behaves in a manner that is intelligible and safe enough to justify further use.
 
-![Six-stage qualitative assessment cycle from predeclared claims to documented conclusions.](figures/qualitative-assessment-protocol.svg)
+![Six-stage qualitative assessment cycle from predeclared claims to documented conclusions.](figures/qualitative-assessment-protocol.png)
 
 *Figure 5. A predeclared qualitative assessment cycle links claims and priors to behavioral checks, aligned evidence, baseline comparisons, held-out review, and documented outcomes—including expectations that fail or remain uncertain.*
 
