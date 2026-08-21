@@ -4,7 +4,7 @@ Time-domain features are the most straightforward representation of EEG signals.
 
 ![Raw EEG trace annotated with time-domain features: amplitude range, zero crossings, and peak-to-peak interval.](figures/time_domain_features.svg)
 
-*Figure 1. Left: a raw EEG trace with annotated time-domain features. Right: illustrative discriminability (mutual information) of several time-domain feature families across benchmark datasets.*
+**Figure 7.2: Time-domain features and discriminability.** Left: a raw EEG trace with annotated time-domain features. Right: illustrative discriminability (mutual information) of several time-domain feature families across benchmark datasets.
 
 ## Statistical Moments
 
@@ -140,7 +140,7 @@ Summary statistics of these difference signals (mean, variance, mobility) can se
 | Electrode selection | Some features (e.g., skewness) may be more informative at specific regions |
 | Normalization | Per-subject normalization is often needed due to large individual differences |
 
-The right panel of Figure 1 above shows an illustrative comparison of discriminability (mutual information with emotion labels) for several time-domain feature families across benchmark datasets.
+The right panel of Figure 7.2 above shows an illustrative comparison of discriminability (mutual information with emotion labels) for several time-domain feature families across benchmark datasets.
 
 ## Summary
 

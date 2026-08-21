@@ -2,9 +2,9 @@
 
 Most EEG features treat each channel as an independent source of information. However, the brain is a network: emotional processing involves coordinated activity across distributed regions, and these interactions are at least as informative as local spectral properties. Relation-based features capture the dependencies, synchronizations, and connectivity patterns between EEG channels, providing a fundamentally different and complementary view of brain dynamics during emotional processing.
 
-![Functional connectivity matrices for neutral, happy, and sad states across selected frontal, central, and parietal electrodes.](figures/connectivity_states.svg)
+![Functional connectivity matrices for neutral, happy, and sad states across selected frontal, central, and parietal electrodes.](figures/connectivity-states.png)
 
-*Figure 1. Functional connectivity matrices for three emotional states. Connectivity patterns differ across states, reflecting coordinated network-level activity.*
+**Figure 7.9: Functional connectivity across emotional states.** Connectivity patterns differ across states, reflecting coordinated network-level activity.
 
 ## Why Relations Matter for Affective EEG
 
@@ -99,9 +99,9 @@ wPLI has become the preferred phase-based connectivity measure in many EEG studi
 | Coherence | [0, 1] | No | No | Frequency-specific |
 | Imaginary coherence | [0, 1] | Yes | No | Frequency-specific |
 
-![PLV, PLI, and wPLI connectivity matrices for the same EEG segment, illustrating how each measure highlights different synchronization patterns.](figures/plv_pli_wpli.svg)
+![PLV, PLI, and wPLI connectivity matrices for the same EEG segment, illustrating how each measure highlights different synchronization patterns.](figures/plv-pli-wpli.png)
 
-*Figure 2. Phase synchronization matrices for the same segment. PLV is the most inclusive; PLI drops zero-lag interactions; wPLI weights phase differences by magnitude.*
+**Figure 7.10: Phase-synchronization measures.** Phase synchronization matrices for the same segment. PLV is the most inclusive; PLI drops zero-lag interactions; wPLI weights phase differences by magnitude.
 
 ## Mutual Information and Nonlinear Coupling
 
@@ -238,7 +238,7 @@ An emerging approach is to use the full pattern of connectivity (the connectome 
 
 ![Relative importance of spectral versus connectivity features for predicting valence and arousal in a representative benchmark.](figures/feature_importance_spectral_connectivity.svg)
 
-*Figure 3. Feature-importance comparison between spectral and connectivity features. Connectivity tends to contribute more strongly to arousal prediction, while spectral features dominate valence in this illustrative benchmark.*
+**Figure 7.11: Spectral and connectivity feature importance.** Connectivity tends to contribute more strongly to arousal prediction, while spectral features dominate valence in this illustrative benchmark.
 
 ## Summary
 

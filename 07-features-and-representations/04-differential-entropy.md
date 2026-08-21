@@ -2,9 +2,9 @@
 
 Differential Entropy (DE) is arguably the single most influential feature in modern EEG-based affective computing. Since its popularization through the SEED dataset and related benchmarks, DE has become the de facto standard spectral feature for emotion recognition, consistently outperforming traditional band power features in many comparative studies. This section explains what DE is, why it works well for EEG, how it is typically computed, and what its limitations are.
 
-![Comparison of distributions for raw band power, log band power, and differential entropy features, showing that DE is closer to Gaussian.](figures/differential_entropy_comparison.svg)
+![Differential-entropy feature extraction pipeline.](figures/DE-pipeline.png)
 
-*Figure 1. Distributions of raw band power, log band power, and differential entropy (z-scored). DE tends to be more Gaussian-like, which often benefits downstream classifiers.*
+**Figure 7.7: Differential-entropy feature extraction pipeline.** Raw multichannel EEG is filtered into canonical frequency bands, segmented into short windows, converted to band variance, and transformed with the Gaussian differential-entropy formula. The pipeline tracks channel, band, and time-window dimensions and distinguishes signal-processing steps from the information-theoretic transformation.
 
 ## Information-Theoretic Definition
 
@@ -137,7 +137,7 @@ Several factors contribute to DE's empirical success:
 
 ![Bar chart comparing classification accuracy of DE, log band power, and raw band power across DEAP, SEED, SEED-IV, DREAMER, and AMIGOS (illustrative).](figures/differential_entropy_comparison.svg)
 
-*Figure 2. Illustrative benchmark comparison of DE, log band power, and raw band power. DE typically matches or exceeds the alternatives across datasets.*
+**Figure 7.8: Differential-entropy feature comparison.** Illustrative benchmark comparison of DE, log band power, and raw band power. DE typically matches or exceeds the alternatives across datasets.
 
 ## Multi-Scale and Hierarchical DE
 

@@ -43,7 +43,7 @@ Feature engineering for affective EEG is especially challenging because emotiona
 
 ![Feature taxonomy from raw EEG through time, frequency, time-frequency, differential entropy, relational, nonlinear, and multimodal features to feature fusion and model input.](figures/feature_taxonomy.svg)
 
-*Figure 1. Feature taxonomy for EEG-based affective computing. Raw EEG is transformed into diverse feature families, optionally fused, and then passed to a model.*
+**Figure 7.1: Feature taxonomy for EEG-based affective computing.** Raw EEG is transformed into diverse feature families, optionally fused, and then passed to a model.
 
 ### Hand-Crafted vs. Learned Representations
 

@@ -4,7 +4,7 @@ Linear methods—correlation, Fourier analysis, band power—capture much of the
 
 ![Conceptual illustration of regular, random, and complex time series, showing that complexity measures distinguish deterministic-but-unpredictable signals from both periodic and random signals.](figures/signal_complexity_types.svg)
 
-*Figure 1. Conceptual comparison of signal classes. Nonlinear complexity measures can separate complex, deterministic-but-unpredictable dynamics from pure periodicity or randomness.*
+**Figure 7.15: Conceptual comparison of signal classes.** Nonlinear complexity measures can separate complex, deterministic-but-unpredictable dynamics from pure periodicity or randomness.
 
 ## Why Nonlinear Features?
 
@@ -163,7 +163,7 @@ RQA features have been applied to emotion recognition, with findings such as hig
 
 ![Recurrence plots for neutral, happy, and sad EEG states with corresponding RQA measure values.](figures/recurrence_plots.svg)
 
-*Figure 2. Example recurrence plots and RQA measures (RR, DET, LAM) for three emotional states. Recurrence structure differs across states.*
+**Figure 7.16: Recurrence plots and RQA measures.** Example recurrence plots and RQA measures (RR, DET, LAM) for three emotional states. Recurrence structure differs across states.
 
 ## Lyapunov Exponents
 

@@ -4,7 +4,7 @@ The preceding sections describe a rich palette of EEG features spanning time, fr
 
 ![Feature engineering pipeline: raw features → preprocessing/normalization → dimensionality reduction → feature selection → fused representation → model.](figures/feature_engineering_pipeline.svg)
 
-*Figure 1. Typical feature engineering pipeline for affective EEG. Each stage shapes the representation that is ultimately passed to the classifier or regression model.*
+**Figure 7.17: Feature engineering pipeline for affective EEG.** Each stage shapes the representation that is ultimately passed to the classifier or regression model.
 
 ## The Curse of Dimensionality in Affective EEG
 
@@ -86,7 +86,7 @@ UMAP is computationally faster than t-SNE and better preserves global structure,
 
 ![PCA and t-SNE projections of an illustrative affective EEG feature set, showing the separability of emotional states in reduced spaces.](figures/pca_tsne_projections.svg)
 
-*Figure 2. Two-dimensional projections of high-dimensional EEG features. PCA preserves global variance; t-SNE emphasizes local neighborhood structure.*
+**Figure 7.18: PCA and t-SNE projections of EEG features.** Two-dimensional projections of high-dimensional EEG features. PCA preserves global variance; t-SNE emphasizes local neighborhood structure.
 
 ## Feature Selection
 
@@ -171,7 +171,7 @@ Multilayer fusion networks can discover nonlinear interactions between feature d
 
 ![Comparison of early, late, and hierarchical fusion strategies with illustrative cross-subject accuracies from a representative benchmark.](figures/fusion_strategy_comparison.svg)
 
-*Figure 3. Illustrative performance comparison of fusion strategies. Hierarchical fusion often outperforms simple early or late fusion by preserving domain structure.*
+**Figure 7.19: Fusion-strategy performance comparison.** Illustrative performance comparison of fusion strategies. Hierarchical fusion often outperforms simple early or late fusion by preserving domain structure.
 
 ## Domain Adaptation and Feature Alignment
 

@@ -2,9 +2,9 @@
 
 Emotion is an inherently multimodal phenomenon. It manifests not only in brain activity but also in peripheral physiology, facial expressions, vocal characteristics, eye movements, and behavior. EEG, while providing a direct window into cortical processing, captures only one aspect of the emotional response. Features from complementary modalities can provide synergistic information that improves recognition accuracy, robustness, and ecological validity.
 
-![Multimodal recording setup with EEG cap, eye tracker, camera, ECG, GSR, respiration sensors, and synchronized data acquisition.](figures/multimodal_setup.svg)
+![Multimodal recording setup with EEG cap, eye tracker, camera, ECG, GSR, respiration sensors, and synchronized data acquisition.](figures/multimodal-setup.png)
 
-*Figure 1. A typical multimodal affective computing recording setup. Multiple streams are synchronized by a common acquisition system.*
+**Figure 7.12: Multimodal affective-computing recording setup.** Multiple streams are synchronized by a common acquisition system.
 
 ## Why Multimodal Features?
 
@@ -58,7 +58,7 @@ HRV measures the variation in inter-beat intervals and reflects autonomic nervou
 
 ![R-R interval tachogram comparing relaxed and aroused states, showing lower heart-rate variability under high arousal.](figures/hrv_tachogram.svg)
 
-*Figure 2. R-R interval tachogram. Relaxed states (blue) show larger beat-to-beat variability; aroused states (red) show faster, more regular heartbeats and reduced HRV.*
+**Figure 7.13: R-R interval tachogram.** Relaxed states (blue) show larger beat-to-beat variability; aroused states (red) show faster, more regular heartbeats and reduced HRV.
 
 ### Electrodermal Activity (EDA / GSR)
 
@@ -284,9 +284,9 @@ $$\mathbf{f}_{\text{fused}} = \sum_m \alpha_m \, \mathbf{f}_m$$
 
 Attention-based fusion is particularly useful when the relevance of each modality varies over time or across emotional states.
 
-![Diagram comparing feature-level, decision-level, and model-level multimodal fusion architectures.](figures/fusion_architectures.svg)
+![Diagram comparing feature-level, decision-level, and model-level multimodal fusion architectures.](figures/fusion-architectures.png)
 
-*Figure 3. Multimodal fusion strategies. Feature-level concatenates raw features; decision-level aggregates classifier outputs; model-level uses modality-specific encoders joined in a shared network.*
+**Figure 7.14: Multimodal fusion strategies.** Feature-level concatenates raw features; decision-level aggregates classifier outputs; model-level uses modality-specific encoders joined in a shared network.
 
 ## Available Multimodal Affective Datasets
 

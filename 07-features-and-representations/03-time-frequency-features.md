@@ -4,7 +4,7 @@ While frequency-domain features reveal the spectral content of an EEG segment an
 
 ![Time-frequency spectrogram of a representative EEG channel during an emotion induction procedure, showing evolving power in theta, alpha, beta, and gamma bands.](figures/time_frequency_spectrogram.svg)
 
-*Figure 1. STFT spectrogram aligned to an emotion induction procedure. Power shifts across bands illustrate the dynamic spectral changes that time-frequency features capture.*
+**Figure 7.5: Time-frequency representation of EEG.** STFT spectrogram aligned to an emotion induction procedure. Power shifts across bands illustrate the dynamic spectral changes that time-frequency features capture.
 
 ## Short-Time Fourier Transform (STFT)
 
@@ -134,7 +134,7 @@ The Filter Bank CSP (FBCSP) extends CSP by applying it to multiple frequency sub
 
 ![Time-frequency resolution trade-off for STFT, CWT, and HHT on the same EEG segment, showing fixed, multi-resolution, and adaptive ridges respectively.](figures/time_frequency_resolution_tradeoff.svg)
 
-*Figure 2. Comparative time-frequency ridges for the same EEG segment. STFT uses a fixed window, CWT provides multi-resolution scaling, and HHT offers adaptive, data-driven ridges.*
+**Figure 7.6: Time-frequency resolution trade-offs.** Comparative time-frequency ridges for the same EEG segment. STFT uses a fixed window, CWT provides multi-resolution scaling, and HHT offers adaptive, data-driven ridges.
 
 ## Comparison of Time-Frequency Methods
 
