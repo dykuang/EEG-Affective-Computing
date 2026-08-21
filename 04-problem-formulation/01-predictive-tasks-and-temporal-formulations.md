@@ -16,6 +16,10 @@ Before choosing a model, write down the prediction contract:
 
 Two studies can use identical EEG recordings but define different problems if one predicts a trial label offline and the other predicts a future state causally during interaction. This contract should be fixed before test data are inspected or thresholds are selected.
 
+![Prediction contract for affective EEG. The diagram should connect available EEG history, preprocessing, context, and labels to the target time, output type, latency budget, and evaluation unit, contrasting offline batch prediction with causal online inference.](figures/prediction-contract.png)
+
+**Figure 4.1: Prediction contract for affective EEG.** A rigorous formulation declares the available information, target time, output, latency, and evaluation unit before model selection or test-set inspection.
+
 ## Classification
 
 Classification maps an EEG example to one of a finite set of affective categories. Examples include high versus low valence, positive-neutral-negative emotion, or discrete categories such as happiness, sadness, fear, and neutral affect.
@@ -83,6 +87,10 @@ Forecasting is relevant for proactive human-computer interaction, adaptive inter
 | Batch classification or regression | Defined by the pre-segmented example | May be within the declared example | Category or score | Grouped held-out examples |
 | State tracking | Current time $t$ | No for causal claims | Current state trajectory | Chronological trajectory evaluation |
 | Forecasting | Future time $t + \Delta$ | No beyond time $t$ | Future state trajectory | Horizon-specific chronological evaluation |
+
+![Temporal formulations for affective EEG. The diagram should compare batch prediction, causal state tracking, and forecasting on one aligned timeline, marking input history, prediction time, target time, buffering delay, and forecast horizon.](figures/temporal-formulations.png)
+
+**Figure 4.2: Temporal formulations for affective EEG.** Batch prediction, state tracking, and forecasting differ in the information cutoff, target time, and latency requirements even when they use the same underlying recordings.
 
 ## Structured and Multi-Task Targets
 

@@ -15,6 +15,10 @@ A generative study should specify four objects before selecting an architecture:
 
 These choices determine what counts as a successful sample. Realistic-looking data may be a failure if they copy a participant, remove clinically meaningful variation, or improve a classifier only through leakage.
 
+![Generative-task taxonomy for EEG. The diagram should organize unconditional generation, conditional synthesis, reconstruction and imputation, denoising, cross-device or cross-modal translation, and data augmentation by their inputs, conditions, and preservation targets.](figures/generative-task-taxonomy.png)
+
+**Figure 4.6: Generative-task taxonomy for EEG.** EEG generation can sample, transform, reconstruct, translate, or augment data; the task type determines which conditions and validity criteria must be specified.
+
 ## Unconditional EEG Generation
 
 Unconditional generation samples EEG-like data without an explicit affective or subject condition:
@@ -82,6 +86,10 @@ Generation quality should be assessed at several levels because no single metric
 Use real held-out recordings as the reference distribution whenever possible. Visual inspection of generated traces can be helpful, but it cannot establish physiological validity, diversity, privacy, or downstream utility by itself.
 
 Evaluators should be independent of the generator. If the same discriminator, feature extractor, or classifier is used to train and judge the generator, it may reward the generator's own biases. Fit auxiliary evaluators on training data only, report uncertainty across subjects or sessions, and compare generated samples with both real training data and untouched real test data.
+
+![Multi-level evaluation of generated EEG. The diagram should connect generated samples to distributional, signal and spectral, conditional, privacy, and downstream-utility evaluations, with real training data and untouched real test data kept as separate references.](figures/generative-evaluation-ladder.png)
+
+**Figure 4.7: Multi-level evaluation of generated EEG.** A credible generative study evaluates distributional fidelity, physiological signal properties, condition control, privacy, and downstream utility rather than relying on visual realism or one discriminator score.
 
 ## Generation Task Checklist
 

@@ -4,7 +4,7 @@ After the prediction task is fixed, the next question is what must generalize. I
 
 ![Generalization taxonomy for EEG-based affective computing.](figures/taxonomy.png)
 
-**Figure 4.1: Generalization taxonomy for EEG-based affective computing.** Evaluation settings can hold out variation across trials, time, sessions, participants, stimuli, devices, sites, or datasets; each setting supports a different claim about deployment robustness.
+**Figure 4.3: Generalization taxonomy for EEG-based affective computing.** Evaluation settings can hold out variation across trials, time, sessions, participants, stimuli, devices, sites, or datasets; each setting supports a different claim about deployment robustness.
 
 ## Subject-Dependent and Subject-Independent Settings
 
@@ -33,6 +33,10 @@ Subject-independent does not necessarily mean zero personalization. A deployment
 | Continual adaptation | Feedback arrives during later use | Long-term maintenance under drift |
 
 Target data used for calibration must be separated from the final evaluation period. Otherwise, a result described as zero-shot or few-shot may include hidden access to the test distribution.
+
+![Calibration regimes for EEG generalization. The diagram should compare zero-shot transfer, unsupervised target adaptation, few-shot labeled calibration, and continual feedback, showing what target-subject information is available before final evaluation and where the evaluation boundary remains fixed.](figures/calibration-regimes.png)
+
+**Figure 4.4: Calibration regimes for EEG generalization.** Subject-independent evaluation can range from zero-shot transfer to continual personalization; each regime makes a different claim about setup burden and target-domain access.
 
 ## Subject-Dependent Missions
 
@@ -80,6 +84,10 @@ For online tasks, subject-independent evaluation can be combined with streaming 
 All operations that learn from data belong inside the training boundary. This includes normalization, feature selection, channel selection, augmentation statistics, threshold selection, hyperparameter tuning, early-stopping decisions, and calibration. A grouped split should be applied before window extraction or, at minimum, before windows from the same trial or session can cross partitions.
 
 When model choices are tuned repeatedly, use nested validation or a predeclared development set. The outer test groups should be opened once for final evaluation. Reporting the best result across many split seeds, subjects, or metrics without accounting for selection produces an optimistic estimate.
+
+![Nested grouped validation for EEG. The diagram should show subjects, sessions, or trials assigned to outer training and test groups, with inner validation used for preprocessing, hyperparameter selection, threshold tuning, and calibration while the outer test groups remain untouched.](figures/nested-grouped-validation.png)
+
+**Figure 4.5: Nested grouped validation.** All data-dependent choices belong inside the training boundary, while outer subject, session, or trial groups provide an untouched estimate of the intended generalization claim.
 
 ## Composed Distribution Shifts
 
