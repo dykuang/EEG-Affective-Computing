@@ -4,7 +4,9 @@ Preprocessing is not only about cleaning EEG. It also defines the unit that the 
 
 This section discusses how segmentation choices interact with affective EEG tasks, especially when moving between batch prediction and online continuous prediction.
 
-> Figure suggestion: Place a segmentation schematic here showing a continuous EEG recording, trial boundaries, sliding windows, overlap, and label assignment.
+![EEG segmentation and label assignment schematic. The diagram should show a continuous recording with trial and event boundaries, fixed windows of different lengths, stride and overlap, causal versus centered context, and labels assigned from trial-level or continuous annotations.](figures/segmentation-window-design.png)
+
+**Figure 6.3: EEG segmentation and label assignment.** Window length, stride, overlap, alignment, and label inheritance determine the temporal context and statistical dependence of the examples supplied to a model.
 
 ## Why Segmentation Matters
 
@@ -80,7 +82,9 @@ Segmentation should differ across task branches.
 
 For batch prediction, segments may be designed to maximize discriminability and can sometimes include broader context, provided the benchmark is defined offline. For online prediction, segmentation must reflect causality: each window should only use currently available or past information, and the window size partly determines the latency of the system.
 
-> Figure suggestion: Add a side-by-side comparison here between offline batch segmentation and online causal segmentation.
+![Offline and online EEG segmentation comparison. The diagram should place batch windows with centered or future context beside causal streaming windows that use only past and present samples, annotating latency, stride, buffering, and forecast or state-target timing.](figures/batch-versus-online-segmentation.png)
+
+**Figure 6.4: Batch versus online segmentation.** A segmentation strategy valid for offline benchmarking may not support an online claim unless its context, latency, and label availability are causal.
 
 This distinction is easy to overlook, but it is central. A segmentation strategy that is valid for offline benchmarking may not support an honest online claim.
 

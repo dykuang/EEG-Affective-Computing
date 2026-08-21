@@ -33,6 +33,10 @@ The order of operations should be stated explicitly because some steps change th
 
 This is not a universal ordering. For example, an artifact detector may need broadband data, while a model-specific quality threshold may be applied after filtering. The important point is to document the order and apply the same logic to every partition.
 
+![Practical EEG segmentation pipeline. The diagram should connect recording structure, synchronization, artifact annotation, preprocessing, eligible intervals, window generation, label assignment, segment quality control, grouped splitting, and manifest creation, with leakage-sensitive steps marked inside the training boundary.](figures/practical-segmentation-pipeline.png)
+
+**Figure 6.5: Practical EEG segmentation pipeline.** A reproducible pipeline links signal processing, event timing, window generation, labels, quality control, and grouped splitting instead of treating segmentation as an isolated array operation.
+
 ## Handle Boundaries Explicitly
 
 Windows should not silently cross boundaries that change the meaning of the target. Examples include stimulus transitions, trial pauses, rest-to-task transitions, missing-data intervals, and changes in experimental condition. A window that combines two conditions may be numerically convenient but semantically ambiguous.
@@ -74,6 +78,10 @@ A segment manifest is a table that separates signal storage from bookkeeping. On
 | `quality_status` and `quality_reason` | Makes exclusions auditable |
 
 The split assignment should be generated at the independent-unit level, such as subject, session, trial, or time block, and then propagated to its segments. Assigning a split independently for every row is unsafe when rows share a source recording.
+
+![Segment manifest and leakage audit. The diagram should show source recordings producing provenance-rich segment rows, grouped split assignment propagating from subject, session, trial, or time block to windows, and audit checks for overlap, label availability, quality status, and partition independence.](figures/segment-manifest-and-audit.png)
+
+**Figure 6.6: Segment manifest and leakage audit.** A manifest makes each segment traceable and allows automated checks that related windows, preprocessing statistics, labels, and split assignments respect the intended evaluation boundary.
 
 ## Verify the Result Before Training
 

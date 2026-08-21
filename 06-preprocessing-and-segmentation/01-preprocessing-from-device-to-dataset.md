@@ -4,7 +4,9 @@ Before EEG can be packaged into a dataset, the signal recorded by a device must 
 
 This section covers preprocessing that normally occurs before model-oriented segmentation and feature extraction. Later segmentation choices determine the examples seen by a model; the steps here determine whether those examples are physically and temporally valid.
 
-> Figure suggestion: Show the path from device recording through synchronization, channel checks, filtering, artifact handling, epoching, quality control, and dataset packaging.
+![EEG preprocessing path from device to dataset. The diagram should show continuous device recording flowing through timestamp and event synchronization, channel checks, referencing, filtering, artifact handling, epoching, quality control, provenance tracking, and dataset packaging, with metadata retained at every stage.](figures/device-to-dataset-pipeline.png)
+
+**Figure 6.1: EEG preprocessing path from device to dataset.** Raw recordings become auditable dataset inputs through synchronized events, documented signal processing, artifact decisions, quality control, and provenance-preserving packaging.
 
 ## Preserve Acquisition Metadata
 
@@ -49,6 +51,10 @@ EEG is measured as a voltage difference, so the reference choice affects every c
 Filtering is used to reduce slow drift, high-frequency noise, and line contamination. A typical pipeline may apply a high-pass filter to reduce slow baseline drift, a low-pass filter to limit high-frequency content, and a notch or line-noise regression method at the local power frequency and its harmonics. Filter settings should be chosen for the intended analysis rather than copied as defaults: an event-related potential analysis, a low-frequency affective signal, and a high-frequency muscle-artifact analysis have different requirements.
 
 Filtering can distort boundaries and temporal relationships. Use padding or a clearly specified boundary policy for offline analyses, and causal filters when making real-time claims. Report the filter type, cutoff frequencies, order or transition band, and whether filtering was applied continuously or after epoching.
+
+![EEG preprocessing decision map. The diagram should compare offline and online branches for reference, filtering, artifact handling, resampling, and label alignment, marking which operations may use future samples and which must remain causal.](figures/offline-online-preprocessing-decisions.png)
+
+**Figure 6.2: Offline and online preprocessing decisions.** Preprocessing choices depend on the deployment claim: offline analyses may use declared boundary handling, while online systems must respect causal filtering, available metadata, and current-time information.
 
 ## Detect and Handle Artifacts
 
