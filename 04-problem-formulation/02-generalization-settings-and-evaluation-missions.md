@@ -2,7 +2,9 @@
 
 After the prediction task is fixed, the next question is what must generalize. In EEG-based affective computing, training and test data can differ by trial, time, session, participant, stimulus, device, site, or dataset. These settings are not interchangeable: each holds out a different source of variation and supports a different claim about deployment.
 
-> Figure suggestion: Place a generalization taxonomy here showing trial, temporal, session, subject, stimulus, device, and dataset shifts.
+![Generalization taxonomy for EEG-based affective computing.](figures/taxonomy.png)
+
+**Figure 4.1: Generalization taxonomy for EEG-based affective computing.** Evaluation settings can hold out variation across trials, time, sessions, participants, stimuli, devices, sites, or datasets; each setting supports a different claim about deployment robustness.
 
 ## Subject-Dependent and Subject-Independent Settings
 
