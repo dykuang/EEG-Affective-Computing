@@ -4,7 +4,7 @@ Many EEG affective datasets provide a single label for an entire trial, clip, or
 
 This means that a mismatch between a local segment and the global label should not automatically be interpreted as annotation noise. The two labels live at different temporal scales. A local segment may reflect a transient state that differs from the overall trial summary, and multiple plausible latent emotion trajectories can aggregate to the same final trial label. When a learner sees only the global label, it is being asked to solve a temporally fine-grained prediction problem from coarse supervision.
 
-![Multiple plausible local emotion trajectories over one trial. All trajectories are compatible with the same global trial label, yet they assign different local affective states to a selected segment.](figures/local_global_inconsistency.svg)
+![Multiple plausible local emotion trajectories over one trial. All trajectories are compatible with the same global trial label, yet they assign different local affective states to a selected segment.](figures/local-global-inconsistency.png)
 
 *Figure 1. Local-global label inconsistency. Several psychologically plausible trajectories can share the same trial-level label while disagreeing about the state of any single local segment.*
 

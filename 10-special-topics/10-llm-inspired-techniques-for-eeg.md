@@ -8,7 +8,7 @@ This section separates techniques that address genuine EEG problems from analogi
 
 An LLM should not directly interpret raw EEG as a source of unconstrained claims about thoughts, intentions, or diagnoses. A safer architecture gives the language component bounded, calibrated evidence from a signal model, combines it with explicit context, and requires confirmation before consequential actions.
 
-![A grounded EEG-LLM stack: signal quality and montage metadata enter an EEG encoder, which produces bounded estimates and uncertainty. A context and retrieval layer combines these with consented task information before an LLM can explain or propose a constrained action subject to confirmation and safety rules.](figures/eeg-llm-grounded-stack.svg)
+![A grounded EEG-LLM stack: signal quality and montage metadata enter an EEG encoder, which produces bounded estimates and uncertainty. A context and retrieval layer combines these with consented task information before an LLM can explain or propose a constrained action subject to confirmation and safety rules.](figures/eeg-llm-grounded-stack.png)
 
 *Figure 1. A practical EEG-LLM design keeps signal decoding, contextual reasoning, language interaction, and action authority separate. The LLM consumes bounded evidence rather than raw EEG as if it were text.*
 

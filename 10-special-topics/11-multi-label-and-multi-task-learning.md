@@ -31,7 +31,7 @@ $$
 
 where tasks can use classification, ordinal, regression, ranking, reconstruction, or contrastive objectives. The weights $\lambda_t$ should not be chosen merely because one loss has a larger numeric scale; they encode which tasks the representation is asked to prioritize.
 
-![One quality-controlled EEG recording enters a shared temporal-spatial encoder. Multi-label heads can express co-occurring affect descriptors, while task-specific heads estimate dimensional affect, workload, signal quality, or a trial-level summary. Labels can be missing at different heads, and only observed targets contribute loss.](figures/multi-label-multi-task-eeg.svg)
+![One quality-controlled EEG recording enters a shared temporal-spatial encoder. Multi-label heads can express co-occurring affect descriptors, while task-specific heads estimate dimensional affect, workload, signal quality, or a trial-level summary. Labels can be missing at different heads, and only observed targets contribute loss.](figures/multi-label-multi-task-eeg.png)
 
 *Figure 1. Shared-representation learning with distinct multi-label and multi-task heads. Target type, annotation source, time scale, and missingness policy must be declared for every head.*
 

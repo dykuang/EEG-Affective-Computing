@@ -4,7 +4,7 @@ Most EEG affective models learn associations: a pattern predicts an emotion labe
 
 For EEG, causal conclusions must be modest. Sensor-level signals are mixtures of neural sources affected by volume conduction, common inputs, filtering, reference choice, and finite samples. A directed connectivity estimate is not proof that one brain region directly causes another, nor that a neural pattern causes an emotion. The value of causal analysis is to make assumptions, directionality, confounding risks, and intervention claims explicit.
 
-![End-to-end pipeline for causal discovery and interpretable learning: artifact-aware EEG and task context → directed connectivity → causal graph → causal-constrained learning → intervention-aware evaluation → interpretable output.](figures/causal_pipeline.svg)
+![End-to-end pipeline for causal discovery and interpretable learning: artifact-aware EEG and task context → directed connectivity → causal graph → causal-constrained learning → intervention-aware evaluation → interpretable output.](figures/causal-pipeline.png)
 
 *Figure 1. Causal discovery and interpretable-learning pipeline. Directed connectivity estimates inform a causal graph, which constrains learning and is validated through intervention-aware evaluation.*
 

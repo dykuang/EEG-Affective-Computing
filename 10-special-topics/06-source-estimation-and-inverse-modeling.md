@@ -4,7 +4,7 @@ Scalp EEG records voltage fluctuations at the surface of the head, but the neura
 
 This section discusses why source estimation matters for affective computing, how it works at a conceptual and practical level, what deep learning has contributed, and where the limits remain.
 
-![Schematic of scalp EEG sensors, a cortical source model, and the forward/inverse mapping between source activity and sensor measurements.](figures/source_estimation_schematic.svg)
+![Schematic of scalp EEG sensors, a cortical source model, and the forward/inverse mapping between source activity and sensor measurements.](figures/source-estimation-schematic.png)
 
 *Figure 1. Source estimation maps between scalp EEG measurements and underlying cortical sources. The forward model is well-posed; the inverse problem requires regularization or learned constraints.*
 

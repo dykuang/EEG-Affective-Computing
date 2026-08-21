@@ -187,6 +187,6 @@ Taken together, these priors suggest that EEG-based affective learning should us
 
 The key point is not that one psychological prior is always correct, but that affective learning improves when the model is prevented from representing behavior that is psychologically implausible. In many settings, even weak priors about persistence, continuity, bounded variation, and individual baselines can substantially improve sample efficiency, interpretability, and out-of-distribution robustness.
 
-![Summary pipeline linking EEG windows, a local encoder, latent dynamics, psychological priors, subject calibration, and affect predictions.](figures/psychological-priors-pipeline.svg)
+![Summary pipeline linking EEG windows, a local encoder, latent dynamics, psychological priors, subject calibration, and affect predictions.](figures/psychological-priors-pipeline.png)
 
 *Figure 7. A psychologically structured EEG affect-learning pipeline. Psychological priors constrain the latent dynamics and training objectives, while subject calibration adapts the shared representation before final valence–arousal prediction.*

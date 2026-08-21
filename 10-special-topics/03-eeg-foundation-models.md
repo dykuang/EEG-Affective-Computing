@@ -4,7 +4,7 @@ Recent progress in machine learning has made foundation models a central idea ac
 
 This section discusses what an EEG foundation model would mean in practice, why the concept is promising for affective computing, what design choices are currently most plausible, and what limitations remain.
 
-![EEG foundation model pipeline: large-scale heterogeneous EEG pretraining feeds a shared foundation model, which is then adapted to downstream tasks such as emotion recognition, sleep staging, seizure detection, and workload estimation.](figures/foundation_model_pipeline.svg)
+![EEG foundation model pipeline: large-scale heterogeneous EEG pretraining feeds a shared foundation model, which is then adapted to downstream tasks such as emotion recognition, sleep staging, seizure detection, and workload estimation.](figures/foundation-model-pipeline.png)
 
 *Figure 1. Foundation-model pipeline for EEG. Pretraining on diverse EEG data produces reusable representations that can be fine-tuned or probed for many downstream tasks, including affective computing.*
 

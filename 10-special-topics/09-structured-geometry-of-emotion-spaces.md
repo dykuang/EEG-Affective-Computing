@@ -4,7 +4,7 @@ Emotion labels are often represented as points in a flat Euclidean space: valenc
 
 Structured geometry offers a way to encode these relationships directly in the representation and prediction space. This section concerns the geometry of **emotion states and labels**, not the geometry of EEG sensor connectivity. The two can be combined, but they answer different questions.
 
-![Three representations of emotion spaces: a flat valence-arousal plane, a curved continuous manifold with a geodesic trajectory, and a discrete emotion graph with communities and edge curvature.](figures/emotion_geometry.svg)
+![Three representations of emotion spaces: a flat valence-arousal plane, a curved continuous manifold with a geodesic trajectory, and a discrete emotion graph with communities and edge curvature.](figures/emotion-geometry.png)
 
 *Figure 1. Structured geometry of emotion spaces. Flat coordinates, curved manifolds, and discrete graphs each encode different assumptions about how affective states relate to one another.*
 

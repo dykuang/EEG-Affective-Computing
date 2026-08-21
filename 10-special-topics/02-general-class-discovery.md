@@ -4,7 +4,7 @@ Most EEG-based affect recognition systems assume a closed label space: every cla
 
 General class discovery (GCD) addresses this problem. The goal is to recognize samples belonging to known classes while also discovering and organizing samples from previously unseen classes. In affective EEG, this is especially relevant because affect taxonomies are incomplete, labels are noisy, and the mapping from physiology to emotion is highly context-dependent. A deployed model should therefore do more than classify known categories; it should also detect when its label vocabulary is insufficient and structure the unfamiliar data in a useful way.
 
-![Three-stage general class discovery pipeline: training on known affect labels, deployment with mixed known and unknown states, and discovery of new candidate classes from unknown samples.](figures/gcd_pipeline.svg)
+![Three-stage general class discovery pipeline: training on known affect labels, deployment with mixed known and unknown states, and discovery of new candidate classes from unknown samples.](figures/gcd-pipeline.png)
 
 *Figure 1. General class discovery for affective EEG. The model first learns known classes, then detects unknown samples at deployment, and finally clusters them into coherent candidate classes for validation.*
 

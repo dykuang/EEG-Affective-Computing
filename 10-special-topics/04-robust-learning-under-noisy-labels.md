@@ -4,7 +4,7 @@ Label noise is not a marginal inconvenience in EEG-based affective computing. It
 
 This section focuses on the modeling question that follows once this fact is accepted: how should an EEG affect model be trained when some of the labels are wrong, ambiguous, weakly aligned, or systematically biased? The goal is not to eliminate label noise entirely, which is usually impossible, but to build systems that remain useful despite it.
 
-![Natural-style robust EEG training pipeline connecting imperfect evidence to calibrated affect predictions.](figures/robust-learning-pipeline.svg)
+![Natural-style robust EEG training pipeline connecting imperfect evidence to calibrated affect predictions.](figures/robust-learning-pipeline.png)
 
 *Figure 1. A robust training ecosystem transforms weak EEG evidence and imperfect labels into calibrated affect distributions. Sample reweighting, soft targets, consistency regularization, robust losses, and teacher–student guidance provide complementary protection against annotation noise.*
 
@@ -44,7 +44,7 @@ Some subjects use scales differently, avoid extreme ratings, or shift their inte
 
 Sometimes the problem is not that labels are wrong, but that the label space is too coarse or incomplete. In that case, standard noisy-label methods overlap with open-set and general class discovery ideas.
 
-![Natural-style branching taxonomy of five forms of label noise in affective EEG.](figures/label-noise-landscape.svg)
+![Natural-style branching taxonomy of five forms of label noise in affective EEG.](figures/label-noise-landscape.png)
 
 *Figure 2. Label noise is not a single mechanism. Random errors, class-conditional confusion, instance-dependent ambiguity, subject or session bias, and taxonomy mismatch require different assumptions and countermeasures.*
 
@@ -59,7 +59,7 @@ Modern neural networks often fit clean patterns first and noisy patterns later. 
 
 For this reason, robust learning methods often try to control which examples influence training, how strongly they influence it, and how much certainty the model is allowed to express.
 
-![Training dynamics showing early learning of stable clean structure followed by later noisy-label memorization.](figures/noisy-label-memorization.svg)
+![Training dynamics showing early learning of stable clean structure followed by later noisy-label memorization.](figures/noisy-label-memorization.png)
 
 *Figure 3. Flexible networks often learn stable structure early and memorize noisy examples later. Robust methods exploit the intermediate learning window through reweighting, sample selection, regularization, or early stopping.*
 
@@ -130,7 +130,7 @@ Robust systems should not only predict an emotion label; they should also expres
 
 This is often more honest and more useful than forcing exact categorical decisions on inherently ambiguous trials.
 
-![Natural-style ecosystem of six complementary robust-learning strategy families.](figures/robust-strategy-ecosystem.svg)
+![Natural-style ecosystem of six complementary robust-learning strategy families.](figures/robust-strategy-ecosystem.png)
 
 *Figure 4. Robust affective learning is an ecosystem rather than a single technique. Soft targets, sample reweighting, co-teaching, robust losses, consistency learning, and uncertainty-aware prediction protect different parts of the learning process.*
 
@@ -146,7 +146,7 @@ EEG affective computing has access to side information that generic noisy-label 
 
 In practice, robust affective learning often works best when label modeling is combined with data-quality modeling.
 
-![Natural-style diagram showing five EEG-specific sources of evidence contributing to a sample trust score.](figures/eeg-label-trust-signals.svg)
+![Natural-style diagram showing five EEG-specific sources of evidence contributing to a sample trust score.](figures/eeg-label-trust-signals.png)
 
 *Figure 5. EEG-specific context can estimate how much influence an annotation deserves. Temporal continuity, stimulus timing, cross-modal agreement, personal baselines, and artifact indicators jointly inform weighting, selection, or deferral.*
 
