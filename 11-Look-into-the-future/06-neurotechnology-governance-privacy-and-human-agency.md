@@ -17,11 +17,19 @@ A person may consent to an EEG recording for one purpose without consenting to e
 
 Consent must be understandable and revocable. For systems used by people with communication or motor limitations, refusal and override mechanisms need to be accessible through more than one interaction channel.
 
+![Consent and permission lifecycle for neurotechnology. The diagram should separate consent for EEG collection, storage, inference, personalization, sharing, intervention, and retention, with explicit user review, revocation, deletion, and safe fallback paths.](figures/neurotechnology-consent-lifecycle.png)
+
+**Figure 11.11: Consent and permission lifecycle.** Consent is purpose-specific and revocable: permission to record EEG does not automatically authorize inference, adaptation, disclosure, intervention, or indefinite retention.
+
 ## Privacy, Security, and Data Minimization
 
 Neural recordings, embeddings, and calibration histories can be identifying or reveal sensitive context. Collect only data needed for a defined purpose, prefer local processing when practical, restrict access to raw and derived records, and document retention and deletion policies.
 
 Security should address the full pipeline: acquisition device, wireless transmission, storage, model updates, logs, and interfaces that display inferences. A privacy-preserving design also avoids unnecessary data repurposing. An EEG signal collected to improve assistive control should not become an unannounced productivity or emotion-surveillance measure.
+
+![Privacy and accountability boundary map. The diagram should trace raw EEG, derived embeddings, calibration histories, model updates, logs, and displayed inferences across device, network, storage, and interface boundaries, marking access controls, minimization, retention, deletion, and audit points.](figures/neurotechnology-privacy-boundaries.png)
+
+**Figure 11.12: Privacy and accountability boundaries.** Protection must cover raw signals, derived representations, model updates, logs, and displayed inferences across the complete acquisition and deployment pipeline.
 
 ## Human Agency and Meaningful Control
 

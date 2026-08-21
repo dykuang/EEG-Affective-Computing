@@ -15,6 +15,10 @@ Affect can enter an embodied system in at least four distinct ways.
 | Learning signal | Which interaction outcomes should the system prefer over time? | Engagement and explicit ratings contribute to a reward for adaptive tutoring |
 | Social communication channel | How should the system express or regulate its behavior for a person? | A companion robot changes timing, voice, or distance after confirmed discomfort |
 
+![Four roles of affect in embodied intelligence. The diagram should connect uncertain human-state input to action selection, learning signals, and social communication, while showing explicit goals, safety constraints, and user feedback as separate influences on the embodied policy.](figures/affect-roles-in-embodied-intelligence.png)
+
+**Figure 11.7: Roles of affect in embodied intelligence.** Affective evidence can inform perception, action selection, learning, and social communication, but each role requires a separate policy and should not be treated as an automatic justification for intervention.
+
 These roles should not be collapsed. A classifier may estimate a state, but a separate policy must decide whether an action is appropriate. The most accurate affect estimate does not automatically justify intervention.
 
 ## Affect as Input: Contextual and Uncertain Perception
@@ -54,6 +58,10 @@ Future systems should combine affective evidence with explicit outcomes, task pe
 In passive datasets, EEG is often collected while participants view fixed clips or complete standardized trials. Embodied interaction generates a different distribution: motion artifacts, changing gaze, speaking, walking, social feedback, and nonstationary goals. The robot or interface also changes the user's state, making observations and actions causally entangled.
 
 Future datasets should therefore record the full interaction loop: EEG and signal-quality metadata, environment state, agent actions, user actions, feedback timing, task outcomes, explicit reports, and adaptation events. Without this provenance, it is difficult to determine whether a change in affect was caused by the task, the agent, the sensor, or the user's evolving strategy.
+
+![Closed-loop embodied-affect data provenance. The diagram should show EEG and quality metadata, environment state, agent actions, user actions, feedback timing, task outcomes, explicit reports, and adaptation events arranged around a time-aligned interaction loop, with arrows indicating that actions can change later observations.](figures/embodied-affect-data-loop.png)
+
+**Figure 11.8: Closed-loop embodied-affect data provenance.** Embodied interaction couples observations and actions, so future datasets must preserve time alignment and provenance across sensing, behavior, agent feedback, outcomes, and adaptation.
 
 ## Embodied Evaluation
 

@@ -14,6 +14,10 @@ $$
 
 The $do(\cdot)$ notation emphasizes that an intervention differs from observing a naturally occurring variable. Strong causal claims require study designs and assumptions that are rarely available from passive benchmark data alone.
 
+![Causal graph for affective neurotechnology. The diagram should show task context, latent affective state, EEG measurement, behavior, and system action, with confounding paths distinguished from the intervention path used to estimate the effect of an action.](figures/affective-neurotechnology-causal-graph.png)
+
+**Figure 11.13: Causal graph for affective neurotechnology.** EEG is a measurement of underlying processes, not automatically a cause; causal analysis must distinguish observed associations from intervention effects involving context, affect, behavior, and system action.
+
 ## Why Mechanisms Matter
 
 Mechanistic understanding can improve robustness and safety. A model that depends on a stimulus-specific visual artifact may score well but fail when the stimulus changes. A model that captures a reproducible relationship among task demand, neural dynamics, and behavior may transfer more reliably and support better interventions.
@@ -32,6 +36,10 @@ Causal progress depends on experimental design as much as model choice. Useful a
 When direct intervention is not possible, causal models can still clarify assumptions and identify confounders, but they should not be interpreted as proof of mechanism. Sensitivity analysis, negative controls, external replication, and explicit alternative causal graphs are valuable safeguards.
 
 **Example scenario:** A tutoring agent randomizes whether optional hints are offered after evidence of high workload. It measures immediate EEG changes, task performance, user-reported frustration, and later retention. This design can test whether the hint policy improves outcomes, rather than merely observing that high workload and hint use co-occur.
+
+![Closed-loop causal evaluation design. The diagram should show randomized tutoring hints or interface actions, immediate EEG and behavioral responses, delayed outcomes, user reports, and later policy decisions, with arrows showing how an intervention changes subsequent observations.](figures/closed-loop-causal-evaluation.png)
+
+**Figure 11.14: Closed-loop causal evaluation.** Randomized interventions, time-aligned outcomes, and delayed follow-up help test whether an affect-aware action improves user-defined outcomes rather than merely correlating with neural state.
 
 ## Causal Models in Closed Loops
 

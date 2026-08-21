@@ -14,6 +14,10 @@ An EEG system that works during one calibration session may degrade when the sam
 
 Drift detection should distinguish a likely sensor failure from a meaningful change in user state. An abrupt amplitude change may warrant a contact-quality check, while a gradual shift in control performance may call for optional recalibration.
 
+![Sources and signatures of neural drift. The diagram should organize physiological change, user strategy change, sensor and montage drift, context shift, and label or goal change over time, with observable signatures such as amplitude shifts, channel dropout, altered performance, and rising uncertainty.](figures/neural-drift-sources-and-signatures.png)
+
+**Figure 11.9: Sources and signatures of neural drift.** Long-term change can arise from the user, task, sensor, context, or target; distinguishing these sources is necessary before deciding whether to recalibrate or repair the recording.
+
 ## Safe Adaptation Strategies
 
 Continual learning can use periodic recalibration, lightweight adapters, replay of representative past data, uncertainty-gated updates, or explicit user corrections. The right strategy depends on whether the system is personalized, population-level, offline, or closed loop.
@@ -21,6 +25,10 @@ Continual learning can use periodic recalibration, lightweight adapters, replay 
 Updates should be bounded. A system can require high-confidence outcomes, explicit confirmation, or a scheduled review before adding new examples to a calibration set. It can retain a stable reference model and revert when performance or signal quality crosses a predeclared threshold. These safeguards reduce the risk of self-training on an incorrect interpretation of the user's signals.
 
 **Example scenario:** A wearable workload monitor compares each new session with the user's validated calibration distribution. When channel quality remains acceptable but uncertainty rises for several minutes, the system asks the user to complete a short optional calibration task. It updates only a small personalization adapter, keeps the original backbone fixed, and records the version change for later audit.
+
+![Reversible continual-adaptation loop. The diagram should show signal-quality checks, drift detection, uncertainty gating, optional user-confirmed calibration, a small adapter update, chronological validation, rollback to a stable model, and an audit record.](figures/reversible-continual-adaptation-loop.png)
+
+**Figure 11.10: Reversible continual-adaptation loop.** A safe system gates updates on signal quality and evidence, validates changes against prior behavior, records model versions, and supports rollback when adaptation harms performance or user control.
 
 ## Avoid Catastrophic Forgetting
 
