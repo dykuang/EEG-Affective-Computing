@@ -6,7 +6,9 @@ EEG quality depends strongly on how and where signals are recorded. Electrode pl
 
 This section introduces the standard electrode system, wearable EEG tradeoffs, and the role and limits of source estimation in low-channel portable settings.
 
-<!-- Figure suggestion: Add a side-by-side comparison of a high-density research cap and a sparse wearable headset on a head silhouette. Annotate channel count, coverage, setup time, comfort, motion sensitivity, and the kinds of spatial claims each system can reasonably support. -->
+![Dense vs. sparse headset comparison.](figures/dense-vs-sparse-headset.png)
+
+**Figure 1.11: Dense vs. sparse headset comparison.** A high-density research cap and a sparse wearable headset are compared on a head silhouette, with annotations for channel count, coverage, setup time, comfort, motion sensitivity, and the kinds of spatial claims each system can reasonably support.
 
 ## Electrode Placement and the 10-20 System
 
@@ -22,7 +24,9 @@ The international 10-20 system defines standardized electrode positions across t
 
 This standardization improves reproducibility across studies and makes channel-level interpretations easier.
 
-<!-- Figure suggestion: Add a clean top-down scalp diagram of the international 10-20 system. Mark Fp, F, C, P, O, and T regions, label representative electrodes such as Fp1, F3, Cz, P4, and O2, and show the nasion, inion, and left/right preauricular landmarks used to construct the layout. -->
+![International 10-20 system.](figures/international-10-20-system.png)
+
+**Figure 1.12: International 10-20 system.** A clean top-down scalp diagram of the international 10-20 system. The Fp, F, C, P, O, and T regions are marked, representative electrodes such as Fp1, F3, Cz, P4, and O2 are labeled, and the nasion, inion, and left/right preauricular landmarks used to construct the layout are shown.
 
 ## Montages and Referencing
 
@@ -43,6 +47,8 @@ Reference choice affects:
 - downstream model features.
 
 ![Montages and referencing. The same three electrode recordings are re-expressed using a single reference, linked-mastoid reference, common-average reference, and bipolar derivations. The comparison shows how rereferencing changes voltage values and channel relationships without creating new neural information.](figures/montages-referencing-1.png)
+
+**Figure 1.13: Montages and referencing.** The same three electrode recordings are re-expressed using a single reference, linked-mastoid reference, common-average reference, and bipolar derivations. The comparison shows how rereferencing changes voltage values and channel relationships without creating new neural information.
 
 ## Channel Density Tradeoffs
 
@@ -151,6 +157,8 @@ For most low-channel affective computing systems, it is safer to interpret model
 rather than claiming precise neural localization.
 
 ![Interpretation ladder for wearable EEG. Evidence strength decreases from directly observed channel and scalp-region patterns through frequency content and connectivity proxies to coarse regional inference, with precise source localization shown as the least supported claim. Confidence labels indicate interpretive caution rather than a strict quantitative scale.](figures/interpretation-ladder.png)
+
+**Figure 1.14: Interpretation ladder for wearable EEG.** Evidence strength decreases from directly observed channel and scalp-region patterns through frequency content and connectivity proxies to coarse regional inference, with precise source localization shown as the least supported claim. Confidence labels indicate interpretive caution rather than a strict quantitative scale.
 
 ## Summary
 

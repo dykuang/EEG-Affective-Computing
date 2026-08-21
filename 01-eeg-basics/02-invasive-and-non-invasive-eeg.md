@@ -6,6 +6,8 @@ Not all electrophysiological recordings called “EEG-like” are obtained in th
 
 ![Anatomical comparison of recording methods. A shared brain cross-section shows scalp EEG electrodes on the surface, ECoG electrodes resting on the cortical surface, and depth electrodes reaching deeper structures. Callouts summarize invasiveness, spatial precision, signal fidelity, and typical clinical or research use for each method.](figures/anatomical-comparisons.png)
 
+**Figure 1.5: Anatomical comparison of recording methods.** A shared brain cross-section shows scalp EEG electrodes on the surface, ECoG electrodes resting on the cortical surface, and depth electrodes reaching deeper structures. Callouts summarize invasiveness, spatial precision, signal fidelity, and typical clinical or research use for each method.
+
 ## Non-Invasive EEG
 
 Non-invasive EEG places electrodes on the scalp to measure voltage differences without penetrating tissue.
@@ -70,6 +72,8 @@ Even if most EEG affective computing research uses non-invasive systems, invasiv
 | **Affective computing practicality** | Excellent | Limited |
 
 ![Recording-system trade-off continuum. From invasive intracranial systems on the left to consumer wearable headsets on the right, spatial precision and signal fidelity decrease while safety, comfort, portability, and scalability increase. Clinical scalp EEG and research-grade portable EEG sit in the middle of the continuum.](figures/tradeoff-continuum.png)
+
+**Figure 1.6: Recording-system trade-off continuum.** From invasive intracranial systems on the left to consumer wearable headsets on the right, spatial precision and signal fidelity decrease while safety, comfort, portability, and scalability increase. Clinical scalp EEG and research-grade portable EEG sit in the middle of the continuum.
 
 ## Relevance to Wearable Affective Computing
 
