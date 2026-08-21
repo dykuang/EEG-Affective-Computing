@@ -24,7 +24,9 @@ $$\delta^{(l)}=((W^{(l+1)})^T\delta^{(l+1)})\odot\sigma'(z^{(l)}).$$
 
 By caching forward values and reusing downstream derivatives, backpropagation avoids recomputing the same work for each parameter. Automatic-differentiation systems in PyTorch and TensorFlow automate this bookkeeping, but they still rely on this principle.
 
-![A neural network carries activations from EEG input to loss in the forward pass, then propagates gradient signals from loss to earlier layers in the backward pass.](figures/forward-and-backward-pass.svg)
+![A neural network carries activations from EEG input to loss in the forward pass, then propagates gradient signals from loss to earlier layers in the backward pass.](figures/forward-backward.png)
+
+**Figure 3.3: Forward and backward pass.** A neural network carries activations from EEG input to loss in the forward pass, then propagates gradient signals from loss to earlier layers in the backward pass.
 
 ## When Gradients Do Not Travel Well
 

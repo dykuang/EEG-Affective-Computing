@@ -18,7 +18,13 @@ $$\hat{R}_n(\theta) = \frac{1}{n} \sum_{i=1}^n \ell(f_\theta(x_i), y_i).$$
 
 Minimizing $\hat{R}_n$ is ERM. It is sensible because the training set is the available evidence, but it is not identical to minimizing $R$. A model can fit the observed trials closely while performing poorly for new sessions or new participants. This gap is especially important for EEG, where subjective labels, artifacts, and participant differences can distort the training sample.
 
-![An unknown population supplies a finite EEG training sample for empirical-risk minimization, while held-out participants and sessions provide evidence about population risk and generalization.](figures/population-and-empirical-risk.svg)
+![General error-component analysis in learning theory.](figures/error-analysis.png)
+
+**Figure 3.2: Error decomposition in learning theory.** Total prediction error can be decomposed into approximation error, estimation error, and optimization error. Approximation error reflects a model class that is too limited for the task; estimation error reflects finite-sample uncertainty from the training set; optimization error reflects the failure to find the model that best fits the objective. In EEG, label noise, participant heterogeneity, and unstable optimization can make the practical error much larger than the training loss alone suggests.
+
+![An unknown population supplies a finite EEG training sample for empirical-risk minimization, while held-out participants and sessions provide evidence about population risk and generalization.](figures/empirical-risk.png)
+
+**Figure 3.3: Population risk and empirical risk.** An unknown population supplies a finite EEG training sample for empirical-risk minimization, while held-out participants and sessions provide evidence about population risk and generalization.
 
 ## Losses Specify What Counts as an Error
 

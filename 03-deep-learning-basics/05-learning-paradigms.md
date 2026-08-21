@@ -28,9 +28,11 @@ Unsupervised learning is therefore useful for exploration and representation lea
 
 Semi-supervised learning trains with both labeled and unlabeled examples. A labeled subset anchors the model to the emotion task, while the unlabeled subset provides information about the broader distribution of EEG signals. This is a natural fit when a study includes carefully annotated trials alongside a much larger archive of unannotated sessions.
 
-Consistency regularization asks the model to make stable predictions under reasonable transformations of an input. Pseudo-labeling turns high-confidence predictions on unlabeled trials into provisional targets. Entropy minimization encourages decisive predictions, while graph-based and generative methods use assumptions about the structure of the data distribution. These approaches share a premise: unlabeled examples are useful only when their relationship to the labeled task is sufficiently well understood.
+Consistency regularization asks the model to make stable predictions under reasonable transformations of an input. A teacher-student network is a common implementation: the student is trained on an input view, while the teacher produces a target from a weakly augmented or differently transformed view. The teacher is often an exponential moving average of the student and is not updated by the same gradient step. This makes the teacher target less noisy than a single student prediction, but it does not remove the need for confidence thresholds and carefully chosen augmentations.
 
-The potential benefit is substantial because unlabeled trials may include more participants, sessions, and contexts than the annotated subset. They can reduce overfitting, but poorly calibrated pseudo-labels or large distribution shifts can reinforce bias instead. The unlabeled data should therefore be checked for relevance to the target population rather than treated as automatically beneficial.
+Pseudo-labeling turns high-confidence predictions on unlabeled trials into provisional targets. Entropy minimization encourages decisive predictions, while graph-based and generative methods use assumptions about the structure of the data distribution. These approaches share a premise: unlabeled examples are useful only when their relationship to the labeled task is sufficiently well understood.
+
+The potential benefit is substantial because unlabeled trials may include more participants, sessions, and contexts than the annotated subset. They can reduce overfitting, but poorly calibrated pseudo-labels or large distribution shifts can reinforce bias instead. The unlabeled data should therefore be checked for relevance to the target population rather than treated as automatically beneficial. In EEG, the teacher and student should normally receive views that preserve the affective content of a segment; aggressive channel masking, time warping, or filtering can change the label-relevant evidence.
 
 ## Self-Supervised Learning
 
@@ -38,7 +40,29 @@ Self-supervised learning also starts with raw data, but it constructs a training
 
 For EEG, a model might decide whether two segments came from the same trial, reconstruct masked channels or time intervals, predict temporal order, or align time-domain and frequency-domain views of the same recording. These tasks represent common approaches such as contrastive learning, masked reconstruction, predictive coding, and multi-view consistency.
 
-After pretraining, the encoder is fine-tuned with the available emotion labels. This procedure can learn reusable signal structure from large corpora before asking the model to solve a label-limited task, potentially improving transfer across subjects or datasets. Its risk is pretext-target mismatch: a model can excel at the constructed task without learning the aspects of EEG that are relevant to emotion.
+### Generative Pretraining with Masked Reconstruction
+
+A masked autoencoder (MAE) is a generative self-supervised method. It hides part of an EEG input and trains an encoder-decoder model to reconstruct the missing content. The masked units may be contiguous time spans, channel groups, time-frequency patches, or combinations of these. A typical objective is computed on the masked region only:
+
+$$\mathcal{L}_{\text{mask}} = \left\|M \odot \left(x - \hat{x}\right)\right\|^2,$$
+
+where $M$ selects the masked samples or patches. The encoder processes the visible signal, and the decoder uses that representation to predict the missing signal. After pretraining, the encoder can be retained and fine-tuned for emotion classification, valence/arousal regression, or another downstream task.
+
+Masked reconstruction is attractive for EEG because recordings are often plentiful even when emotion labels are scarce. It can encourage representations that capture temporal continuity, cross-channel relationships, and frequency structure. Its limitations are equally important: a model may learn to interpolate predictable waveform patterns without learning affective information, or it may reconstruct subject-specific artifacts. Masking strategy, reconstruction target, and evaluation should therefore be chosen to match the intended downstream task.
+
+### Contrastive and Teacher-Student Learning
+
+Contrastive learning trains representations so that compatible views of the same underlying example are close while views from different examples are separated. For an EEG segment, two views might be produced by label-preserving transformations such as modest temporal cropping, amplitude scaling, channel dropout, or noise injection. An InfoNCE-style objective for an anchor $z_i$ and its positive representation $z_i^+$ can be written as
+
+$$\mathcal{L}_{\text{NCE}} = -\log \frac{\exp(\operatorname{sim}(z_i,z_i^+)/\tau)}{\sum_{j} \exp(\operatorname{sim}(z_i,z_j)/\tau)},$$
+
+where $\operatorname{sim}$ is a similarity function and $\tau$ is a temperature parameter. The negative examples should be selected carefully: two segments from the same participant, session, or emotional episode may not be valid negatives simply because they have different indices.
+
+Teacher-student networks are closely related to consistency learning and are often combined with contrastive objectives, although the two ideas are not identical. A teacher, commonly updated as an exponential moving average of the student, supplies a stable representation or pseudo-target for another view of the same EEG segment. The student is optimized to agree with that target, sometimes with additional negatives or a supervised loss. This design can avoid reliance on large labeled datasets, but it can also collapse to uninformative representations unless normalization, prediction heads, stop-gradient operations, centering, or other anti-collapse mechanisms are used.
+
+For affective EEG, both approaches depend on the definition of a positive pair or matched teacher-student view. The transformations must preserve the emotion-related content while changing nuisance variation. Subject identity, session identity, stimulus identity, and temporal proximity should be considered explicitly because they can create easy shortcuts or invalid negative pairs.
+
+After pretraining, the encoder is fine-tuned with the available emotion labels. This procedure can learn reusable signal structure from large corpora before asking the model to solve a label-limited task, potentially improving transfer across subjects or datasets. Its risk is pretext-target mismatch: a model can excel at the constructed task without learning the aspects of EEG that are relevant to emotion. A useful comparison is therefore not only pretraining loss, but also frozen-encoder and fine-tuned performance under subject-held-out or session-held-out evaluation.
 
 ## Comparison of Paradigms
 
@@ -59,7 +83,9 @@ In practice, they often form a sequence:
 2. **Semi-supervised learning**, when appropriate, introduces limited task labels while using additional unlabeled trials.
 3. **Supervised learning** fine-tunes and evaluates the model against the final emotion-prediction objective.
 
-![Raw EEG supports self-supervised pretraining, followed when appropriate by semi-supervised adaptation and supervised fine-tuning with emotion labels and held-out evaluation.](figures/combined-learning-pipeline.svg)
+![Raw EEG supports self-supervised pretraining, followed when appropriate by semi-supervised adaptation and supervised fine-tuning with emotion labels and held-out evaluation.](figures/combined-learning-pipeline.png)
+
+**Figure 3.5: Combined learning pipeline.** Raw EEG supports self-supervised pretraining, followed when appropriate by semi-supervised adaptation and supervised fine-tuning with emotion labels and held-out evaluation.
 
 This pattern respects the common imbalance between plentiful recordings and limited reliable annotations. The right choice depends on the scientific question, the reliability of labels, and the similarity of the available unlabeled data to the intended deployment setting.
 
@@ -72,4 +98,7 @@ Learning paradigms differ primarily in the source of their supervision signal. I
 - Banville, H., Chehab, O., Hyvarinen, A., Engemann, D. A., and Gramfort, A. (2021). Uncovering the structure of clinical EEG signals with self-supervised learning. *Journal of Neural Engineering*, 18(4), 046020.
 - Chapelle, O., Scholkopf, B., and Zien, A., eds. (2006). *Semi-Supervised Learning*. MIT Press.
 - Chen, T., Kornblith, S., Norouzi, M., and Hinton, G. (2020). A simple framework for contrastive learning of visual representations. *International Conference on Machine Learning*.
+- Grill, J.-B., Strub, F., Altche, F., et al. (2020). Bootstrap your own latent: A new approach to self-supervised learning. *Advances in Neural Information Processing Systems*.
+- He, K., Chen, X., Xie, S., Li, Y., Dollár, P., and Girshick, R. (2022). Masked autoencoders are scalable vision learners. *IEEE/CVF Conference on Computer Vision and Pattern Recognition*.
 - Hinton, G. E., and Salakhutdinov, R. R. (2006). Reducing the dimensionality of data with neural networks. *Science*, 313(5786), 504-507.
+- Tarvainen, A., and Valpola, H. (2017). Mean teachers are better role models: Weight-averaged consistency targets improve semi-supervised deep learning results. *Advances in Neural Information Processing Systems*.
