@@ -167,3 +167,12 @@ Electrode design and channel configuration strongly shape EEG analysis. High-den
 ---
 
 Next: [Software Ecosystem and Practical Tooling](05-software-ecosystem-and-practical-tooling.md)
+
+## References
+
+- Jasper, H. H. (1958). The ten-twenty electrode system of the International Federation. *Electroencephalography and Clinical Neurophysiology*, 10, 371–375.
+- Oostenveld, R., and Praamstra, P. (2001). The five percent electrode system for high-resolution EEG and ERP measurements. *Clinical Neurophysiology*, 112(4), 713–719.
+- Nunez, P. L., and Srinivasan, R. (2006). *Electric Fields of the Brain: The Neurophysics of EEG* (2nd ed.). Oxford University Press.
+- Michel, C. M., and Brunet, D. (2019). EEG source imaging: A practical review of the analysis steps. *Frontiers in Neurology*, 10, 325.
+- Grech, R., Cassar, T., Muscat, J., et al. (2008). Review on solving the inverse problem in EEG source analysis. *Journal of NeuroEngineering and Rehabilitation*, 5, 25.
+- Radüntz, T. (2018). Signal quality evaluation of emerging EEG devices. *Frontiers in Physiology*, 9, 98.

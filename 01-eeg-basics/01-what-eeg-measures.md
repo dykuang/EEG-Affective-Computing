@@ -103,3 +103,11 @@ EEG measures large-scale electrical activity at the scalp produced primarily by 
 ---
 
 Next: [Invasive and Non-Invasive EEG](02-invasive-and-non-invasive-eeg.md)
+
+## References
+
+- Nunez, P. L., and Srinivasan, R. (2006). *Electric Fields of the Brain: The Neurophysics of EEG* (2nd ed.). Oxford University Press.
+- Buzsáki, G., Anastassiou, C. A., and Koch, C. (2012). The origin of extracellular fields and currents—EEG, ECoG, LFP and spikes. *Nature Reviews Neuroscience*, 13, 407–420.
+- Buzsáki, G. (2006). *Rhythms of the Brain*. Oxford University Press.
+- Cohen, M. X. (2014). *Analyzing Neural Time Series Data: Theory and Practice*. MIT Press.
+- Davidson, R. J. (2004). What does the prefrontal cortex “do” in affect: Perspectives on frontal EEG asymmetry research. *Biological Psychology*, 67(1–2), 219–233.

@@ -107,3 +107,11 @@ The invasive vs. non-invasive distinction frames the practical and scientific bo
 ---
 
 Next: [Signal Characteristics, Noise, and Low SNR](03-signal-characteristics-noise-and-low-snr.md)
+
+## References
+
+- Buzsáki, G., Anastassiou, C. A., and Koch, C. (2012). The origin of extracellular fields and currents—EEG, ECoG, LFP and spikes. *Nature Reviews Neuroscience*, 13, 407–420.
+- Lachaux, J.-P., Rudrauf, D., and Kahane, P. (2003). Intracranial EEG and human brain mapping. *Journal of Physiology-Paris*, 97(4–6), 613–628.
+- Engel, A. K., Moll, C. K. E., Fried, I., and Ojemann, G. A. (2005). Invasive recordings from the human brain: Clinical insights and beyond. *Nature Reviews Neuroscience*, 6, 35–47.
+- Lebedev, M. A., and Nicolelis, M. A. L. (2017). Brain–machine interfaces: From basic science to neuroprostheses and neurorehabilitation. *Physiological Reviews*, 97(2), 767–837.
+- Casson, A. J., Yates, D. C., Smith, S. J. M., Duncan, J. S., and Rodriguez-Villegas, E. (2010). Wearable electroencephalography. *IEEE Engineering in Medicine and Biology Magazine*, 29(3), 44–56.
