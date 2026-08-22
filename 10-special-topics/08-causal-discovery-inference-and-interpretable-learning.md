@@ -28,7 +28,7 @@ A method can answer one level without answering the others. Granger causality, f
 Granger causality asks whether the past of one time series improves prediction of another beyond the target's own past and other included variables. For signals $X$ and $Y$, $X$ Granger-causes $Y$ when including $X_{<t}$ reduces the predictive error for $Y_t$ compared with a restricted model:
 
 $$
-\operatorname{Var}(Y_t \mid Y_{<t}, X_{<t}) < \operatorname{Var}(Y_t \mid Y_{<t}).
+\\mathrm{Var}(Y_t \mid Y_{<t}, X_{<t}) < \\mathrm{Var}(Y_t \mid Y_{<t}).
 $$
 
 Multivariate autoregressive models, conditional Granger causality, directed transfer function, and partial directed coherence extend the idea to multichannel and frequency-specific analyses. In affective EEG, these estimates can describe changes in directed spectral interaction across conditions or time.
@@ -71,10 +71,10 @@ Source-space nodes can reduce some sensor-mixing concerns, but source estimation
 Standard EEG graph neural networks often use undirected correlation, coherence, distance, or learned similarity matrices. A causal graph can instead provide directed, signed, frequency-specific, or time-varying edges. This lets message passing respect a proposed direction of influence:
 
 $$
-h_v^{(l+1)} = \phi\left(h_v^{(l)},\; \sum_{u \in \operatorname{Pa}(v)} w_{u \to v} \psi(h_u^{(l)})\right),
+h_v^{(l+1)} = \phi\left(h_v^{(l)},\; \sum_{u \in \\mathrm{Pa}(v)} w_{u \to v} \psi(h_u^{(l)})\right),
 $$
 
-where $\operatorname{Pa}(v)$ denotes candidate parent nodes of $v$ and $w_{u \to v}$ is a directed edge weight. Separate incoming and outgoing channels, edge-confidence gating, and temporal graph models can preserve asymmetry that undirected aggregation discards.
+where $\\mathrm{Pa}(v)$ denotes candidate parent nodes of $v$ and $w_{u \to v}$ is a directed edge weight. Separate incoming and outgoing channels, edge-confidence gating, and temporal graph models can preserve asymmetry that undirected aggregation discards.
 
 Several integration directions are promising:
 

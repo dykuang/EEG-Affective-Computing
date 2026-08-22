@@ -208,9 +208,9 @@ either curvature, normalize within each training-fold graph:
 $$
 z^{\kappa}_{ij}
 =
-\operatorname{clip}\left(
-\frac{\kappa_{ij}-\operatorname{median}_{e\in E}\kappa_e}
-{\operatorname{IQR}_{e\in E}(\kappa_e)+\varepsilon},
+\\mathrm{clip}\left(
+\frac{\kappa_{ij}-\\mathrm{median}_{e\in E}\kappa_e}
+{\\mathrm{IQR}_{e\in E}(\kappa_e)+\varepsilon},
 -c,c
 \right),
 \qquad
@@ -392,8 +392,8 @@ replacing observations by within-trial ranks:
 $$
 \rho_{ijb}^{S,(r)}
 =\rho_P\!\left(
-\operatorname{rank}(\mathbf z_{r,:,i,b}),
-\operatorname{rank}(\mathbf z_{r,:,j,b})
+\\mathrm{rank}(\mathbf z_{r,:,i,b}),
+\\mathrm{rank}(\mathbf z_{r,:,j,b})
 \right).
 $$
 
@@ -401,8 +401,8 @@ Aggregate trials in Fisher-$z$ space:
 
 $$
 u_{ijb}^{(r)}
-=\operatorname{arctanh}
-\left(\operatorname{clip}(\rho_{ijb}^{(r)},-1+\epsilon,1-\epsilon)\right),
+=\\mathrm{arctanh}
+\left(\\mathrm{clip}(\rho_{ijb}^{(r)},-1+\epsilon,1-\epsilon)\right),
 $$
 
 $$
@@ -440,7 +440,7 @@ $$
 =
 \underset{\boldsymbol{\Theta}\succ 0}{\mathrm{arg\,min}}\;
 \left[
-\operatorname{tr}\!\left(
+\\mathrm{tr}\!\left(
 \widehat{\boldsymbol{\Sigma}}\boldsymbol{\Theta}
 \right)
 -\log\det\!\left(\boldsymbol{\Theta}\right)
@@ -483,7 +483,7 @@ $$
 A^{\mathrm{MI}}_{ij}
 =1-\exp\left(-\frac{I(Z_i;Z_j)}{\tau_I+\varepsilon}\right),
 \qquad
-\tau_I=\operatorname{median}_{u<v,\;I_{uv}>0} I(Z_u;Z_v).
+\tau_I=\\mathrm{median}_{u<v,\;I_{uv}>0} I(Z_u;Z_v).
 $$
 
 Use a $k$-nearest-neighbor estimator and estimate within bands. MI can capture
@@ -520,8 +520,8 @@ from $j$ to $i$ can be scored by comparing reduced and full residuals:
 
 $$
 S_{j\rightarrow i}^{G}
-=\log\frac{\operatorname{Var}(\epsilon_{i}^{\mathrm{reduced}\;j})}
-{\operatorname{Var}(\epsilon_i^{\mathrm{full}})+\varepsilon},
+=\log\frac{\\mathrm{Var}(\epsilon_{i}^{\mathrm{reduced}\;j})}
+{\\mathrm{Var}(\epsilon_i^{\mathrm{full}})+\varepsilon},
 \qquad
 A^{G}_{ji}=\max(S_{j\rightarrow i}^{G},0).
 $$
@@ -549,7 +549,7 @@ If the raw EEG is available, phase- and spectrum-based graphs are useful
 controls. Phase-locking value (PLV) is
 
 $$
-\operatorname{PLV}_{ij}
+\\mathrm{PLV}_{ij}
 =\left|
 \frac{1}{T}\sum_{t=1}^{T}
 \exp\left(\mathrm i[\phi_i(t)-\phi_j(t)]\right)
@@ -559,7 +559,7 @@ $$
 and magnitude-squared coherence is
 
 $$
-\operatorname{Coh}_{ij}(f)
+\\mathrm{Coh}_{ij}(f)
 =\frac{|S_{ij}(f)|^2}{S_{ii}(f)S_{jj}(f)+\varepsilon}.
 $$
 
@@ -599,7 +599,7 @@ channel embeddings $\mathbf h_i$:
 
 $$
 A^{\mathrm{inst}}_{ij}
-=\operatorname{softplus}\left(
+=\\mathrm{softplus}\left(
 \frac{(\mathbf W\mathbf h_i)^\top(\mathbf W\mathbf h_j)}{\sqrt d}
 \right),
 \qquad
@@ -635,12 +635,12 @@ subject weighting:
 
 $$
 \mathbf A_D^{(f)}
-=\operatorname{Aggregate}
+=\\mathrm{Aggregate}
 \left(\{\mathbf X^{(r)}:r\in\mathcal R_{\mathrm{tr}}^{(f)}\}\right),
 \qquad
 \boldsymbol\kappa_D^{(f)}
-=\operatorname{Curv}
-\left(\operatorname{Sparse}(\mathbf A_D^{(f)})\right).
+=\\mathrm{Curv}
+\left(\\mathrm{Sparse}(\mathbf A_D^{(f)})\right).
 $$
 
 It is shared by every sample in the fold. This is the lowest-variance estimate
@@ -689,7 +689,7 @@ is $y$:
 
 $$
 \mathbf A_y
-=\operatorname{Aggregate}
+=\\mathrm{Aggregate}
 \left(\{\mathbf X^{(r)}:
 r\in\mathcal R_{\mathrm{tr}},\;y_r=y\}\right).
 $$
@@ -722,7 +722,7 @@ ground-truth test label is label leakage. Two valid uses are:
    $$
    \widetilde q_y^{(e)}
    =\xi_e\,\mathbb 1[y=y_r]
-   +(1-\xi_e)\operatorname{stopgrad}(q_y),
+   +(1-\xi_e)\\mathrm{stopgrad}(q_y),
    \qquad \xi_e\downarrow0,
    $$
 
@@ -804,7 +804,7 @@ $$
 E_q
 =E(T_{\max})
 \cup
-\operatorname{Top}_{m_q-(C-1)}
+\\mathrm{Top}_{m_q-(C-1)}
 \left(E\setminus E(T_{\max});A_{ij}\right).
 $$
 
@@ -820,9 +820,9 @@ keeps the $k$ strongest neighbors of each node:
 $$
 (i,j)\in E_k
 \iff
-j\in\operatorname{TopK}_k(A_{i,:})
+j\in\\mathrm{TopK}_k(A_{i,:})
 \lor
-i\in\operatorname{TopK}_k(A_{j,:}).
+i\in\\mathrm{TopK}_k(A_{j,:}).
 $$
 
 Validate $k\in\{4,6,8,10,12\}$, add an MST if needed, and report the resulting
@@ -850,8 +850,8 @@ topological quality:
 
 $$
 J(q)
-=\operatorname{MacroF1}_{\mathrm{val}}(q)
--\lambda_{\mathrm{var}}\operatorname{SD}_{\mathrm{bootstrap}}(q)
+=\\mathrm{MacroF1}_{\mathrm{val}}(q)
+-\lambda_{\mathrm{var}}\\mathrm{SD}_{\mathrm{bootstrap}}(q)
 -\lambda_{\mathrm{disc}}N_{\mathrm{components}}(q).
 $$
 
@@ -889,10 +889,10 @@ learnable adjacency. Blend a symmetric learned residual with the prior:
 $$
 \mathbf A_{\theta}
 =(1-\lambda_a)\mathbf A_{\kappa}
-+\lambda_a\operatorname{softplus}
++\lambda_a\\mathrm{softplus}
 \left(\frac{\boldsymbol\Theta+\boldsymbol\Theta^\top}{2}\right),
 \qquad
-\operatorname{diag}(\mathbf A_\theta)=0.
+\\mathrm{diag}(\mathbf A_\theta)=0.
 $$
 
 The current DGCNN adjacency is unconstrained before ReLU and may be asymmetric;
@@ -928,7 +928,7 @@ The smoothness loss is
 $$
 \mathcal L_{X,\mathrm{smooth}}
 =\frac{1}{N}\sum_{n=1}^{N}
-\frac{\operatorname{tr}(\mathbf H_n^\top
+\frac{\\mathrm{tr}(\mathbf H_n^\top
 \mathbf L_\kappa\mathbf H_n)}
 {\sum_{i,j}A^\kappa_{ij}+\varepsilon}
 =\frac{1}{2N}\sum_n
@@ -975,8 +975,8 @@ $$
 and use
 
 $$
-\operatorname{Attn}(\mathbf Q,\mathbf K,\mathbf V)
-=\operatorname{softmax}\left(
+\\mathrm{Attn}(\mathbf Q,\mathbf K,\mathbf V)
+=\\mathrm{softmax}\left(
 \frac{\mathbf Q\mathbf K^\top}{\sqrt d}
 +\lambda_B\mathbf B^{\kappa}
 \right)\mathbf V.
@@ -1097,8 +1097,8 @@ $$
 N_{\mathrm{components}},\quad
 \text{mean degree},\quad
 \text{degree distribution},\quad
-\operatorname{median}(\kappa),\quad
-\operatorname{IQR}(\kappa),
+\\mathrm{median}(\kappa),\quad
+\\mathrm{IQR}(\kappa),
 $$
 
 plus bootstrap edge stability and graph overlap between folds. The Jaccard
