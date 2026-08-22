@@ -47,7 +47,7 @@ where $\Phi_S = \{\phi(x_i^S)\}$ and $\Phi_T = \{\phi(x_j^T)\}$.
 **Maximum Mean Discrepancy (MMD).** MMD measures the distance between mean embeddings of two distributions in a reproducing kernel Hilbert space (RKHS):
 
 $$
-\\mathrm{MMD}^2(\Phi_S, \Phi_T) = \left\| \frac{1}{n_S}\sum_{i=1}^{n_S} \psi(\phi(x_i^S)) - \frac{1}{n_T}\sum_{j=1}^{n_T} \psi(\phi(x_j^T)) \right\|_{\mathcal{H}}^2
+\mathrm{MMD}^2(\Phi_S, \Phi_T) = \left\| \frac{1}{n_S}\sum_{i=1}^{n_S} \psi(\phi(x_i^S)) - \frac{1}{n_T}\sum_{j=1}^{n_T} \psi(\phi(x_j^T)) \right\|_{\mathcal{H}}^2
 $$
 
 where $\psi$ is a kernel mapping (typically Gaussian RBF). MMD is widely used in EEG domain adaptation because it is nonparametric, differentiable, and can be applied to single-layer or multi-layer representations. The Deep Coral and Deep MMD variants apply it to activations at multiple network depths.

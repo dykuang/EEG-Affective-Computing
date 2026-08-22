@@ -783,7 +783,7 @@ Most EEG connectivity graphs are built on **symmetric, undirected** measures —
 
 **Granger Causality** tests whether past values of one time series improve prediction of another:
 
-$$X \xrightarrow{\text{Granger}} Y \text{ if } \text{Var}(Y_t | Y_{<t}, X_{<t}) < \text{Var}(Y_t | Y_{<t})$$
+$$X \to Y \text{ (Granger) if } \text{Var}(Y_t | Y_{<t}, X_{<t}) < \text{Var}(Y_t | Y_{<t})$$
 
 Spectral Granger causality extends this to frequency domain, directly linking to EEG bands:
 

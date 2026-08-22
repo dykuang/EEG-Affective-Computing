@@ -54,9 +54,9 @@ Masked reconstruction is attractive for EEG because recordings are often plentif
 
 Contrastive learning trains representations so that compatible views of the same underlying example are close while views from different examples are separated. For an EEG segment, two views might be produced by label-preserving transformations such as modest temporal cropping, amplitude scaling, channel dropout, or noise injection. An InfoNCE-style objective for an anchor $z_i$ and its positive representation $z_i^+$ can be written as
 
-$$\mathcal{L}_{\text{NCE}} = -\log \frac{\exp(\\mathrm{sim}(z_i,z_i^+)/\tau)}{\sum_{j} \exp(\\mathrm{sim}(z_i,z_j)/\tau)},$$
+$$\mathcal{L}_{\text{NCE}} = -\log \frac{\exp(\mathrm{sim}(z_i,z_i^+)/\tau)}{\sum_{j} \exp(\mathrm{sim}(z_i,z_j)/\tau)},$$
 
-where $\\mathrm{sim}$ is a similarity function and $\tau$ is a temperature parameter. The negative examples should be selected carefully: two segments from the same participant, session, or emotional episode may not be valid negatives simply because they have different indices.
+where $\mathrm{sim}$ is a similarity function and $\tau$ is a temperature parameter. The negative examples should be selected carefully: two segments from the same participant, session, or emotional episode may not be valid negatives simply because they have different indices.
 
 Teacher-student networks are closely related to consistency learning and are often combined with contrastive objectives, although the two ideas are not identical. A teacher, commonly updated as an exponential moving average of the student, supplies a stable representation or pseudo-target for another view of the same EEG segment. The student is optimized to agree with that target, sometimes with additional negatives or a supervised loss. This design can avoid reliance on large labeled datasets, but it can also collapse to uninformative representations unless normalization, prediction heads, stop-gradient operations, centering, or other anti-collapse mechanisms are used.
 
