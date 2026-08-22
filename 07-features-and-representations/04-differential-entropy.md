@@ -210,3 +210,10 @@ Reducing from 62 to 4 channels with DE features often retains 80–90% of classi
 ## Summary
 
 Differential entropy has become the benchmark spectral feature for EEG-based affective computing. Its strong empirical performance, principled information-theoretic foundation, and computational simplicity make it the recommended starting point for most emotion recognition pipelines. While closely related to log band power under the Gaussian assumption, DE provides a framework that can be extended to non-Gaussian scenarios and integrated with temporal smoothing for continuous affect tracking.
+
+## References
+
+- Shi, L.-C., Jiao, Y.-Y., & Lu, B.-L. (2013). Differential entropy feature for EEG-based vigilance estimation. *2013 35th Annual International Conference of the IEEE Engineering in Medicine and Biology Society*, 6627–6630. https://doi.org/10.1109/EMBC.2013.6611075
+- Zheng, W.-L., & Lu, B.-L. (2015). Investigating critical frequency bands and channels for EEG-based emotion recognition with deep neural networks. *IEEE Transactions on Autonomous Mental Development, 7*(3), 162–175. https://doi.org/10.1109/TAMD.2015.2431497
+- Zheng, W.-L., Liu, W., Lu, Y., Lu, B.-L., & Cichocki, A. (2019). EmotionMeter: A multimodal framework for recognizing human emotions. *IEEE Transactions on Cybernetics, 49*(3), 1110–1122. https://doi.org/10.1109/TCYB.2018.2797176
+- Cover, T. M., & Thomas, J. A. (2006). *Elements of Information Theory* (2nd ed.). Wiley.

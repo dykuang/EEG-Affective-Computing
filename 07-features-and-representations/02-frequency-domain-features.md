@@ -131,3 +131,10 @@ Bicoherence features have been explored for EEG emotion recognition, particularl
 ## Summary
 
 Frequency-domain features, particularly band powers, are the backbone of EEG-based affective computing. They are grounded in decades of neuroscience research linking spectral bands to emotional processes, computationally efficient, and relatively robust to noise when estimated over sufficient segment lengths. Their main limitation is the loss of temporal information within the analysis window—a limitation addressed by the time-frequency representations discussed in the next section.
+
+## References
+
+- Welch, P. D. (1967). The use of fast Fourier transform for the estimation of power spectra: A method based on time averaging over short, modified periodograms. *IEEE Transactions on Audio and Electroacoustics, 15*(2), 70–73. https://doi.org/10.1109/TAU.1967.1161901
+- Klimesch, W. (1999). EEG alpha and theta oscillations reflect cognitive and memory performance: A review and analysis. *Brain Research Reviews, 29*(2–3), 169–195. https://doi.org/10.1016/S0165-0173(98)00056-3
+- Davidson, R. J. (2004). What does the prefrontal cortex “do” in affect: Perspectives on frontal EEG asymmetry research. *Biological Psychology, 67*(1–2), 219–233. https://doi.org/10.1016/j.biopsycho.2004.03.008
+- Oppenheim, A. V., & Schafer, R. W. (2010). *Discrete-Time Signal Processing* (3rd ed.). Prentice Hall.

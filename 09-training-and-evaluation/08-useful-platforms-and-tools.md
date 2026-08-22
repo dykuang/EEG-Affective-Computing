@@ -65,3 +65,16 @@ The best tool is therefore the one that makes the intended protocol easy to expr
 ## Summary
 
 MNE-Python, EEGLAB, and FieldTrip support signal analysis; BIDS and MNE-BIDS support data organization; TorchEEG, Braindecode, libEER, and EEGEmoLib support EEG modeling and affective-EEG experimentation; and MOABB demonstrates standardized benchmarking. These tools can accelerate research and improve reuse, but only an explicit split manifest, leakage-safe preprocessing, versioned configurations, and unit-appropriate metrics make the resulting evidence interpretable.
+
+## References
+
+- Gramfort, A., Luessi, M., Larson, E., et al. (2013). MEG and EEG data analysis with MNE-Python. *Frontiers in Neuroscience, 7*, 267. https://doi.org/10.3389/fnins.2013.00267
+- Delorme, A., & Makeig, S. (2004). EEGLAB: An open source toolbox for analysis of single-trial EEG dynamics including independent component analysis. *Journal of Neuroscience Methods, 134*(1), 9–21. https://doi.org/10.1016/j.jneumeth.2003.10.009
+- Oostenveld, R., Fries, P., Maris, E., & Schoffelen, J.-M. (2011). FieldTrip: Open source software for advanced analysis of MEG, EEG, and invasive electrophysiological data. *Computational Intelligence and Neuroscience*, 2011, 156869. https://doi.org/10.1155/2011/156869
+- Gorgolewski, K. J., Auer, T., Calhoun, V. D., et al. (2016). The brain imaging data structure, a format for organizing and describing outputs of neuroimaging experiments. *Scientific Data, 3*, 160044. https://doi.org/10.1038/sdata.2016.44
+- Appelhoff, S., Sanderson, M., Brooks, T. L., et al. (2019). MNE-BIDS: Organizing electrophysiological data into the BIDS format and facilitating their analysis. *Journal of Open Source Software, 4*(44), 1896. https://doi.org/10.21105/joss.01896
+- Schirrmeister, R. T., Springenberg, J. T., Fiederer, L. D. J., et al. (2017). Deep learning with convolutional neural networks for EEG decoding and visualization. *Human Brain Mapping, 38*(11), 5391–5420. https://doi.org/10.1002/hbm.23730
+- Jayaram, V., & Barachant, A. (2018). MOABB: Trustworthy algorithm benchmarking for BCIs. *Journal of Neural Engineering, 15*(6), 066011. https://doi.org/10.1088/1741-2552/aadea0
+- TorchEEG contributors. (n.d.). *TorchEEG documentation*. https://torcheeg.readthedocs.io/en/latest/
+- Li, X., Xie, Y., Wang, Z., et al. (n.d.). *LibEER: Library for EEG-based emotion recognition* [Source code]. GitHub. https://github.com/XJTU-EEG/LibEER
+- EEGEmoLib contributors. (n.d.). *EEGEmoLib documentation*. https://eegemolib.github.io/

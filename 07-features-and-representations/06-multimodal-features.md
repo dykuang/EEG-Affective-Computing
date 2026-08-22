@@ -315,3 +315,11 @@ Several datasets provide synchronized multimodal recordings:
 ## Summary
 
 Multimodal features enrich EEG-based affective computing by capturing complementary aspects of the emotional response. Peripheral physiology (ECG, EDA, respiration) provides robust arousal signals; eye tracking reveals attentional and cognitive aspects; facial expressions capture social and communicative dimensions; and behavioral features ground the response in context. Effective multimodal fusion—at the feature, decision, model, or attention level—consistently improves upon EEG-only baselines, particularly in challenging settings such as subject-independent recognition and real-world deployment. The practical challenges of sensor synchronization, missing modalities, and computational cost are non-trivial but surmountable, and the field is moving toward increasingly integrated multimodal systems.
+
+## References
+
+- Koelstra, S., Mühl, C., Soleymani, M., et al. (2012). DEAP: A database for emotion analysis using physiological signals. *IEEE Transactions on Affective Computing, 3*(1), 18–31. https://doi.org/10.1109/T-AFFC.2011.15
+- Soleymani, M., Lichtenauer, J., Pun, T., & Pantic, M. (2012). A multimodal database for affect recognition and implicit tagging. *IEEE Transactions on Affective Computing, 3*(1), 42–55. https://doi.org/10.1109/T-AFFC.2011.25
+- Abadi, M. K., Subramanian, R., Kia, S. M., Avesani, P., Patras, I., & Sebe, N. (2015). DECAF: A multimodal database for decoding affective physiological responses. *IEEE Transactions on Affective Computing, 6*(3), 209–222. https://doi.org/10.1109/TAFFC.2015.2397931
+- Corneanu, C. A., Simón, M. O., Cohn, J. F., & Guerrero, S. E. (2016). Survey on RGB, 3D, thermal, and multimodal approaches for facial expression recognition. *IEEE Transactions on Pattern Analysis and Machine Intelligence, 38*(8), 1548–1568. https://doi.org/10.1109/TPAMI.2016.2515606
+- Baltrušaitis, T., Ahuja, C., & Morency, L.-P. (2019). Multimodal machine learning: A survey and taxonomy. *IEEE Transactions on Pattern Analysis and Machine Intelligence, 41*(2), 423–443. https://doi.org/10.1109/TPAMI.2018.2798607

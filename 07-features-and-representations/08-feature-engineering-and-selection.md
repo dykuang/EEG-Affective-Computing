@@ -216,3 +216,12 @@ The aligned source features are obtained by whitening with the source covariance
 ## Summary
 
 Effective feature engineering and selection are as important as the choice of features themselves. With high-dimensional feature spaces and limited samples, dimensionality reduction, feature selection, and proper normalization are essential for building models that generalize. Feature fusion from multiple domains consistently improves performance, and domain adaptation techniques are increasingly necessary for cross-subject and cross-session deployment. The guiding principle is to treat feature engineering as an integral part of the modeling pipeline—not a preprocessing afterthought—and to evaluate feature choices with the same rigor as model choices.
+
+## References
+
+- Guyon, I., & Elisseeff, A. (2003). An introduction to variable and feature selection. *Journal of Machine Learning Research, 3*, 1157–1182.
+- Jolliffe, I. T., & Cadima, J. (2016). Principal component analysis: A review and recent developments. *Philosophical Transactions of the Royal Society A, 374*(2065), 20150202. https://doi.org/10.1098/rsta.2015.0202
+- van der Maaten, L., & Hinton, G. (2008). Visualizing data using t-SNE. *Journal of Machine Learning Research, 9*, 2579–2605.
+- Sun, B., & Saenko, K. (2016). Deep CORAL: Correlation alignment for deep domain adaptation. *European Conference on Computer Vision*, 443–450. https://doi.org/10.1007/978-3-319-46493-0_28
+- Lotte, F., Bougrain, L., Cichocki, A., et al. (2018). A review of classification algorithms for EEG-based brain–computer interfaces: A 10 year update. *Journal of Neural Engineering, 15*(3), 031005. https://doi.org/10.1088/1741-2552/aab2f2
+- Rodrigues, J., Teixeira, C. A., & Fred, A. (2020). A review of feature selection methods for EEG-based applications. *Sensors, 20*(16), 4440. https://doi.org/10.3390/s20164440

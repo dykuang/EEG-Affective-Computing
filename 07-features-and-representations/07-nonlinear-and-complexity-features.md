@@ -198,3 +198,11 @@ $D_2$ gives the minimum number of variables needed to describe the system's dyna
 ## Summary
 
 Nonlinear and complexity features capture aspects of EEG dynamics—irregularity, predictability, self-similarity, and chaotic behavior—that are invisible to linear and spectral methods. Entropy-based measures (Sample Entropy, Fuzzy Entropy, Multiscale Entropy) are the most practical and widely used for affective computing, offering a good balance of discriminability, interpretability, and computational efficiency. Fractal measures (HFD, DFA) and RQA provide additional dynamical characterizations. While nonlinear features rarely outperform well-engineered spectral features (DE, band powers) in head-to-head comparisons, they often capture complementary variance and can improve performance when fused with linear features. The main practical challenges are artifact sensitivity, segment length requirements, and parameter selection—all of which reward careful methodology and transparent reporting.
+
+## References
+
+- Pincus, S. M. (1991). Approximate entropy as a measure of system complexity. *Proceedings of the National Academy of Sciences, 88*(6), 2297–2301. https://doi.org/10.1073/pnas.88.6.2297
+- Richman, J. S., & Moorman, J. R. (2000). Physiological time-series analysis using approximate entropy and sample entropy. *American Journal of Physiology-Heart and Circulatory Physiology, 278*(6), H2039–H2049. https://doi.org/10.1152/ajpheart.2000.278.6.H2039
+- Costa, M., Goldberger, A. L., & Peng, C.-K. (2002). Multiscale entropy analysis of complex physiologic time series. *Physical Review Letters, 89*(6), 068102. https://doi.org/10.1103/PhysRevLett.89.068102
+- Higuchi, T. (1988). Approach to an irregular time series on the basis of the fractal theory. *Physica D: Nonlinear Phenomena, 31*(2), 277–283. https://doi.org/10.1016/0167-2789(88)90081-4
+- Kantz, H., & Schreiber, T. (2004). *Nonlinear Time Series Analysis* (2nd ed.). Cambridge University Press.

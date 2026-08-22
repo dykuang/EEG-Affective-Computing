@@ -184,3 +184,11 @@ This feature-library view connects naturally to the LLM-inspired discussion in [
 ## Summary
 
 Time-frequency features bridge the gap between static spectral features and raw time-domain signals, enabling the capture of dynamic spectral changes that accompany emotional processing. The STFT remains the most practical choice for many applications, while wavelet-based methods offer theoretical advantages in resolution, and HHT provides an adaptive alternative for nonlinear signals. For affective computing, the key is to match the time-frequency resolution to the expected time scale of emotional dynamics—typically on the order of seconds, not milliseconds.
+
+## References
+
+- Cohen, M. X. (2014). *Analyzing Neural Time Series Data: Theory and Practice*. MIT Press.
+- Mallat, S. (1999). *A Wavelet Tour of Signal Processing* (2nd ed.). Academic Press.
+- Huang, N. E., Shen, Z., Long, S. R., et al. (1998). The empirical mode decomposition and the Hilbert spectrum for nonlinear and non-stationary time series analysis. *Proceedings of the Royal Society A, 454*(1971), 903–995. https://doi.org/10.1098/rspa.1998.0193
+- Bruns, A. (2004). Fourier-, Hilbert- and wavelet-based signal analysis: Are they really different approaches? *Journal of Neuroscience Methods, 137*(2), 321–332. https://doi.org/10.1016/j.jneumeth.2004.03.002
+- Cano Achuri, A., et al. (2026). Interpretable bag-of-waves biomarkers for EEG-based neurological disease models. *Journal of Neural Engineering*. https://doi.org/10.1088/1741-2552/ae4d8c

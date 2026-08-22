@@ -145,3 +145,10 @@ The right panel of Figure 7.2 above shows an illustrative comparison of discrimi
 ## Summary
 
 Time-domain features are computationally efficient, interpretable, and provide a solid baseline for affective EEG classification. However, they cannot directly isolate frequency-specific information, which is a significant limitation given the well-established spectral correlates of emotion. For this reason, time-domain features are typically combined with frequency-domain and time-frequency features, as discussed in subsequent sections.
+
+## References
+
+- Hjorth, B. (1970). EEG analysis based on time domain properties. *Electroencephalography and Clinical Neurophysiology, 29*(3), 306–310. https://doi.org/10.1016/0013-4694(70)90143-4
+- Acharya, U. R., Fujita, H., Sudarshan, V. K., Bhat, S., & Koh, J. E. W. (2015). Application of entropies for automated diagnosis of epilepsy using EEG signals: A review. *Knowledge-Based Systems, 88*, 85–96. https://doi.org/10.1016/j.knosys.2015.08.004
+- Jenke, R., Peer, A., & Buss, M. (2014). Feature extraction and selection for emotion recognition from EEG. *IEEE Transactions on Affective Computing, 5*(3), 327–339. https://doi.org/10.1109/TAFFC.2014.2339834
+- Chanel, G., Kierkels, J. J. M., Soleymani, M., & Pun, T. (2009). Short-term emotion assessment in a recall paradigm. *International Journal of Human-Computer Studies, 67*(8), 607–627. https://doi.org/10.1016/j.ijhcs.2009.03.005

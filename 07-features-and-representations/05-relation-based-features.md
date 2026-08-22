@@ -243,3 +243,11 @@ An emerging approach is to use the full pattern of connectivity (the connectome 
 ## Summary
 
 Relation-based features capture the coordinated, network-level brain dynamics that underlie emotional processing. From simple correlations to Riemannian geometry, these features provide a perspective that is fundamentally complementary to channel-wise spectral features. The choice of connectivity measure should be guided by theoretical considerations (volume conduction robustness, linear vs. nonlinear assumptions) and practical constraints (segment length, computational budget). In modern affective EEG pipelines, relation-based features are increasingly integrated with spectral features through feature fusion or through models that inherently capture spatial interactions, such as graph neural networks (see Chapter 08, Section 06).
+
+## References
+
+- Nolte, G., Bai, O., Wheaton, L., Mari, Z., Vorbach, S., & Hallett, M. (2004). Identifying true brain interaction from EEG data using the imaginary part of coherency. *Clinical Neurophysiology, 115*(10), 2292–2307. https://doi.org/10.1016/j.clinph.2004.04.029
+- Vinck, M., Oostenveld, R., van Wingerden, M., Battaglia, F., & Pennartz, C. M. A. (2011). An improved index of phase-synchronization for electrophysiological data in the presence of volume-conduction, noise and sample-size bias. *NeuroImage, 55*(4), 1548–1565. https://doi.org/10.1016/j.neuroimage.2011.01.055
+- Stam, C. J. (2014). Modern network science of neurological disorders. *Nature Reviews Neuroscience, 15*(10), 683–695. https://doi.org/10.1038/nrn3801
+- Barachant, A., Bonnet, S., Congedo, M., & Jutten, C. (2012). Multiclass brain–computer interface classification by Riemannian geometry. *IEEE Transactions on Biomedical Engineering, 59*(4), 920–928. https://doi.org/10.1109/TBME.2011.2172210
+- Finn, E. S., Shen, X., Scheinost, D., et al. (2015). Functional connectome fingerprinting: Identifying individuals using patterns of brain connectivity. *Nature Neuroscience, 18*(11), 1664–1671. https://doi.org/10.1038/nn.4135
