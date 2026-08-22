@@ -681,3 +681,17 @@ The field is evolving rapidly — what is trending today may become standard tom
 ---
 
 **Related Reading**: See previous sections for foundational architectures that can be combined with these trending approaches.
+
+## References
+
+- Liu, Z., Wang, Y., Vaidya, S., et al. (2024). KAN: Kolmogorov-Arnold networks. *arXiv:2404.19756*.
+- Gu, A., and Dao, T. (2024). Mamba: Linear-time sequence modeling with selective state spaces. In *COLM*.
+- Gu, A., Goel, K., and Ré, C. (2022). Efficiently modeling long sequences with structured state spaces. In *ICLR*.
+- Neftci, E. O., Mostafa, H., and Zenke, F. (2019). Surrogate gradient learning in spiking neural networks. *IEEE Signal Processing Magazine*, 36(6), 51–63.
+- Kostas, D., Aroca-Ouellette, S., and Rudzicz, F. (2021). BENDR: Using transformers and a contrastive self-supervised learning task to learn from massive amounts of EEG data. *Frontiers in Human Neuroscience*, 15, 653659.
+- Cui, W., Wang, Z., Wang, J., et al. (2024). Large brain model for learning generic representations with tremendous EEG data in BCI. In *ICLR*.
+- Chen, R. T. Q., Rubanova, Y., Bettencourt, J., and Duvenaud, D. (2018). Neural ordinary differential equations. In *NeurIPS*.
+- Ha, D., Dai, A. M., and Le, Q. V. (2017). HyperNetworks. In *ICLR*.
+- Zoph, B., and Le, Q. V. (2017). Neural architecture search with reinforcement learning. In *ICLR*.
+- Raissi, M., Perdikaris, P., and Karniadakis, G. E. (2019). Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations. *Journal of Computational Physics*, 378, 686–707.
+- Hasani, R., Lechner, M., Amini, A., Liebenwein, L., Tschaikowski, M., Teschl, G., and Rus, D. (2021). Liquid time-constant networks. In *AAAI*.

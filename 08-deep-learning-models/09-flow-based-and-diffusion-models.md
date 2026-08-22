@@ -625,3 +625,14 @@ Flow-based and diffusion models represent the frontier of generative modeling fo
 ---
 
 **Related Reading**: See [Variational Autoencoders](07-variational-autoencoders.md) and [Generative Adversarial Networks](08-generative-adversarial-networks.md) for complementary generative approaches.
+
+## References
+
+- Dinh, L., Sohl-Dickstein, J., and Bengio, S. (2017). Density estimation using Real NVP. In *ICLR*.
+- Kingma, D. P., and Dhariwal, P. (2018). Glow: Generative flow with invertible 1×1 convolutions. In *NeurIPS*.
+- Papamakarios, G., Nalisnick, E., Rezende, D. J., Mohamed, S., and Lakshminarayanan, B. (2021). Normalizing flows for probabilistic modeling and inference. *JMLR*, 22(57), 1–64.
+- Ho, J., Jain, A., and Abbeel, P. (2020). Denoising diffusion probabilistic models. In *NeurIPS*.
+- Song, Y., Sohl-Dickstein, J., Kingma, D. P., Kumar, A., Ermon, S., and Poole, B. (2021). Score-based generative modeling through stochastic differential equations. In *ICLR*.
+- Song, J., Meng, C., and Ermon, S. (2021). Denoising diffusion implicit models. In *ICLR*.
+- Ho, J., and Salimans, T. (2022). Classifier-free diffusion guidance. *arXiv:2207.12598*.
+- Nichol, A. Q., and Dhariwal, P. (2021). Improved denoising diffusion probabilistic models. In *ICML*.

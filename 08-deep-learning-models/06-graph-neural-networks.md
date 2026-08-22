@@ -940,3 +940,13 @@ GNNs represent the natural evolution of EEG analysis toward explicitly incorpora
 ---
 
 **Related Reading**: See [Hybrid Architectures and Advanced Models](05-hybrid-architectures.md) for combinations of GNNs with other approaches. For emerging paradigms, see [Trending Architectures](10-trending-architectures.md).
+
+## References
+
+- Bruna, J., Zaremba, W., Szlam, A., and LeCun, Y. (2014). Spectral networks and locally connected networks on graphs. In *ICLR*.
+- Kipf, T. N., and Welling, M. (2017). Semi-supervised classification with graph convolutional networks. In *ICLR*.
+- Veličković, P., Cucurull, G., Casanova, A., Romero, A., Liò, P., and Bengio, Y. (2018). Graph attention networks. In *ICLR*.
+- Wu, Z., Pan, S., Chen, F., Long, G., Zhang, C., and Yu, P. S. (2021). A comprehensive survey on graph neural networks. *IEEE Transactions on Neural Networks and Learning Systems*, 32(1), 4–24.
+- Song, T., Zheng, W., Song, P., and Cui, Z. (2018). EEG emotion recognition using dynamical graph convolutional neural networks. *IEEE Transactions on Affective Computing*, 11(3), 532–541.
+- Zhong, P., Wang, D., and Miao, C. (2020). EEG-based emotion recognition using regularized graph neural networks. *IEEE Transactions on Affective Computing*, 13(3), 1290–1301.
+- Ollivier, Y. (2009). Ricci curvature of Markov chains on metric spaces. *Journal of Functional Analysis*, 256(3), 810–864.

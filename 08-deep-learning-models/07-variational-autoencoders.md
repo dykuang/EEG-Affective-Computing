@@ -508,3 +508,12 @@ VAEs provide a principled probabilistic framework for EEG representation learnin
 ---
 
 **Next**: [Generative Adversarial Networks](08-generative-adversarial-networks.md)
+
+## References
+
+- Kingma, D. P., and Welling, M. (2014). Auto-encoding variational Bayes. In *ICLR*.
+- Rezende, D. J., Mohamed, S., and Wierstra, D. (2014). Stochastic backpropagation and approximate inference in deep generative models. In *ICML*.
+- Sohn, K., Lee, H., and Yan, X. (2015). Learning structured output representation using deep conditional generative models. In *NeurIPS*.
+- Higgins, I., Matthey, L., Pal, A., et al. (2017). beta-VAE: Learning basic visual concepts with a constrained variational framework. In *ICLR*.
+- van den Oord, A., Vinyals, O., and Kavukcuoglu, K. (2017). Neural discrete representation learning. In *NeurIPS*.
+- Chung, J., Kastner, K., Dinh, L., Goel, K., Courville, A., and Bengio, Y. (2015). A recurrent latent variable model for sequential data. In *NeurIPS*.

@@ -614,3 +614,11 @@ Hybrid architectures represent the current state-of-the-art for EEG-based affect
 ---
 
 **Next**: [Graph Neural Networks](06-graph-neural-networks.md)
+
+## References
+
+- Caruana, R. (1997). Multitask learning. *Machine Learning*, 28, 41–75.
+- Ganin, Y., Ustinova, E., Ajakan, H., et al. (2016). Domain-adversarial training of neural networks. *JMLR*, 17(59), 1–35.
+- Baltrušaitis, T., Ahuja, C., and Morency, L.-P. (2019). Multimodal machine learning: A survey and taxonomy. *IEEE Transactions on Pattern Analysis and Machine Intelligence*, 41(2), 423–443.
+- Bai, S., Kolter, J. Z., and Koltun, V. (2018). An empirical evaluation of generic convolutional and recurrent networks for sequence modeling. *arXiv:1803.01271*.
+- Ding, Y., Robinson, N., Zhang, S., Zeng, Q., and Guan, C. (2022). TSception: Capturing temporal dynamics and spatial asymmetry from EEG for emotion recognition. *IEEE Transactions on Affective Computing*, 13(4), 2232–2245.

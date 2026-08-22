@@ -532,3 +532,11 @@ For many EEG applications with fixed-window analysis and limited data, hybrid ar
 ---
 
 **Next**: [Transformer Models](04-transformer-models.md)
+
+## References
+
+- Elman, J. L. (1990). Finding structure in time. *Cognitive Science*, 14(2), 179–211.
+- Hochreiter, S., and Schmidhuber, J. (1997). Long short-term memory. *Neural Computation*, 9(8), 1735–1780.
+- Cho, K., van Merriënboer, B., Gulcehre, C., et al. (2014). Learning phrase representations using RNN encoder–decoder for statistical machine translation. In *EMNLP*.
+- Pascanu, R., Mikolov, T., and Bengio, Y. (2013). On the difficulty of training recurrent neural networks. In *ICML*.
+- Lipton, Z. C., Berkowitz, J., and Elkan, C. (2015). A critical review of recurrent neural networks for sequence learning. *arXiv:1506.00019*.
