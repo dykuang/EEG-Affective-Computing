@@ -1,0 +1,16 @@
+{
+  "name": "eeg-affective-computing",
+  "version": "1.0.0",
+  "description": "A repo for hosting my online \"book\" for EEG based emotion classification from past explorations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gitbook-plugin-katex": "^1.1.4",
+    "honkit": "^6.2.0"
+  }
+}
