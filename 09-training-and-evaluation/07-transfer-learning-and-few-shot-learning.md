@@ -39,7 +39,7 @@ Domain adaptation aligns the feature distributions of a labeled source domain $\
 Discrepancy-based methods minimize an explicit distribution distance between source and target feature representations. Let $\phi(\cdot)$ be a feature extractor shared across domains. The total loss combines a source classification term with a distribution-matching regularizer:
 
 $$
-\mathcal{L} = \underbrace{\frac{1}{n_S}\sum_{i=1}^{n_S} \ell\big(f(\phi(x_i^S)), y_i^S\big)}_{\text{source supervision}} \;+\; \lambda \cdot \underbrace{d\big(\Phi_S, \Phi_T\big)}_{\text{domain discrepancy}}
+\mathcal{L} = \frac{1}{n_S}\sum_{i=1}^{n_S} \ell\big(f(\phi(x_i^S)), y_i^S\big) \;+\; \lambda \cdot d\big(\Phi_S, \Phi_T\big)
 $$
 
 where $\Phi_S = \{\phi(x_i^S)\}$ and $\Phi_T = \{\phi(x_j^T)\}$.
@@ -73,7 +73,7 @@ where $C_S$ and $C_T$ are the $d \times d$ covariance matrices of $\Phi_S$ and $
 Adversarial methods frame domain alignment as a minimax game between a feature extractor $\phi$ and a domain discriminator $D$:
 
 $$
-\min_\phi \max_D \; \mathcal{L}_{\text{cls}} - \lambda \cdot \underbrace{\mathbb{E}_{x \sim \mathcal{D}_S}\big[\log D(\phi(x))\big] + \mathbb{E}_{x \sim \mathcal{D}_T}\big[\log(1 - D(\phi(x)))\big]}_{\text{domain confusion loss}}
+\min_\phi \max_D \; \mathcal{L}_{\text{cls}} - \lambda \cdot \left(\mathbb{E}_{x \sim \mathcal{D}_S}\big[\log D(\phi(x))\big] + \mathbb{E}_{x \sim \mathcal{D}_T}\big[\log(1 - D(\phi(x)))\big]\right)
 $$
 
 The discriminator is trained to identify which domain a feature vector comes from; the feature extractor is trained simultaneously to maximize classification accuracy while *fooling* the discriminator. At equilibrium, features from both domains become indistinguishable to $D$, implying distributional alignment.

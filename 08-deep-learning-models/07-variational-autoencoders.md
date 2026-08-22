@@ -23,7 +23,7 @@ $$\mathcal{L}_{\text{AE}} = \|x - \hat{x}\|^2$$
 $$\text{Encoder: } q_\phi(z|x) = \mathcal{N}(\mu_\phi(x), \sigma_\phi^2(x))$$
 $$\text{Decoder: } p_\theta(x|z) = \mathcal{N}(g_\theta(z), \sigma^2 I)$$
 
-$$\mathcal{L}_{\text{VAE}} = \underbrace{\mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)]}_{\text{Reconstruction loss}} - \underbrace{D_{\text{KL}}(q_\phi(z|x) \| p(z))}_{\text{KL divergence regularizer}}$$
+$$\mathcal{L}_{\text{VAE}} = \mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)] - D_{\text{KL}}(q_\phi(z|x) \| p(z))$$
 
 where $p(z) = \mathcal{N}(0, I)$ is the prior.
 
