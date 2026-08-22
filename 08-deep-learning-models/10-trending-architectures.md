@@ -4,15 +4,15 @@
 
 The landscape of deep learning is evolving rapidly. Beyond the established architectures (MLP, CNN, RNN, Transformer, GNN), a new wave of models is emerging with fundamentally different design principles. This section surveys trending architectures that are beginning to impact EEG-based affective computing, discussing their theoretical motivation, practical potential, and current limitations.
 
-![KAN and Mamba architectures for affective EEG. The diagram should use two panels: a Kolmogorov-Arnold network that routes engineered EEG features through learnable spline functions on edges to interpretable outputs, and a Mamba selective state-space block that processes long EEG sequences through input projection, local convolution, selective state-space scan, gating, residual connection, and readout.](figures/kan-and-mamba-eeg-architectures.png)
-
-**Figure 8.10: KAN and Mamba architectures for affective EEG.** KANs learn interpretable edge functions for compact feature models, while selective state-space models provide linear-scaling sequence processing for long EEG recordings.
-
 ## Kolmogorov-Arnold Networks (KANs)
 
 ### Motivation
 
 Traditional MLPs use fixed activation functions (e.g., ReLU, sigmoid) on nodes and learn only the linear weights between layers. KANs invert this paradigm: they use **learnable activation functions on edges** while nodes perform simple summation.
+
+![KAN architecture for affective EEG. A Kolmogorov-Arnold network routes engineered EEG features through learnable spline functions on edges to interpretable outputs.](figures/kan-eeg-architectures.png)
+
+**Figure 8.10: KAN architecture for affective EEG.** KANs replace fixed activations on nodes with learnable spline functions on edges, yielding compact, interpretable feature models for affective EEG.
 
 ### Theoretical Foundation
 
@@ -129,6 +129,10 @@ This could discover interpretable EEG biomarkers for emotions — a holy grail i
 ### Motivation
 
 Transformers have $O(T^2)$ attention complexity. State Space Models offer $O(T)$ sequence modeling with competitive performance — a game-changer for long EEG recordings.
+
+![Mamba selective state-space architecture for affective EEG. A Mamba block processes long EEG sequences through input projection, local convolution, selective state-space scan, gating, residual connection, and readout.](figures/mamba-eeg-architectures.png)
+
+**Figure 8.11: Mamba selective state-space architecture for affective EEG.** Selective state-space models provide linear-scaling sequence processing for long EEG recordings.
 
 ### Theoretical Foundation
 

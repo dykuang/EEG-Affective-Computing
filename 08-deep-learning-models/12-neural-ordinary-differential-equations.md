@@ -6,7 +6,7 @@ Neural ODEs are not a claim that EEG follows one simple deterministic physical e
 
 ![Neural ODE architecture for affective EEG. The diagram should show irregular EEG feature observations, timestamps, missingness masks, and task events initializing or updating a latent state; an ODE solver evolves the state continuously between observations; and a decoder produces time-resolved affect estimates, uncertainty, or reconstructed EEG features. Mark observation updates and solver intervals.](figures/neural-ode-eeg-architecture.png)
 
-**Figure 8.12: Neural ODE architecture for affective EEG.** A continuous-time latent state is updated from EEG observations and evolved by a learned differential equation before being decoded into affective trajectories or signal predictions.
+**Figure 8.13: Neural ODE architecture for affective EEG.** A continuous-time latent state is updated from EEG observations and evolved by a learned differential equation before being decoded into affective trajectories or signal predictions.
 
 ## Continuous-Time Latent Dynamics
 
