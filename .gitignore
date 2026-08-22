@@ -44,3 +44,6 @@ pnpm-lock.yaml
 # Local agent and editor configuration
 .agents/
 .vscode/
+
+# local files that are not part of the book source
+ExtraFiles/
