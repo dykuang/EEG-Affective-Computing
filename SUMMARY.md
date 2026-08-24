@@ -90,3 +90,6 @@
 - [Conclusion](12-conclusion/README.md)
 	- [Sample Section](12-conclusion/sample-section.md)
 - [Glossary](GLOSSARY.md)
+- [Appendix](Appendix/README.md)
+	- [Project Harness Template](Appendix/01-project-harness-template.md)
+	- [Exploration Harness Template](Appendix/02-exploration-harness-template.md)
