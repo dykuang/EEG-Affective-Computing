@@ -944,7 +944,7 @@ Use subjects, not segments, as the independent units for cross-subject confidenc
 
 ## 11. Recommended research sequence
 
-1. **Stage A -- verify the graph:** implement fold-specific Pearson graphs, MST+15%, augmented Forman, and graph diagnostics without changing a model.
+1. **Stage A -- verify the graph:** implement fold-specific Pearson graphs, MST+15\%, augmented Forman, and graph diagnostics without changing a model.
 2. **Stage B -- isolate curvature:** compare raw adjacency with curvature-reweighted adjacency in DGCNN, including $\gamma=0$ and a density-matched random graph.
 3. **Stage C -- add training regularization:** add $\mathcal L_{X,\mathrm{smooth}}$, then the learned adjacency residual.
 4. **Stage D -- compare estimators:** add Spearman and Graphical Lasso. Add sparse VAR only if complete DE trials provide enough temporal observations.
