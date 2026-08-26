@@ -18,7 +18,7 @@ A practical BCI foundation system can combine several specialized layers:
 
 ![A layered BCI foundation-system blueprint: governed data and harmonization support self-supervised neural encoders; adapters, uncertainty, and personalization support bounded task services; agents and interfaces act through consent, confirmation, and safety monitoring; evaluation and governance span every layer.](figures/bci-foundation-blueprint.png)
 
-**Figure 11.1: Layered BCI foundation-system blueprint.** A BCI foundation system is a stack rather than a monolithic decoder. Reusable data and representations create reuse, while explicit adaptation, evaluation, consent, and safety protect against overreach.
+**Figure 12.1: Layered BCI foundation-system blueprint.** A BCI foundation system is a stack rather than a monolithic decoder. Reusable data and representations create reuse, while explicit adaptation, evaluation, consent, and safety protect against overreach.
 
 The goal is an interoperable family of encoders, adapters, and applications whose assumptions and evidence remain visible at every stage. A larger encoder that fails under a new montage or session has not achieved meaningful reuse.
 

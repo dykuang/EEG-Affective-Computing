@@ -127,7 +127,7 @@ Source estimation is most likely to add value when:
 
 For low-channel wearable studies, the cost-benefit ratio is less favorable, and alternative spatial representations such as channel-level patterns, graph-based electrode modeling, or learned spatial filters may be more appropriate.
 
-## Relation to Other Chapter 10 Topics
+## Relation to Other Chapter 11 Topics
 
 Source estimation interacts naturally with several other sections in this chapter.
 

@@ -177,4 +177,4 @@ Before declaring results, verify:
 
 ---
 
-*Template version: 1.0. Aligned with the AI Collaboration Protocol (Chapter 10).*
+*Template version: 1.0. Aligned with the AI Collaboration Protocol (Chapter 11).*

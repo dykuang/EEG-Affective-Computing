@@ -58,6 +58,6 @@ independently navigable.
 
 For a study with a locked question and formal evaluation, move to the
 [Project Harness Template](../Appendix/01-project-harness-template.md) and the
-[AI Collaboration Protocol](../10-special-topics/12-AI-collaboration-protocol.md).
+[AI Collaboration Protocol](../11-special-topics/12-AI-collaboration-protocol.md).
 The exploration kit remains useful for recording side investigations, but it
 must not replace the governed experiment ledger or approval gates.
