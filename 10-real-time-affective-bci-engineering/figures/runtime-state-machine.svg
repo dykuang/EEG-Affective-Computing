@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="fig103-title fig103-desc">
+  <title id="fig103-title">Runtime state machine for a real-time affective BCI</title>
+  <desc id="fig103-desc">States INITIALIZING, CALIBRATING, READY, DEGRADED, ABSTAIN, and SAFE_FALLBACK with labeled, evidence-based transitions. Recovery requires new evidence rather than a single confident softmax value.</desc>
+  <defs>
+    <linearGradient id="fig103-header" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#143B5D"/>
+      <stop offset="1" stop-color="#246B78"/>
+    </linearGradient>
+    <marker id="fig103-arrTeal" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2E6473"/>
+    </marker>
+    <marker id="fig103-arrWarn" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8A4B1F"/>
+    </marker>
+    <marker id="fig103-arrSafe" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#143B5D"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="980" fill="#F4F7F9"/>
+  <rect width="1600" height="118" fill="url(#fig103-header)"/>
+  <text x="800" y="52" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" fill="#FFFFFF">Runtime State Machine: Evidence-Based Recovery</text>
+  <text x="800" y="88" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#DDECF0">Permitted actions depend on mode. Returning to READY requires new evidence, not a reset of confidence.</text>
+
+  <rect x="70" y="170" width="280" height="130" rx="16" fill="#FFFFFF" stroke="#768896" stroke-width="2"/>
+  <text x="210" y="216" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#263746">INITIALIZING</text>
+  <text x="210" y="244" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5F6F7C">empty window / warm-up</text>
+  <text x="210" y="268" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5F6F7C">status only, no affect label</text>
+
+  <rect x="430" y="170" width="280" height="130" rx="16" fill="#FFFFFF" stroke="#2E6473" stroke-width="2"/>
+  <text x="570" y="216" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#263746">CALIBRATING</text>
+  <text x="570" y="244" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5F6F7C">declared protocol running</text>
+  <text x="570" y="268" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5F6F7C">no live intervention</text>
+
+  <rect x="860" y="160" width="300" height="150" rx="16" fill="#E8F4EF" stroke="#2C9A78" stroke-width="3"/>
+  <text x="1010" y="214" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#1F6A52">READY</text>
+  <text x="1010" y="246" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#263746">quality and uncertainty in bounds</text>
+  <text x="1010" y="274" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#263746">policy-gated actions allowed</text>
+
+  <rect x="1260" y="170" width="280" height="130" rx="16" fill="#FFF8F0" stroke="#8A4B1F" stroke-width="2"/>
+  <text x="1400" y="216" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#263746">ABSTAIN</text>
+  <text x="1400" y="244" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5F6F7C">insufficient evidence</text>
+  <text x="1400" y="268" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5F6F7C">no new intervention</text>
+
+  <rect x="250" y="430" width="300" height="140" rx="16" fill="#FFF4E5" stroke="#C47B1A" stroke-width="2"/>
+  <text x="400" y="478" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#263746">DEGRADED</text>
+  <text x="400" y="508" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5F6F7C">gap, dropout, missing modality,</text>
+  <text x="400" y="532" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5F6F7C">or overload; restricted defaults</text>
+
+  <rect x="980" y="430" width="340" height="140" rx="16" fill="#E8EEF4" stroke="#143B5D" stroke-width="3"/>
+  <text x="1150" y="478" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#143B5D">SAFE_FALLBACK</text>
+  <text x="1150" y="508" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5F6F7C">repeated faults, model failure,</text>
+  <text x="1150" y="532" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5F6F7C">stale calibration, or override</text>
+
+  <path d="M350 235 H430" fill="none" stroke="#2E6473" stroke-width="2.5" marker-end="url(#fig103-arrTeal)"/>
+  <text x="390" y="222" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#2E6473">window full</text>
+
+  <path d="M710 235 H860" fill="none" stroke="#2E6473" stroke-width="2.5" marker-end="url(#fig103-arrTeal)"/>
+  <text x="785" y="222" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#2E6473">calibration done</text>
+
+  <path d="M210 300 V360 H1010 V310" fill="none" stroke="#2E6473" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#fig103-arrTeal)"/>
+  <text x="560" y="352" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#2E6473">or warm-up complete if no extra calibration (dashed)</text>
+
+  <path d="M1160 235 H1260" fill="none" stroke="#8A4B1F" stroke-width="2.5" marker-end="url(#fig103-arrWarn)"/>
+  <text x="1210" y="222" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#8A4B1F">high u or quality fail</text>
+
+  <path d="M1400 300 V390 H1010 V310" fill="none" stroke="#2E6473" stroke-width="2.5" marker-end="url(#fig103-arrTeal)"/>
+  <text x="1220" y="378" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#2E6473">dwell + quality recover</text>
+
+  <path d="M900 310 L500 430" fill="none" stroke="#8A4B1F" stroke-width="2.5" marker-end="url(#fig103-arrWarn)"/>
+  <text x="620" y="400" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#8A4B1F">gap / dropout / overload</text>
+
+  <path d="M480 430 C640 360 780 340 860 250" fill="none" stroke="#2E6473" stroke-width="2.5" marker-end="url(#fig103-arrTeal)"/>
+  <text x="700" y="318" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#2E6473">fault cleared AND new warm-up</text>
+
+  <path d="M550 500 H980" fill="none" stroke="#143B5D" stroke-width="2.5" marker-end="url(#fig103-arrSafe)"/>
+  <text x="760" y="488" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#143B5D">repeated faults or stale calibration</text>
+
+  <path d="M1400 300 V470 H1320" fill="none" stroke="#143B5D" stroke-width="2.5" marker-end="url(#fig103-arrSafe)"/>
+  <text x="1458" y="390" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#143B5D">operator</text>
+  <text x="1458" y="406" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#143B5D">override</text>
+
+  <path d="M1150 430 V390 H570 V300" fill="none" stroke="#2E6473" stroke-width="2.5" marker-end="url(#fig103-arrTeal)"/>
+  <text x="820" y="412" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#2E6473">explicit recovery / confirmed recalibration</text>
+
+  <rect x="70" y="620" width="1460" height="310" rx="16" fill="#FFFFFF" stroke="#C5D0D6" stroke-width="1.5"/>
+  <text x="100" y="662" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#263746">Logging in every mode</text>
+  <text x="100" y="692" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#5F6F7C">timestamps | quality snapshot | uncertainty u | mode | action or non-action | model and calibration versions</text>
+
+  <text x="100" y="736" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#263746">Recovery rules (no magical confidence)</text>
+  <text x="100" y="766" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#5F6F7C">1. DEGRADED to READY only after the fault is cleared and a new warm-up (or restored valid state) succeeds.</text>
+  <text x="100" y="794" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#5F6F7C">2. ABSTAIN to READY only after quality and uncertainty remain acceptable for a declared dwell time.</text>
+  <text x="100" y="822" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#5F6F7C">3. SAFE_FALLBACK to READY only through an explicit procedure (recalibration or operator confirmation), never from one softmax spike.</text>
+  <text x="100" y="850" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#5F6F7C">4. Human override is faster than the neural loop and forces SAFE_FALLBACK or a user-chosen hold.</text>
+  <text x="100" y="888" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#5F6F7C">Line style is a second cue besides color: solid = required evidence; dashed = optional skip of extra calibration; thick navy = safety path.</text>
+</svg>

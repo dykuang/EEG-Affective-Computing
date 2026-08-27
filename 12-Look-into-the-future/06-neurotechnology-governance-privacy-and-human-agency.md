@@ -19,7 +19,7 @@ Consent must be understandable and revocable. For systems used by people with co
 
 ![Consent and permission lifecycle for neurotechnology. The diagram should separate consent for EEG collection, storage, inference, personalization, sharing, intervention, and retention, with explicit user review, revocation, deletion, and safe fallback paths.](figures/neurotechnology-consent-lifecycle.png)
 
-**Figure 11.11: Consent and permission lifecycle.** Consent is purpose-specific and revocable: permission to record EEG does not automatically authorize inference, adaptation, disclosure, intervention, or indefinite retention.
+**Figure 12.11: Consent and permission lifecycle.** Consent is purpose-specific and revocable: permission to record EEG does not automatically authorize inference, adaptation, disclosure, intervention, or indefinite retention.
 
 ## Privacy, Security, and Data Minimization
 
@@ -29,7 +29,7 @@ Security should address the full pipeline: acquisition device, wireless transmis
 
 ![Privacy and accountability boundary map. The diagram should trace raw EEG, derived embeddings, calibration histories, model updates, logs, and displayed inferences across device, network, storage, and interface boundaries, marking access controls, minimization, retention, deletion, and audit points.](figures/neurotechnology-privacy-boundaries.png)
 
-**Figure 11.12: Privacy and accountability boundaries.** Protection must cover raw signals, derived representations, model updates, logs, and displayed inferences across the complete acquisition and deployment pipeline.
+**Figure 12.12: Privacy and accountability boundaries.** Protection must cover raw signals, derived representations, model updates, logs, and displayed inferences across the complete acquisition and deployment pipeline.
 
 ## Human Agency and Meaningful Control
 
@@ -45,7 +45,7 @@ Potential harms are contextual. A fatigue alert may be supportive in a user-cont
 
 ## Accountability in Adaptive Systems
 
-Adaptive models require records of model version, calibration source, update rule, confidence, system action, user correction, and safety override. These records support debugging, auditing, and meaningful recourse when a system behaves unexpectedly.
+Adaptive models require records of model version, calibration source, update rule, confidence, system action, user correction, and safety override. These records support debugging, auditing, and meaningful recourse when a system behaves unexpectedly. The operational records that make this accountability concrete at runtime are specified in [Chapter 10](../10-real-time-affective-bci-engineering/README.md).
 
 Before deployment, define which actions require confirmation, which conditions cause abstention, when the system must fall back to a safe mode, and who is responsible for monitoring failures. Human oversight is not a vague promise; it is a concrete set of controls and responsibilities.
 

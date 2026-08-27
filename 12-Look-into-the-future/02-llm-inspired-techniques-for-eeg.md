@@ -8,7 +8,7 @@ LLMs operate on sequences of tokens with a relatively stable vocabulary. EEG nee
 
 ![EEG tokenization and signal-adapter pipeline. The diagram should show continuous multichannel EEG passing through resampling, referencing metadata, channel-set or time-frequency patching, positional and electrode-coordinate information, missing-channel masks, and a sequence encoder.](figures/eeg-tokenization-and-adaptation.png)
 
-**Figure 11.2: EEG tokenization and signal-adapter pipeline.** EEG tokenization is a declared measurement interface that preserves temporal, spatial, device, and quality information rather than assuming a universal neural vocabulary.
+**Figure 12.2: EEG tokenization and signal-adapter pipeline.** EEG tokenization is a declared measurement interface that preserves temporal, spatial, device, and quality information rather than assuming a universal neural vocabulary.
 
 ## Pretraining Objectives Adapted from LLMs
 
@@ -22,7 +22,7 @@ Instruction tuning can inspire task and context conditioning, but an instruction
 
 ![Task-conditioned EEG inference. The diagram should show a shared neural encoder receiving EEG plus declared task, device, calibration, and safety metadata, then producing bounded outputs such as workload, command probability, uncertainty, or abstention rather than unrestricted mental-state text.](figures/task-conditioned-eeg-inference.png)
 
-**Figure 11.3: Task-conditioned EEG inference.** Task and context conditioning can specialize a shared encoder for bounded objectives while keeping uncertainty, abstention, calibration, and safety constraints visible.
+**Figure 12.3: Task-conditioned EEG inference.** Task and context conditioning can specialize a shared encoder for bounded objectives while keeping uncertainty, abstention, calibration, and safety constraints visible.
 
 ## Retrieval, Memory, and Tool Use
 
@@ -32,7 +32,7 @@ Tools can turn uncertain estimates into bounded assistance: a quality tool can r
 
 ![Consent-aware EEG retrieval and tool-use loop. The diagram should show an encoder producing an uncertain estimate, retrieval of consented calibration and task context, tools for quality checking or interface adaptation, a confirmation gate, audit logging, and a user-controlled revoke or reset path.](figures/consent-aware-eeg-retrieval-and-tools.png)
 
-**Figure 11.4: Consent-aware EEG retrieval and tool use.** Retrieved neural context and external actions can improve usefulness only when access, consent, confirmation, provenance, and rollback are explicit.
+**Figure 12.4: Consent-aware EEG retrieval and tool use.** Retrieved neural context and external actions can improve usefulness only when access, consent, confirmation, provenance, and rollback are explicit.
 
 ## Alignment and Multimodal Grounding
 

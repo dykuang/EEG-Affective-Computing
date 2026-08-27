@@ -17,7 +17,7 @@ Affect can enter an embodied system in at least four distinct ways.
 
 ![Four roles of affect in embodied intelligence. The diagram should connect uncertain human-state input to action selection, learning signals, and social communication, while showing explicit goals, safety constraints, and user feedback as separate influences on the embodied policy.](figures/affect-roles-in-embodied-intelligence.png)
 
-**Figure 11.7: Roles of affect in embodied intelligence.** Affective evidence can inform perception, action selection, learning, and social communication, but each role requires a separate policy and should not be treated as an automatic justification for intervention.
+**Figure 12.7: Roles of affect in embodied intelligence.** Affective evidence can inform perception, action selection, learning, and social communication, but each role requires a separate policy and should not be treated as an automatic justification for intervention.
 
 These roles should not be collapsed. A classifier may estimate a state, but a separate policy must decide whether an action is appropriate. The most accurate affect estimate does not automatically justify intervention.
 
@@ -61,7 +61,7 @@ Future datasets should therefore record the full interaction loop: EEG and signa
 
 ![Closed-loop embodied-affect data provenance. The diagram should show EEG and quality metadata, environment state, agent actions, user actions, feedback timing, task outcomes, explicit reports, and adaptation events arranged around a time-aligned interaction loop, with arrows indicating that actions can change later observations.](figures/embodied-affect-data-loop.png)
 
-**Figure 11.8: Closed-loop embodied-affect data provenance.** Embodied interaction couples observations and actions, so future datasets must preserve time alignment and provenance across sensing, behavior, agent feedback, outcomes, and adaptation.
+**Figure 12.8: Closed-loop embodied-affect data provenance.** Embodied interaction couples observations and actions, so future datasets must preserve time alignment and provenance across sensing, behavior, agent feedback, outcomes, and adaptation.
 
 ## Embodied Evaluation
 

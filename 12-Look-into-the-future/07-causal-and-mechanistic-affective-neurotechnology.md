@@ -16,7 +16,7 @@ The $do(\cdot)$ notation emphasizes that an intervention differs from observing 
 
 ![Causal graph for affective neurotechnology. The diagram should show task context, latent affective state, EEG measurement, behavior, and system action, with confounding paths distinguished from the intervention path used to estimate the effect of an action.](figures/affective-neurotechnology-causal-graph.png)
 
-**Figure 11.13: Causal graph for affective neurotechnology.** EEG is a measurement of underlying processes, not automatically a cause; causal analysis must distinguish observed associations from intervention effects involving context, affect, behavior, and system action.
+**Figure 12.13: Causal graph for affective neurotechnology.** EEG is a measurement of underlying processes, not automatically a cause; causal analysis must distinguish observed associations from intervention effects involving context, affect, behavior, and system action.
 
 ## Why Mechanisms Matter
 
@@ -39,7 +39,7 @@ When direct intervention is not possible, causal models can still clarify assump
 
 ![Closed-loop causal evaluation design. The diagram should show randomized tutoring hints or interface actions, immediate EEG and behavioral responses, delayed outcomes, user reports, and later policy decisions, with arrows showing how an intervention changes subsequent observations.](figures/closed-loop-causal-evaluation.png)
 
-**Figure 11.14: Closed-loop causal evaluation.** Randomized interventions, time-aligned outcomes, and delayed follow-up help test whether an affect-aware action improves user-defined outcomes rather than merely correlating with neural state.
+**Figure 12.14: Closed-loop causal evaluation.** Randomized interventions, time-aligned outcomes, and delayed follow-up help test whether an affect-aware action improves user-defined outcomes rather than merely correlating with neural state.
 
 ## Causal Models in Closed Loops
 
