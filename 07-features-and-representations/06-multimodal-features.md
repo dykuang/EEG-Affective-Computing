@@ -50,7 +50,7 @@ HRV measures the variation in inter-beat intervals and reflects autonomic nervou
 | HRV feature | Domain | Formula / Definition | Affective interpretation |
 | --- | --- | --- | --- |
 | SDNN | Time | Standard deviation of NN intervals | Overall HRV; decreases under stress |
-| RMSSD | Time | $\sqrt{\frac{1}{N-1}\sum_{i=1}^{N-1}(NN_{i+1} - NN_i)^2}$ | Parasympathetic (vagal) activity |
+| RMSSD | Time | $$\sqrt{\frac{1}{N-1}\sum_{i=1}^{N-1}(NN_{i+1} - NN_i)^2}$$ | Parasympathetic (vagal) activity |
 | pNN50 | Time | Proportion of NN intervals differing by >50 ms | Vagal tone |
 | LF power | Frequency | Power in 0.04–0.15 Hz | Mixed sympathetic and parasympathetic |
 | HF power | Frequency | Power in 0.15–0.4 Hz | Parasympathetic (respiratory sinus arrhythmia) |
@@ -248,7 +248,7 @@ This creates a single feature vector that can be fed into any classifier. While 
 
 Because feature scales differ dramatically across modalities (e.g., EEG band power vs. heart rate in BPM), normalization is essential:
 
-- **Per-modality z-score normalization**: $\mathbf{f}' = (\mathbf{f} - \mu_{\text{modality}}) / \sigma_{\text{modality}}$
+- **Per-modality z-score normalization**: $$\mathbf{f}' = (\mathbf{f} - \mu_{\text{modality}}) / \sigma_{\text{modality}}$$
 - **Min-max scaling**: Scale to [0, 1] per modality.
 - **Feature-wise normalization**: Normalize each feature independently.
 
@@ -272,7 +272,7 @@ Intermediate fusion combines modalities within the model architecture, allowing 
 
 $$\mathbf{h} = g\big( [h_{\text{EEG}}(\mathbf{x}_{\text{EEG}}) \, \| \, h_{\text{ECG}}(\mathbf{x}_{\text{ECG}}) \, \| \, \ldots] \big)$$
 
-where $h_{\text{modality}}$ are modality-specific encoders and $g$ is a fusion network. This approach can capture synergistic relationships but requires all modalities at both training and test time, and is more prone to overfitting with small datasets.
+where $$h_{\text{modality}}$$ are modality-specific encoders and $$g$$ is a fusion network. This approach can capture synergistic relationships but requires all modalities at both training and test time, and is more prone to overfitting with small datasets.
 
 ### Attention-Based Fusion
 

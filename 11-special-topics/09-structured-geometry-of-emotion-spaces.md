@@ -23,11 +23,11 @@ A curved representation is not automatically more psychologically valid. It is a
 
 ## Continuous Affect on Non-Euclidean Manifolds
 
-Let a continuous affective state be represented by a point $z$ on a manifold $\mathcal{M}$ with metric $g$. The metric determines local distance, angle, and the shortest path, or geodesic, between states. Curvature describes how this geometry differs from a flat Euclidean space.
+Let a continuous affective state be represented by a point $$z$$ on a manifold $$\mathcal{M}$$ with metric $$g$$. The metric determines local distance, angle, and the shortest path, or geodesic, between states. Curvature describes how this geometry differs from a flat Euclidean space.
 
 | Geometry | Curvature | Useful structural bias | Potential affective interpretation |
 | --- | --- | --- | --- |
-| Euclidean | $0$ | Uniform, flat coordinate space | Standard valence-arousal or valence-arousal-dominance regression |
+| Euclidean | $$0$$ | Uniform, flat coordinate space | Standard valence-arousal or valence-arousal-dominance regression |
 | Hyperbolic | Negative | Efficient representation of trees and expanding hierarchies | Broad affect families branching into more specific, context-dependent states |
 | Spherical | Positive | Compact spaces with cyclic or globally bounded structure | Bounded, recurring affective configurations or directional state representations |
 | Learned or variable curvature | Changes across the space | Different local regions can have different geometry | Dense, highly confusable regions and sparse, separable regions of emotion space |
@@ -40,13 +40,13 @@ The term *parabolic emotion space* needs care. A paraboloid is a curved surface 
 
 ## Geodesic Dynamics for Continuous Emotion
 
-A trajectory in a curved latent space should be regularized by geodesic rather than ordinary Euclidean distance. For consecutive states $z_t$ and $z_{t+1}$, a geometry-aware smoothness loss can be written as
+A trajectory in a curved latent space should be regularized by geodesic rather than ordinary Euclidean distance. For consecutive states $$z_t$$ and $$z_{t+1}$$, a geometry-aware smoothness loss can be written as
 
 $$
 \mathcal{L}_{\mathrm{smooth}} = \sum_t d_{\mathcal{M}}(z_t, z_{t+1})^2,
 $$
 
-where $d_{\mathcal{M}}$ is the manifold distance. This lets smoothness respect the chosen geometry. A trajectory can move a small geodesic distance even when its coordinates change nonlinearly in a chart.
+where $$d_{\mathcal{M}}$$ is the manifold distance. This lets smoothness respect the chosen geometry. A trajectory can move a small geodesic distance even when its coordinates change nonlinearly in a chart.
 
 Models can combine an EEG encoder with a manifold-valued state head, Riemannian recurrent dynamics, or a latent state-space model. Predictions can be mapped to a Euclidean reporting scale when a dataset requires valence-arousal scores, while the internal representation retains curved structure.
 
@@ -54,7 +54,7 @@ Models can combine an EEG encoder with a manifold-valued state head, Riemannian 
 
 ## Discrete Emotion as a Graph
 
-Discrete categories need not be independent output indices. They can be represented by a graph $G = (V, E)$ in which nodes are emotion concepts and weighted edges encode a declared relation. Possible relations include psychological similarity, valence-arousal proximity, transition probability, shared appraisal patterns, semantic association, or empirical confusion.
+Discrete categories need not be independent output indices. They can be represented by a graph $$G = (V, E)$$ in which nodes are emotion concepts and weighted edges encode a declared relation. Possible relations include psychological similarity, valence-arousal proximity, transition probability, shared appraisal patterns, semantic association, or empirical confusion.
 
 | Edge meaning | Example relation | Modeling use |
 | --- | --- | --- |
@@ -68,13 +68,13 @@ The graph should be versioned and justified. A graph derived from a psychologica
 
 ## Graph Curvature for Discrete Emotion Structure
 
-Graph curvature quantifies the local geometry of a discrete emotion graph. Ollivier-Ricci curvature compares the neighborhoods of connected nodes through optimal transport, while Forman-Ricci curvature gives a simpler combinatorial measure. For an edge $(u,v)$, Ollivier-Ricci curvature can be written as
+Graph curvature quantifies the local geometry of a discrete emotion graph. Ollivier-Ricci curvature compares the neighborhoods of connected nodes through optimal transport, while Forman-Ricci curvature gives a simpler combinatorial measure. For an edge $$(u,v)$$, Ollivier-Ricci curvature can be written as
 
 $$
 \kappa_{\mathrm{OR}}(u,v) = 1 - \frac{W_1(m_u,m_v)}{d(u,v)},
 $$
 
-where $m_u$ and $m_v$ are local neighborhood distributions, $W_1$ is Wasserstein distance, and $d(u,v)$ is graph distance.
+where $$m_u$$ and $$m_v$$ are local neighborhood distributions, $$W_1$$ is Wasserstein distance, and $$d(u,v)$$ is graph distance.
 
 Positive curvature often indicates tightly connected local communities; negative curvature can indicate bridges, branching, or bottlenecks; near-zero curvature is more locally flat. In an emotion graph, these quantities can help identify:
 

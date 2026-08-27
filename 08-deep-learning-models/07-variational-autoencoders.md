@@ -25,7 +25,7 @@ $$\text{Decoder: } p_\theta(x|z) = \mathcal{N}(g_\theta(z), \sigma^2 I)$$
 
 $$\mathcal{L}_{\text{VAE}} = \mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)] - D_{\text{KL}}(q_\phi(z|x) \| p(z))$$
 
-where $p(z) = \mathcal{N}(0, I)$ is the prior.
+where $$p(z) = \mathcal{N}(0, I)$$ is the prior.
 
 ### The Reparameterization Trick
 
@@ -45,7 +45,7 @@ $$z = \mu_\phi(x) + \sigma_\phi(x) \odot \epsilon, \quad \epsilon \sim \mathcal{
 
 **Limitations**:
 - Generated samples may be blurry (averaging effect of Gaussian likelihood)
-- Posterior collapse: decoder ignores $z$, making latent uninformative
+- Posterior collapse: decoder ignores $$z$$, making latent uninformative
 - KL annealing often needed for stable training
 
 ## Adaptation to EEG Affective Computing
@@ -56,11 +56,11 @@ Standard VAE balances reconstruction and KL regularization. β-VAE adds a weight
 
 $$\mathcal{L}_{\beta\text{-VAE}} = \mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)] - \beta \cdot D_{\text{KL}}(q_\phi(z|x) \| p(z))$$
 
-With $\beta > 1$, the model is forced to use the latent space more efficiently, potentially separating:
-- $z_1$: Emotion valence
-- $z_2$: Emotion arousal
-- $z_3$: Subject identity
-- $z_4$: Noise level
+With $$\beta > 1$$, the model is forced to use the latent space more efficiently, potentially separating:
+- $$z_1$$: Emotion valence
+- $$z_2$$: Emotion arousal
+- $$z_3$$: Subject identity
+- $$z_4$$: Noise level
 
 ### Conditional VAE (CVAE) for Controlled Generation
 
@@ -464,7 +464,7 @@ Model EEG sequences with recurrent encoder/decoder:
 
 2. **Monitor posterior collapse**: If KL → 0, try:
    - Reducing decoder capacity
-   - Using free bits ($\max(\lambda, \text{KL})$) to prevent KL from going too low
+   - Using free bits ($$\max(\lambda, \text{KL})$$) to prevent KL from going too low
    - KL annealing with cyclical schedule
 
 3. **Choose latent dimension wisely**:

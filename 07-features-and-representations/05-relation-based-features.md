@@ -23,11 +23,11 @@ Functional connectivity quantifies the statistical dependence between pairs of E
 
 #### Pearson Correlation
 
-The simplest connectivity measure is the Pearson correlation coefficient between two channels $x$ and $y$:
+The simplest connectivity measure is the Pearson correlation coefficient between two channels $$x$$ and $$y$$:
 
 $$r_{xy} = \frac{\sum_{t=1}^{N} (x(t) - \bar{x})(y(t) - \bar{y})}{\sqrt{\sum_{t=1}^{N} (x(t) - \bar{x})^2 \sum_{t=1}^{N} (y(t) - \bar{y})^2}}$$
 
-Pearson correlation captures linear co-modulation of amplitudes. It is computationally trivial but limited to linear relationships and sensitive to outliers. Correlation-based connectivity matrices (one correlation per channel pair) can be vectorized to form features of dimension $\binom{C}{2} = C(C-1)/2$.
+Pearson correlation captures linear co-modulation of amplitudes. It is computationally trivial but limited to linear relationships and sensitive to outliers. Correlation-based connectivity matrices (one correlation per channel pair) can be vectorized to form features of dimension $$\binom{C}{2} = C(C-1)/2$$.
 
 #### Cross-Correlation with Lag
 
@@ -39,11 +39,11 @@ The maximum cross-correlation and the lag at which it occurs provide directional
 
 ### Coherence
 
-Coherence is the frequency-domain analogue of correlation, measuring the linear relationship between two signals at each frequency $f$:
+Coherence is the frequency-domain analogue of correlation, measuring the linear relationship between two signals at each frequency $$f$$:
 
 $$C_{xy}(f) = \frac{|S_{xy}(f)|^2}{S_{xx}(f) \, S_{yy}(f)}$$
 
-where $S_{xy}(f)$ is the cross-spectral density and $S_{xx}(f)$, $S_{yy}(f)$ are the auto-spectral densities. Coherence ranges from 0 (no linear relationship) to 1 (perfect linear relationship) and is frequency-specific.
+where $$S_{xy}(f)$$ is the cross-spectral density and $$S_{xx}(f)$$, $$S_{yy}(f)$$ are the auto-spectral densities. Coherence ranges from 0 (no linear relationship) to 1 (perfect linear relationship) and is frequency-specific.
 
 For affective computing, coherence is typically averaged within each canonical frequency band:
 
@@ -69,7 +69,7 @@ The PLV quantifies the consistency of the phase difference across time or trials
 
 $$\text{PLV} = \left| \frac{1}{N} \sum_{t=1}^{N} e^{j(\phi_x(t) - \phi_y(t))} \right|$$
 
-where $\phi_x(t)$ and $\phi_y(t)$ are the instantaneous phases of signals $x$ and $y$ at time $t$, typically extracted via the Hilbert transform or wavelet convolution. PLV ranges from 0 (random phase relationship) to 1 (perfect phase locking).
+where $$\phi_x(t)$$ and $$\phi_y(t)$$ are the instantaneous phases of signals $$x$$ and $$y$$ at time $$t$$, typically extracted via the Hilbert transform or wavelet convolution. PLV ranges from 0 (random phase relationship) to 1 (perfect phase locking).
 
 PLV is one of the most widely used synchronization measures in affective EEG because it is intuitive, robust to amplitude fluctuations, and sensitive to transient phase coupling that may accompany emotional processing.
 
@@ -117,7 +117,7 @@ Transfer entropy extends mutual information to capture directed information flow
 
 $$T_{X \to Y} = \sum p(y_{t+1}, y_t^{(k)}, x_t^{(l)}) \ln \frac{p(y_{t+1} \mid y_t^{(k)}, x_t^{(l)})}{p(y_{t+1} \mid y_t^{(k)})}$$
 
-where $y_t^{(k)}$ and $x_t^{(l)}$ are the past $k$ and $l$ values of $Y$ and $X$, respectively. Transfer entropy quantifies how much the past of $X$ reduces uncertainty about the future of $Y$, beyond what the past of $Y$ already reveals.
+where $$y_t^{(k)}$$ and $$x_t^{(l)}$$ are the past $$k$$ and $$l$$ values of $$Y$$ and $$X$$, respectively. Transfer entropy quantifies how much the past of $$X$$ reduces uncertainty about the future of $$Y$$, beyond what the past of $$Y$$ already reveals.
 
 In affective computing, transfer entropy has been used to study directed connectivity changes during emotional processing, such as frontal-to-posterior information flow during emotional regulation. However, its high data requirements and sensitivity to parameter choices (embedding dimension, lag) have limited its widespread adoption.
 
@@ -148,7 +148,7 @@ Once a connectivity matrix is computed (by any of the above methods), the result
 Graph-theoretic features depend fundamentally on the thresholding scheme used to convert a weighted connectivity matrix to a binary graph. Common approaches include:
 
 - **Absolute threshold**: Keep edges with weight above a fixed value.
-- **Proportional threshold**: Keep the top $p\%$ of edges.
+- **Proportional threshold**: Keep the top $$p\%$$ of edges.
 - **Minimum spanning tree**: Use the backbone of the network, eliminating cycles and arbitrary thresholds.
 
 The choice of threshold can significantly affect results, and there is no universal standard. Reporting sensitivity to threshold choice is essential for reproducibility.
@@ -161,13 +161,13 @@ The spatial covariance matrix of a multichannel EEG segment captures the linear 
 
 $$\Sigma = \frac{1}{N-1} \mathbf{X} \mathbf{X}^T \in \mathbb{R}^{C \times C}$$
 
-where $\mathbf{X} \in \mathbb{R}^{C \times N}$ is the EEG segment (channels $\times$ time). The covariance matrix is symmetric positive definite (SPD), which means it lies on a Riemannian manifold rather than in flat Euclidean space.
+where $$\mathbf{X} \in \mathbb{R}^{C \times N}$$ is the EEG segment (channels $$\times$$ time). The covariance matrix is symmetric positive definite (SPD), which means it lies on a Riemannian manifold rather than in flat Euclidean space.
 
 ### Riemannian Geometry Approach
 
 Treating covariance matrices as points on a Riemannian manifold has become a powerful paradigm in BCI and is increasingly adopted in affective computing. Key operations:
 
-- **Riemannian distance**: The geodesic distance between two SPD matrices $P$ and $Q$ under the affine-invariant metric:
+- **Riemannian distance**: The geodesic distance between two SPD matrices $$P$$ and $$Q$$ under the affine-invariant metric:
 
   $$\delta_R(P, Q) = \left\| \log(P^{-1/2} Q P^{-1/2}) \right\|_F$$
 
@@ -175,7 +175,7 @@ Treating covariance matrices as points on a Riemannian manifold has become a pow
 
   $$s = \text{upper}\left( \log_M(P_{\text{ref}}^{-1/2} P P_{\text{ref}}^{-1/2}) \right)$$
 
-  where $\log_M$ is the matrix logarithm, $P_{\text{ref}}$ is a reference point (typically the Riemannian mean), and $\text{upper}$ extracts the upper triangular elements.
+  where $$\log_M$$ is the matrix logarithm, $$P_{\text{ref}}$$ is a reference point (typically the Riemannian mean), and $$\text{upper}$$ extracts the upper triangular elements.
 
 Riemannian features have several advantages: they naturally capture channel interactions, are invariant to linear transformations of the data (including re-referencing), and provide a principled geometry for averaging and interpolating covariance matrices. In affective computing, Riemannian approaches have achieved competitive or state-of-the-art results, particularly in cross-subject settings.
 
@@ -187,7 +187,7 @@ Granger causality tests whether past values of one time series improve predictio
 
 $$y(t) = \sum_{k=1}^{p} a_k y(t-k) + \sum_{k=1}^{p} b_k x(t-k) + \varepsilon(t)$$
 
-If including $x$ significantly reduces the prediction error, $x$ is said to Granger-cause $y$. Frequency-domain Granger causality (e.g., directed transfer function, partial directed coherence) provides frequency-specific directed connectivity.
+If including $$x$$ significantly reduces the prediction error, $$x$$ is said to Granger-cause $$y$$. Frequency-domain Granger causality (e.g., directed transfer function, partial directed coherence) provides frequency-specific directed connectivity.
 
 ### Limitations
 
@@ -200,7 +200,7 @@ Despite these limitations, Granger-causal features have been used to study the d
 
 ## Feature Construction from Relations
 
-Given $C$ EEG channels, relation-based features quickly become high-dimensional: there are $\mathcal{O}(C^2)$ pairwise relations. Strategies for managing this dimensionality include:
+Given $$C$$ EEG channels, relation-based features quickly become high-dimensional: there are $$\mathcal{O}(C^2)$$ pairwise relations. Strategies for managing this dimensionality include:
 
 ### Direct Vectorization
 
@@ -208,7 +208,7 @@ Vectorize the upper triangle of the connectivity matrix (excluding the diagonal)
 
 $$\mathbf{f}_{\text{conn}} = [r_{1,2}, r_{1,3}, \ldots, r_{1,C}, r_{2,3}, \ldots, r_{C-1,C}]$$
 
-For $C = 62$, this yields $62 \times 61 / 2 = 1891$ features per frequency band—highly dimensional relative to typical affective EEG sample sizes.
+For $$C = 62$$, this yields $$62 \times 61 / 2 = 1891$$ features per frequency band—highly dimensional relative to typical affective EEG sample sizes.
 
 ### Dimensionality Reduction
 
@@ -230,7 +230,7 @@ An emerging approach is to use the full pattern of connectivity (the connectome 
 | --- | --- |
 | Volume conduction | Use measures robust to volume conduction (wPLI, imaginary coherence) unless source-localized signals are available |
 | Segment length | Most connectivity measures require at minimum 2–5 seconds for stable estimates |
-| Multiple comparisons | With $\mathcal{O}(C^2)$ connections, correction for multiple comparisons is essential in statistical analysis (less critical in ML pipelines) |
+| Multiple comparisons | With $$\mathcal{O}(C^2)$$ connections, correction for multiple comparisons is essential in statistical analysis (less critical in ML pipelines) |
 | Reference scheme | Connectivity patterns depend on the EEG reference; be consistent within and across studies |
 | Frequency specificity | Compute connectivity separately for each frequency band rather than on broadband signals |
 | Surrogate testing | Use phase-randomized surrogates to establish significance thresholds for connectivity |

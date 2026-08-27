@@ -8,7 +8,7 @@ The central idea is simple. Instead of deciding in advance which signal features
 
 ## From Linear Prediction to Learned Representations
 
-A linear predictor maps an input $x \in \mathbb{R}^d$ to an output $\hat{y}$ as
+A linear predictor maps an input $$x \in \mathbb{R}^d$$ to an output $$\hat{y}$$ as
 
 $$\hat{y} = w^T x + b.$$
 
@@ -18,7 +18,7 @@ A neural network extends a linear model by applying a nonlinear transformation a
 
 $$z = w^T x + b, \qquad a = \sigma(z),$$
 
-where $\sigma$ is an activation function. Sigmoid and hyperbolic tangent were historically important choices, while rectified linear units (ReLU) and related activations are common in modern networks. The choice is not cosmetic. If every layer were linear, however many layers were stacked, their composition would still be one linear map. Nonlinearity is what allows a network to represent more complex relationships.
+where $$\sigma$$ is an activation function. Sigmoid and hyperbolic tangent were historically important choices, while rectified linear units (ReLU) and related activations are common in modern networks. The choice is not cosmetic. If every layer were linear, however many layers were stacked, their composition would still be one linear map. Nonlinearity is what allows a network to represent more complex relationships.
 
 A feedforward network repeats this operation across layers:
 
@@ -26,7 +26,7 @@ $$h^{(1)} = \sigma(W^{(1)}x + b^{(1)}),$$
 $$h^{(2)} = \sigma(W^{(2)}h^{(1)} + b^{(2)}),$$
 $$\hat{y} = f_{\text{out}}(W^{(L)}h^{(L-1)} + b^{(L)}).$$
 
-The vectors $h^{(1)}, h^{(2)}, \dots$ are called hidden representations. Each layer converts the output of the preceding layer into a new feature space that may be more useful for the task. For EEG, early layers might respond to local waveform or spectral patterns, later layers might combine information across channels, and the final layers might emphasize patterns that help distinguish emotion-related states. These are useful intuitions rather than a guarantee that every layer has a single, easily named meaning.
+The vectors $$h^{(1)}, h^{(2)}, \dots$$ are called hidden representations. Each layer converts the output of the preceding layer into a new feature space that may be more useful for the task. For EEG, early layers might respond to local waveform or spectral patterns, later layers might combine information across channels, and the final layers might emphasize patterns that help distinguish emotion-related states. These are useful intuitions rather than a guarantee that every layer has a single, easily named meaning.
 
 ![Multichannel EEG is transformed through learned hidden representations before producing emotion probabilities.](figures/eeg-learned-representations.png)
 
@@ -40,7 +40,7 @@ Neither dimension should be increased automatically. EEG datasets often have lim
 
 ## What Universal Approximation Establishes
 
-The universal approximation theorem provides an important theoretical anchor. Informally, it states that a sufficiently wide network with an appropriate nonlinear activation can approximate any continuous function on a compact domain to arbitrary accuracy. One common form says that, for a continuous function $f$, there can be a one-hidden-layer network
+The universal approximation theorem provides an important theoretical anchor. Informally, it states that a sufficiently wide network with an appropriate nonlinear activation can approximate any continuous function on a compact domain to arbitrary accuracy. One common form says that, for a continuous function $$f$$, there can be a one-hidden-layer network
 
 $$g(x) = \sum_{i=1}^{m} a_i \sigma(w_i^T x + b_i)$$
 
@@ -48,13 +48,13 @@ such that
 
 $$\sup_x |f(x) - g(x)| < \epsilon$$
 
-for any $\epsilon > 0$, provided that the number of hidden units $m$ is large enough.
+for any $$\epsilon > 0$$, provided that the number of hidden units $$m$$ is large enough.
 
 This result explains why neural networks are not inherently too rigid for nonlinear EEG tasks and why activations are central to their expressive power. It does not, however, say that a network can be learned efficiently from finite data, that an optimizer will discover the desired solution, or that a shallow and extremely wide model is the best practical design. Approximation capacity, optimization, and generalization are different questions. In noisy, small-sample EEG settings, a model may be capable of representing the target mapping without having enough evidence to learn it reliably.
 
 ## A Function-Approximation View of EEG Tasks
 
-This perspective unifies several common goals in affective computing. In classification, the network learns a mapping from EEG $x$ to a discrete emotion label. In regression, it maps $x$ to a continuous valence or arousal score. In representation learning, it maps $x$ to a latent code $z$ that retains useful structure for a later task. The output changes, but the basic challenge is the same: choose a function class expressive enough for the problem and constrained enough to learn from the available data.
+This perspective unifies several common goals in affective computing. In classification, the network learns a mapping from EEG $$x$$ to a discrete emotion label. In regression, it maps $$x$$ to a continuous valence or arousal score. In representation learning, it maps $$x$$ to a latent code $$z$$ that retains useful structure for a later task. The output changes, but the basic challenge is the same: choose a function class expressive enough for the problem and constrained enough to learn from the available data.
 
 For this reason, neural networks should be viewed as learned feature extractors as well as predictors. Their expressive power makes them promising for EEG, but it is only the beginning of the story. The next section considers how a network is fitted to data by defining a loss and minimizing it.
 

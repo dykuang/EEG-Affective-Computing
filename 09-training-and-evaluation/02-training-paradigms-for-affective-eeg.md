@@ -4,7 +4,7 @@ A training paradigm specifies what supervision a model receives and what learnin
 
 ## Supervised Training
 
-Supervised learning trains a model from EEG inputs $x_i$ and target labels $y_i$. For classification, the target may be a discrete emotion category; for regression, it may be valence, arousal, stress intensity, or another continuous rating. The model minimizes a loss that compares its prediction $f_\theta(x_i)$ with the target, for example cross-entropy for classes or mean squared error for a continuous score.
+Supervised learning trains a model from EEG inputs $$x_i$$ and target labels $$y_i$$. For classification, the target may be a discrete emotion category; for regression, it may be valence, arousal, stress intensity, or another continuous rating. The model minimizes a loss that compares its prediction $$f_\theta(x_i)$$ with the target, for example cross-entropy for classes or mean squared error for a continuous score.
 
 Supervised training is the standard choice when labels are sufficiently reliable and match the intended prediction unit. It requires careful handling of label imbalance, inherited trial labels, noisy self-reports, and subject or session variation. All label preprocessing, including thresholding continuous ratings into classes, should be defined using training data and held fixed for validation and testing.
 

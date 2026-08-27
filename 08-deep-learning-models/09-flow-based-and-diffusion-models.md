@@ -12,7 +12,7 @@ Flow-based and diffusion models represent the most recent and powerful class of 
 
 ### Theoretical Foundations
 
-Flow-based models transform a simple base distribution $p(z)$ (e.g., Gaussian) into a complex data distribution $p(x)$ through a series of invertible transformations:
+Flow-based models transform a simple base distribution $$p(z)$$ (e.g., Gaussian) into a complex data distribution $$p(x)$$ through a series of invertible transformations:
 
 $$x = f_K \circ f_{K-1} \circ \cdots \circ f_1(z)$$
 $$z = f_1^{-1} \circ f_2^{-1} \circ \cdots \circ f_K^{-1}(x)$$
@@ -42,7 +42,7 @@ Inverse is trivial:
   x_a = y_a
 ```
 
-The Jacobian is triangular, making $\det$ computation $O(d)$.
+The Jacobian is triangular, making $$\det$$ computation $$O(d)$$.
 
 #### Glow for EEG
 
@@ -134,17 +134,17 @@ Diffusion models define a **forward process** that gradually destroys data by ad
 
 #### Forward Diffusion Process
 
-Start with clean EEG $x_0$, progressively add Gaussian noise over $T$ steps:
+Start with clean EEG $$x_0$$, progressively add Gaussian noise over $$T$$ steps:
 
 $$q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1 - \beta_t} x_{t-1}, \beta_t I)$$
 
-After $T$ steps: $x_T \sim \mathcal{N}(0, I)$.
+After $$T$$ steps: $$x_T \sim \mathcal{N}(0, I)$$.
 
-Can directly sample $x_t$ from $x_0$:
+Can directly sample $$x_t$$ from $$x_0$$:
 
 $$q(x_t | x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\alpha}_t) I)$$
 
-where $\bar{\alpha}_t = \prod_{s=1}^t (1 - \beta_s)$.
+where $$\bar{\alpha}_t = \prod_{s=1}^t (1 - \beta_s)$$.
 
 #### Reverse Diffusion Process
 
@@ -152,7 +152,7 @@ Learn to reverse the noising process:
 
 $$p_\theta(x_{t-1} | x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))$$
 
-The network predicts the noise $\epsilon_\theta(x_t, t)$ that was added:
+The network predicts the noise $$\epsilon_\theta(x_t, t)$$ that was added:
 
 $$\mathcal{L}_{\text{simple}} = \mathbb{E}_{t, x_0, \epsilon}\left[\|\epsilon - \epsilon_\theta(x_t, t)\|^2\right]$$
 
@@ -596,8 +596,8 @@ Goal: Uncertainty quantification
 
 1. **Start with DDIM sampling**: 50 steps often sufficient for EEG
 2. **Use cosine noise schedule**: Preserves rhythmic EEG structure
-3. **Apply classifier-free guidance**: $w \in [1.5, 3.0]$ for EEG
-4. **Normalize to $[-1, 1]$**: Standard for diffusion models
+3. **Apply classifier-free guidance**: $$w \in [1.5, 3.0]$$ for EEG
+4. **Normalize to $$[-1, 1]$$**: Standard for diffusion models
 5. **Validate spectral content**: Check PSD, band powers match real EEG
 6. **Use EMA (Exponential Moving Average)** of model weights for sampling
 7. **Monitor loss curves**: Smooth decreasing loss indicates good training

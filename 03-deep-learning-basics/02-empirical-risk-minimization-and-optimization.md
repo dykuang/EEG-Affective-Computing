@@ -8,15 +8,15 @@ For EEG-based affective computing, this viewpoint makes an important distinction
 
 ## From the Ideal Objective to Training Data
 
-Let $f_\theta(x)$ be a model with parameters $\theta$, and let $\ell(f_\theta(x), y)$ measure the cost of predicting $f_\theta(x)$ when the target is $y$. If examples were drawn from a known distribution $\mathcal{D}$, the ideal objective would be the population risk
+Let $$f_\theta(x)$$ be a model with parameters $$\theta$$, and let $$\ell(f_\theta(x), y)$$ measure the cost of predicting $$f_\theta(x)$$ when the target is $$y$$. If examples were drawn from a known distribution $$\mathcal{D}$$, the ideal objective would be the population risk
 
 $$R(\theta) = \mathbb{E}_{(x,y) \sim \mathcal{D}}[\ell(f_\theta(x), y)].$$
 
-The distribution is unknown, so training replaces this expectation with the average loss on a dataset of $n$ examples:
+The distribution is unknown, so training replaces this expectation with the average loss on a dataset of $$n$$ examples:
 
 $$\hat{R}_n(\theta) = \frac{1}{n} \sum_{i=1}^n \ell(f_\theta(x_i), y_i).$$
 
-Minimizing $\hat{R}_n$ is ERM. It is sensible because the training set is the available evidence, but it is not identical to minimizing $R$. A model can fit the observed trials closely while performing poorly for new sessions or new participants. This gap is especially important for EEG, where subjective labels, artifacts, and participant differences can distort the training sample.
+Minimizing $$\hat{R}_n$$ is ERM. It is sensible because the training set is the available evidence, but it is not identical to minimizing $$R$$. A model can fit the observed trials closely while performing poorly for new sessions or new participants. This gap is especially important for EEG, where subjective labels, artifacts, and participant differences can distort the training sample.
 
 ![General error-component analysis in learning theory.](figures/error-analysis.png)
 
@@ -28,7 +28,7 @@ Minimizing $\hat{R}_n$ is ERM. It is sensible because the training set is the av
 
 ## Losses Specify What Counts as an Error
 
-The loss function translates the scientific task into an optimization target. For $K$-class emotion classification, cross-entropy compares the predicted class probabilities $\hat{p}_k$ with a one-hot target $y_k$:
+The loss function translates the scientific task into an optimization target. For $$K$$-class emotion classification, cross-entropy compares the predicted class probabilities $$\hat{p}_k$$ with a one-hot target $$y_k$$:
 
 $$\ell_{\text{CE}} = - \sum_{k=1}^{K} y_k \log \hat{p}_k.$$
 
@@ -48,7 +48,7 @@ The objective is high-dimensional and nonconvex, so closed-form solutions are us
 
 $$\theta_{t+1} = \theta_t - \eta \nabla_\theta \hat{R}_n(\theta_t),$$
 
-where $\eta$ is the learning rate. Computing this gradient across an entire dataset at every step is expensive, so stochastic gradient descent (SGD) estimates it with a mini-batch $\mathcal{B}$:
+where $$\eta$$ is the learning rate. Computing this gradient across an entire dataset at every step is expensive, so stochastic gradient descent (SGD) estimates it with a mini-batch $$\mathcal{B}$$:
 
 $$\theta_{t+1} = \theta_t - \eta \nabla_\theta \hat{R}_{\mathcal{B}}(\theta_t).$$
 
@@ -64,7 +64,7 @@ Often the objective also includes an explicit penalty:
 
 $$\hat{R}_n^{\text{reg}}(\theta) = \hat{R}_n(\theta) + \lambda \Omega(\theta),$$
 
-where $\Omega(\theta)$ may be L2 weight decay, an L1 sparsity penalty, or a domain-specific constraint. This connects fitting the data directly to the broader question of generalization.
+where $$\Omega(\theta)$$ may be L2 weight decay, an L1 sparsity penalty, or a domain-specific constraint. This connects fitting the data directly to the broader question of generalization.
 
 ## Summary
 

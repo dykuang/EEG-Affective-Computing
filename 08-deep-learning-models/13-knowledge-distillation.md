@@ -6,7 +6,7 @@ Distillation is not guaranteed compression. A weak, biased, poorly calibrated, o
 
 ## Teacher-Student Training
 
-For an input EEG segment $x$, let the teacher and student produce logits $z_t(x)$ and $z_s(x)$. Temperature $T > 1$ turns logits into softer class distributions:
+For an input EEG segment $$x$$, let the teacher and student produce logits $$z_t(x)$$ and $$z_s(x)$$. Temperature $$T > 1$$ turns logits into softer class distributions:
 
 $$
 p_t^{(T)} = \mathrm{softmax}\left(\frac{z_t}{T}\right),
@@ -14,7 +14,7 @@ p_t^{(T)} = \mathrm{softmax}\left(\frac{z_t}{T}\right),
 p_s^{(T)} = \mathrm{softmax}\left(\frac{z_s}{T}\right).
 $$
 
-The soft distribution preserves information that a one-hot label discards. For example, a teacher may assign meaningful probability to both high-arousal and positive-valence classes for an ambiguous segment, revealing class similarity or uncertainty. At deployment, the student normally uses $T=1$.
+The soft distribution preserves information that a one-hot label discards. For example, a teacher may assign meaningful probability to both high-arousal and positive-valence classes for an ambiguous segment, revealing class similarity or uncertainty. At deployment, the student normally uses $$T=1$$.
 
 ![A frozen high-capacity teacher and a compact student receive the same EEG segment. The student learns both the hard emotion label and the teacher's temperature-softened output distribution; only the student is deployed.](figures/knowledge-distillation-overview.png)
 
@@ -28,7 +28,7 @@ $$
 + \alpha T^2\, D_{\text{KL}}\left(p_t^{(T)}\,\Vert\,p_s^{(T)}\right),
 $$
 
-where $y$ is the observed label, $\alpha \in [0,1]$ controls the teacher contribution, and $T^2$ keeps the gradient scale comparable as temperature changes. Cross-entropy anchors the student to recorded labels; the distillation term asks it to reproduce the teacher's class structure. Tune $T$ and $\alpha$ on a validation partition that is independent at the intended held-out unit, such as subject or session.
+where $$y$$ is the observed label, $$\alpha \in [0,1]$$ controls the teacher contribution, and $$T^2$$ keeps the gradient scale comparable as temperature changes. Cross-entropy anchors the student to recorded labels; the distillation term asks it to reproduce the teacher's class structure. Tune $$T$$ and $$\alpha$$ on a validation partition that is independent at the intended held-out unit, such as subject or session.
 
 ## What Can Be Distilled?
 
@@ -44,14 +44,14 @@ Logit matching is the simplest choice, but it is not the only transfer signal. E
 
 ### Feature and Relation Distillation
 
-Feature distillation aligns intermediate representations. If $h_t$ and $h_s$ are teacher and student features, a learned projection $g$ can reconcile dimensions:
+Feature distillation aligns intermediate representations. If $$h_t$$ and $$h_s$$ are teacher and student features, a learned projection $$g$$ can reconcile dimensions:
 
 $$
 \mathcal{L}_{\text{feat}} =
 \left\|\mathrm{norm}\bigl(g(h_s)\bigr) - \mathrm{norm}(h_t)\right\|_2^2.
 $$
 
-Relation distillation instead preserves how samples, channels, or time patches relate. For a mini-batch embedding matrix $H$, one option matches normalized Gram matrices:
+Relation distillation instead preserves how samples, channels, or time patches relate. For a mini-batch embedding matrix $$H$$, one option matches normalized Gram matrices:
 
 $$
 \mathcal{L}_{\text{rel}} =
@@ -85,7 +85,7 @@ For continuous valence-arousal targets, replace class KL divergence with a distr
 1. **Define the deployment budget first.** Fix student input channels, sampling rate, window length, parameter budget, latency, and energy target before selecting a teacher.
 2. **Train and validate the teacher cleanly.** Fit normalization, artifact handling, feature extraction, and teacher hyperparameters using training data only. Freeze the teacher after selection.
 3. **Create matched student inputs.** Derive the student montage or shorter window from raw held-out data using the same causal preprocessing that deployment will use.
-4. **Start with logit distillation.** Compare a student trained with cross-entropy alone against the same student with temperature $T$, weight $\alpha$, and no other changed training choices.
+4. **Start with logit distillation.** Compare a student trained with cross-entropy alone against the same student with temperature $$T$$, weight $$\alpha$$, and no other changed training choices.
 5. **Add one transfer target at a time.** Introduce feature, attention, or relation loss only when it improves an independent validation result and the target has a clear correspondence.
 6. **Evaluate the deployed student, not the training graph.** Report held-out task quality together with latency, memory, parameter count, throughput, and energy when available.
 

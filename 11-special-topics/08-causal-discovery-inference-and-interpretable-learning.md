@@ -14,9 +14,9 @@ Causal work in affective EEG can address different questions. They should not be
 
 | Level | Example question | Appropriate evidence |
 | --- | --- | --- |
-| Directed signal interaction | Does past activity in channel or source $X$ improve prediction of $Y$? | Time-series assumptions, directed-connectivity estimate, stability analysis |
+| Directed signal interaction | Does past activity in channel or source $$X$$ improve prediction of $$Y$$? | Time-series assumptions, directed-connectivity estimate, stability analysis |
 | Network mechanism | Which directed pathways mediate a task or affective condition? | Source-informed analysis, controls for common drivers, replication |
-| Causal effect of an intervention | Does changing feedback or task difficulty change outcome $Y$? | Randomized or otherwise identifiable intervention design |
+| Causal effect of an intervention | Does changing feedback or task difficulty change outcome $$Y$$? | Randomized or otherwise identifiable intervention design |
 | Causal representation learning | Does a learned representation preserve stable mechanisms across domains? | Cross-environment invariance and intervention-aware evaluation |
 
 A method can answer one level without answering the others. Granger causality, for example, concerns predictive temporal direction under a specified model; it does not by itself identify a manipulable biological mechanism.
@@ -25,7 +25,7 @@ A method can answer one level without answering the others. Granger causality, f
 
 ### Granger Causality
 
-Granger causality asks whether the past of one time series improves prediction of another beyond the target's own past and other included variables. For signals $X$ and $Y$, $X$ Granger-causes $Y$ when including $X_{<t}$ reduces the predictive error for $Y_t$ compared with a restricted model:
+Granger causality asks whether the past of one time series improves prediction of another beyond the target's own past and other included variables. For signals $$X$$ and $$Y$$, $$X$$ Granger-causes $$Y$$ when including $$X_{<t}$$ reduces the predictive error for $$Y_t$$ compared with a restricted model:
 
 $$
 \mathrm{Var}(Y_t \mid Y_{<t}, X_{<t}) < \mathrm{Var}(Y_t \mid Y_{<t}).
@@ -37,9 +37,9 @@ The method assumes an adequately modeled temporal process, meaningful sampling r
 
 ### Information-Theoretic and Information-Flow Methods
 
-Transfer entropy estimates directed statistical dependence by asking whether the past of $X$ reduces uncertainty about future $Y$ beyond the past of $Y$. It can capture nonlinear relationships but requires substantial data and careful choices of embedding dimension, lag, and estimator. It measures directed information dependence, not a guaranteed intervention effect.
+Transfer entropy estimates directed statistical dependence by asking whether the past of $$X$$ reduces uncertainty about future $$Y$$ beyond the past of $$Y$$. It can capture nonlinear relationships but requires substantial data and careful choices of embedding dimension, lag, and estimator. It measures directed information dependence, not a guaranteed intervention effect.
 
-Liang-Kleeman information flow provides another route to directionality. It derives a directional information-flow rate from the evolution of probability distributions. For a bivariate linear stochastic system, the information flow from $X$ to $Y$ can be estimated from covariances and their time derivatives, producing a signed quantity that describes the contribution of $X$ to the entropy tendency of $Y$. A common estimator is expressed as
+Liang-Kleeman information flow provides another route to directionality. It derives a directional information-flow rate from the evolution of probability distributions. For a bivariate linear stochastic system, the information flow from $$X$$ to $$Y$$ can be estimated from covariances and their time derivatives, producing a signed quantity that describes the contribution of $$X$$ to the entropy tendency of $$Y$$. A common estimator is expressed as
 
 $$
 T_{X \to Y} = \frac{C_{XY}}{C_{YY}}\,
@@ -47,7 +47,7 @@ T_{X \to Y} = \frac{C_{XY}}{C_{YY}}\,
 {C_{XX} C_{YY} - C_{XY}^{2}},
 $$
 
-where $C$ denotes covariance terms and $\dot{Y}$ is the temporal derivative of $Y$. The exact estimator and assumptions depend on the chosen dynamical model. Liang-Kleeman flow can be attractive for its directional and signed interpretation, but finite-sample uncertainty, nonstationarity, mixed sensor signals, and unobserved common causes remain central concerns.
+where $$C$$ denotes covariance terms and $$\dot{Y}$$ is the temporal derivative of $$Y$$. The exact estimator and assumptions depend on the chosen dynamical model. Liang-Kleeman flow can be attractive for its directional and signed interpretation, but finite-sample uncertainty, nonstationarity, mixed sensor signals, and unobserved common causes remain central concerns.
 
 ### Other Discovery Families
 
@@ -74,7 +74,7 @@ $$
 h_v^{(l+1)} = \phi\left(h_v^{(l)},\; \sum_{u \in \mathrm{Pa}(v)} w_{u \to v} \psi(h_u^{(l)})\right),
 $$
 
-where $\mathrm{Pa}(v)$ denotes candidate parent nodes of $v$ and $w_{u \to v}$ is a directed edge weight. Separate incoming and outgoing channels, edge-confidence gating, and temporal graph models can preserve asymmetry that undirected aggregation discards.
+where $$\mathrm{Pa}(v)$$ denotes candidate parent nodes of $$v$$ and $$w_{u \to v}$$ is a directed edge weight. Separate incoming and outgoing channels, edge-confidence gating, and temporal graph models can preserve asymmetry that undirected aggregation discards.
 
 Several integration directions are promising:
 

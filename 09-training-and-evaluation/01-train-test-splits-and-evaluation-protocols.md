@@ -10,9 +10,9 @@ For beginners, a useful way to think about this chapter is the following: first 
 
 | Task type | Valid held-out unit | Key protocol rule | Typical metrics |
 | --- | --- | --- | --- |
-| Batch, subject-dependent, cross-trial | Trials | Keep whole trials intact across splits | Accuracy, macro-$F_1$, MAE, RMSE |
-| Batch, subject-dependent, cross-session | Sessions | Hold out complete sessions | Accuracy, macro-$F_1$, CCC, session-wise summary |
-| Batch, subject-independent | Subjects | Exclude test subjects entirely from training and tuning | Balanced accuracy, macro-$F_1$, MAE, RMSE |
+| Batch, subject-dependent, cross-trial | Trials | Keep whole trials intact across splits | Accuracy, macro-$$F_1$$, MAE, RMSE |
+| Batch, subject-dependent, cross-session | Sessions | Hold out complete sessions | Accuracy, macro-$$F_1$$, CCC, session-wise summary |
+| Batch, subject-independent | Subjects | Exclude test subjects entirely from training and tuning | Balanced accuracy, macro-$$F_1$$, MAE, RMSE |
 | Online, subject-dependent | Future time blocks or later sessions | Enforce chronology and causality | CCC, time-lag correlation, MAE over time |
 | Online, subject-independent | Unseen subjects plus future stream | Enforce both subject exclusion and causal inference | CCC, trajectory error, latency-aware measures |
 
@@ -51,7 +51,7 @@ Temporal or historical-to-future prediction asks an even stronger question: give
 
 ### Subject-Independent Batch Splits
 
-Subject-independent batch prediction is the setting most people have in mind when they ask whether a model generalizes. In this case, the model is trained on some subjects and evaluated on entirely different subjects. The split therefore has to be performed by subject identity, not by window or trial. Leave-one-subject-out cross-validation is common for small datasets, while grouped $k$-fold evaluation is often more practical for larger ones. Whatever the exact design, hyperparameters must be selected without touching the held-out subjects. If the method allows a calibration phase for new users, that should be reported as a separate protocol rather than quietly merged into the pure subject-independent setting.
+Subject-independent batch prediction is the setting most people have in mind when they ask whether a model generalizes. In this case, the model is trained on some subjects and evaluated on entirely different subjects. The split therefore has to be performed by subject identity, not by window or trial. Leave-one-subject-out cross-validation is common for small datasets, while grouped $$k$$-fold evaluation is often more practical for larger ones. Whatever the exact design, hyperparameters must be selected without touching the held-out subjects. If the method allows a calibration phase for new users, that should be reported as a separate protocol rather than quietly merged into the pure subject-independent setting.
 
 ## Protocols for Online and Continuous Prediction
 
@@ -59,7 +59,7 @@ Online prediction is stricter than batch prediction because time itself becomes 
 
 ### Causal Evaluation
 
-If a system is described as online, then each prediction at time $t$ should depend only on information available up to time $t$, or up to a clearly declared short delay in a near-causal design. This requirement sounds obvious, but it is easy to violate in practice. Bidirectional encoders, centered windows, and smoothing procedures that use future samples may all be acceptable in offline analysis, but they do not support a strict online claim. A proper online evaluation processes the test stream in chronological order, makes clear whether the model needs a warm-up period, and reports practical details such as update frequency, latency, and prediction horizon.
+If a system is described as online, then each prediction at time $$t$$ should depend only on information available up to time $$t$$, or up to a clearly declared short delay in a near-causal design. This requirement sounds obvious, but it is easy to violate in practice. Bidirectional encoders, centered windows, and smoothing procedures that use future samples may all be acceptable in offline analysis, but they do not support a strict online claim. A proper online evaluation processes the test stream in chronological order, makes clear whether the model needs a warm-up period, and reports practical details such as update frequency, latency, and prediction horizon.
 
 ### Online Subject-Dependent Evaluation
 
@@ -85,7 +85,7 @@ Streaming latency, runtime quality gates, and closed-loop validation of the same
 
 ## Metrics and Reporting
 
-Metrics should be chosen to match the prediction target rather than copied mechanically from earlier papers. For batch classification, common choices include accuracy, balanced accuracy, macro-$F_1$, unweighted average recall, and sometimes area under the ROC curve. When label imbalance is substantial, balanced metrics are usually more informative than plain accuracy. For batch regression, typical measures include mean absolute error, root mean square error, Pearson correlation, Spearman correlation, and concordance correlation coefficient.
+Metrics should be chosen to match the prediction target rather than copied mechanically from earlier papers. For batch classification, common choices include accuracy, balanced accuracy, macro-$$F_1$$, unweighted average recall, and sometimes area under the ROC curve. When label imbalance is substantial, balanced metrics are usually more informative than plain accuracy. For batch regression, typical measures include mean absolute error, root mean square error, Pearson correlation, Spearman correlation, and concordance correlation coefficient.
 
 For online continuous prediction, the situation is slightly different. The goal is not only to be locally accurate at each time point, but also to follow the trajectory of affect in a reasonable way. For that reason, concordance correlation coefficient, time-lag-aware correlation, and trajectory-level error measures are often more informative than a single point-wise score alone. If the task emphasizes state transitions, then event-oriented measures may also be appropriate. In all cases, it is good practice to report performance at more than one level, such as per subject, per session, and overall, together with variability estimates such as standard deviations or confidence intervals.
 

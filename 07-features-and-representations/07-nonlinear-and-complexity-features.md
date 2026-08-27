@@ -32,15 +32,15 @@ However, nonlinear features also tend to be more computationally expensive, more
 
 ### Sample Entropy (SampEn)
 
-Sample entropy quantifies the regularity (or unpredictability) of a time series by measuring how often patterns of length $m$ that are similar remain similar when extended by one point:
+Sample entropy quantifies the regularity (or unpredictability) of a time series by measuring how often patterns of length $$m$$ that are similar remain similar when extended by one point:
 
 $$\text{SampEn}(m, r, N) = -\ln \frac{A^m(r)}{B^m(r)}$$
 
 where:
-- $B^m(r)$: Number of template vector pairs of length $m$ with distance $\leq r$.
-- $A^m(r)$: Number of template vector pairs of length $m+1$ with distance $\leq r$.
-- $m$: Embedding dimension (typically 2).
-- $r$: Tolerance (typically 0.1–0.25 times the standard deviation of the signal).
+- $$B^m(r)$$: Number of template vector pairs of length $$m$$ with distance $$\leq r$$.
+- $$A^m(r)$$: Number of template vector pairs of length $$m+1$$ with distance $$\leq r$$.
+- $$m$$: Embedding dimension (typically 2).
+- $$r$$: Tolerance (typically 0.1–0.25 times the standard deviation of the signal).
 
 A lower Sample Entropy indicates a more regular (predictable) signal; higher values indicate greater irregularity.
 
@@ -52,13 +52,13 @@ Approximate entropy is a predecessor of Sample Entropy:
 
 $$\text{ApEn}(m, r, N) = \phi^m(r) - \phi^{m+1}(r)$$
 
-where $\phi^m(r) = \frac{1}{N-m+1} \sum_{i=1}^{N-m+1} \ln C_i^m(r)$ and $C_i^m(r)$ is the fraction of template vectors within distance $r$ of template $i$.
+where $$\phi^m(r) = \frac{1}{N-m+1} \sum_{i=1}^{N-m+1} \ln C_i^m(r)$$ and $$C_i^m(r)$$ is the fraction of template vectors within distance $$r$$ of template $$i$$.
 
 ApEn is biased toward lower values for short time series (it includes self-matches), which SampEn corrects. For this reason, SampEn is generally preferred in contemporary EEG research.
 
 ### Fuzzy Entropy (FuzzyEn)
 
-Fuzzy entropy replaces the hard threshold (within $r$ or not) with a fuzzy membership function, typically a Gaussian:
+Fuzzy entropy replaces the hard threshold (within $$r$$ or not) with a fuzzy membership function, typically a Gaussian:
 
 $$\text{FuzzyEn}(m, r, N) = -\ln \frac{\sum_{i,j} \exp\left(-\| \mathbf{u}_i^{m+1} - \mathbf{u}_j^{m+1} \|^2 / r^2\right)}{\sum_{i,j} \exp\left(-\| \mathbf{u}_i^m - \mathbf{u}_j^m \|^2 / r^2\right)}$$
 
@@ -91,11 +91,11 @@ HFD estimates the fractal dimension of a time series directly in the time domain
 
 $$\langle L(k) \rangle \propto k^{-D}$$
 
-where $L(k)$ is the average length of the curve when measured at scale $k$, and $D$ is the fractal dimension. The HFD is estimated by:
+where $$L(k)$$ is the average length of the curve when measured at scale $$k$$, and $$D$$ is the fractal dimension. The HFD is estimated by:
 
-1. For each scale $k$, construct $k$ sub-series by subsampling.
-2. Compute the average curve length $\langle L(k) \rangle$ across sub-series.
-3. Estimate $D$ from the slope of $\ln\langle L(k) \rangle$ vs. $\ln(1/k)$.
+1. For each scale $$k$$, construct $$k$$ sub-series by subsampling.
+2. Compute the average curve length $$\langle L(k) \rangle$$ across sub-series.
+3. Estimate $$D$$ from the slope of $$\ln\langle L(k) \rangle$$ vs. $$\ln(1/k)$$.
 
 HFD ranges from 1 (smooth curve) to 2 (space-filling). Higher HFD indicates greater complexity and irregularity.
 
@@ -107,14 +107,14 @@ DFA quantifies long-range temporal correlations (scaling behavior) in a signal:
 
 $$F(n) \propto n^{\alpha}$$
 
-where $F(n)$ is the fluctuation amplitude at window size $n$, and $\alpha$ is the scaling exponent:
+where $$F(n)$$ is the fluctuation amplitude at window size $$n$$, and $$\alpha$$ is the scaling exponent:
 
-- $\alpha \approx 0.5$: Uncorrelated (white noise).
-- $0.5 < \alpha < 1.0$: Persistent long-range correlations.
-- $\alpha \approx 1.0$: $1/f$ noise (pink noise).
-- $\alpha > 1.0$: Non-stationary, random walk-like behavior.
+- $$\alpha \approx 0.5$$: Uncorrelated (white noise).
+- $$0.5 < \alpha < 1.0$$: Persistent long-range correlations.
+- $$\alpha \approx 1.0$$: $$1/f$$ noise (pink noise).
+- $$\alpha > 1.0$$: Non-stationary, random walk-like behavior.
 
-EEG typically exhibits scaling exponents in the 0.6–1.0 range, with shifts in $\alpha$ associated with changes in cognitive and emotional state.
+EEG typically exhibits scaling exponents in the 0.6–1.0 range, with shifts in $$\alpha$$ associated with changes in cognitive and emotional state.
 
 ### Katz Fractal Dimension
 
@@ -122,7 +122,7 @@ Katz's fractal dimension provides a simple estimate:
 
 $$D_{\text{Katz}} = \frac{\ln(N-1)}{\ln(N-1) + \ln(d/L)}$$
 
-where $L$ is the total length of the curve and $d$ is the maximum distance from the first point. Katz FD is faster to compute than HFD but less accurate for short time series.
+where $$L$$ is the total length of the curve and $$d$$ is the maximum distance from the first point. Katz FD is faster to compute than HFD but less accurate for short time series.
 
 ## Lempel-Ziv Complexity (LZC)
 
@@ -130,7 +130,7 @@ LZC measures the complexity of a sequence by the number of distinct patterns req
 
 $$C = \frac{c(N)}{N / \log_2 N}$$
 
-where $c(N)$ is the number of distinct patterns and the denominator normalizes by the upper bound for a random sequence. LZC ranges from 0 (constant sequence) to near 1 (fully random).
+where $$c(N)$$ is the number of distinct patterns and the denominator normalizes by the upper bound for a random sequence. LZC ranges from 0 (constant sequence) to near 1 (fully random).
 
 LZC is conceptually simple, parameter-free (beyond the binarization threshold), and computationally efficient. In affective EEG, it has been used alongside entropy measures, with some studies finding that LZC differentiates emotional states with performance comparable to spectral features.
 
@@ -140,11 +140,11 @@ RQA characterizes the recurrence properties of a dynamical system from its phase
 
 ### Recurrence Plot
 
-Given a reconstructed phase space trajectory $\{\mathbf{x}_i\}$, the recurrence matrix is:
+Given a reconstructed phase space trajectory $$\{\mathbf{x}_i\}$$, the recurrence matrix is:
 
 $$R_{ij} = \Theta(\varepsilon - \|\mathbf{x}_i - \mathbf{x}_j\|)$$
 
-where $\Theta$ is the Heaviside function and $\varepsilon$ is a distance threshold. $R_{ij} = 1$ when states $i$ and $j$ are close (recurrent).
+where $$\Theta$$ is the Heaviside function and $$\varepsilon$$ is a distance threshold. $$R_{ij} = 1$$ when states $$i$$ and $$j$$ are close (recurrent).
 
 ### RQA Features
 
@@ -152,11 +152,11 @@ From the recurrence plot, several quantitative measures are derived:
 
 | Measure | Definition | Interpretation |
 | --- | --- | --- |
-| Recurrence Rate (RR) | $\frac{1}{N^2}\sum_{i,j} R_{ij}$ | Overall density of recurrence points |
+| Recurrence Rate (RR) | $$\frac{1}{N^2}\sum_{i,j} R_{ij}$$ | Overall density of recurrence points |
 | Determinism (DET) | Fraction of recurrence points forming diagonal lines | Predictability of the system |
 | Laminarity (LAM) | Fraction forming vertical lines | Intermittency; laminar states |
-| Mean diagonal length ($L_{\text{mean}}$) | Average diagonal line length | Average predictability time |
-| Entropy of diagonal lengths ($L_{\text{entr}}$) | Shannon entropy of diagonal line length distribution | Complexity of predictable dynamics |
+| Mean diagonal length ($$L_{\text{mean}}$$) | Average diagonal line length | Average predictability time |
+| Entropy of diagonal lengths ($$L_{\text{entr}}$$) | Shannon entropy of diagonal line length distribution | Complexity of predictable dynamics |
 | Trapping Time (TT) | Average vertical line length | Duration of laminar states |
 
 RQA features have been applied to emotion recognition, with findings such as higher determinism during focused emotional states and lower determinism during rest.
@@ -167,21 +167,21 @@ RQA features have been applied to emotion recognition, with findings such as hig
 
 ## Lyapunov Exponents
 
-The largest Lyapunov exponent $\lambda_1$ quantifies the rate of divergence of nearby trajectories in phase space:
+The largest Lyapunov exponent $$\lambda_1$$ quantifies the rate of divergence of nearby trajectories in phase space:
 
 $$\lambda_1 = \lim_{t \to \infty} \lim_{\delta \mathbf{x}_0 \to 0} \frac{1}{t} \ln \frac{\|\delta \mathbf{x}(t)\|}{\|\delta \mathbf{x}_0\|}$$
 
-A positive $\lambda_1$ indicates chaotic dynamics (sensitive dependence on initial conditions), while a negative or zero value indicates regular or marginally stable dynamics.
+A positive $$\lambda_1$$ indicates chaotic dynamics (sensitive dependence on initial conditions), while a negative or zero value indicates regular or marginally stable dynamics.
 
 Estimating Lyapunov exponents from EEG is challenging due to noise, non-stationarity, and the need for long recordings. While theoretically interesting (chaotic properties of emotional brain dynamics), Lyapunov exponents have seen limited practical use in affective computing relative to entropy and fractal measures.
 
-## Correlation Dimension ($D_2$)
+## Correlation Dimension ($$D_2$$)
 
 The correlation dimension estimates the dimensionality of the attractor:
 
 $$D_2 = \lim_{r \to 0} \frac{\ln C(r)}{\ln r}, \quad C(r) = \frac{2}{N(N-1)} \sum_{i<j} \Theta(r - \|\mathbf{x}_i - \mathbf{x}_j\|)$$
 
-$D_2$ gives the minimum number of variables needed to describe the system's dynamics. Lower $D_2$ indicates lower-dimensional (simpler) dynamics. EEG typically shows $D_2$ values of 4–8, suggesting low-dimensional chaotic behavior, with some studies reporting changes in $D_2$ across emotional states.
+$$D_2$$ gives the minimum number of variables needed to describe the system's dynamics. Lower $$D_2$$ indicates lower-dimensional (simpler) dynamics. EEG typically shows $$D_2$$ values of 4–8, suggesting low-dimensional chaotic behavior, with some studies reporting changes in $$D_2$$ across emotional states.
 
 ## Practical Considerations
 
@@ -190,7 +190,7 @@ $D_2$ gives the minimum number of variables needed to describe the system's dyna
 | Segment length | Most nonlinear measures require longer segments than linear features; ≥ 5 seconds recommended |
 | Artifact sensitivity | Nonlinear measures are very sensitive to artifacts; use clean, artifact-free segments |
 | Stationarity | Many nonlinear measures assume stationarity; test and select stationary segments |
-| Parameter selection | Entropy measures depend critically on $m$ and $r$; report and justify parameter choices |
+| Parameter selection | Entropy measures depend critically on $$m$$ and $$r$$; report and justify parameter choices |
 | Computational cost | RQA, Lyapunov exponents, and correlation dimension are computationally expensive |
 | Feature normalization | Nonlinear features can have extreme values; normalization is essential |
 | Complementarity | Always compare nonlinear features against linear baselines to quantify added value |

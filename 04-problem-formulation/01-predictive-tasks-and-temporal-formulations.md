@@ -26,13 +26,13 @@ Classification maps an EEG example to one of a finite set of affective categorie
 
 The formulation should state whether categories are observed directly, inherited from a stimulus, or created by thresholding continuous self-reports. Thresholding is a modeling decision: a global threshold, a subject-specific threshold, and a threshold fitted using training data define different tasks and can lead to different class distributions.
 
-For a segment $x_i$ with label $y_i \in \{1, \ldots, K\}$, a classifier estimates
+For a segment $$x_i$$ with label $$y_i \in \{1, \ldots, K\}$$, a classifier estimates
 
 $$
 p(y_i \mid x_i).
 $$
 
-The unit $x_i$ may be an entire trial, an epoch, a fixed window, or a sequence. Its temporal boundaries and label rule must be reported.
+The unit $$x_i$$ may be an entire trial, an epoch, a fixed window, or a sequence. Its temporal boundaries and label rule must be reported.
 
 ### Label Granularity and Inheritance
 
@@ -44,13 +44,13 @@ For continuous annotations, report annotation delay, sampling interval, smoothin
 
 Regression predicts a continuous affective quantity, commonly valence, arousal, dominance, liking, stress intensity, or an aggregated rating score. It is appropriate when the target scale carries meaningful order or distance that would be lost by discretizing it.
 
-For a continuous target $y_i \in \mathbb{R}$, the model estimates
+For a continuous target $$y_i \in \mathbb{R}$$, the model estimates
 
 $$
 \hat{y}_i = f(x_i).
 $$
 
-Regression can also predict a conditional distribution rather than a point estimate. For example, a model may output $p(y_i \mid x_i)$ or a mean and variance, allowing it to distinguish an uncertain estimate from a confident estimate with the same predicted mean. This is useful when ratings are noisy, annotator disagreement is substantial, or the input is out of distribution.
+Regression can also predict a conditional distribution rather than a point estimate. For example, a model may output $$p(y_i \mid x_i)$$ or a mean and variance, allowing it to distinguish an uncertain estimate from a confident estimate with the same predicted mean. This is useful when ratings are noisy, annotator disagreement is substantial, or the input is out of distribution.
 
 Report the rating scale, its range, any rescaling or normalization, and whether normalization was fitted per subject, per session, or on training data only. A model that predicts normalized within-subject ratings answers a different question from one that predicts the original population-scale ratings.
 
@@ -62,7 +62,7 @@ This formulation is appropriate for offline clip-level recognition, standardized
 
 ## State Tracking
 
-State tracking estimates an evolving affective state from a continuous EEG stream. At time $t$, a causal tracker should use only the signal history available up to that point:
+State tracking estimates an evolving affective state from a continuous EEG stream. At time $$t$$, a causal tracker should use only the signal history available up to that point:
 
 $$
 \hat{s}_t = f(x_{\leq t}).
@@ -72,7 +72,7 @@ The target may be a continuous annotation, a slowly varying latent state, or a s
 
 ## Forecasting
 
-Forecasting predicts a future affective state rather than the present state. With a prediction horizon $\Delta > 0$,
+Forecasting predicts a future affective state rather than the present state. With a prediction horizon $$\Delta > 0$$,
 
 $$
 \hat{s}_{t + \Delta} = f(x_{\leq t}).
@@ -85,8 +85,8 @@ Forecasting is relevant for proactive human-computer interaction, adaptive inter
 | Formulation | Target time | Future EEG allowed? | Typical output | Core evaluation need |
 | --- | --- | --- | --- | --- |
 | Batch classification or regression | Defined by the pre-segmented example | May be within the declared example | Category or score | Grouped held-out examples |
-| State tracking | Current time $t$ | No for causal claims | Current state trajectory | Chronological trajectory evaluation |
-| Forecasting | Future time $t + \Delta$ | No beyond time $t$ | Future state trajectory | Horizon-specific chronological evaluation |
+| State tracking | Current time $$t$$ | No for causal claims | Current state trajectory | Chronological trajectory evaluation |
+| Forecasting | Future time $$t + \Delta$$ | No beyond time $$t$$ | Future state trajectory | Horizon-specific chronological evaluation |
 
 ![Temporal formulations for affective EEG. The diagram should compare batch prediction, causal state tracking, and forecasting on one aligned timeline, marking input history, prediction time, target time, buffering delay, and forecast horizon.](figures/temporal-formulations.png)
 

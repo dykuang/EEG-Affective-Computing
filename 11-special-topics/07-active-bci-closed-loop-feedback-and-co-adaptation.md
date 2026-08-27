@@ -12,13 +12,13 @@ In a closed-loop system, the person learns how to produce usable neural patterns
 
 Passive BCI asks questions such as: "Is the user becoming fatigued?" or "What is the user's current affective state?" The output may adapt an interface, but the user does not necessarily learn to control the measured signal intentionally.
 
-Active BCI asks a different question: "Can the user intentionally control an interface through neural activity?" A common formulation maps an EEG observation $x_t$ to a command $a_t$:
+Active BCI asks a different question: "Can the user intentionally control an interface through neural activity?" A common formulation maps an EEG observation $$x_t$$ to a command $$a_t$$:
 
 $$
 a_t = \pi_\theta(x_{\leq t}),
 $$
 
-where $\pi_\theta$ is a decoder or policy that must operate within the available time and feedback latency. The command may select a target, move a cursor, control a wheelchair, spell a character, regulate a game or training task, or trigger a device action.
+where $$\pi_\theta$$ is a decoder or policy that must operate within the available time and feedback latency. The command may select a target, move a cursor, control a wheelchair, spell a character, regulate a game or training task, or trigger a device action.
 
 Some assistive systems also deliver information *to* the user. For example, a camera can be converted into auditory or tactile sensory-substitution cues for a blind user, or a visual prosthesis may provide patterned stimulation intended to create useful percepts. These systems are not always active EEG BCIs in the strict sense, because their input may come from a camera or implanted interface rather than an EEG decoder. They share the key closed-loop property: the user must learn how to interpret artificial feedback, and the system must be calibrated to support that learning.
 

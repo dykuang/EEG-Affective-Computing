@@ -18,7 +18,7 @@ EMOD is especially relevant when source and target datasets use different emotio
 
 ## Why Transfer Is Necessary in Affective EEG
 
-The standard supervised pipeline assumes that training and test data are drawn from the same distribution $p(x, y)$. This assumption is routinely violated in EEG-based affective computing for several reasons:
+The standard supervised pipeline assumes that training and test data are drawn from the same distribution $$p(x, y)$$. This assumption is routinely violated in EEG-based affective computing for several reasons:
 
 - **Cross-subject variability**: Each individual's EEG signature of the same emotion differs in topography, power, and temporal dynamics due to skull thickness, cortical folding, baseline arousal, and trait affectivity.
 - **Session drift**: Impedance changes, electrode gel degradation, fatigue, circadian rhythm, and habituation all shift the distribution within a single participant over time.
@@ -32,17 +32,17 @@ Transfer learning provides a principled framework for leveraging these larger so
 
 ## Domain Adaptation
 
-Domain adaptation aligns the feature distributions of a labeled source domain $\mathcal{D}_S = \{(x_i^S, y_i^S)\}_{i=1}^{n_S}$ and an unlabeled or sparsely labeled target domain $\mathcal{D}_T = \{(x_j^T)\}_{j=1}^{n_T}$ (optionally with a few labels $y_j^T$). The goal is a predictor that performs well on the target despite the distribution shift $p_S(x, y) \neq p_T(x, y)$.
+Domain adaptation aligns the feature distributions of a labeled source domain $$\mathcal{D}_S = \{(x_i^S, y_i^S)\}_{i=1}^{n_S}$$ and an unlabeled or sparsely labeled target domain $$\mathcal{D}_T = \{(x_j^T)\}_{j=1}^{n_T}$$ (optionally with a few labels $$y_j^T$$). The goal is a predictor that performs well on the target despite the distribution shift $$p_S(x, y) \neq p_T(x, y)$$.
 
 ### Discrepancy-Based Methods
 
-Discrepancy-based methods minimize an explicit distribution distance between source and target feature representations. Let $\phi(\cdot)$ be a feature extractor shared across domains. The total loss combines a source classification term with a distribution-matching regularizer:
+Discrepancy-based methods minimize an explicit distribution distance between source and target feature representations. Let $$\phi(\cdot)$$ be a feature extractor shared across domains. The total loss combines a source classification term with a distribution-matching regularizer:
 
 $$
 \mathcal{L} = \frac{1}{n_S}\sum_{i=1}^{n_S} \ell\big(f(\phi(x_i^S)), y_i^S\big) \;+\; \lambda \cdot d\big(\Phi_S, \Phi_T\big)
 $$
 
-where $\Phi_S = \{\phi(x_i^S)\}$ and $\Phi_T = \{\phi(x_j^T)\}$.
+where $$\Phi_S = \{\phi(x_i^S)\}$$ and $$\Phi_T = \{\phi(x_j^T)\}$$.
 
 **Maximum Mean Discrepancy (MMD).** MMD measures the distance between mean embeddings of two distributions in a reproducing kernel Hilbert space (RKHS):
 
@@ -50,7 +50,7 @@ $$
 \mathrm{MMD}^2(\Phi_S, \Phi_T) = \left\| \frac{1}{n_S}\sum_{i=1}^{n_S} \psi(\phi(x_i^S)) - \frac{1}{n_T}\sum_{j=1}^{n_T} \psi(\phi(x_j^T)) \right\|_{\mathcal{H}}^2
 $$
 
-where $\psi$ is a kernel mapping (typically Gaussian RBF). MMD is widely used in EEG domain adaptation because it is nonparametric, differentiable, and can be applied to single-layer or multi-layer representations. The Deep Coral and Deep MMD variants apply it to activations at multiple network depths.
+where $$\psi$$ is a kernel mapping (typically Gaussian RBF). MMD is widely used in EEG domain adaptation because it is nonparametric, differentiable, and can be applied to single-layer or multi-layer representations. The Deep Coral and Deep MMD variants apply it to activations at multiple network depths.
 
 **CORrelation ALignment (CORAL).** CORAL aligns the second-order statistics of source and target features without kernel selection:
 
@@ -58,27 +58,27 @@ $$
 \mathcal{L}_{\text{CORAL}} = \frac{1}{4d^2} \left\| C_S - C_T \right\|_F^2
 $$
 
-where $C_S$ and $C_T$ are the $d \times d$ covariance matrices of $\Phi_S$ and $\Phi_T$. CORAL is computationally lighter than MMD and is effective when covariance shift dominates.
+where $$C_S$$ and $$C_T$$ are the $$d \times d$$ covariance matrices of $$\Phi_S$$ and $$\Phi_T$$. CORAL is computationally lighter than MMD and is effective when covariance shift dominates.
 
 **Central Moment Discrepancy (CMD).** CMD extends the idea to higher-order moments, matching means, covariances, and beyond, which can capture more subtle distribution differences in EEG feature spaces.
 
 | Discrepancy method | What it aligns | Computational cost | Typical EEG use |
 | --- | --- | --- | --- |
-| MMD | Kernel mean embedding | $\mathcal{O}(n^2)$ | Cross-subject, cross-session |
-| CORAL | Covariance (2nd moment) | $\mathcal{O}(d^2)$ | Cross-device, subject adaptation |
-| CMD | Higher-order moments | $\mathcal{O}(n)$ per moment order | Fine-grained session alignment |
+| MMD | Kernel mean embedding | $$\mathcal{O}(n^2)$$ | Cross-subject, cross-session |
+| CORAL | Covariance (2nd moment) | $$\mathcal{O}(d^2)$$ | Cross-device, subject adaptation |
+| CMD | Higher-order moments | $$\mathcal{O}(n)$$ per moment order | Fine-grained session alignment |
 
 ### Adversarial Domain Adaptation
 
-Adversarial methods frame domain alignment as a minimax game between a feature extractor $\phi$ and a domain discriminator $D$:
+Adversarial methods frame domain alignment as a minimax game between a feature extractor $$\phi$$ and a domain discriminator $$D$$:
 
 $$
 \min_\phi \max_D \; \mathcal{L}_{\text{cls}} - \lambda \cdot \left(\mathbb{E}_{x \sim \mathcal{D}_S}\big[\log D(\phi(x))\big] + \mathbb{E}_{x \sim \mathcal{D}_T}\big[\log(1 - D(\phi(x)))\big]\right)
 $$
 
-The discriminator is trained to identify which domain a feature vector comes from; the feature extractor is trained simultaneously to maximize classification accuracy while *fooling* the discriminator. At equilibrium, features from both domains become indistinguishable to $D$, implying distributional alignment.
+The discriminator is trained to identify which domain a feature vector comes from; the feature extractor is trained simultaneously to maximize classification accuracy while *fooling* the discriminator. At equilibrium, features from both domains become indistinguishable to $$D$$, implying distributional alignment.
 
-**Gradient Reversal Layer (GRL).** The original DANN (Domain-Adversarial Neural Network) implements this with a gradient reversal layer that flips the sign of gradients flowing from $D$ to $\phi$ during backpropagation, enabling end-to-end training in a single forward-backward pass.
+**Gradient Reversal Layer (GRL).** The original DANN (Domain-Adversarial Neural Network) implements this with a gradient reversal layer that flips the sign of gradients flowing from $$D$$ to $$\phi$$ during backpropagation, enabling end-to-end training in a single forward-backward pass.
 
 **Domain-Adversarial Adaptation for EEG.** In affective EEG, the discriminator is typically trained to distinguish subjects, sessions, or datasets. The feature extractor can be a CNN, an LSTM, or a GNN, and the classifier and discriminator share the same feature backbone.
 
@@ -92,7 +92,7 @@ The discriminator is trained to identify which domain a feature vector comes fro
 
 1. **Align per-layer or per-block.** Deep features at different layers capture different levels of abstraction. Early layers encode device-specific spectral patterns; later layers encode semantic affect representations. Aligning only the penultimate layer is common but often insufficient for large domain gaps.
 2. **Choose the domain definition carefully.** The discriminator target should reflect the intended generalization claim. Discriminating subjects is standard for subject-independent evaluation; discriminating datasets is appropriate for cross-corpus transfer.
-3. **Tune the adaptation weight $\lambda$.** Too little adaptation leaves the domain gap open; too much adaptation can collapse emotion-discriminative structure. Use target validation data (without labels) to tune $\lambda$, or adopt an annealing schedule that increases $\lambda$ over training.
+3. **Tune the adaptation weight $$\lambda$$.** Too little adaptation leaves the domain gap open; too much adaptation can collapse emotion-discriminative structure. Use target validation data (without labels) to tune $$\lambda$$, or adopt an annealing schedule that increases $$\lambda$$ over training.
 4. **Watch for negative transfer.** When the source and target domains are too dissimilar, transfer can hurt target performance relative to training from scratch on the target alone. Always report a target-only baseline.
 5. **Semi-supervised adaptation.** When a small number of target labels are available, combine domain-adversarial or discrepancy losses with supervised fine-tuning on the available target examples. This often yields the best practical results.
 
@@ -100,45 +100,45 @@ The discriminator is trained to identify which domain a feature vector comes fro
 
 ## Few-Shot Learning
 
-Few-shot learning addresses the scenario where the target domain provides only $K$ labeled examples per class (the $K$-way $N$-shot setting). In affective EEG, this arises naturally: after a short calibration session with $N$ trials per emotion category, the model should classify subsequent trials from the same subject or a new subject.
+Few-shot learning addresses the scenario where the target domain provides only $$K$$ labeled examples per class (the $$K$$-way $$N$$-shot setting). In affective EEG, this arises naturally: after a short calibration session with $$N$$ trials per emotion category, the model should classify subsequent trials from the same subject or a new subject.
 
 ### Metric-Based Few-Shot Learning
 
 Metric-based methods learn an embedding space where classification reduces to comparing distances to labeled exemplars.
 
-**Prototypical Networks.** For each class $k$, compute a prototype $\mathbf{c}_k$ as the mean embedding of its $N$ support examples:
+**Prototypical Networks.** For each class $$k$$, compute a prototype $$\mathbf{c}_k$$ as the mean embedding of its $$N$$ support examples:
 
 $$
 \mathbf{c}_k = \frac{1}{N} \sum_{i: y_i = k} \phi(x_i)
 $$
 
-A query example $x_q$ is classified by softmax over negative squared Euclidean distances to prototypes:
+A query example $$x_q$$ is classified by softmax over negative squared Euclidean distances to prototypes:
 
 $$
 p(y_q = k \mid x_q) = \frac{\exp\big(-\|\phi(x_q) - \mathbf{c}_k\|^2\big)}{\sum_{k'} \exp\big(-\|\phi(x_q) - \mathbf{c}_{k'}\|^2\big)}
 $$
 
-Training uses episodic sampling: each episode draws a random subset of classes and examples to mimic the few-shot test scenario. This meta-training regime teaches the embedding $\phi$ to produce well-separated class clusters.
+Training uses episodic sampling: each episode draws a random subset of classes and examples to mimic the few-shot test scenario. This meta-training regime teaches the embedding $$\phi$$ to produce well-separated class clusters.
 
 **Matching Networks.** Matching networks extend this idea with an attention mechanism over support examples, computing a weighted combination rather than a single prototype. The attention kernel is typically cosine similarity with a learned scale factor.
 
-**Relation Networks.** Instead of a fixed distance metric, relation networks learn a *relation module* $g$ that takes a concatenated query–support pair and outputs a scalar relation score. This can capture nonlinear class boundaries that Euclidean distance misses.
+**Relation Networks.** Instead of a fixed distance metric, relation networks learn a *relation module* $$g$$ that takes a concatenated query–support pair and outputs a scalar relation score. This can capture nonlinear class boundaries that Euclidean distance misses.
 
 ![Prototypical network for EEG emotion few-shot learning: support examples define class prototypes; query examples are classified by proximity in the learned embedding space.](figures/few-shot-prototypical-eeg.png)
 
-*Figure 3. Episodic few-shot learning with prototypical networks for EEG. During meta-training, episodes sample $K$ classes each with $N$ support examples. The embedding network (e.g., a CNN-LSTM) maps EEG windows to a space where each class forms a compact cluster around its prototype. At test time, a new subject's few calibration trials define prototypes for real-time classification.*
+*Figure 3. Episodic few-shot learning with prototypical networks for EEG. During meta-training, episodes sample $$K$$ classes each with $$N$$ support examples. The embedding network (e.g., a CNN-LSTM) maps EEG windows to a space where each class forms a compact cluster around its prototype. At test time, a new subject's few calibration trials define prototypes for real-time classification.*
 
 ### Optimization-Based Few-Shot Learning
 
-**MAML (Model-Agnostic Meta-Learning).** MAML learns an initialization $\theta$ such that a small number of gradient steps on new task data produces a good task-specific model. The meta-objective is:
+**MAML (Model-Agnostic Meta-Learning).** MAML learns an initialization $$\theta$$ such that a small number of gradient steps on new task data produces a good task-specific model. The meta-objective is:
 
 $$
 \min_\theta \sum_{\mathcal{T}_i \sim p(\mathcal{T})} \mathcal{L}_{\mathcal{T}_i}\big(\theta - \alpha \nabla_\theta \mathcal{L}_{\mathcal{T}_i}(\theta)\big)
 $$
 
-where each task $\mathcal{T}_i$ is a subject or session. The inner loop adapts $\theta$ to the task with one or few gradient steps; the outer loop optimizes the initialization so that adaptation is effective across tasks.
+where each task $$\mathcal{T}_i$$ is a subject or session. The inner loop adapts $$\theta$$ to the task with one or few gradient steps; the outer loop optimizes the initialization so that adaptation is effective across tasks.
 
-**Reptile.** A simpler alternative to MAML, Reptile repeatedly samples a task $\mathcal{T}_i$, performs $k$ steps of SGD on it, and moves the initialization toward the resulting parameters:
+**Reptile.** A simpler alternative to MAML, Reptile repeatedly samples a task $$\mathcal{T}_i$$, performs $$k$$ steps of SGD on it, and moves the initialization toward the resulting parameters:
 
 $$
 \theta \leftarrow \theta + \beta \cdot (\theta_i^{(k)} - \theta)
@@ -170,9 +170,9 @@ Zero-shot learning (ZSL) classifies instances from classes that were never seen 
 
 ### Semantic Embedding Approaches
 
-ZSL bridges seen and unseen classes through a shared semantic space. Each class $k$ is described by a semantic vector $\mathbf{a}_k$ (attributes, word embeddings, or expert annotations). The model learns a compatibility function $s(x, \mathbf{a})$ that scores how well an EEG instance matches a class description.
+ZSL bridges seen and unseen classes through a shared semantic space. Each class $$k$$ is described by a semantic vector $$\mathbf{a}_k$$ (attributes, word embeddings, or expert annotations). The model learns a compatibility function $$s(x, \mathbf{a})$$ that scores how well an EEG instance matches a class description.
 
-During training, the model sees pairs $(x_i, \mathbf{a}_{y_i})$ for seen classes only. At test time, given an unseen class with descriptor $\mathbf{a}_{\text{unseen}}$, classification selects:
+During training, the model sees pairs $$(x_i, \mathbf{a}_{y_i})$$ for seen classes only. At test time, given an unseen class with descriptor $$\mathbf{a}_{\text{unseen}}$$, classification selects:
 
 $$
 \hat{y} = \arg\max_k \; s(x, \mathbf{a}_k)
@@ -180,9 +180,9 @@ $$
 
 **Attribute-Based ZSL for Emotion.** Emotion categories can be described by their coordinates in the valence-arousal-dominance (VAD) space, by appraisal dimensions (novelty, goal-relevance, coping-potential), or by linguistic embeddings (GloVe, BERT) of the emotion word. For example:
 
-- "Joy": valence $= 0.85$, arousal $= 0.65$, dominance $= 0.70$
-- "Sadness": valence $= -0.75$, arousal $= -0.35$, dominance $= -0.55$
-- "Anger": valence $= -0.60$, arousal $= 0.75$, dominance $= 0.45$
+- "Joy": valence $$= 0.85$$, arousal $$= 0.65$$, dominance $$= 0.70$$
+- "Sadness": valence $$= -0.75$$, arousal $$= -0.35$$, dominance $$= -0.55$$
+- "Anger": valence $$= -0.60$$, arousal $$= 0.75$$, dominance $$= 0.45$$
 
 An EEG encoder trained to predict VAD coordinates from brain signals can, in principle, recognize *any* emotion whose VAD profile is known, even if that emotion never appeared in the training data.
 
@@ -221,8 +221,8 @@ In real affective EEG deployments, these paradigms are rarely used in isolation.
 | --- | --- | --- | --- |
 | Full supervision | All target labels | Supervised training or fine-tuning | Label cost and subject burden |
 | Domain adaptation | None (unsupervised) | MMD, CORAL, adversarial alignment | Negative transfer when domains differ too much |
-| Semi-supervised adaptation | $\sim$10–30% of target labels | Adversarial + supervised loss | Selecting which examples to label |
-| Few-shot | $N$ per class ($N \leq 10$) | Prototypical, MAML, fine-tuning | Episode design and overfitting |
+| Semi-supervised adaptation | $$\sim$$10–30% of target labels | Adversarial + supervised loss | Selecting which examples to label |
+| Few-shot | $$N$$ per class ($$N \leq 10$$) | Prototypical, MAML, fine-tuning | Episode design and overfitting |
 | One-shot | 1 per class | Siamese, matching, MAML | Extreme variance across single exemplars |
 | Zero-shot | 0 per class | Semantic embedding (VAD, language) | Semantic gap and hubness |
 
@@ -250,9 +250,9 @@ Every transfer or few-shot paper on affective EEG should report:
 
 ### Metrics Beyond Accuracy
 
-- **Adaptation gain**: $\text{Acc}_{\text{adapted}} - \text{Acc}_{\text{source-only}}$
-- **Few-shot learning curves**: Accuracy as a function of $N$ (shots per class)
-- **Generalized ZSL harmonic mean**: $H = 2 \cdot \frac{\text{Acc}_{\text{seen}} \cdot \text{Acc}_{\text{unseen}}}{\text{Acc}_{\text{seen}} + \text{Acc}_{\text{unseen}}}$
+- **Adaptation gain**: $$\text{Acc}_{\text{adapted}} - \text{Acc}_{\text{source-only}}$$
+- **Few-shot learning curves**: Accuracy as a function of $$N$$ (shots per class)
+- **Generalized ZSL harmonic mean**: $$H = 2 \cdot \frac{\text{Acc}_{\text{seen}} \cdot \text{Acc}_{\text{unseen}}}{\text{Acc}_{\text{seen}} + \text{Acc}_{\text{unseen}}}$$
 - **Per-subject variance**: Report standard deviation across subjects, not just the mean
 
 ---

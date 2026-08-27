@@ -34,7 +34,7 @@ Frontal alpha asymmetry is often quantified as:
 
 $$\text{FAA} = \ln(\alpha_{\text{right}}) - \ln(\alpha_{\text{left}})$$
 
-where $\alpha$ denotes alpha-band power at homologous frontal electrode pairs (e.g., F4 and F3).
+where $$\alpha$$ denotes alpha-band power at homologous frontal electrode pairs (e.g., F4 and F3).
 
 With this convention, positive FAA scores indicate relatively greater left frontal activity. The sign reverses if the electrode order or subtraction convention is changed, so authors should always report the formula, band limits, reference, artifact-rejection procedure, and electrodes used.
 

@@ -72,7 +72,7 @@ This chapter provides a comprehensive survey of deep learning architectures appl
 
 | Aspect | Discriminative Models | Generative Models |
 |---|---|---|
-| **Objective** | $P(y|x)$ — predict label given EEG | $P(x)$ or $P(x,y)$ — model EEG distribution |
+| **Objective** | $$P(y|x)$$ — predict label given EEG | $$P(x)$$ or $$P(x,y)$$ — model EEG distribution |
 | **Output** | Emotion class or regression value | Generated EEG, latent representation, or label |
 | **Data augmentation** | External methods needed | Built-in generation capability |
 | **Interpretability** | Attention maps, feature importance | Latent space traversal, factor disentanglement |
@@ -83,17 +83,17 @@ This chapter provides a comprehensive survey of deep learning architectures appl
 
 ### Latent Variable Models
 
-Generative models often assume observed EEG data $x$ is generated from unobserved latent variables $z$:
+Generative models often assume observed EEG data $$x$$ is generated from unobserved latent variables $$z$$:
 
 $$p(x) = \int p(x|z) p(z) dz$$
 
-The latent $z$ captures essential factors — emotional state, subject identity, noise level — in a compressed form.
+The latent $$z$$ captures essential factors — emotional state, subject identity, noise level — in a compressed form.
 
 ### The Generative Process
 
-1. **Sample latent**: $z \sim p(z)$ (e.g., standard Gaussian)
-2. **Generate observation**: $x \sim p_\theta(x|z)$ (decoder/generator network)
-3. **Inference**: Given observed $x$, infer $q_\phi(z|x)$ (encoder network)
+1. **Sample latent**: $$z \sim p(z)$$ (e.g., standard Gaussian)
+2. **Generate observation**: $$x \sim p_\theta(x|z)$$ (decoder/generator network)
+3. **Inference**: Given observed $$x$$, infer $$q_\phi(z|x)$$ (encoder network)
 
 ### Applications in Affective Computing
 
@@ -147,9 +147,9 @@ segments = sliding_window(eeg_signal, segment_length, stride=512)
 
 ### 4. Normalization Considerations
 
-- **VAE**: Often uses $[-1, 1]$ or standardized inputs for Gaussian likelihood
-- **GAN**: Tanh output layer expects $[-1, 1]$; scale inputs accordingly
-- **Diffusion**: Data scaled to $[-1, 1]$ for stable noise schedule
+- **VAE**: Often uses $$[-1, 1]$$ or standardized inputs for Gaussian likelihood
+- **GAN**: Tanh output layer expects $$[-1, 1]$$; scale inputs accordingly
+- **Diffusion**: Data scaled to $$[-1, 1]$$ for stable noise schedule
 
 ## Evaluating Generative Models for EEG
 
@@ -160,7 +160,7 @@ Standard metrics adapted for EEG:
 | **FID** (Fréchet Inception Distance) | Distribution similarity | Needs EEG-specific feature extractor (not ImageNet) |
 | **Reconstruction MSE** | Signal fidelity | Window-level or channel-level |
 | **Classification accuracy on generated data** | Utility of augmented data | Train classifier on generated EEG, test on real |
-| **Latent space smoothness** | Interpolation quality | Linear interpolation in $z$ should yield smooth EEG transitions |
+| **Latent space smoothness** | Interpolation quality | Linear interpolation in $$z$$ should yield smooth EEG transitions |
 | **Disentanglement metrics** (MIG, DCI) | Factor separation | Separate emotion from subject identity |
 | **Spectral similarity** | Frequency content match | PSD correlation, band power ratios |
 

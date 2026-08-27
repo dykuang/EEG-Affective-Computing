@@ -10,7 +10,7 @@ The four paradigms discussed here--supervised, unsupervised, semi-supervised, an
 
 ## Supervised Learning
 
-Supervised learning is the most direct setting. The model receives labeled pairs $(x,y)$, where $x$ is an EEG input and $y$ is the desired prediction. It learns a mapping from signal to label by minimizing a task-specific loss, commonly cross-entropy for emotion classes or mean squared error for continuous valence and arousal scores.
+Supervised learning is the most direct setting. The model receives labeled pairs $$(x,y)$$, where $$x$$ is an EEG input and $$y$$ is the desired prediction. It learns a mapping from signal to label by minimizing a task-specific loss, commonly cross-entropy for emotion classes or mean squared error for continuous valence and arousal scores.
 
 This setup fits emotion classification, valence/arousal regression, and subject-specific emotion recognition. Its objective is directly aligned with the final task, and held-out labels provide a straightforward evaluation target. When annotations are plentiful and trustworthy, supervised learning is the natural starting point.
 
@@ -18,7 +18,7 @@ For EEG, that condition is often only partly met. Emotional self-reports are exp
 
 ## Unsupervised Learning
 
-Unsupervised learning works with inputs $x$ alone. Rather than predicting an external annotation, the model is asked to capture structure within the recordings. Depending on the method, that may mean grouping similar signals, reconstructing an input, estimating its density, or compressing it into a lower-dimensional representation.
+Unsupervised learning works with inputs $$x$$ alone. Rather than predicting an external annotation, the model is asked to capture structure within the recordings. Depending on the method, that may mean grouping similar signals, reconstructing an input, estimating its density, or compressing it into a lower-dimensional representation.
 
 An autoencoder, for example, can reconstruct a multichannel segment through a compact latent code. Those representations can then be inspected or clustered to explore recurring signal patterns, describe a signal manifold, or identify atypical recordings through reconstruction error or low likelihood. The objective does not guarantee that the structure it finds will separate emotional states, but it can reveal regularities before a final prediction task is specified.
 
@@ -46,17 +46,17 @@ A masked autoencoder (MAE) is a generative self-supervised method. It hides part
 
 $$\mathcal{L}_{\text{mask}} = \left\|M \odot \left(x - \hat{x}\right)\right\|^2,$$
 
-where $M$ selects the masked samples or patches. The encoder processes the visible signal, and the decoder uses that representation to predict the missing signal. After pretraining, the encoder can be retained and fine-tuned for emotion classification, valence/arousal regression, or another downstream task.
+where $$M$$ selects the masked samples or patches. The encoder processes the visible signal, and the decoder uses that representation to predict the missing signal. After pretraining, the encoder can be retained and fine-tuned for emotion classification, valence/arousal regression, or another downstream task.
 
 Masked reconstruction is attractive for EEG because recordings are often plentiful even when emotion labels are scarce. It can encourage representations that capture temporal continuity, cross-channel relationships, and frequency structure. Its limitations are equally important: a model may learn to interpolate predictable waveform patterns without learning affective information, or it may reconstruct subject-specific artifacts. Masking strategy, reconstruction target, and evaluation should therefore be chosen to match the intended downstream task.
 
 ### Contrastive and Teacher-Student Learning
 
-Contrastive learning trains representations so that compatible views of the same underlying example are close while views from different examples are separated. For an EEG segment, two views might be produced by label-preserving transformations such as modest temporal cropping, amplitude scaling, channel dropout, or noise injection. An InfoNCE-style objective for an anchor $z_i$ and its positive representation $z_i^+$ can be written as
+Contrastive learning trains representations so that compatible views of the same underlying example are close while views from different examples are separated. For an EEG segment, two views might be produced by label-preserving transformations such as modest temporal cropping, amplitude scaling, channel dropout, or noise injection. An InfoNCE-style objective for an anchor $$z_i$$ and its positive representation $$z_i^+$$ can be written as
 
 $$\mathcal{L}_{\text{NCE}} = -\log \frac{\exp(\mathrm{sim}(z_i,z_i^+)/\tau)}{\sum_{j} \exp(\mathrm{sim}(z_i,z_j)/\tau)},$$
 
-where $\mathrm{sim}$ is a similarity function and $\tau$ is a temperature parameter. The negative examples should be selected carefully: two segments from the same participant, session, or emotional episode may not be valid negatives simply because they have different indices.
+where $$\mathrm{sim}$$ is a similarity function and $$\tau$$ is a temperature parameter. The negative examples should be selected carefully: two segments from the same participant, session, or emotional episode may not be valid negatives simply because they have different indices.
 
 Teacher-student networks are closely related to consistency learning and are often combined with contrastive objectives, although the two ideas are not identical. A teacher, commonly updated as an exponential moving average of the student, supplies a stable representation or pseudo-target for another view of the same EEG segment. The student is optimized to agree with that target, sometimes with additional negatives or a supervised loss. This design can avoid reliance on large labeled datasets, but it can also collapse to uninformative representations unless normalization, prediction heads, stop-gradient operations, centering, or other anti-collapse mechanisms are used.
 

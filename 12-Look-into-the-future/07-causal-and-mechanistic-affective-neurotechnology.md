@@ -6,13 +6,13 @@ Most affective EEG systems learn correlations: patterns that predict a rating, s
 
 A correlational model may learn that a spectral pattern accompanies high arousal in one task. The pattern could reflect arousal itself, task difficulty, muscle activity, stimulus properties, or a response strategy. A causal question asks what would happen under an intervention, such as changing task difficulty, feedback timing, a stimulus, or neural stimulation.
 
-A simplified causal graph can include task context $C$, latent affective state $A$, EEG measurement $X$, behavior $B$, and system action $U$. The aim is not simply to estimate $p(A \mid X)$, but to reason about quantities such as the effect of an action:
+A simplified causal graph can include task context $$C$$, latent affective state $$A$$, EEG measurement $$X$$, behavior $$B$$, and system action $$U$$. The aim is not simply to estimate $$p(A \mid X)$$, but to reason about quantities such as the effect of an action:
 
 $$
 p(B \mid do(U = u)).
 $$
 
-The $do(\cdot)$ notation emphasizes that an intervention differs from observing a naturally occurring variable. Strong causal claims require study designs and assumptions that are rarely available from passive benchmark data alone.
+The $$do(\cdot)$$ notation emphasizes that an intervention differs from observing a naturally occurring variable. Strong causal claims require study designs and assumptions that are rarely available from passive benchmark data alone.
 
 ![Causal graph for affective neurotechnology. The diagram should show task context, latent affective state, EEG measurement, behavior, and system action, with confounding paths distinguished from the intervention path used to estimate the effect of an action.](figures/affective-neurotechnology-causal-graph.png)
 

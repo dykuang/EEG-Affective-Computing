@@ -15,7 +15,7 @@ A typical feature set may include:
 - Nonlinear features: 62 channels × 3 measures = 186 features
 - **Total**: ~10,000 features
 
-Yet a typical affective EEG dataset may have only a few thousand labeled segments per subject. With $p \gg n$ (more features than samples), models are prone to overfitting, and feature engineering becomes essential.
+Yet a typical affective EEG dataset may have only a few thousand labeled segments per subject. With $$p \gg n$$ (more features than samples), models are prone to overfitting, and feature engineering becomes essential.
 
 ## Feature Normalization and Transformation
 
@@ -25,7 +25,7 @@ The most common normalization for EEG features:
 
 $$\tilde{f}_i = \frac{f_i - \mu}{\sigma}$$
 
-where $\mu$ and $\sigma$ are the mean and standard deviation of feature $i$ across the training set. For cross-subject evaluation, normalization should be applied per subject (within-subject z-scoring) or across all training subjects, depending on the protocol.
+where $$\mu$$ and $$\sigma$$ are the mean and standard deviation of feature $$i$$ across the training set. For cross-subject evaluation, normalization should be applied per subject (within-subject z-scoring) or across all training subjects, depending on the protocol.
 
 ### Quantile Normalization
 
@@ -33,7 +33,7 @@ Quantile normalization maps feature distributions to a target distribution (typi
 
 $$\tilde{f} = \Phi^{-1}\left( \frac{\text{rank}(f) - 0.5}{N} \right)$$
 
-where $\Phi^{-1}$ is the inverse Gaussian CDF. Quantile normalization is more robust to outliers than z-scoring.
+where $$\Phi^{-1}$$ is the inverse Gaussian CDF. Quantile normalization is more robust to outliers than z-scoring.
 
 ### Power Transformations
 
@@ -41,7 +41,7 @@ Box-Cox and Yeo-Johnson transformations can reduce skewness and make feature dis
 
 $$f^{(\lambda)} = \begin{cases} \frac{f^\lambda - 1}{\lambda} & \lambda \neq 0 \\ \ln f & \lambda = 0 \end{cases}$$
 
-Many EEG features (especially raw band powers) are positively skewed; log transformation ($\lambda = 0$) is often sufficient.
+Many EEG features (especially raw band powers) are positively skewed; log transformation ($$\lambda = 0$$) is often sufficient.
 
 ### Baseline Correction
 
@@ -59,7 +59,7 @@ PCA finds orthogonal directions that maximize variance:
 
 $$\mathbf{F} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T$$
 
-The first $k$ principal components explain the largest fraction of variance. PCA is unsupervised, fast, and widely used, but it does not consider class labels and may discard discriminative but low-variance directions.
+The first $$k$$ principal components explain the largest fraction of variance. PCA is unsupervised, fast, and widely used, but it does not consider class labels and may discard discriminative but low-variance directions.
 
 ### Linear Discriminant Analysis (LDA)
 
@@ -67,7 +67,7 @@ Unlike PCA, LDA finds directions that maximize class separability:
 
 $$\mathbf{w}^* = \arg\max_{\mathbf{w}} \frac{\mathbf{w}^T \mathbf{S}_B \mathbf{w}}{\mathbf{w}^T \mathbf{S}_W \mathbf{w}}$$
 
-where $\mathbf{S}_B$ is the between-class scatter and $\mathbf{S}_W$ is the within-class scatter. LDA can reduce features to at most $C-1$ dimensions (where $C$ is the number of classes), which is a limitation for binary classification but adequate for typical emotion recognition with 2–5 classes.
+where $$\mathbf{S}_B$$ is the between-class scatter and $$\mathbf{S}_W$$ is the within-class scatter. LDA can reduce features to at most $$C-1$$ dimensions (where $$C$$ is the number of classes), which is a limitation for binary classification but adequate for typical emotion recognition with 2–5 classes.
 
 ### t-SNE and UMAP
 
@@ -80,7 +80,7 @@ UMAP is computationally faster than t-SNE and better preserves global structure,
 | Method | Supervised? | Linearity | Best for |
 | --- | --- | --- | --- |
 | PCA | No | Linear | General dimensionality reduction, denoising |
-| LDA | Yes | Linear | Classification with $C-1$ dimensions |
+| LDA | Yes | Linear | Classification with $$C-1$$ dimensions |
 | t-SNE | No | Nonlinear | Visualization (2D/3D only) |
 | UMAP | Semi | Nonlinear | Visualization and feature preprocessing |
 
@@ -98,10 +98,10 @@ Filter methods rank features independently of the downstream classifier using st
 
 | Method | Criterion | Pros and cons |
 | --- | --- | --- |
-| ANOVA F-score | $F = \frac{\text{between-class variance}}{\text{within-class variance}}$ | Fast; assumes normality |
-| Mutual information | $I(f; y) = \iint p(f, y) \ln \frac{p(f, y)}{p(f)p(y)} df dy$ | Captures nonlinear dependencies; harder to estimate |
-| Chi-squared | $\chi^2$ test of independence | Only for categorical features |
-| Correlation-based | $|r(f_i, f_j)|$ — remove redundant features | Simple; purely pairwise |
+| ANOVA F-score | $$F = \frac{\text{between-class variance}}{\text{within-class variance}}$$ | Fast; assumes normality |
+| Mutual information | $$I(f; y) = \iint p(f, y) \ln \frac{p(f, y)}{p(f)p(y)} df dy$$ | Captures nonlinear dependencies; harder to estimate |
+| Chi-squared | $$\chi^2$$ test of independence | Only for categorical features |
+| Correlation-based | $$|r(f_i, f_j)|$$ — remove redundant features | Simple; purely pairwise |
 
 ### Wrapper Methods
 
@@ -208,7 +208,7 @@ The aligned source features are obtained by whitening with the source covariance
 | Evaluate feature engineering choices | Ablation studies are essential: report performance with subsets of feature domains |
 | Cross-validation of feature selection | Feature selection must be done within each cross-validation fold, not on the full dataset |
 | Stability reporting | Report the consistency of selected features across folds or bootstrap samples |
-| Leakage through normalization | Compute normalization parameters ($\mu$, $\sigma$) on training data only, then apply to test data |
+| Leakage through normalization | Compute normalization parameters ($$\mu$$, $$\sigma$$) on training data only, then apply to test data |
 | Feature visualization | Always visualize features (distributions, PCA/t-SNE plots) before modeling |
 | Interpretability | Prefer feature selection over dimensionality reduction when interpretability matters |
 | Computational budget | Balance feature richness against computational cost, especially for real-time applications |

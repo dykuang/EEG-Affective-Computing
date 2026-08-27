@@ -31,19 +31,19 @@ $$
 b_t(z) = p(z_t \mid x_{\leq t}, o_{\leq t}, h_{<t}),
 $$
 
-where $z_t$ is a latent state, $x_{\leq t}$ is neural history, $o_{\leq t}$ is other observed context, and $h_{<t}$ is interaction history. A policy can then act on the belief and its uncertainty, not on an overconfident emotion prediction.
+where $$z_t$$ is a latent state, $$x_{\leq t}$$ is neural history, $$o_{\leq t}$$ is other observed context, and $$h_{<t}$$ is interaction history. A policy can then act on the belief and its uncertainty, not on an overconfident emotion prediction.
 
 **Example scenario:** In a collaborative assembly task, a wearable EEG estimate suggests rising workload, but the system also sees that the user is moving quickly and succeeding. Rather than interrupting automatically, a robot offers optional guidance and uses the user's response to refine its interpretation.
 
 ## Affect as a Factor in Action Selection
 
-Embodied agents need to balance task efficiency, safety, learning, autonomy, and social comfort. Affect can be one factor in this decision, alongside explicit goals and environmental constraints. For a policy $\pi$, an action can be chosen from a state containing task and affective information:
+Embodied agents need to balance task efficiency, safety, learning, autonomy, and social comfort. Affect can be one factor in this decision, alongside explicit goals and environmental constraints. For a policy $$\pi$$, an action can be chosen from a state containing task and affective information:
 
 $$
 a_t \sim \pi(a_t \mid s_t, b_t, c_t),
 $$
 
-where $s_t$ describes the environment, $b_t$ represents uncertain human state, and $c_t$ represents consent and user preferences.
+where $$s_t$$ describes the environment, $$b_t$$ represents uncertain human state, and $$c_t$$ represents consent and user preferences.
 
 This formulation highlights a constraint: affect should not become a hidden objective that overrides the person. If a system detects likely stress, it may offer a break, reduce notification intensity, or ask a question. It should not silently alter an important goal, disclose a private inference, or manipulate the user toward a system-defined emotional target.
 

@@ -18,10 +18,10 @@ $$h_t = \tanh(W_{hh} h_{t-1} + W_{xh} x_t + b_h)$$
 $$y_t = W_{hy} h_t + b_y$$
 
 Where:
-- $h_t$ = hidden state at time $t$
-- $x_t$ = input at time $t$
-- $W$ matrices = weight matrices (shared across time steps)
-- $y_t$ = output at time $t$
+- $$h_t$$ = hidden state at time $$t$$
+- $$x_t$$ = input at time $$t$$
+- $$W$$ matrices = weight matrices (shared across time steps)
+- $$y_t$$ = output at time $$t$$
 
 **Key insight**: Same parameters applied to each time step (weight sharing), allowing variable-length sequences.
 
@@ -38,7 +38,7 @@ If products are > 1, gradients explode.
 
 LSTMs solve this with memory cells and gating mechanisms:
 
-**Cell State** $C_t$: Stores long-term information
+**Cell State** $$C_t$$: Stores long-term information
 
 **Gates**:
 $$f_t = \sigma(W_f [h_{t-1}, x_t] + b_f)$$ (Forget gate)
@@ -50,7 +50,7 @@ $$o_t = \sigma(W_o [h_{t-1}, x_t] + b_o)$$ (Output gate)
 $$C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t$$
 $$h_t = o_t \odot \tanh(C_t)$$
 
-The cell state $C_t$ acts as a "highway" for information, enabling long-range dependencies.
+The cell state $$C_t$$ acts as a "highway" for information, enabling long-range dependencies.
 
 ### Gated Recurrent Unit (GRU)
 

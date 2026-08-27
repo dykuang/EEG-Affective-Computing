@@ -12,8 +12,8 @@ Generative Adversarial Networks frame generation as a competitive game between t
 
 ### The Adversarial Game
 
-**Generator** $G$: Maps random noise $z \sim p(z)$ to synthetic EEG $\tilde{x} = G(z)$
-**Discriminator** $D$: Classifies input as real ($D(x) \to 1$) or fake ($D(\tilde{x}) \to 0$)
+**Generator** $$G$$: Maps random noise $$z \sim p(z)$$ to synthetic EEG $$\tilde{x} = G(z)$$
+**Discriminator** $$D$$: Classifies input as real ($$D(x) \to 1$$) or fake ($$D(\tilde{x}) \to 0$$)
 
 The minimax objective:
 

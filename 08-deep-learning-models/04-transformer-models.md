@@ -14,15 +14,15 @@ Transformer models revolutionized deep learning by replacing recurrent mechanism
 
 The core innovation of Transformers is self-attention, which allows each time step to attend to all other time steps:
 
-**For each time step $t$, compute**:
-- **Query**: $Q_t = W^Q x_t$
-- **Key**: $K_s = W^K x_s$ (for all time steps $s$)
-- **Value**: $V_s = W^V x_s$ (for all time steps $s$)
+**For each time step $$t$$, compute**:
+- **Query**: $$Q_t = W^Q x_t$$
+- **Key**: $$K_s = W^K x_s$$ (for all time steps $$s$$)
+- **Value**: $$V_s = W^V x_s$$ (for all time steps $$s$$)
 
 **Attention weights**:
 $$\alpha_{t,s} = \text{softmax}\left(\frac{Q_t \cdot K_s^T}{\sqrt{d_k}}\right)$$
 
-where $d_k$ is the dimension of keys (scaled dot-product attention).
+where $$d_k$$ is the dimension of keys (scaled dot-product attention).
 
 **Output**:
 $$\text{Attention}_t = \sum_s \alpha_{t,s} V_s$$
@@ -86,7 +86,7 @@ Stacking multiple blocks creates deep Transformers.
 - **Interpretability**: Attention weights show what the model focuses on
 
 **Limitations**:
-- **Quadratic complexity**: Memory and time scale as $O(T^2)$ where $T$ is sequence length
+- **Quadratic complexity**: Memory and time scale as $$O(T^2)$$ where $$T$$ is sequence length
 - **Data requirements**: Benefit from large datasets; can overfit on small data
 - **Limited local structure**: Don't naturally exploit local temporal patterns
 - **Position encoding**: Requires careful design for EEG temporal structure
@@ -96,7 +96,7 @@ Stacking multiple blocks creates deep Transformers.
 **Sequence Length Challenge**:
 - Standard EEG sessions: 30-300 seconds
 - At 256 Hz: 7,680-76,800 samples
-- Attention complexity: $O(76,800^2)$ is prohibitive
+- Attention complexity: $$O(76,800^2)$$ is prohibitive
 
 **Solutions**:
 1. **Chunking**: Process 8-16 second windows (2,048-4,096 samples)
@@ -293,7 +293,7 @@ Global Average Pooling
 Output
 ```
 
-**Benefit**: Reduces attention complexity from $O(T^2)$ to $O(T \log T)$ or $O(T)$.
+**Benefit**: Reduces attention complexity from $$O(T^2)$$ to $$O(T \log T)$$ or $$O(T)$$.
 
 ### Multi-Scale Transformer
 
@@ -343,7 +343,7 @@ For batch=32, T=2048, d=256:
 | 8 | 512 | 64 | Large models |
 | 12 | 768 | 64 | BERT-like |
 
-**Constraint**: $d_{\text{model}} \mod \text{num\_heads} = 0$
+**Constraint**: $$d_{\text{model}} \mod \text{num\_heads} = 0$$
 
 ### Positional Encoding Variants for EEG
 

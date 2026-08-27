@@ -23,13 +23,13 @@ Each neuron computes:
 $$z = \sum_i w_i x_i + b$$
 $$a = \sigma(z)$$
 
-where $x_i$ are inputs, $w_i$ are weights, $b$ is bias, and $\sigma$ is an activation function (ReLU, tanh, sigmoid).
+where $$x_i$$ are inputs, $$w_i$$ are weights, $$b$$ is bias, and $$\sigma$$ is an activation function (ReLU, tanh, sigmoid).
 
 ### Activation Functions
 
-- **ReLU** (Rectified Linear Unit): $\sigma(z) = \max(0, z)$ - Most common, computationally efficient
-- **Tanh**: $\sigma(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}$ - Zero-centered, useful for hidden layers
-- **Sigmoid**: $\sigma(z) = \frac{1}{1 + e^{-z}}$ - For binary classification outputs
+- **ReLU** (Rectified Linear Unit): $$\sigma(z) = \max(0, z)$$ - Most common, computationally efficient
+- **Tanh**: $$\sigma(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}$$ - Zero-centered, useful for hidden layers
+- **Sigmoid**: $$\sigma(z) = \frac{1}{1 + e^{-z}}$$ - For binary classification outputs
 
 ### Training
 
@@ -151,7 +151,7 @@ for each segment:
 **Global normalization** (across entire dataset):
 $$x_{norm} = \frac{x - \mu}{\sigma}$$
 
-Where $\mu$ and $\sigma$ are computed on training data.
+Where $$\mu$$ and $$\sigma$$ are computed on training data.
 
 **Per-session normalization** (handles inter-session variability):
 ```python

@@ -14,7 +14,7 @@ The STFT is the most straightforward time-frequency representation. It computes 
 
 $$\text{STFT}(t, f) = \sum_{n=-\infty}^{\infty} x(n) \, w(n - t) \, e^{-j 2\pi f n}$$
 
-where $w(n - t)$ is a window function centered at time $t$. The squared magnitude $|\text{STFT}(t, f)|^2$ gives the spectrogram—the time-varying power spectrum.
+where $$w(n - t)$$ is a window function centered at time $$t$$. The squared magnitude $$|\text{STFT}(t, f)|^2$$ gives the spectrogram—the time-varying power spectrum.
 
 ### Window Design
 
@@ -43,11 +43,11 @@ These features can be vectorized (concatenated across time bins) to form a fixed
 
 ### Continuous Wavelet Transform (CWT)
 
-The CWT decomposes a signal using scaled and translated versions of a mother wavelet $\psi(t)$:
+The CWT decomposes a signal using scaled and translated versions of a mother wavelet $$\psi(t)$$:
 
 $$W(a, b) = \frac{1}{\sqrt{|a|}} \int_{-\infty}^{\infty} x(t) \, \psi^*\!\left(\frac{t - b}{a}\right) dt$$
 
-where $a$ is the scale (inversely related to frequency) and $b$ is the translation (time). Unlike the STFT with its fixed window, the CWT adapts its time-frequency resolution: high frequencies are resolved with better time resolution and lower frequency resolution, while low frequencies have better frequency resolution and lower time resolution. This multi-resolution property is well suited to EEG, where fast oscillations (gamma) are brief and slow oscillations (delta) are sustained.
+where $$a$$ is the scale (inversely related to frequency) and $$b$$ is the translation (time). Unlike the STFT with its fixed window, the CWT adapts its time-frequency resolution: high frequencies are resolved with better time resolution and lower frequency resolution, while low frequencies have better frequency resolution and lower time resolution. This multi-resolution property is well suited to EEG, where fast oscillations (gamma) are brief and slow oscillations (delta) are sustained.
 
 ### Mother Wavelet Selection
 
@@ -65,7 +65,7 @@ The Morlet wavelet is most widely used for EEG emotion analysis because its comp
 
 Key features extracted from the wavelet transform include:
 
-- **Wavelet power**: $|W(a, b)|^2$ — the time-frequency energy distribution.
+- **Wavelet power**: $$|W(a, b)|^2$$ — the time-frequency energy distribution.
 - **Wavelet coherence**: A measure of phase consistency between two signals across time and frequency.
 - **Wavelet entropy**: Entropy of the wavelet coefficients at each scale, reflecting the complexity of the signal at that frequency.
 - **Cross-wavelet power**: Joint power between two signals, useful for studying functional coupling.
@@ -76,7 +76,7 @@ The DWT provides a computationally efficient, non-redundant decomposition using 
 
 $$x(t) = \sum_k c_{J,k} \, \phi_{J,k}(t) + \sum_{j=1}^{J} \sum_k d_{j,k} \, \psi_{j,k}(t)$$
 
-where $c_{J,k}$ are approximation coefficients (low-frequency content) and $d_{j,k}$ are detail coefficients at level $j$ (progressively higher frequencies). The sub-band energies $\sum_k d_{j,k}^2$ for each decomposition level provide a compact set of features that align roughly with the canonical EEG bands.
+where $$c_{J,k}$$ are approximation coefficients (low-frequency content) and $$d_{j,k}$$ are detail coefficients at level $$j$$ (progressively higher frequencies). The sub-band energies $$\sum_k d_{j,k}^2$$ for each decomposition level provide a compact set of features that align roughly with the canonical EEG bands.
 
 DWT features are popular because they are fast to compute, produce relatively few coefficients, and the decomposition levels can be chosen to match frequency bands of interest.
 
@@ -94,11 +94,11 @@ Each IMF satisfies two conditions: (1) the number of extrema and zero-crossings 
 
 ### Hilbert Spectral Analysis
 
-The Hilbert transform is applied to each IMF to obtain instantaneous amplitude $a_i(t)$ and instantaneous frequency $\omega_i(t)$:
+The Hilbert transform is applied to each IMF to obtain instantaneous amplitude $$a_i(t)$$ and instantaneous frequency $$\omega_i(t)$$:
 
 $$z_i(t) = \text{IMF}_i(t) + j \mathcal{H}\{\text{IMF}_i(t)\} = a_i(t) e^{j \theta_i(t)}, \quad \omega_i(t) = \frac{d\theta_i(t)}{dt}$$
 
-The Hilbert spectrum $H(\omega, t)$ provides a high-resolution time-frequency representation:
+The Hilbert spectrum $$H(\omega, t)$$ provides a high-resolution time-frequency representation:
 
 $$H(\omega, t) = \sum_{i=1}^{M} a_i^2(t) \, \delta(\omega - \omega_i(t))$$
 
@@ -118,7 +118,7 @@ CSP is a spatial filtering technique that finds linear combinations of electrode
 
 ### CSP Formulation
 
-For two classes with covariance matrices $\Sigma_1$ and $\Sigma_2$, CSP finds spatial filters $\mathbf{w}$ that satisfy:
+For two classes with covariance matrices $$\Sigma_1$$ and $$\Sigma_2$$, CSP finds spatial filters $$\mathbf{w}$$ that satisfy:
 
 $$\mathbf{w}^T \Sigma_1 \mathbf{w} = \lambda \, \mathbf{w}^T \Sigma_2 \mathbf{w}$$
 
@@ -167,7 +167,7 @@ The bag-of-waves (BOW) representation provides a useful example. Short EEG windo
 
 $$h_k(s) = \sum_{t \in s} \mathbf{1}\left[q(x_t) = k\right]$$
 
-where $q$ assigns window $x_t$ to token $k$, and $h_k(s)$ counts how often token $k$ occurs in segment $s$. Counts can be converted to rates, TF-IDF-like weights, or normalized frequencies before fitting a linear model. The resulting representation is compact, compatible with regularized logistic regression, and interpretable: an important feature can be inspected by displaying the waveform prototype and its occurrence rate in each class.
+where $$q$$ assigns window $$x_t$$ to token $$k$$, and $$h_k(s)$$ counts how often token $$k$$ occurs in segment $$s$$. Counts can be converted to rates, TF-IDF-like weights, or normalized frequencies before fitting a linear model. The resulting representation is compact, compatible with regularized logistic regression, and interpretable: an important feature can be inspected by displaying the waveform prototype and its occurrence rate in each class.
 
 The same idea can tokenize time-frequency features rather than raw waveforms. For example, a token library can be learned from short STFT patches, wavelet-coefficient patches, band-power trajectories, or concatenated channel-frequency patches. A token may therefore represent a transient alpha increase, a stable theta pattern, or a characteristic cross-channel spectral configuration. For an affective EEG segment, the feature vector can be a histogram of these local tokens, optionally augmented with coarse order information such as token transitions or counts in successive temporal bins.
 

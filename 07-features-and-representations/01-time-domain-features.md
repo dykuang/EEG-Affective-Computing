@@ -8,11 +8,11 @@ Time-domain features are the most straightforward representation of EEG signals.
 
 ## Statistical Moments
 
-Statistical moments are the simplest and most widely used time-domain features. For a univariate EEG segment $x(t)$ of length $N$, the basic moments provide a compact summary of the signal's amplitude distribution.
+Statistical moments are the simplest and most widely used time-domain features. For a univariate EEG segment $$x(t)$$ of length $$N$$, the basic moments provide a compact summary of the signal's amplitude distribution.
 
 ### Mean and Variance
 
-The mean $\mu$ and variance $\sigma^2$ capture the central tendency and spread:
+The mean $$\mu$$ and variance $$\sigma^2$$ capture the central tendency and spread:
 
 $$\mu = \frac{1}{N}\sum_{t=1}^{N} x(t), \quad \sigma^2 = \frac{1}{N}\sum_{t=1}^{N} (x(t) - \mu)^2$$
 
@@ -30,8 +30,8 @@ Skewness measures asymmetry: positive skewness indicates a right-heavy distribut
 
 | Moment | What it captures | Affective relevance |
 | --- | --- | --- |
-| Mean ($\mu$) | Central tendency | Usually near zero; limited standalone value |
-| Variance ($\sigma^2$) | Signal power | Reflects overall activation and arousal |
+| Mean ($$\mu$$) | Central tendency | Usually near zero; limited standalone value |
+| Variance ($$\sigma^2$$) | Signal power | Reflects overall activation and arousal |
 | Skewness | Amplitude asymmetry | May reflect hemispheric or valence-related biases |
 | Kurtosis | Tail behavior and peakedness | Sensitive to transient events and outliers |
 

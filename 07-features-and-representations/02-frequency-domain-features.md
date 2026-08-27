@@ -10,11 +10,11 @@ Frequency-domain features are arguably the most important class of features in E
 
 ### Fourier Transform
 
-The Discrete Fourier Transform (DFT) decomposes a signal $x(t)$ of length $N$ into its constituent frequency components:
+The Discrete Fourier Transform (DFT) decomposes a signal $$x(t)$$ of length $$N$$ into its constituent frequency components:
 
 $$X(f_k) = \sum_{n=0}^{N-1} x(n) \, e^{-j 2\pi k n / N}, \quad k = 0, 1, \ldots, N-1$$
 
-where $f_k = k \cdot f_s / N$ and $f_s$ is the sampling frequency. In practice, the Fast Fourier Transform (FFT) is used for computational efficiency.
+where $$f_k = k \cdot f_s / N$$ and $$f_s$$ is the sampling frequency. In practice, the Fast Fourier Transform (FFT) is used for computational efficiency.
 
 ### Power Spectral Density
 
@@ -40,11 +40,11 @@ The power in specific frequency bands is the most widely used spectral feature. 
 
 | Band | Frequency range (Hz) | Affective associations |
 | --- | --- | --- |
-| Delta ($\delta$) | 0.5–4 | Deep emotional processing; may increase during intense emotional states |
-| Theta ($\theta$) | 4–8 | Emotional memory, internally focused attention; frontal theta linked to emotion regulation |
-| Alpha ($\alpha$) | 8–13 | Relaxation, reduced vigilance; frontal alpha asymmetry linked to valence |
-| Beta ($\beta$) | 13–30 | Active engagement, alertness; increased beta related to emotional arousal |
-| Gamma ($\gamma$) | 30–45+ | Higher-order processing, emotional integration; linked to conscious emotional experience |
+| Delta ($$\delta$$) | 0.5–4 | Deep emotional processing; may increase during intense emotional states |
+| Theta ($$\theta$$) | 4–8 | Emotional memory, internally focused attention; frontal theta linked to emotion regulation |
+| Alpha ($$\alpha$$) | 8–13 | Relaxation, reduced vigilance; frontal alpha asymmetry linked to valence |
+| Beta ($$\beta$$) | 13–30 | Active engagement, alertness; increased beta related to emotional arousal |
+| Gamma ($$\gamma$$) | 30–45+ | Higher-order processing, emotional integration; linked to conscious emotional experience |
 
 ### Band Power Features
 
@@ -72,7 +72,7 @@ Hemispheric asymmetry in alpha-band power is one of the most replicated findings
 
 $$\text{FAA} = \ln(P_{\alpha}^{\text{right}}) - \ln(P_{\alpha}^{\text{left}})$$
 
-where $P_{\alpha}^{\text{right}}$ and $P_{\alpha}^{\text{left}}$ are alpha power at homologous right and left frontal electrodes (commonly F4 and F3, or F8 and F7).
+where $$P_{\alpha}^{\text{right}}$$ and $$P_{\alpha}^{\text{left}}$$ are alpha power at homologous right and left frontal electrodes (commonly F4 and F3, or F8 and F7).
 
 ### Interpretation
 
@@ -107,7 +107,7 @@ Beyond the PSD, higher-order spectral analysis can capture nonlinear interaction
 
 ### Bispectrum and Bicoherence
 
-The bispectrum $B(f_1, f_2)$ is the 2D Fourier transform of the third-order cumulant and captures quadratic phase coupling between frequency components $f_1$ and $f_2$. The normalized bicoherence provides a measure of the strength of phase coupling:
+The bispectrum $$B(f_1, f_2)$$ is the 2D Fourier transform of the third-order cumulant and captures quadratic phase coupling between frequency components $$f_1$$ and $$f_2$$. The normalized bicoherence provides a measure of the strength of phase coupling:
 
 $$\text{Bicoherence}(f_1, f_2) = \frac{|B(f_1, f_2)|}{\sqrt{P(f_1) P(f_2) P(f_1 + f_2)}}$$
 
@@ -117,11 +117,11 @@ Bicoherence features have been explored for EEG emotion recognition, particularl
 
 | Consideration | Guidance |
 | --- | --- |
-| Frequency resolution | Determined by $f_s / N_{\text{FFT}}$; choose window length to achieve ~1 Hz resolution |
+| Frequency resolution | Determined by $$f_s / N_{\text{FFT}}$$; choose window length to achieve ~1 Hz resolution |
 | Windowing | Use Hann or Hamming windows to reduce spectral leakage |
 | Epoch length | Longer epochs improve frequency resolution; 1–4 s is typical for affective computing |
 | Detrending | Remove linear trends before spectral analysis |
-| Log transformation | Apply $\log$ to band powers to improve normality before statistical modeling |
+| Log transformation | Apply $$\log$$ to band powers to improve normality before statistical modeling |
 | Reference scheme | Spectral features depend on the EEG reference; be consistent within a study |
 
 ![Topomap grid showing alpha, beta, and gamma band power spatial distributions under low and high arousal conditions.](figures/band-power-topomaps.png)

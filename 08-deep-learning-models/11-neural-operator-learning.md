@@ -10,13 +10,13 @@ Neural operators do not replace CNNs, Transformers, or GNNs for every affective 
 
 ## Operator Learning Intuition
 
-Let $u$ be an input function, such as a multichannel EEG signal over time and electrode location, and let $v$ be an output function. A neural operator learns
+Let $$u$$ be an input function, such as a multichannel EEG signal over time and electrode location, and let $$v$$ be an output function. A neural operator learns
 
 $$
 \mathcal{G}_\theta: u \mapsto v.
 $$
 
-Unlike a standard network tied to one discretization, the goal is to approximate $\mathcal{G}_\theta$ across sampled versions of the underlying function. For EEG, $u(t, e)$ can denote signal value at time $t$ and electrode or source location $e$. The output $v$ may be a denoised signal, an imputed channel field, a latent neural field, a future trajectory, or a continuous affect-state field.
+Unlike a standard network tied to one discretization, the goal is to approximate $$\mathcal{G}_\theta$$ across sampled versions of the underlying function. For EEG, $$u(t, e)$$ can denote signal value at time $$t$$ and electrode or source location $$e$$. The output $$v$$ may be a denoised signal, an imputed channel field, a latent neural field, a future trajectory, or a continuous affect-state field.
 
 In practice, discretization invariance is approximate, not automatic. A model still needs explicit handling of sampling rates, channel coordinates, reference schemes, and missing sensors. Claims of resolution or montage transfer should be tested directly rather than assumed from the operator formulation.
 
@@ -38,7 +38,7 @@ $$
 \mathcal{G}_\theta(u)(y) = \sum_{k=1}^{p} b_k(u)\, t_k(y),
 $$
 
-where $b_k$ is the branch representation of the input function and $t_k(y)$ is the trunk representation of coordinate $y$. For EEG, $y$ can encode time, electrode position, source location, frequency, or a combination of these.
+where $$b_k$$ is the branch representation of the input function and $$t_k(y)$$ is the trunk representation of coordinate $$y$$. For EEG, $$y$$ can encode time, electrode position, source location, frequency, or a combination of these.
 
 **Example scenario:** A DeepONet receives a subset of wearable EEG channels and queries the trunk at missing electrode coordinates. It predicts a continuous approximation of those missing channels, with the sensor coordinates and montage supplied explicitly. Evaluation measures reconstruction on held-out real channels and downstream affect performance, not only training reconstruction error.
 
@@ -50,7 +50,7 @@ $$
 v_{l+1}(x) = \sigma\left(W_l v_l(x) + \mathcal{F}^{-1}\left(R_l \cdot \mathcal{F}(v_l)\right)(x)\right),
 $$
 
-where $\mathcal{F}$ is a Fourier transform and $R_l$ learns weights for retained modes. For EEG, Fourier mixing can model long-range temporal dependencies and spectral structure efficiently, especially for long stationary or quasi-stationary segments.
+where $$\mathcal{F}$$ is a Fourier transform and $$R_l$$ learns weights for retained modes. For EEG, Fourier mixing can model long-range temporal dependencies and spectral structure efficiently, especially for long stationary or quasi-stationary segments.
 
 However, EEG has transient events, nonstationarity, artifacts, and irregular electrode layouts. Practical variants may use short-time Fourier patches, separate temporal and spatial operator blocks, adaptive mode selection, or wavelet-style local representations rather than one global transform over an entire recording.
 
@@ -62,7 +62,7 @@ $$
 v_{l+1}(x_i) = \sigma\left(W_l v_l(x_i) + \sum_{j \in \mathcal{N}(i)} K_\theta(x_i, x_j, e_{ij}) v_l(x_j)\right),
 $$
 
-where $x_i$ and $x_j$ can include electrode coordinates, features, or source locations and $e_{ij}$ encodes edge information. The graph can represent physical electrode distance, a head-surface mesh, anatomical adjacency, functional connectivity, or a causal graph; each choice supports a different claim.
+where $$x_i$$ and $$x_j$$ can include electrode coordinates, features, or source locations and $$e_{ij}$$ encodes edge information. The graph can represent physical electrode distance, a head-surface mesh, anatomical adjacency, functional connectivity, or a causal graph; each choice supports a different claim.
 
 Promising EEG integrations include:
 

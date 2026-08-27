@@ -8,7 +8,7 @@ Differential Entropy (DE) is arguably the single most influential feature in mod
 
 ## Information-Theoretic Definition
 
-Differential entropy extends the discrete Shannon entropy to continuous random variables. For a continuous random variable $X$ with probability density function $p(x)$, the differential entropy is:
+Differential entropy extends the discrete Shannon entropy to continuous random variables. For a continuous random variable $$X$$ with probability density function $$p(x)$$, the differential entropy is:
 
 $$h(X) = -\int_{-\infty}^{\infty} p(x) \ln p(x) \, dx$$
 
@@ -30,23 +30,23 @@ DE is particularly well motivated for EEG analysis because:
 
 ### Closed-Form Expression
 
-If a signal $x(t)$ in a given frequency band follows a Gaussian distribution $\mathcal{N}(\mu, \sigma^2)$, its differential entropy simplifies to:
+If a signal $$x(t)$$ in a given frequency band follows a Gaussian distribution $$\mathcal{N}(\mu, \sigma^2)$$, its differential entropy simplifies to:
 
 $$h(X) = \frac{1}{2} \ln(2\pi e \sigma^2) = \frac{1}{2} \ln(\sigma^2) + \frac{1}{2} \ln(2\pi e)$$
 
-Since $\frac{1}{2} \ln(2\pi e)$ is a constant, DE under the Gaussian assumption is essentially:
+Since $$\frac{1}{2} \ln(2\pi e)$$ is a constant, DE under the Gaussian assumption is essentially:
 
 $$h(X) \propto \ln(\sigma^2)$$
 
-where $\sigma^2$ is the variance (i.e., the average power) of the band-pass filtered signal. In practice, this means DE is often computed as the log of the variance of the signal in each frequency band.
+where $$\sigma^2$$ is the variance (i.e., the average power) of the band-pass filtered signal. In practice, this means DE is often computed as the log of the variance of the signal in each frequency band.
 
 ### Comparison with Related Measures
 
 | Measure | Formula (Gaussian case) | Relationship to DE |
 | --- | --- | --- |
-| Band power | $\sigma^2$ | DE $\propto \ln($ band power $)$ |
-| Log band power | $\ln(\sigma^2)$ | DE is an affine transform of log band power |
-| Shannon entropy (discrete) | $-\sum p_i \log_2 p_i$ | Different quantity; requires discretization |
+| Band power | $$\sigma^2$$ | DE $$\propto \ln($$ band power $$)$$ |
+| Log band power | $$\ln(\sigma^2)$$ | DE is an affine transform of log band power |
+| Shannon entropy (discrete) | $$-\sum p_i \log_2 p_i$$ | Different quantity; requires discretization |
 | Sample entropy | See Section 07 | Measures regularity, not information content |
 
 The key insight is that DE and log band power are essentially equivalent under the Gaussian assumption—yet DE provides a richer framework that can be extended when the Gaussian assumption does not hold.
@@ -65,9 +65,9 @@ The standard DE feature extraction pipeline consists of the following steps:
 
    $$\text{DE} = \frac{1}{2} \ln(2\pi e \sigma^2_{\text{band, channel, window}})$$
 
-   where $\sigma^2$ is the variance of the band-pass filtered signal in that window.
+   where $$\sigma^2$$ is the variance of the band-pass filtered signal in that window.
 
-4. **Feature vector construction**: Concatenate DE values across all channels and frequency bands to form a feature vector of dimension $C \times B$, where $C$ is the number of channels and $B$ is the number of frequency bands.
+4. **Feature vector construction**: Concatenate DE values across all channels and frequency bands to form a feature vector of dimension $$C \times B$$, where $$C$$ is the number of channels and $$B$$ is the number of frequency bands.
 
 ### Example Dimensionality
 
@@ -75,7 +75,7 @@ For the commonly used SEED dataset configuration:
 
 - 62 channels of EEG
 - 5 frequency bands (delta, theta, alpha, beta, gamma)
-- Feature dimensionality: $62 \times 5 = 310$ features per time window
+- Feature dimensionality: $$62 \times 5 = 310$$ features per time window
 
 Additional sub-bands (e.g., dividing gamma into low and high gamma) further increase dimensionality.
 
@@ -86,7 +86,7 @@ An extension known as DE with Linear Dynamic System (DE-LDS) features augments D
 $$\mathbf{h}_t = A \mathbf{h}_{t-1} + \mathbf{w}_t$$
 $$\mathbf{x}_t = C \mathbf{h}_t + \mathbf{v}_t$$
 
-where $\mathbf{h}_t$ is a latent state, $A$ is the transition matrix, and $\mathbf{x}_t$ is the observed DE feature vector. This temporal smoothing has been shown to improve emotion recognition accuracy, particularly for longer recordings where emotional states evolve gradually.
+where $$\mathbf{h}_t$$ is a latent state, $$A$$ is the transition matrix, and $$\mathbf{x}_t$$ is the observed DE feature vector. This temporal smoothing has been shown to improve emotion recognition accuracy, particularly for longer recordings where emotional states evolve gradually.
 
 ## Moving Beyond the Gaussian Assumption
 
@@ -94,12 +94,12 @@ where $\mathbf{h}_t$ is a latent state, $A$ is the transition matrix, and $\math
 
 While the Gaussian approximation is widely used and often effective, EEG signals are not always Gaussian, especially in the presence of artifacts, during transient events, or with certain electrode configurations. Non-parametric DE estimation methods include:
 
-- **Kernel density estimation (KDE)**: Estimate $p(x)$ using a kernel density estimator and numerically integrate $-\int \hat{p}(x) \ln \hat{p}(x) \, dx$.
+- **Kernel density estimation (KDE)**: Estimate $$p(x)$$ using a kernel density estimator and numerically integrate $$-\int \hat{p}(x) \ln \hat{p}(x) \, dx$$.
 - **k-Nearest Neighbors (k-NN)**: Use the Kozachenko-Leonenko estimator:
 
   $$\hat{h}(X) = \psi(N) - \psi(k) + \ln(c_d) + \frac{d}{N} \sum_{i=1}^{N} \ln \epsilon_i$$
 
-  where $\psi$ is the digamma function, $d$ is the dimensionality, and $\epsilon_i$ is the distance to the $k$-th nearest neighbor.
+  where $$\psi$$ is the digamma function, $$d$$ is the dimensionality, and $$\epsilon_i$$ is the distance to the $$k$$-th nearest neighbor.
 - **Histogram-based**: Simple but sensitive to bin width; rarely used in modern EEG pipelines.
 
 In practice, the Gaussian approximation works well enough for most affective computing applications, and the computational simplicity makes it the default choice. Non-parametric estimators are reserved for cases where distributional assumptions are clearly violated or where theoretical rigor is paramount.
@@ -110,9 +110,9 @@ If the signal follows a different parametric distribution, DE takes a different 
 
 | Distribution | DE formula |
 | --- | --- |
-| Uniform on $[a, b]$ | $\ln(b - a)$ |
-| Laplace (double exponential) | $1 + \ln(2b)$, where $b$ is the scale parameter |
-| Student's t with $\nu$ d.f. | Depends on $\nu$; approaches Gaussian DE as $\nu \to \infty$ |
+| Uniform on $$[a, b]$$ | $$\ln(b - a)$$ |
+| Laplace (double exponential) | $$1 + \ln(2b)$$, where $$b$$ is the scale parameter |
+| Student's t with $$\nu$$ d.f. | Depends on $$\nu$$; approaches Gaussian DE as $$\nu \to \infty$$ |
 
 In EEG practice, the Gaussian assumption is almost universal for DE computation, and deviations are rarely modeled explicitly.
 
@@ -180,18 +180,18 @@ Reducing from 62 to 4 channels with DE features often retains 80–90% of classi
 
 | Feature | Formula | Gaussian DE relationship | Discriminability | Computational cost |
 | --- | --- | --- | --- |
-| Raw band power | $\sigma^2$ | DE $\propto \ln(\sigma^2)$ | Moderate | Very low |
-| Log band power | $\ln(\sigma^2)$ | Affine equivalent | High | Very low |
-| DE (Gaussian) | $\frac{1}{2}\ln(2\pi e \sigma^2)$ | — | High | Low |
-| DE (KDE) | $-\int \hat{p}(x) \ln \hat{p}(x) dx$ | — | Potentially higher | High |
-| Spectral entropy | $-\sum P(f) \ln P(f)$ | Different quantity | Moderate | Low |
+| Raw band power | $$\sigma^2$$ | DE $$\propto \ln(\sigma^2)$$ | Moderate | Very low |
+| Log band power | $$\ln(\sigma^2)$$ | Affine equivalent | High | Very low |
+| DE (Gaussian) | $$\frac{1}{2}\ln(2\pi e \sigma^2)$$ | — | High | Low |
+| DE (KDE) | $$-\int \hat{p}(x) \ln \hat{p}(x) dx$$ | — | Potentially higher | High |
+| Spectral entropy | $$-\sum P(f) \ln P(f)$$ | Different quantity | Moderate | Low |
 
 ## Practical Considerations
 
 | Consideration | Guidance |
 | --- | --- |
 | Gaussian check | Visually inspect band-pass filtered signal distributions; if heavily skewed, consider artifact removal first |
-| Constant offset | DE adds $\frac{1}{2}\ln(2\pi e)$; this constant can be omitted when using models that learn additive biases |
+| Constant offset | DE adds $$\frac{1}{2}\ln(2\pi e)$$; this constant can be omitted when using models that learn additive biases |
 | Normalization | Per-subject z-score normalization of DE features is standard and improves cross-subject generalization |
 | Frequency band edges | Consistent band definitions are critical for reproducibility; report exact cutoff frequencies |
 | Smoothing | Linear dynamic system (LDS) smoothing can further improve DE feature quality for continuous emotion tracking |

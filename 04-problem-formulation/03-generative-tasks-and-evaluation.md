@@ -33,7 +33,7 @@ Generation at different representation levels makes different claims. Raw-wavefo
 
 ## Conditional Generation
 
-Conditional generation produces samples under a declared condition $c$:
+Conditional generation produces samples under a declared condition $$c$$:
 
 $$
 \tilde{x} \sim p_\theta(x \mid c).

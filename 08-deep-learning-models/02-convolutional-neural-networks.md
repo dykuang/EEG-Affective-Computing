@@ -16,7 +16,7 @@ A 1D convolution applies a learnable filter (kernel) across the signal:
 
 $$y[n] = \sum_{k} w[k] \cdot x[n+k] + b$$
 
-where $x$ is the input, $w$ is the filter weights, and $b$ is bias.
+where $$x$$ is the input, $$w$$ is the filter weights, and $$b$$ is bias.
 
 ### Why Convolutions for EEG?
 

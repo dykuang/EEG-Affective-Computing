@@ -6,7 +6,7 @@ The distinction matters. **Multi-label learning** predicts multiple labels for o
 
 ## Problem Formulation
 
-Let $x$ be an EEG segment or trial and let $h_\theta(x)$ be a shared encoder. In a multi-label problem, the target is a binary vector $y \in \{0, 1\}^K$, where several entries can be positive. Independent sigmoid heads produce
+Let $$x$$ be an EEG segment or trial and let $$h_\theta(x)$$ be a shared encoder. In a multi-label problem, the target is a binary vector $$y \in \{0, 1\}^K$$, where several entries can be positive. Independent sigmoid heads produce
 
 $$
 \hat{y}_k = \mathrm{sigmoid}(w_k^\top h_\theta(x) + b_k),
@@ -21,15 +21,15 @@ $$
 \left[y_k \log \hat{y}_k + (1-y_k)\log(1-\hat{y}_k)\right],
 $$
 
-where $m_k=1$ only when label $k$ is observed. An unobserved label is not automatically a negative label. This distinction is essential in affective data, where an annotator may report one salient state without ruling out other states.
+where $$m_k=1$$ only when label $$k$$ is observed. An unobserved label is not automatically a negative label. This distinction is essential in affective data, where an annotator may report one salient state without ruling out other states.
 
-In multi-task learning, each task $t$ has an appropriate head and loss:
+In multi-task learning, each task $$t$$ has an appropriate head and loss:
 
 $$
 \mathcal{L}_{\mathrm{MTL}} = \sum_{t=1}^{T} \lambda_t \mathcal{L}_t,
 $$
 
-where tasks can use classification, ordinal, regression, ranking, reconstruction, or contrastive objectives. The weights $\lambda_t$ should not be chosen merely because one loss has a larger numeric scale; they encode which tasks the representation is asked to prioritize.
+where tasks can use classification, ordinal, regression, ranking, reconstruction, or contrastive objectives. The weights $$\lambda_t$$ should not be chosen merely because one loss has a larger numeric scale; they encode which tasks the representation is asked to prioritize.
 
 ![One quality-controlled EEG recording enters a shared temporal-spatial encoder. Multi-label heads can express co-occurring affect descriptors, while task-specific heads estimate dimensional affect, workload, signal quality, or a trial-level summary. Labels can be missing at different heads, and only observed targets contribute loss.](figures/multi-label-multi-task-eeg.png)
 
@@ -50,7 +50,7 @@ This differs from mutually exclusive categories, where one softmax class is inte
 
 Independent sigmoid outputs are a baseline, not an assumption that labels are independent. Affect labels often co-occur or exclude one another. Label-graph layers, classifier chains, conditional random fields for temporal sequences, or a low-rank label embedding can model these dependencies. Any learned association must be checked against annotation practices: a label pair may correlate because of the rating interface or dataset design, not because of a stable psychological relationship.
 
-Multi-label data are frequently imbalanced. Report per-label prevalence and use class-weighted loss, focal variants, carefully sampled batches, or threshold selection on validation data when justified. A global threshold of $0.5$ is rarely appropriate for every label. Thresholds must be selected without looking at the final test partition and should be reported with calibration measures.
+Multi-label data are frequently imbalanced. Report per-label prevalence and use class-weighted loss, focal variants, carefully sampled batches, or threshold selection on validation data when justified. A global threshold of $$0.5$$ is rarely appropriate for every label. Thresholds must be selected without looking at the final test partition and should be reported with calibration measures.
 
 ### Partial, Positive-Unlabeled, and Ambiguous Labels
 

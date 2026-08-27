@@ -10,19 +10,19 @@ Neural ODEs are not a claim that EEG follows one simple deterministic physical e
 
 ## Continuous-Time Latent Dynamics
 
-A Neural ODE specifies the derivative of a latent state $z(t)$:
+A Neural ODE specifies the derivative of a latent state $$z(t)$$:
 
 $$
 \frac{d z(t)}{dt} = f_\theta(z(t), t, u(t)),
 $$
 
-where $f_\theta$ is a neural network and $u(t)$ can include EEG features, stimulus context, task events, or other controls. Given an initial state $z(t_0)$, an ODE solver produces
+where $$f_\theta$$ is a neural network and $$u(t)$$ can include EEG features, stimulus context, task events, or other controls. Given an initial state $$z(t_0)$$, an ODE solver produces
 
 $$
 z(t_1) = z(t_0) + \int_{t_0}^{t_1} f_\theta(z(t), t, u(t))\,dt.
 $$
 
-A decoder maps $z(t)$ to a continuous affect estimate, class distribution, reconstructed EEG feature, or control value. The integration step is selected by a solver and does not need to match the raw EEG sampling interval; this can be an advantage for irregular observations, but it also introduces solver accuracy and latency tradeoffs.
+A decoder maps $$z(t)$$ to a continuous affect estimate, class distribution, reconstructed EEG feature, or control value. The integration step is selected by a solver and does not need to match the raw EEG sampling interval; this can be an advantage for irregular observations, but it also introduces solver accuracy and latency tradeoffs.
 
 ## Core Architectures and Variations
 
@@ -38,13 +38,13 @@ A decoder maps $z(t)$ to a continuous affect estimate, class distribution, recon
 
 ### Latent ODE and ODE-RNN
 
-Latent ODE models encode irregular observations into an initial distribution over $z(t_0)$, then solve a continuous-time dynamics model. ODE-RNNs instead alternate discrete recurrent updates when measurements arrive with continuous ODE evolution in gaps. These approaches are relevant when wearable EEG contains dropped packets, variable segment lengths, or sparse affect labels.
+Latent ODE models encode irregular observations into an initial distribution over $$z(t_0)$$, then solve a continuous-time dynamics model. ODE-RNNs instead alternate discrete recurrent updates when measurements arrive with continuous ODE evolution in gaps. These approaches are relevant when wearable EEG contains dropped packets, variable segment lengths, or sparse affect labels.
 
 **Example scenario:** A user wears a mobile EEG device during an extended task. Signal-quality checks produce irregular valid windows, and occasional self-reports arrive at nonuniform times. An ODE-RNN updates its latent state at valid windows, evolves between them, and predicts a continuous workload trajectory with uncertainty. Evaluation uses chronological held-out periods and compares against a masked Transformer and a standard RNN using the same valid observations.
 
 ### Neural Controlled Differential Equations
 
-Neural CDEs treat a multivariate observation path $X(t)$ as a control signal:
+Neural CDEs treat a multivariate observation path $$X(t)$$ as a control signal:
 
 $$
 dz(t) = f_\theta(z(t))\, dX(t).
@@ -60,22 +60,22 @@ $$
 dz(t) = f_\theta(z(t), t)dt + g_\theta(z(t), t)dW_t,
 $$
 
-where $W_t$ is a Wiener process. This can represent uncertainty, unobserved perturbations, and variable affective fluctuations more flexibly than a deterministic ODE. It is useful only when uncertainty is evaluated and calibrated; adding noise without a probabilistic objective does not make a model more realistic.
+where $$W_t$$ is a Wiener process. This can represent uncertainty, unobserved perturbations, and variable affective fluctuations more flexibly than a deterministic ODE. It is useful only when uncertainty is evaluated and calibrated; adding noise without a probabilistic objective does not make a model more realistic.
 
 ## Incorporating Graph Structure
 
-EEG latent dynamics can respect spatial or functional graph structure. Let $H(t)$ contain node states for electrodes or source regions and let $A$ be an adjacency matrix. A graph Neural ODE can define
+EEG latent dynamics can respect spatial or functional graph structure. Let $$H(t)$$ contain node states for electrodes or source regions and let $$A$$ be an adjacency matrix. A graph Neural ODE can define
 
 $$
 \frac{dH(t)}{dt} = f_\theta(H(t), A, t),
 $$
 
-where $f_\theta$ is a graph convolution, graph attention, or directed message-passing network. This supports continuously evolving connectivity-aware representations rather than independently applying a GNN at fixed windows.
+where $$f_\theta$$ is a graph convolution, graph attention, or directed message-passing network. This supports continuously evolving connectivity-aware representations rather than independently applying a GNN at fixed windows.
 
 Useful directions include:
 
 - **Graph Neural ODEs** over electrode or source nodes for continuous spatio-temporal EEG representations;
-- **Dynamic graph ODEs** in which $A(t)$ changes with task phase or inferred connectivity;
+- **Dynamic graph ODEs** in which $$A(t)$$ changes with task phase or inferred connectivity;
 - **Directed or causal graph ODEs** that constrain messages according to a validated directed graph, with careful causal interpretation;
 - **Geometry-aware graph dynamics** that use electrode coordinates or source meshes;
 - and **multimodal controlled graph ODEs** driven by EEG, peripheral signals, task events, and user actions.

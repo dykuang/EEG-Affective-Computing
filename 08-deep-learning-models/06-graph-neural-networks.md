@@ -12,11 +12,11 @@ Graph Neural Networks represent a paradigm shift in modeling EEG data by explici
 
 ### Graph Representation
 
-A graph $G = (V, E)$ consists of:
-- **Vertices (Nodes)**: $V = \{v_1, v_2, \ldots, v_n\}$ - EEG channels/electrodes
-- **Edges**: $E$ - Connections between channels based on brain connectivity
-- **Node features**: $X \in \mathbb{R}^{n \times d}$ - EEG signals or spectral features
-- **Adjacency matrix**: $A \in \mathbb{R}^{n \times n}$ - Connection weights between channels
+A graph $$G = (V, E)$$ consists of:
+- **Vertices (Nodes)**: $$V = \{v_1, v_2, \ldots, v_n\}$$ - EEG channels/electrodes
+- **Edges**: $$E$$ - Connections between channels based on brain connectivity
+- **Node features**: $$X \in \mathbb{R}^{n \times d}$$ - EEG signals or spectral features
+- **Adjacency matrix**: $$A \in \mathbb{R}^{n \times n}$$ - Connection weights between channels
 
 For EEG with 14 channels:
 ```
@@ -33,18 +33,18 @@ Graph convolution generalizes standard convolution to irregular graph structures
 $$H^{(l+1)} = \sigma(D^{-1/2} A D^{-1/2} H^{(l)} W^{(l)})$$
 
 where:
-- $H^{(l)}$ = node features at layer $l$
-- $A$ = adjacency matrix
-- $D$ = degree matrix ($D_{ii} = \sum_j A_{ij}$)
-- $W^{(l)}$ = learnable weights
-- $\sigma$ = activation function
+- $$H^{(l)}$$ = node features at layer $$l$$
+- $$A$$ = adjacency matrix
+- $$D$$ = degree matrix ($$D_{ii} = \sum_j A_{ij}$$)
+- $$W^{(l)}$$ = learnable weights
+- $$\sigma$$ = activation function
 
 **Spatial approach** (message passing):
 $$h_v^{(l+1)} = \sigma(W_s^{(l)} h_v^{(l)} + \sum_{u \in \mathcal{N}(v)} W_n^{(l)} h_u^{(l)})$$
 
 where:
-- $\mathcal{N}(v)$ = neighbors of node $v$
-- $h_v^{(l)}$ = feature vector of node $v$ at layer $l$
+- $$\mathcal{N}(v)$$ = neighbors of node $$v$$
+- $$h_v^{(l)}$$ = feature vector of node $$v$$ at layer $$l$$
 - Message is aggregated from all neighbors
 
 ### GNN Architectures
@@ -55,7 +55,7 @@ Simplest GNN, using spectral convolutions:
 
 $$H^{(l+1)} = \sigma(\tilde{A} H^{(l)} W^{(l)})$$
 
-where $\tilde{A} = D^{-1/2} A D^{-1/2}$ is normalized adjacency matrix.
+where $$\tilde{A} = D^{-1/2} A D^{-1/2}$$ is normalized adjacency matrix.
 
 **Advantages**:
 - Computationally efficient
@@ -87,9 +87,9 @@ Learns to aggregate neighbor information:
 $$h_v^{(l+1)} = \sigma(W^{(l)}[h_v^{(l)}, \text{AGGREGATE}(\{h_u^{(l)} : u \in \mathcal{N}(v)\})])$$
 
 Aggregation functions:
-- **Mean**: $\text{AGGREGATE} = \text{mean}(\{h_u : u \in \mathcal{N}(v)\})$
-- **LSTM**: $\text{AGGREGATE} = \text{LSTM}(\{h_u : u \in \mathcal{N}(v)\})$
-- **Pooling**: $\text{AGGREGATE} = \max(\{h_u : u \in \mathcal{N}(v)\})$
+- **Mean**: $$\text{AGGREGATE} = \text{mean}(\{h_u : u \in \mathcal{N}(v)\})$$
+- **LSTM**: $$\text{AGGREGATE} = \text{LSTM}(\{h_u : u \in \mathcal{N}(v)\})$$
+- **Pooling**: $$\text{AGGREGATE} = \max(\{h_u : u \in \mathcal{N}(v)\})$$
 
 #### Graph Isomorphism Network (GIN)
 
@@ -97,7 +97,7 @@ More expressive than GCN:
 
 $$h_v^{(l+1)} = \text{MLP}^{(l)}\left((1 + \epsilon^{(l)}) h_v^{(l)} + \sum_{u \in \mathcal{N}(v)} h_u^{(l)}\right)$$
 
-where $\epsilon^{(l)}$ is a learnable parameter.
+where $$\epsilon^{(l)}$$ is a learnable parameter.
 
 ## Adaptation to EEG-based Affective Computing
 
@@ -170,7 +170,7 @@ Combine anatomical and functional:
 
 $$A_{ij} = w_a A^{\text{anat}}_{ij} + w_f A^{\text{func}}_{ij}$$
 
-where $w_a$ and $w_f$ are weights.
+where $$w_a$$ and $$w_f$$ are weights.
 
 #### Option 4: Learnable Connectivity
 
@@ -691,18 +691,18 @@ In Riemannian geometry, curvature measures how a space deviates from being flat.
 
 $$\kappa_{\text{OR}}(u, v) = 1 - \frac{W_1(m_u, m_v)}{d(u, v)}$$
 
-where $m_u$ and $m_v$ are probability measures concentrated around nodes $u$ and $v$, $W_1$ is the 1-Wasserstein distance, and $d(u,v)$ is the graph distance.
+where $$m_u$$ and $$m_v$$ are probability measures concentrated around nodes $$u$$ and $$v$$, $$W_1$$ is the 1-Wasserstein distance, and $$d(u,v)$$ is the graph distance.
 
 **Interpretation**:
-- $\kappa > 0$: locally "spherical" — tightly connected community
-- $\kappa \approx 0$: locally "flat" — grid-like structure
-- $\kappa < 0$: locally "hyperbolic" — tree-like or bottleneck structure
+- $$\kappa > 0$$: locally "spherical" — tightly connected community
+- $$\kappa \approx 0$$: locally "flat" — grid-like structure
+- $$\kappa < 0$$: locally "hyperbolic" — tree-like or bottleneck structure
 
 **Forman-Ricci Curvature (FRC)** is a simpler combinatorial alternative:
 
 $$\kappa_F(e) = w_e\left(\frac{w_u}{w_e} + \frac{w_v}{w_e} - \sum_{e_u \sim e, e_v \sim e} \frac{w_e}{\sqrt{w_e w_{e_u}}} + \frac{w_e}{\sqrt{w_e w_{e_v}}}\right)$$
 
-where $w_e$ is the edge weight and the sum runs over edges adjacent to $e$.
+where $$w_e$$ is the edge weight and the sum runs over edges adjacent to $$e$$.
 
 #### Why Curvature Matters for EEG GNNs
 
@@ -765,7 +765,7 @@ x = GATConv(x, edge_index, edge_attr=edge_attr)
 1. Use **Forman-Ricci curvature** as a fast first-pass analysis; switch to Ollivier-Ricci for deeper structural insight.
 2. Compute curvature **per emotional condition** to see how network geometry differs across states.
 3. Use curvature not only for analysis but also as a **regularization signal** — penalize the model when important emotional edges have high bottleneck curvature.
-4. Visualize curvature on a **topographic head plot** with edges coloured by $\kappa$ to reveal brain network geometry.
+4. Visualize curvature on a **topographic head plot** with edges coloured by $$\kappa$$ to reveal brain network geometry.
 
 ### Causal Graphs for EEG Connectivity
 
@@ -877,7 +877,7 @@ Causal relationships may be more invariant across subjects than correlational on
 | Step | Method |
 |---|---|
 | **1. Causal Discovery** | Granger causality, transfer entropy, or PC algorithm on EEG time series |
-| **2. Graph Construction** | Build directed adjacency matrix $A_{\text{causal}}$ with thresholding |
+| **2. Graph Construction** | Build directed adjacency matrix $$A_{\text{causal}}$$ with thresholding |
 | **3. GNN Adaptation** | Directed message passing or causal attention masking |
 | **4. Training** | Train GNN with causal constraints (e.g., regularization based on causal structure) |
 | **5. Evaluation** | Test on held-out subjects; evaluate robustness to interventions |

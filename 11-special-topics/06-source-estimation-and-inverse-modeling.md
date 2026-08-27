@@ -32,15 +32,15 @@ The forward problem is: given a set of current sources inside the brain and a mo
 - electrode positions registered to the head model,
 - and a source model, typically a grid of current dipoles distributed across the cortical surface or a volumetric brain grid.
 
-The forward solution can be expressed as a linear operation. Let $\mathbf{x} \in \mathbb{R}^{S}$ be the source activity at $S$ dipole locations and $\mathbf{y} \in \mathbb{R}^{C}$ be the scalp measurement at $C$ channels. Then:
+The forward solution can be expressed as a linear operation. Let $$\mathbf{x} \in \mathbb{R}^{S}$$ be the source activity at $$S$$ dipole locations and $$\mathbf{y} \in \mathbb{R}^{C}$$ be the scalp measurement at $$C$$ channels. Then:
 
 $$\mathbf{y} = \mathbf{L}\mathbf{x} + \mathbf{n}$$
 
-where $\mathbf{L} \in \mathbb{R}^{C \times S}$ is the leadfield matrix and $\mathbf{n}$ is measurement noise.
+where $$\mathbf{L} \in \mathbb{R}^{C \times S}$$ is the leadfield matrix and $$\mathbf{n}$$ is measurement noise.
 
 ### Inverse Problem
 
-The inverse problem is: given $\mathbf{y}$ and $\mathbf{L}$, estimate $\mathbf{x}$. This is ill-posed because $S \gg C$ in almost all practical settings. Many different source configurations produce identical or nearly identical scalp patterns.
+The inverse problem is: given $$\mathbf{y}$$ and $$\mathbf{L}$$, estimate $$\mathbf{x}$$. This is ill-posed because $$S \gg C$$ in almost all practical settings. Many different source configurations produce identical or nearly identical scalp patterns.
 
 Solving the inverse problem therefore requires additional assumptions. Common families of inverse methods include:
 

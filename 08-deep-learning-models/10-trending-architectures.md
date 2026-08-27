@@ -18,31 +18,31 @@ Traditional MLPs use fixed activation functions (e.g., ReLU, sigmoid) on nodes a
 
 Based on the **Kolmogorov-Arnold representation theorem**:
 
-Any multivariate continuous function $f(x_1, \ldots, x_n)$ can be represented as:
+Any multivariate continuous function $$f(x_1, \ldots, x_n)$$ can be represented as:
 
 $$f(x_1, \ldots, x_n) = \sum_{q=1}^{2n+1} \Phi_q\left(\sum_{p=1}^n \phi_{q,p}(x_p)\right)$$
 
-where $\phi_{q,p}$ and $\Phi_q$ are univariate continuous functions.
+where $$\phi_{q,p}$$ and $$\Phi_q$$ are univariate continuous functions.
 
-A KAN layer replaces the linear weight $w$ with a learnable univariate function $\phi(x)$:
+A KAN layer replaces the linear weight $$w$$ with a learnable univariate function $$\phi(x)$$:
 
 **MLP**: $$\text{output} = \sigma(Wx + b)$$
 
 **KAN**: $$\text{output}_j = \sum_{i} \phi_{ij}(x_i)$$
 
-where each $\phi_{ij}$ is a learnable spline function.
+where each $$\phi_{ij}$$ is a learnable spline function.
 
 ### Learnable Activation Functions
 
-KANs typically parameterize $\phi(x)$ using B-splines:
+KANs typically parameterize $$\phi(x)$$ using B-splines:
 
 $$\phi(x) = w_b \cdot \text{silu}(x) + w_s \cdot \sum_i c_i B_i(x)$$
 
 where:
-- $B_i(x)$ are B-spline basis functions
-- $c_i$ are learnable coefficients
-- $w_b, w_s$ control the mix of base activation and spline component
-- $\text{silu}(x) = x \cdot \sigma(x)$ is the base activation
+- $$B_i(x)$$ are B-spline basis functions
+- $$c_i$$ are learnable coefficients
+- $$w_b, w_s$$ control the mix of base activation and spline component
+- $$\text{silu}(x) = x \cdot \sigma(x)$$ is the base activation
 
 ### Key Properties
 
@@ -128,7 +128,7 @@ This could discover interpretable EEG biomarkers for emotions — a holy grail i
 
 ### Motivation
 
-Transformers have $O(T^2)$ attention complexity. State Space Models offer $O(T)$ sequence modeling with competitive performance — a game-changer for long EEG recordings.
+Transformers have $$O(T^2)$$ attention complexity. State Space Models offer $$O(T)$$ sequence modeling with competitive performance — a game-changer for long EEG recordings.
 
 ![Mamba selective state-space architecture for affective EEG. A Mamba block processes long EEG sequences through input projection, local convolution, selective state-space scan, gating, residual connection, and readout.](figures/mamba-eeg-architectures.png)
 
@@ -136,17 +136,17 @@ Transformers have $O(T^2)$ attention complexity. State Space Models offer $O(T)$
 
 ### Theoretical Foundation
 
-A continuous-time SSM maps a 1D input $u(t)$ to output $y(t)$ through a latent state $x(t)$:
+A continuous-time SSM maps a 1D input $$u(t)$$ to output $$y(t)$$ through a latent state $$x(t)$$:
 
 $$\dot{x}(t) = A x(t) + B u(t)$$
 $$y(t) = C x(t) + D u(t)$$
 
-Discretized with step size $\Delta$:
+Discretized with step size $$\Delta$$:
 
 $$x_k = \bar{A} x_{k-1} + \bar{B} u_k$$
 $$y_k = C x_k$$
 
-where $\bar{A} = e^{\Delta A}$, $\bar{B} = (e^{\Delta A} - I) A^{-1} B$.
+where $$\bar{A} = e^{\Delta A}$$, $$\bar{B} = (e^{\Delta A} - I) A^{-1} B$$.
 
 ### Mamba: Selective SSM
 
@@ -188,7 +188,7 @@ Linear projection → (T, d)
 
 **Key advantages for EEG**:
 
-1. **Linear scaling**: $O(T)$ complexity enables processing entire sessions (30+ minutes at 256 Hz ≈ 460,000 samples)
+1. **Linear scaling**: $$O(T)$$ complexity enables processing entire sessions (30+ minutes at 256 Hz ≈ 460,000 samples)
 2. **Selectivity**: Mamba learns to attend to emotionally salient segments (e.g., video climax)
 3. **Continuous-time heritage**: SSMs naturally model continuous physiological signals
 4. **Efficient inference**: Fast autoregressive generation for real-time emotion tracking
@@ -198,7 +198,7 @@ Linear projection → (T, d)
 
 | Aspect | Transformer | Mamba/SSM |
 |---|---|---|
-| **Complexity** | $O(T^2)$ | $O(T)$ |
+| **Complexity** | $$O(T^2)$$ | $$O(T)$$ |
 | **Max practical length** | ~4,096 samples | >100,000 samples |
 | **Memory usage** | Quadratic | Linear |
 | **Training speed** | Fast (parallel) | Fast (parallel scan) |
@@ -335,9 +335,9 @@ The brain communicates via spikes, not continuous values. SNNs are **neuromorphi
 
 $$\tau \frac{dV}{dt} = -(V - V_{\text{rest}}) + I(t)$$
 
-When membrane potential $V$ reaches threshold $V_{\text{th}}$:
+When membrane potential $$V$$ reaches threshold $$V_{\text{th}}$$:
 1. Neuron fires a spike
-2. $V$ resets to $V_{\text{rest}}$
+2. $$V$$ resets to $$V_{\text{rest}}$$
 3. Refractory period begins
 
 **Spike encoding**:
@@ -559,7 +559,7 @@ Incorporate neurophysiological constraints:
 
 $$\mathcal{L} = \mathcal{L}_{\text{data}} + \lambda \mathcal{L}_{\text{physics}}$$
 
-where $\mathcal{L}_{\text{physics}}$ enforces known EEG properties (e.g., Maxwell's equations for volume conduction, frequency band constraints).
+where $$\mathcal{L}_{\text{physics}}$$ enforces known EEG properties (e.g., Maxwell's equations for volume conduction, frequency band constraints).
 
 **EEG relevance**: More robust, more interpretable, better generalization.
 
@@ -569,7 +569,7 @@ Inspired by C. elegans nervous system:
 
 $$\frac{dx}{dt} = -\left(\frac{1}{\tau} + A\right)x(t) + S \cdot f(x(t), I(t), \theta)$$
 
-where $\tau$ is a time constant, $A$ is a fixed sparse random matrix, and $S$ is a learned sensory mapping.
+where $$\tau$$ is a time constant, $$A$$ is a fixed sparse random matrix, and $$S$$ is a learned sensory mapping.
 
 **EEG relevance**: Compact, causal, interpretable temporal dynamics with strong generalization — ideal for real-time emotion monitoring.
 

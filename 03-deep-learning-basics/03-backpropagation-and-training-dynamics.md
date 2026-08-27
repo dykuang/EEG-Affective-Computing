@@ -14,7 +14,7 @@ The forward pass calculates the hidden state, prediction, and loss. The backward
 
 $$\frac{\partial \mathcal{L}}{\partial W} = \frac{\partial \mathcal{L}}{\partial \hat{y}}\cdot\frac{\partial \hat{y}}{\partial h}\cdot\frac{\partial h}{\partial W}.$$
 
-In a layered network, define $z^{(l)}=W^{(l)}h^{(l-1)}+b^{(l)}$ and $h^{(l)}=\sigma(z^{(l)})$. The backward pass propagates an error signal $\delta^{(l)}=\partial\mathcal{L}/\partial z^{(l)}$, producing
+In a layered network, define $$z^{(l)}=W^{(l)}h^{(l-1)}+b^{(l)}$$ and $$h^{(l)}=\sigma(z^{(l)})$$. The backward pass propagates an error signal $$\delta^{(l)}=\partial\mathcal{L}/\partial z^{(l)}$$, producing
 
 $$\frac{\partial \mathcal{L}}{\partial W^{(l)}}=\delta^{(l)}(h^{(l-1)})^T, \qquad \frac{\partial \mathcal{L}}{\partial b^{(l)}}=\delta^{(l)},$$
 

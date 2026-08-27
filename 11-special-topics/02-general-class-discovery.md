@@ -22,7 +22,7 @@ These factors mean that unknown classes are not rare anomalies. They are a struc
 
 ## Problem Formulation
 
-In the GCD setting, the training data usually contains labeled examples from a set of known classes $\mathcal{Y}_K$, while deployment or auxiliary unlabeled data may contain both known and unknown classes. The unknown classes belong to a disjoint set $\mathcal{Y}_U$ that is not available during supervised training.
+In the GCD setting, the training data usually contains labeled examples from a set of known classes $$\mathcal{Y}_K$$, while deployment or auxiliary unlabeled data may contain both known and unknown classes. The unknown classes belong to a disjoint set $$\mathcal{Y}_U$$ that is not available during supervised training.
 
 The objective is to learn a representation and decision procedure that can:
 
