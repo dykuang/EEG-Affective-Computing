@@ -87,8 +87,6 @@
 	- [Continual Learning, Lifelong Adaptation, and Neural Drift](11-Look-into-the-future/05-continual-learning-lifelong-adaptation-and-neural-drift.md)
 	- [Neurotechnology Governance, Privacy, and Human Agency](11-Look-into-the-future/06-neurotechnology-governance-privacy-and-human-agency.md)
 	- [Causal and Mechanistic Affective Neurotechnology](11-Look-into-the-future/07-causal-and-mechanistic-affective-neurotechnology.md)
-- [Conclusion](12-conclusion/README.md)
-	- [Sample Section](12-conclusion/sample-section.md)
 - [Glossary](GLOSSARY.md)
 - [Appendix](Appendix/README.md)
 	- [Project Harness Template](Appendix/01-project-harness-template.md)
