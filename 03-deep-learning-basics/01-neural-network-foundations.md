@@ -26,7 +26,7 @@ $$h^{(1)} = \sigma(W^{(1)}x + b^{(1)}),$$
 $$h^{(2)} = \sigma(W^{(2)}h^{(1)} + b^{(2)}),$$
 $$\hat{y} = f_{\text{out}}(W^{(L)}h^{(L-1)} + b^{(L)}).$$
 
-The vectors $$h^{(1)}, h^{(2)}, \dots$$ are called hidden representations. Each layer converts the output of the preceding layer into a new feature space that may be more useful for the task. For EEG, early layers might respond to local waveform or spectral patterns, later layers might combine information across channels, and the final layers might emphasize patterns that help distinguish emotion-related states. These are useful intuitions rather than a guarantee that every layer has a single, easily named meaning.
+The vectors $$h^{(1)}, h^{(2)}, \ldots$$ are called hidden representations. Each layer converts the output of the preceding layer into a new feature space that may be more useful for the task. For EEG, early layers might respond to local waveform or spectral patterns, later layers might combine information across channels, and the final layers might emphasize patterns that help distinguish emotion-related states. These are useful intuitions rather than a guarantee that every layer has a single, easily named meaning.
 
 ![Multichannel EEG is transformed through learned hidden representations before producing emotion probabilities.](figures/eeg-learned-representations.png)
 
