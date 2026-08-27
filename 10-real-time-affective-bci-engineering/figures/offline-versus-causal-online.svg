@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920" role="img" aria-labelledby="fig102-title fig102-desc">
+  <title id="fig102-title">Offline versus causal-online information availability</title>
+  <desc id="fig102-desc">Left panel: noncausal operations that use future samples or whole-recording statistics and cannot support a current-time real-time claim. Right panel: causal counterparts using only past and present data, with warm-up and delay marked.</desc>
+  <defs>
+    <linearGradient id="fig102-header" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#143B5D"/>
+      <stop offset="1" stop-color="#246B78"/>
+    </linearGradient>
+    <marker id="fig102-tArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#5F6F7C"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="920" fill="#F4F7F9"/>
+  <rect width="1600" height="118" fill="url(#fig102-header)"/>
+  <text x="800" y="52" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" fill="#FFFFFF">What Information Exists at Decision Time t?</text>
+  <text x="800" y="88" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#DDECF0">A current-time real-time claim may use only samples and statistics available at or before t</text>
+
+  <rect x="40" y="150" width="740" height="620" rx="20" fill="#FFFFFF" stroke="#E3B6B6" stroke-width="1.5"/>
+  <rect x="40" y="150" width="740" height="72" rx="20" fill="#D95757"/>
+  <rect x="40" y="198" width="740" height="24" fill="#D95757"/>
+  <circle cx="86" cy="186" r="16" fill="#FFFFFF"/>
+  <path d="M78 178 L94 194 M94 178 L78 194" stroke="#D95757" stroke-width="4" stroke-linecap="round"/>
+  <text x="118" y="196" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF">Invalid for a current-time claim</text>
+
+  <line x1="90" y1="280" x2="710" y2="280" stroke="#768896" stroke-width="3" marker-end="url(#fig102-tArrow)"/>
+  <line x1="400" y1="268" x2="400" y2="292" stroke="#143B5D" stroke-width="4"/>
+  <text x="400" y="258" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#143B5D">t  decision</text>
+  <text x="90" y="308" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5F6F7C">past</text>
+  <text x="680" y="308" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5F6F7C">future</text>
+  <rect x="400" y="318" width="310" height="28" fill="#F4C7C7"/>
+  <text x="555" y="338" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#7A2E2E">not yet available</text>
+
+  <rect x="70" y="368" width="680" height="84" rx="12" fill="#FDF2F2" stroke="#D95757" stroke-width="1.5"/>
+  <text x="90" y="400" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#263746">Centered / zero-phase filter</text>
+  <text x="90" y="426" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#5F6F7C">Reverse pass or kernel uses samples after t (e.g. filtfilt)</text>
+  <rect x="70" y="464" width="680" height="84" rx="12" fill="#FDF2F2" stroke="#D95757" stroke-width="1.5"/>
+  <text x="90" y="496" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#263746">Future or centered context window</text>
+  <text x="90" y="522" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#5F6F7C">Window straddles t; "now" includes tomorrow's EEG</text>
+  <rect x="70" y="560" width="680" height="84" rx="12" fill="#FDF2F2" stroke="#D95757" stroke-width="1.5"/>
+  <text x="90" y="592" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#263746">Whole-recording normalization</text>
+  <text x="90" y="618" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#5F6F7C">z-score or baseline fitted on the entire session, including later minutes</text>
+  <rect x="70" y="656" width="680" height="84" rx="12" fill="#FDF2F2" stroke="#D95757" stroke-width="1.5"/>
+  <text x="90" y="688" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#263746">Bidirectional sequence model</text>
+  <text x="90" y="714" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#5F6F7C">Backward LSTM/Transformer states depend on the future of the block</text>
+
+  <rect x="820" y="150" width="740" height="620" rx="20" fill="#FFFFFF" stroke="#B7D8CB" stroke-width="1.5"/>
+  <rect x="820" y="150" width="740" height="72" rx="20" fill="#2C9A78"/>
+  <rect x="820" y="198" width="740" height="24" fill="#2C9A78"/>
+  <circle cx="866" cy="186" r="16" fill="#FFFFFF"/>
+  <path d="M858 186 L864 192 L875 176" fill="none" stroke="#2C9A78" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="898" y="196" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF">Causal online counterparts</text>
+
+  <line x1="870" y1="280" x2="1490" y2="280" stroke="#768896" stroke-width="3" marker-end="url(#fig102-tArrow)"/>
+  <line x1="1180" y1="268" x2="1180" y2="292" stroke="#143B5D" stroke-width="4"/>
+  <text x="1180" y="258" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#143B5D">t  decision</text>
+  <text x="870" y="308" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5F6F7C">past</text>
+  <text x="1460" y="308" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5F6F7C">future</text>
+  <rect x="870" y="318" width="310" height="28" fill="#CDEADF"/>
+  <text x="1025" y="338" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#1F6A52">available history only</text>
+
+  <rect x="850" y="368" width="680" height="84" rx="12" fill="#F1FAF6" stroke="#2C9A78" stroke-width="1.5"/>
+  <text x="870" y="400" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#263746">Forward IIR or causal FIR</text>
+  <text x="870" y="426" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#5F6F7C">Past and present only; group delay enters L_preprocessing</text>
+  <rect x="850" y="464" width="680" height="84" rx="12" fill="#F1FAF6" stroke="#2C9A78" stroke-width="1.5"/>
+  <text x="870" y="496" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#263746">Causal window [t - W, t]</text>
+  <text x="870" y="522" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#5F6F7C">Lookback W, stride Delta; warm-up until the window is full</text>
+  <rect x="850" y="560" width="680" height="84" rx="12" fill="#F1FAF6" stroke="#2C9A78" stroke-width="1.5"/>
+  <text x="870" y="592" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#263746">Frozen or running statistics</text>
+  <text x="870" y="618" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#5F6F7C">Calibration period ended before scoring, or causal moments</text>
+  <rect x="850" y="656" width="680" height="84" rx="12" fill="#F1FAF6" stroke="#2C9A78" stroke-width="1.5"/>
+  <text x="870" y="688" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#263746">Unidirectional / causally masked model</text>
+  <text x="870" y="714" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#5F6F7C">Carried state from tau &lt;= t; reset after gaps and reconnects</text>
+
+  <text x="800" y="808" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#263746">Shape of the kernel, not color, marks the leak: any support after t is future information.</text>
+  <text x="800" y="840" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#5F6F7C">Forecasting may predict t+delta from tau &lt;= t; it must not be described as current-state estimation.</text>
+  <text x="800" y="880" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#5F6F7C">Labels have a second cutoff: the time a rating becomes available is often later than the time it describes.</text>
+</svg>

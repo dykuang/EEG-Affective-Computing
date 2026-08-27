@@ -112,7 +112,7 @@ Check whether performance can be explained by non-neural shortcuts. Examples inc
 
 Trial-level ratings can support trial or clip prediction, but they do not by themselves validate continuous tracking. Assigning one trial label to every short EEG window assumes that the state is constant throughout the trial. When this approximation is used, it should be described as window-level prediction with inherited trial labels rather than evidence of temporally resolved affect estimation.
 
-Likewise, a task that uses future samples through centered filtering, noncausal smoothing, or a symmetric context window should be described as offline. Clear temporal language prevents models with similar accuracy from being credited with different capabilities.
+Likewise, a task that uses future samples through centered filtering, noncausal smoothing, or a symmetric context window should be described as offline. Clear temporal language prevents models with similar accuracy from being credited with different capabilities. The clocks, buffers, latency budgets, and runtime abstention rules that make a causal tracking claim operational are developed in [Chapter 10](../10-real-time-affective-bci-engineering/README.md).
 
 ## References
 

@@ -102,6 +102,8 @@ Affective signals can enrich active BCI without replacing intentional control. A
 
 The central methodological shift is that the user is part of the learning system. Data collected after feedback begins are not passive observations of a fixed process. They reflect the coupled adaptation of person, decoder, controller, and interface. Experimental protocols should therefore report calibration, feedback, adaptation, and user learning as carefully as they report the neural model.
 
+The engineering stack that keeps such a loop causal, time-constrained, and failure-aware is the subject of [Chapter 10](../10-real-time-affective-bci-engineering/README.md). The present section remains focused on the human-machine learning problem rather than on clocks, buffers, or runtime state machines.
+
 ## References
 
 - Millan, J. del R., Rupp, R., Muller-Putz, G. R., et al. (2010). Combining brain-computer interfaces and assistive technologies: State-of-the-art and challenges. Frontiers in Neuroscience, 4, 161.

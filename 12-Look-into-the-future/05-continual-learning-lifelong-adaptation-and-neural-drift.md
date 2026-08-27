@@ -16,7 +16,7 @@ Drift detection should distinguish a likely sensor failure from a meaningful cha
 
 ![Sources and signatures of neural drift. The diagram should organize physiological change, user strategy change, sensor and montage drift, context shift, and label or goal change over time, with observable signatures such as amplitude shifts, channel dropout, altered performance, and rising uncertainty.](figures/neural-drift-sources-and-signatures.png)
 
-**Figure 11.9: Sources and signatures of neural drift.** Long-term change can arise from the user, task, sensor, context, or target; distinguishing these sources is necessary before deciding whether to recalibrate or repair the recording.
+**Figure 12.9: Sources and signatures of neural drift.** Long-term change can arise from the user, task, sensor, context, or target; distinguishing these sources is necessary before deciding whether to recalibrate or repair the recording.
 
 ## Safe Adaptation Strategies
 
@@ -28,7 +28,7 @@ Updates should be bounded. A system can require high-confidence outcomes, explic
 
 ![Reversible continual-adaptation loop. The diagram should show signal-quality checks, drift detection, uncertainty gating, optional user-confirmed calibration, a small adapter update, chronological validation, rollback to a stable model, and an audit record.](figures/reversible-continual-adaptation-loop.png)
 
-**Figure 11.10: Reversible continual-adaptation loop.** A safe system gates updates on signal quality and evidence, validates changes against prior behavior, records model versions, and supports rollback when adaptation harms performance or user control.
+**Figure 12.10: Reversible continual-adaptation loop.** A safe system gates updates on signal quality and evidence, validates changes against prior behavior, records model versions, and supports rollback when adaptation harms performance or user control.
 
 ## Avoid Catastrophic Forgetting
 
@@ -40,7 +40,7 @@ Evaluation should measure both plasticity and stability: how much the model impr
 
 Long-term evaluation requires chronological protocols. Report performance over sessions, time since calibration, adaptation events, model version, signal-quality changes, and user training history. Compare fixed, periodically recalibrated, and continually adapted systems under equal user time and feedback conditions.
 
-Useful outcomes include time-to-recalibration, abstention frequency, recovery after sensor loss, calibration burden, stability of user agency, and performance after a model rollback. A lifelong system should fail visibly and recover safely, rather than quietly becoming overconfident.
+Useful outcomes include time-to-recalibration, abstention frequency, recovery after sensor loss, calibration burden, stability of user agency, and performance after a model rollback. A lifelong system should fail visibly and recover safely, rather than quietly becoming overconfident. Session-scale monitoring, bounded updates, and rollback during live operation are specified as engineering requirements in [Chapter 10](../10-real-time-affective-bci-engineering/README.md); this section concerns longer-term lifelong change.
 
 ## User Control and Data Lifecycle
 

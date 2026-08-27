@@ -50,7 +50,7 @@ EEG is measured as a voltage difference, so the reference choice affects every c
 
 Filtering is used to reduce slow drift, high-frequency noise, and line contamination. A typical pipeline may apply a high-pass filter to reduce slow baseline drift, a low-pass filter to limit high-frequency content, and a notch or line-noise regression method at the local power frequency and its harmonics. Filter settings should be chosen for the intended analysis rather than copied as defaults: an event-related potential analysis, a low-frequency affective signal, and a high-frequency muscle-artifact analysis have different requirements.
 
-Filtering can distort boundaries and temporal relationships. Use padding or a clearly specified boundary policy for offline analyses, and causal filters when making real-time claims. Report the filter type, cutoff frequencies, order or transition band, and whether filtering was applied continuously or after epoching.
+Filtering can distort boundaries and temporal relationships. Use padding or a clearly specified boundary policy for offline analyses, and causal filters when making real-time claims. Report the filter type, cutoff frequencies, order or transition band, and whether filtering was applied continuously or after epoching. The streaming architecture that makes those causal constraints operational is developed in [Chapter 10](../10-real-time-affective-bci-engineering/README.md).
 
 ![EEG preprocessing decision map. The diagram should compare offline and online branches for reference, filtering, artifact handling, resampling, and label alignment, marking which operations may use future samples and which must remain causal.](figures/offline-online-preprocessing-decisions.png)
 

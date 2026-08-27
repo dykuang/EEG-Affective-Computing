@@ -81,6 +81,8 @@ Online subject-independent evaluation is the hardest of the common settings beca
 | Warm-up | Whether the model needs an initial history before scoring |
 | Adaptation | Whether test-time calibration or online updating is allowed |
 
+Streaming latency, runtime quality gates, and closed-loop validation of the same causal requirement are treated as engineering problems in [Chapter 10](../10-real-time-affective-bci-engineering/README.md).
+
 ## Metrics and Reporting
 
 Metrics should be chosen to match the prediction target rather than copied mechanically from earlier papers. For batch classification, common choices include accuracy, balanced accuracy, macro-$F_1$, unweighted average recall, and sometimes area under the ROC curve. When label imbalance is substantial, balanced metrics are usually more informative than plain accuracy. For batch regression, typical measures include mean absolute error, root mean square error, Pearson correlation, Spearman correlation, and concordance correlation coefficient.

@@ -23,7 +23,7 @@ A theory-aligned evaluation therefore starts with a claim and a falsifiable beha
 
 ## Use Priors as Testable Expectations
 
-Chapter 10's [Psychological Priors](../10-special-topics/01-psychological-priors.md) describes inertia, continuity, bounded variation, baseline regulation, sparse event-driven transitions, delayed self-report, and individual differences. These ideas should guide assessment, but they are soft expectations rather than universal constraints. A strong stimulus can produce a legitimate abrupt transition; a model should not be rewarded merely for being smooth.
+Chapter 11's [Psychological Priors](../11-special-topics/01-psychological-priors.md) describes inertia, continuity, bounded variation, baseline regulation, sparse event-driven transitions, delayed self-report, and individual differences. These ideas should guide assessment, but they are soft expectations rather than universal constraints. A strong stimulus can produce a legitimate abrupt transition; a model should not be rewarded merely for being smooth.
 
 | Prior or expectation | Qualitative question | Example evidence |
 | --- | --- | --- |
@@ -37,7 +37,7 @@ These checks should include counterexamples. Show cases where the prior does not
 
 ## Inspect Local Segments in Their Trial Context
 
-A model can score well on windows that inherit a trial-level label while making locally implausible predictions. Chapter 10's [Local-Segment and Global-Trial Label Inconsistency](../10-special-topics/05-local-segment-and-global-trial-label-inconsistency.md) explains why this occurs: a final rating may summarize a long, changing episode rather than label every short window exactly.
+A model can score well on windows that inherit a trial-level label while making locally implausible predictions. Chapter 11's [Local-Segment and Global-Trial Label Inconsistency](../11-special-topics/05-local-segment-and-global-trial-label-inconsistency.md) explains why this occurs: a final rating may summarize a long, changing episode rather than label every short window exactly.
 
 Qualitative review should therefore display local predictions in their source context:
 
@@ -73,7 +73,7 @@ Paired perturbations are especially useful. For example, mask a model-highlighte
 
 ## Test Causal and Interpretability Claims
 
-Chapter 10's [Causal Discovery, Inference, and Interpretable Learning](../10-special-topics/08-causal-discovery-inference-and-interpretable-learning.md) distinguishes directed predictive interaction from network mechanism and intervention effect. Qualitative assessment should retain this distinction.
+Chapter 11's [Causal Discovery, Inference, and Interpretable Learning](../11-special-topics/08-causal-discovery-inference-and-interpretable-learning.md) distinguishes directed predictive interaction from network mechanism and intervention effect. Qualitative assessment should retain this distinction.
 
 A directed EEG graph or causal explanation deserves stronger scrutiny than an ordinary feature attribution. Review whether it is stable across time blocks, subjects, preprocessing choices, reference schemes, and model seeds; whether known common drivers or artifacts change the result; and whether it predicts the effect of a controlled perturbation. For claims about intervention, randomized or otherwise identifiable designs are needed. A visually compelling directed edge is not enough.
 
@@ -91,7 +91,7 @@ A directed EEG graph or causal explanation deserves stronger scrutiny than an or
 
 ## Assess Emotion-Space Consistency
 
-Chapter 10's [Structured Geometry of Emotion Spaces](../10-special-topics/09-structured-geometry-of-emotion-spaces.md) argues that continuous affect may have nonuniform geometry and discrete emotions may form a graph rather than unrelated labels. This creates additional qualitative checks.
+Chapter 11's [Structured Geometry of Emotion Spaces](../11-special-topics/09-structured-geometry-of-emotion-spaces.md) argues that continuous affect may have nonuniform geometry and discrete emotions may form a graph rather than unrelated labels. This creates additional qualitative checks.
 
 For continuous predictions, inspect whether trajectories follow plausible neighborhoods in the declared emotion space. When a model moves between distant states, determine whether a relevant event, uncertainty increase, or contextual change supports the move. For a curved manifold, compare geodesic neighborhoods and trajectories with a Euclidean baseline rather than interpreting a curved embedding by appearance alone.
 

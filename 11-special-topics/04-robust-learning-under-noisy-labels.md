@@ -173,7 +173,7 @@ If the test labels are also noisy, evaluation itself becomes part of the problem
 
 Claims of robustness are weak if they only show marginal improvement on a single noisy benchmark without any analysis of label quality.
 
-## Relation to Other Chapter 10 Topics
+## Relation to Other Chapter 11 Topics
 
 Robust learning under noisy labels interacts naturally with the other topics in this chapter.
 

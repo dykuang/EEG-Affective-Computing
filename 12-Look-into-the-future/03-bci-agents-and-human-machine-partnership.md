@@ -20,7 +20,7 @@ A useful BCI-agent architecture separates roles that are often conflated:
 
 ![BCI agent architecture. The diagram should show neural perception, context and memory, planning, action, feedback, adaptation, and safety monitoring as separate components, with explicit intent, state uncertainty, consent, confirmation, and audit logs flowing between them.](figures/bci-agent-architecture.png)
 
-**Figure 11.5: BCI agent architecture.** A reliable BCI agent separates neural perception from context reasoning, planning, action, adaptation, feedback, and safety enforcement so that no single model silently becomes the system's authority.
+**Figure 12.5: BCI agent architecture.** A reliable BCI agent separates neural perception from context reasoning, planning, action, adaptation, feedback, and safety enforcement so that no single model silently becomes the system's authority.
 
 The separation is important. A language model may help with explanation and planning, but it should not silently become the neural decoder, safety monitor, or authority for an irreversible action.
 
@@ -44,7 +44,7 @@ Shared autonomy should expose its role. Users need to know whether an action was
 
 ![Shared-autonomy control loop for a BCI agent. The diagram should show the user, neural decoder, context model, bounded planner, safety monitor, interface or device, and feedback loop, with separate paths for direct commands, system suggestions, confirmation, override, and autonomous safety actions.](figures/shared-autonomy-control-loop.png)
 
-**Figure 11.6: Shared-autonomy control loop.** BCI assistance should combine uncertain neural commands with context and safety constraints while making direct control, suggestions, confirmation, and override paths visible to the user.
+**Figure 12.6: Shared-autonomy control loop.** BCI assistance should combine uncertain neural commands with context and safety constraints while making direct control, suggestions, confirmation, and override paths visible to the user.
 
 ## Co-Adaptation and Continual Learning
 
