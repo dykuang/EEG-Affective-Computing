@@ -57,6 +57,7 @@
 	- [8.11 Neural Operator Learning](08-deep-learning-models/11-neural-operator-learning.md)
 	- [8.12 Neural Ordinary Differential Equations](08-deep-learning-models/12-neural-ordinary-differential-equations.md)
 	- [8.13 Knowledge Distillation](08-deep-learning-models/13-knowledge-distillation.md)
+	- [8.14 Interpretability and Explainability](08-deep-learning-models/14-interpretability-and-explainability.md)
 - [9. Training and Evaluation](09-training-and-evaluation/README.md)
 	- [9.1 Train-Test Splits and Evaluation Protocols](09-training-and-evaluation/01-train-test-splits-and-evaluation-protocols.md)
 	- [9.2 Training Paradigms for Affective EEG](09-training-and-evaluation/02-training-paradigms-for-affective-eeg.md)

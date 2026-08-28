@@ -68,6 +68,13 @@ This chapter provides a comprehensive survey of deep learning architectures appl
    - Soft targets, feature matching, attention transfer, and relation distillation
    - Compact, wearable-ready EEG models with matched efficiency and generalization evaluation
 
+#### Part VI: Interpretability and Explainability (Section 14)
+
+14. **Interpretability and Explainability** (Section 14): Understanding model behavior
+   - Broad methods including saliency, Integrated Gradients, occlusion, LIME, SHAP, and counterfactual analysis
+   - Architecture-specific methods for CNNs, recurrent models, Transformers, GNNs, and generative models
+   - Faithfulness, stability, artifact controls, and EEG-affective use cases
+
 ### Generative vs. Discriminative Approaches
 
 | Aspect | Discriminative Models | Generative Models |
