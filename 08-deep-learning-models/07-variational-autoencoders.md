@@ -12,7 +12,7 @@ This design makes the latent space continuous and organized: nearby points tend 
 
 ![Variational autoencoder architecture, comprising an encoder, probabilistic latent distribution and decoder.](figures/vae.png)
 
-**Figure 8.7: Variational autoencoder architecture.** The encoder estimates latent distribution parameters, the reparameterization step samples a differentiable latent code, and the decoder reconstructs or generates an observation.
+**Figure 8.8: Variational autoencoder architecture.** The encoder estimates latent distribution parameters, the reparameterization step samples a differentiable latent code, and the decoder reconstructs or generates an observation.
 
 ## Theoretical Foundations
 
@@ -391,11 +391,11 @@ anomalies = recon_error > anomaly_threshold
 
 ## VAE Variants for EEG
 
-The autoencoder family offers several ways to adapt latent representation learning to the needs of EEG analysis (Figure 8.8). An AE provides a deterministic reconstruction baseline, whereas a VAE introduces a continuous probabilistic latent distribution. The remaining variants modify this core design to support conditional generation (cVAE), robustness to corrupted inputs (DAE), stronger factor disentanglement ($\beta$-VAE), or discrete latent codes (VQ-VAE). These choices determine whether the model is best suited to reconstruction, denoising, controlled emotion synthesis, interpretable factors, or categorical EEG patterns.
+The autoencoder family offers several ways to adapt latent representation learning to the needs of EEG analysis (Figure 8.9). An AE provides a deterministic reconstruction baseline, whereas a VAE introduces a continuous probabilistic latent distribution. The remaining variants modify this core design to support conditional generation (cVAE), robustness to corrupted inputs (DAE), stronger factor disentanglement ($\beta$-VAE), or discrete latent codes (VQ-VAE). These choices determine whether the model is best suited to reconstruction, denoising, controlled emotion synthesis, interpretable factors, or categorical EEG patterns.
 
 ![Overview of autoencoder and variational autoencoder variants: AE, VAE, cVAE, DAE, beta-VAE, and VQ-VAE.](figures/vae_variants.png)
 
-**Figure 8.8: Autoencoder and VAE variants.** AE learns deterministic reconstruction; VAE models a continuous probabilistic latent space; cVAE conditions generation on auxiliary information such as an emotion label; DAE reconstructs clean inputs from corrupted observations; $\beta$-VAE strengthens latent regularization to encourage disentanglement; and VQ-VAE replaces continuous codes with entries from a learned discrete codebook.
+**Figure 8.9: Autoencoder and VAE variants.** AE learns deterministic reconstruction; VAE models a continuous probabilistic latent space; cVAE conditions generation on auxiliary information such as an emotion label; DAE reconstructs clean inputs from corrupted observations; $\beta$-VAE strengthens latent regularization to encourage disentanglement; and VQ-VAE replaces continuous codes with entries from a learned discrete codebook.
 
 ### VQ-VAE (Vector Quantized VAE)
 
@@ -429,11 +429,11 @@ Model EEG sequences with recurrent encoder/decoder:
 
 ## Comparison with Other Generative Models
 
-VAEs, generative adversarial networks (GANs), and diffusion models represent three influential directions in modern generative modeling (Figure 8.9). VAEs learn an explicit, regularized latent distribution and are especially attractive when fast encoding, interpolation, uncertainty-aware representations, or controllable generation are important. GANs learn through competition between a generator and discriminator, often producing sharp samples quickly but with greater sensitivity to training instability and mode collapse. Diffusion models learn to reverse a gradual noising process; they generally provide strong diversity and fidelity, but their iterative sampling procedure is computationally more demanding. In EEG research, the best choice therefore depends on whether the priority is interpretable representation learning (VAE), high-fidelity adversarial synthesis (GAN), or broad and realistic sample coverage (diffusion).
+VAEs, generative adversarial networks (GANs), and diffusion models represent three influential directions in modern generative modeling (Figure 8.10). VAEs learn an explicit, regularized latent distribution and are especially attractive when fast encoding, interpolation, uncertainty-aware representations, or controllable generation are important. GANs learn through competition between a generator and discriminator, often producing sharp samples quickly but with greater sensitivity to training instability and mode collapse. Diffusion models learn to reverse a gradual noising process; they generally provide strong diversity and fidelity, but their iterative sampling procedure is computationally more demanding. In EEG research, the best choice therefore depends on whether the priority is interpretable representation learning (VAE), high-fidelity adversarial synthesis (GAN), or broad and realistic sample coverage (diffusion).
 
 ![Three main directions of generative models: variational autoencoders, generative adversarial networks, and diffusion models.](figures/GenModels.png)
 
-**Figure 8.9: Three directions of generative models.** VAEs use probabilistic encoding and decoding, GANs use adversarial learning, and diffusion models iteratively transform noise into data.
+**Figure 8.10: Three directions of generative models.** VAEs use probabilistic encoding and decoding, GANs use adversarial learning, and diffusion models iteratively transform noise into data.
 
 | Aspect | VAE | GAN | Diffusion |
 |---|---|---|---|

@@ -12,15 +12,15 @@ A **diffusion model** instead defines a forward process that gradually adds nois
 
 ![Flow-based and diffusion generation pipelines, showing invertible transformations between a latent Gaussian and data, and forward noising followed by iterative reverse denoising.](figures/FlowGen.png)
 
-**Figure 8.12: Flow-based and diffusion generation pipelines.** A normalizing flow maps between EEG and a latent distribution through invertible transformations, whereas a diffusion model learns to transform noise into EEG by reversing a staged noising process.
+**Figure 8.13: Flow-based and diffusion generation pipelines.** A normalizing flow maps between EEG and a latent distribution through invertible transformations, whereas a diffusion model learns to transform noise into EEG by reversing a staged noising process.
 
 ## Model Variants
 
-Several variants tailor these two model families to different requirements in EEG generation and analysis (Figure 8.13). Within flow-based modeling, RealNVP uses efficient affine coupling layers, while Glow augments this design with learned normalization and invertible channel mixing. Within diffusion modeling, conditional diffusion introduces labels or auxiliary signals for controlled synthesis, latent diffusion performs denoising in a compact learned representation to reduce computational cost, and DDIM accelerates sampling by using a non-Markovian, often deterministic reverse trajectory. Together, these variants trade off exact density estimation, conditioning flexibility, sampling speed, and signal fidelity.
+Several variants tailor these two model families to different requirements in EEG generation and analysis (Figure 8.14). Within flow-based modeling, RealNVP uses efficient affine coupling layers, while Glow augments this design with learned normalization and invertible channel mixing. Within diffusion modeling, conditional diffusion introduces labels or auxiliary signals for controlled synthesis, latent diffusion performs denoising in a compact learned representation to reduce computational cost, and DDIM accelerates sampling by using a non-Markovian, often deterministic reverse trajectory. Together, these variants trade off exact density estimation, conditioning flexibility, sampling speed, and signal fidelity.
 
 ![Overview of flow-based and diffusion-model variants, including RealNVP, Glow, conditional diffusion, latent diffusion, and DDIM.](figures/Flow-variants.png)
 
-**Figure 8.13: Flow-based and diffusion-model variants.** RealNVP and Glow provide invertible density models; conditional diffusion enables controlled EEG synthesis; latent diffusion reduces the cost of generation through a compressed latent space; and DDIM produces high-quality samples with substantially fewer denoising steps.
+**Figure 8.14: Flow-based and diffusion-model variants.** RealNVP and Glow provide invertible density models; conditional diffusion enables controlled EEG synthesis; latent diffusion reduces the cost of generation through a compressed latent space; and DDIM produces high-quality samples with substantially fewer denoising steps.
 
 ## Part 1: Flow-based Models
 

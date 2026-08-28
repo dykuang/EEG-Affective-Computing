@@ -4,9 +4,15 @@
 
 Graph Neural Networks represent a paradigm shift in modeling EEG data by explicitly leveraging the spatial structure of brain networks. Unlike CNNs that treat channels as a sequence or Transformers that ignore spatial relationships, GNNs model EEG channels as nodes in a graph with connections based on functional or anatomical brain connectivity. This section explores how GNNs can capture the graph structure of brain networks for improved emotion recognition.
 
-![Graph neural network architecture for affective EEG. The diagram should show electrodes positioned on a scalp map as graph nodes, channel or band-power features at each node, edges from anatomical distance or functional connectivity, stacked graph-convolution or graph-attention message-passing layers, graph pooling, and an emotion prediction head. Include an optional dynamic adjacency update.](figures/gnn-eeg-architecture.png)
+## Graph Neural Network Architecture
 
-**Figure 8.6: Graph neural network architecture for affective EEG.** EEG channels become graph nodes whose features are exchanged through anatomical or functional connections before graph-level affect classification or regression.
+A graph neural network represents data as a set of **nodes**, their **features**, and the **edges** that specify which nodes can exchange information. Instead of applying the same local filter over a regular grid, as a CNN does, a GNN performs *message passing*: every node collects and aggregates messages from its neighbors, combines them with its own representation, and passes the result through a learnable transformation. Repeating this process lets each node incorporate information from progressively larger parts of the graph.
+
+The main design decisions are therefore the graph structure and the aggregation rule. Edges may be fixed from prior knowledge, computed from similarity, or learned from data; they may also carry weights that quantify connection strength. A graph-convolution layer commonly averages or normalizes neighbor features, whereas graph attention learns how much weight to give each neighbor. After several message-passing layers, a pooling or readout operation combines node representations into a graph-level embedding for classification, regression, or other downstream tasks.
+
+![Graph neural network architecture showing node features, graph edges, stacked message-passing layers, graph pooling, and a task-specific prediction head.](figures/GNN.png)
+
+**Figure 8.6: Graph neural network architecture.** Node features are exchanged along graph edges through message passing, then pooled into a graph representation for a downstream prediction task.
 
 ## Theoretical Foundations
 
@@ -48,6 +54,12 @@ where:
 - Message is aggregated from all neighbors
 
 ### GNN Architectures
+
+GNN variants differ primarily in how they decide which neighbor information to aggregate and how much expressiveness they retain (Figure 8.7). GCN uses normalized fixed-weight aggregation as an efficient baseline; GAT learns attention weights for each connection; GraphSAGE defines an inductive sample-and-aggregate scheme; and GIN uses an MLP-based update designed to distinguish a wider range of graph structures. For EEG, the choice reflects a trade-off between stable use of a prior connectivity graph, adaptive task-relevant connectivity, and the risk of overfitting a limited number of subjects.
+
+![Overview of graph neural network variants: GCN, GAT, GraphSAGE, and GIN.](figures/GNN-variants.png)
+
+**Figure 8.7: Graph neural network variants.** GCN aggregates normalized neighbor features, GAT learns attention-weighted aggregation, GraphSAGE samples and aggregates local neighborhoods, and GIN uses a highly expressive MLP-based aggregation rule.
 
 #### Graph Convolutional Network (GCN)
 

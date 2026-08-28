@@ -34,6 +34,8 @@ $$\frac{\partial \mathcal{L}}{\partial h_t} = \prod_{i=t+1}^{T} \frac{\partial h
 If products are < 1, gradients vanish (can't learn long dependencies).
 If products are > 1, gradients explode.
 
+This limitation explains why a vanilla RNN can react well to the most recent EEG samples yet fail to connect an earlier rhythm or event with a later affective response. The goal of gated variants is not simply to add parameters; it is to create paths through time along which useful information and gradients can persist, while allowing irrelevant fluctuations to be forgotten.
+
 ### Long Short-Term Memory (LSTM)
 
 LSTMs solve this with memory cells and gating mechanisms:
@@ -66,6 +68,16 @@ $$h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t$$
 - Often comparable performance
 - Good for smaller datasets
 
+## RNN Variants and Design Choices
+
+The RNN family evolved to address the tension between temporal memory and practical training. A vanilla RNN is the simplest sequential baseline, but its hidden state can lose information over long recordings. LSTM adds a separate memory cell and explicit gates to preserve or discard information over time. GRU merges some of those gates into a lighter design, reducing parameters and training cost. Bidirectional RNNs process a complete sequence in both directions when future context is available, while attention-enhanced RNNs let the model emphasize a small number of informative moments instead of relying solely on the final hidden state.
+
+For EEG, select the variant based on what is known when a prediction is needed. GRU is a sensible starting point for modest datasets or real-time systems; LSTM is useful when longer temporal context may matter; bidirectional models are suitable for offline analysis but cannot be used causally; and attention is helpful when emotion-relevant events are sparse. More elaborate variants do not automatically improve performance—limited subject diversity and inconsistent sequence definitions are often the larger bottlenecks.
+
+![Overview of recurrent neural network variants, including vanilla RNN, LSTM, GRU, bidirectional RNN, and attention-enhanced recurrent models.](figures/RNN-variants.png)
+
+**Figure 8.3b: RNN variants and their design motivations.** Vanilla RNNs provide a simple recurrent baseline; LSTMs use gated memory cells to retain long-range information; GRUs achieve similar control with fewer parameters; bidirectional variants use both past and future context; and attention-enhanced variants focus the readout on the most informative time steps.
+
 ## Adaptation to EEG-based Affective Computing
 
 ### Why RNNs/LSTMs for EEG?
@@ -85,6 +97,8 @@ $$h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t$$
 
 ### Typical Pipeline
 
+The pipeline turns a continuous physiological recording into a sequence of model inputs. Its central modeling choice is the time scale of one recurrent step: individual samples preserve fine timing but create very long sequences, whereas window-level features reduce computation and may align better with slowly changing affect. Set the step size and sequence length from the expected duration of the target phenomenon, then keep that definition consistent across subjects and splits.
+
 ```
 Raw EEG → Preprocessing → Segmentation → Sequences → LSTM → Emotion State
            (Filtering)     (Sliding        (Feed time   (Valence/
@@ -95,6 +109,8 @@ Raw EEG → Preprocessing → Segmentation → Sequences → LSTM → Emotion St
 ## Suitable Input Features
 
 ### Representation Options
+
+There is no universally best input representation. Direct time series retain waveform-level information but place the burden of feature extraction on the RNN. Band-filtered or engineered features inject domain knowledge and shorten the effective sequence, but can hide information that was not anticipated during feature design. Start with the simplest representation that matches the research question, and compare alternatives under the same subject-wise evaluation split.
 
 #### Option 1: Multivariate Time Series
 **Direct input of multichannel EEG**:
@@ -159,6 +175,8 @@ Raw EEG → Preprocessing → Segmentation → Sequences → LSTM → Emotion St
 
 ### Preprocessing for RNNs/LSTMs
 
+RNNs repeatedly reuse their hidden state, so amplitude drift, artifacts, and inconsistent scaling can persist through many steps rather than remaining local errors. Filtering and normalization should therefore be fitted on training data only, while segmentation should avoid putting overlapping windows from the same recording into different splits. Otherwise, the model can appear to learn temporal affect dynamics while actually recognizing recording-specific leakage.
+
 #### 1. Signal Filtering
 ```python
 # Remove artifacts and noise
@@ -202,6 +220,8 @@ for chunk in chunks:
 ```
 
 ## Network Architecture for EEG
+
+The architecture variants below change how much context the recurrent representation can retain and how it is summarized. A single recurrent layer is a transparent baseline; stacking increases abstraction but can make optimization harder; bidirectionality trades real-time use for access to future context; and attention addresses the “last-state bottleneck” by allowing the classifier to inspect multiple time steps. Compare each added mechanism against a simpler baseline before attributing an improvement to temporal reasoning.
 
 ### Simple LSTM (Single Layer)
 
@@ -307,6 +327,8 @@ Output shape: one prediction per time step
 
 ## Implementation Considerations
 
+Implementation details often determine whether an RNN learns temporal structure or merely overfits sequence length and subject identity. The following choices are connected: longer sequences increase contextual coverage but strain memory and gradients; batching requires padding or packing variable-length sessions correctly; and regularization must not erase the small changes that carry affective information. Monitor validation performance by subject and inspect performance across sequence lengths rather than choosing settings solely from training loss.
+
 ### Sequence Length Selection
 
 **Trade-off between temporal context and computational cost**:
@@ -375,6 +397,8 @@ LSTM(128, dropout=0.3,           # Dropout on inputs
 ```
 
 ## Example Application: Online Emotion Tracking
+
+Online tracking highlights the distinction between causal and offline sequence models. At time $t$, the model may only use EEG observed up to $t$; bidirectional processing and future-window features would leak information that a deployed system cannot have. A useful evaluation should therefore simulate the streaming setting, report prediction latency, and assess whether outputs remain stable rather than fluctuating with every short-lived artifact.
 
 ### Task
 Predict valence/arousal continuously during video-induced emotion.

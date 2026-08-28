@@ -12,7 +12,7 @@ Rather than explicitly modeling a likelihood, GANs learn the target distribution
 
 ![Generative adversarial network architecture, showing a generator that transforms latent noise into synthetic data and a discriminator that distinguishes real from generated samples.](figures/GAN.png)
 
-**Figure 8.10: Generative adversarial network architecture.** The generator converts latent noise into synthetic samples, while the discriminator compares real and generated samples and supplies the adversarial learning signal.
+**Figure 8.11: Generative adversarial network architecture.** The generator converts latent noise into synthetic samples, while the discriminator compares real and generated samples and supplies the adversarial learning signal.
 
 ## Theoretical Foundations
 
@@ -54,11 +54,11 @@ For each iteration:
 
 ## GAN Architectures for EEG
 
-GAN variants alter the adversarial objective, conditioning mechanism, or transformation task to address different EEG-generation goals (Figure 8.11). DCGAN uses convolutional generator and discriminator networks for direct signal synthesis; CGAN incorporates labels for emotion-controlled generation; WGAN and WGAN-GP replace the original divergence with a Wasserstein objective to improve stability; CycleGAN learns unpaired translation between domains such as subjects or recording sessions; and SRGAN targets signal enhancement or resolution recovery. Selecting a variant should follow the intended EEG task rather than sample realism alone.
+GAN variants alter the adversarial objective, conditioning mechanism, or transformation task to address different EEG-generation goals (Figure 8.12). DCGAN uses convolutional generator and discriminator networks for direct signal synthesis; CGAN incorporates labels for emotion-controlled generation; WGAN and WGAN-GP replace the original divergence with a Wasserstein objective to improve stability; CycleGAN learns unpaired translation between domains such as subjects or recording sessions; and SRGAN targets signal enhancement or resolution recovery. Selecting a variant should follow the intended EEG task rather than sample realism alone.
 
 ![Overview of GAN variants for EEG, including DCGAN, CGAN, WGAN, CycleGAN, and SRGAN.](figures/GAN-variants.png)
 
-**Figure 8.11: GAN variants and their roles in EEG analysis.** DCGAN provides convolutional synthesis; CGAN conditions generation on labels; WGAN/WGAN-GP improve adversarial training stability; CycleGAN enables unpaired cross-domain translation; and SRGAN learns to reconstruct higher-resolution signals from lower-resolution inputs.
+**Figure 8.12: GAN variants and their roles in EEG analysis.** DCGAN provides convolutional synthesis; CGAN conditions generation on labels; WGAN/WGAN-GP improve adversarial training stability; CycleGAN enables unpaired cross-domain translation; and SRGAN learns to reconstruct higher-resolution signals from lower-resolution inputs.
 
 ### 1. Deep Convolutional GAN (DCGAN)
 

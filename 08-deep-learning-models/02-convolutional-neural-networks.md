@@ -18,6 +18,22 @@ $$y[n] = \sum_{k} w[k] \cdot x[n+k] + b$$
 
 where $$x$$ is the input, $$w$$ is the filter weights, and $$b$$ is bias.
 
+### Variants of Convolution Operations
+
+The basic convolution can be modified to control how information is mixed across channels, how much temporal context is observed, or how many parameters are used. Figure 8.3 summarizes representative variants. In EEG, the most useful distinction is between **temporal filtering** along the sample axis and **channel mixing** across electrodes or feature maps: an architecture should make this choice explicit rather than treating every axis of the input as an ordinary image dimension.
+
+![Representative variants of convolution operations, including standard, pointwise, depthwise, separable, grouped, dilated, transposed, deformable, snake, fluid, dynamic, and lightweight convolutions.](figures/Conv-variants.png)
+
+**Figure 8.3: Representative variants of convolution operations.** Each variant changes the receptive field, channel coupling, sampling locations, or computational cost of standard convolution. The lower table gives a compact comparison of the core idea and typical application of each operator.
+
+**Channel-mixing and efficient variants.** A $1\times1$ pointwise convolution mixes feature channels without expanding the temporal or spatial receptive field; it is useful as a low-cost projection before or after a larger kernel. Depthwise convolution applies one filter to each channel independently, whereas depthwise separable convolution follows this with pointwise mixing. This separation is well suited to compact EEG models: temporal filters can first characterize each electrode or band, then a pointwise layer can learn cross-channel combinations. Grouped convolution offers an intermediate choice by restricting mixing to channel groups; it can encode electrode regions or frequency-band groups, but arbitrary groups should not be interpreted as neurophysiological networks without validation. Lightweight or ghost convolutions pursue a similar efficiency goal and are most relevant for wearable or latency-constrained deployment.
+
+**Receptive-field and resolution variants.** Dilated (atrous) convolution spaces kernel elements apart, enlarging the effective receptive field without increasing the number of weights. It is useful when affect-related temporal context spans hundreds of milliseconds or seconds but the model must remain shallow. Transposed convolution performs learned upsampling, so it is primarily appropriate for decoders, reconstruction, segmentation, or generative EEG models—not ordinary trial-level classification. Both operators require careful checks for boundary effects and, for transposed convolution, uneven overlap artifacts.
+
+**Adaptive-sampling variants.** Deformable convolution learns offsets from the regular sampling grid; snake and fluid convolutions similarly describe adaptive or path-guided sampling. Dynamic convolution combines multiple candidate kernels using input-dependent weights. These operations may help when informative EEG patterns vary in latency, topography, or morphology across trials, but they introduce additional flexibility and therefore a higher overfitting risk on the small datasets common in affective EEG. They should be evaluated against a standard or dilated convolution with matched capacity, subject-held-out splits, and computational cost reporting.
+
+For most affective-EEG studies, start with standard temporal convolution plus a clearly defined spatial/channel-mixing layer. Depthwise-separable and dilated convolution are strong next ablations when efficiency or longer context is needed. More adaptive variants are research options rather than default choices: their added value should be demonstrated through controlled ablations and stability analyses.
+
 ### Why Convolutions for EEG?
 
 1. **Local connectivity**: Neurons connect to nearby time points or adjacent channels

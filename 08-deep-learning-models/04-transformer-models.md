@@ -4,9 +4,15 @@
 
 Transformer models revolutionized deep learning by replacing recurrent mechanisms with attention mechanisms. Unlike RNNs that process sequences sequentially, Transformers process all time steps in parallel, enabling efficient training on long sequences. Recent advances have made Transformers increasingly popular for EEG analysis, offering both computational efficiency and strong performance.
 
-![Transformer architecture for affective EEG. The diagram should show EEG time patches or spectral tokens combined with positional and electrode information, passed through stacked multi-head self-attention, feed-forward, normalization, and residual blocks, then pooled or read through a classification token for emotion prediction. Include an attention map connecting distant time patches.](figures/transformer-eeg-architecture.png)
+## Transformer Architecture
 
-**Figure 8.4: Transformer architecture for affective EEG.** EEG tokens with temporal and spatial position information are processed by self-attention blocks that model global relationships before task-specific readout.
+A Transformer turns an input sequence into a sequence of **tokens**, each represented by a learned embedding vector. Because attention alone has no notion of order, positional information is added to every token. The resulting token sequence passes through a stack of Transformer blocks. Each block first uses multi-head self-attention to let every token exchange information with other tokens, then applies a feed-forward network to refine each token independently. Residual connections and layer normalization make these repeated transformations stable to optimize.
+
+The key design choice is therefore not recurrence, but communication: self-attention directly compares the content of different positions and decides which relationships matter for the task. Multiple heads can specialize in different patterns, such as short local motifs, repeated structures, or long-range dependencies. The final token representations are pooled or read through a dedicated classification token, then passed to a task-specific prediction head. This encoder-style design is the common starting point for sequence classification, while encoder-decoder Transformers add a second stack when the task requires generation or translation.
+
+![Transformer architecture showing token embedding and positional encoding followed by stacked multi-head self-attention, feed-forward, normalization, and residual blocks, then a task-specific output head.](figures/Transformer.png)
+
+**Figure 8.4: Transformer architecture.** Input tokens are augmented with positional information, contextualized through stacked self-attention and feed-forward blocks, and aggregated for a downstream prediction or generation task.
 
 ## Theoretical Foundations
 
@@ -29,6 +35,8 @@ $$\text{Attention}_t = \sum_s \alpha_{t,s} V_s$$
 
 **Intuition**: Each position computes a weighted combination of all values, with weights based on query-key similarity. The network learns what to attend to.
 
+The benefit of this all-to-all comparison is that a brief event can directly interact with a distant context, rather than passing through many recurrent updates. Its cost is the attention matrix: for $T$ tokens, standard attention compares $T^2$ pairs. This is manageable for short EEG windows but quickly becomes the dominant memory and compute cost for raw, long-duration recordings.
+
 ### Multi-Head Attention
 
 Using multiple attention heads in parallel:
@@ -42,6 +50,16 @@ where each head computes attention with different learned projections.
 - Parallel computation
 - More expressive than single attention head
 
+## Self-Attention Variants for Transformer Blocks
+
+Attention variants modify which tokens may communicate and how the attention computation is stored. The standard global design is the most flexible, but it is not always the best default for EEG: it may be unnecessarily expensive for long recordings and can overfit when a small dataset permits every time step to attend to every other. The variants in Figure 8.4b address specific gaps—causal access for streaming prediction, local inductive bias for nearby EEG dynamics, sparse or linear computation for long sequences, and more efficient parameter sharing for deployment.
+
+![Representative variants of multi-head self-attention: global, causal or masked, local or windowed, shifted-window, sparse or block-global, linear or kernelized, multi-query or grouped-query, and axial or factorized attention.](figures/MSHA-variants.png)
+
+**Figure 8.4b: Multi-head self-attention variants for Transformer blocks.** Global attention connects every token; causal attention masks future tokens for online prediction; local and shifted-window attention reduce cost while retaining nearby and cross-window context; sparse/block-global attention reserves broad connections for selected tokens; linear/kernelized attention avoids explicitly forming the full attention matrix; multi-query/grouped-query attention shares key-value projections to reduce inference memory; and axial/factorized attention decomposes structured inputs along separate axes.
+
+**Choosing a variant for EEG.** Use global attention as a short-window baseline when GPU memory permits. Use causal masking for real-time monitoring, where future samples must not leak into a prediction. Local, shifted-window, or sparse attention is often a better match for long recordings because nearby samples carry strong temporal continuity, while occasional global links can capture session-level context. Linear attention improves scalability but changes the attention approximation and should be checked for loss of fine temporal structure. Axial attention is most natural when tokens retain both a time and channel or frequency axis; it is less compelling for a simple one-dimensional sequence.
+
 ### Positional Encoding
 
 Since Transformers don't have inherent temporal ordering (all positions processed in parallel), positional information is added:
@@ -50,6 +68,8 @@ $$PE_{t,2i} = \sin(t / 10000^{2i/d})$$
 $$PE_{t,2i+1} = \cos(t / 10000^{2i/d})$$
 
 This ensures the model knows relative timing between samples.
+
+Positional design is an EEG modeling decision, not a technical afterthought. Absolute encodings identify where a token appears in a fixed-length window, while relative encodings emphasize separation between events and can transfer more naturally across window lengths. When electrodes are represented as separate tokens, add spatial or channel embeddings as well; otherwise attention can learn temporal similarity without knowing which scalp locations produced it.
 
 ### Transformer Block
 
@@ -62,6 +82,8 @@ A standard Transformer block contains:
 5. **Residual connections** (skip connections)
 
 Stacking multiple blocks creates deep Transformers.
+
+Residual paths let a block refine a representation without having to recreate it, and normalization keeps the scale of that refinement stable across depth. The feed-forward sublayer is equally important: attention mixes information between tokens, whereas the feed-forward network applies a nonlinear transformation to each contextualized token. Depth should be increased only when the dataset and validation strategy support it, since a deeper block stack can memorize subject- or session-specific patterns instead of generalizing affective structure.
 
 ### Comparison with RNNs
 
@@ -93,6 +115,8 @@ Stacking multiple blocks creates deep Transformers.
 
 ### EEG-Specific Considerations
 
+The sequence-length problem motivates tokenization before model tuning. A token may represent a short raw-signal patch, a time-frequency patch, or a window-level feature vector; each choice defines what interactions attention can learn. Start by matching token duration to the fastest effect of interest, then choose an attention variant whose receptive field covers the slowest relevant temporal context.
+
 **Sequence Length Challenge**:
 - Standard EEG sessions: 30-300 seconds
 - At 256 Hz: 7,680-76,800 samples
@@ -107,6 +131,8 @@ Stacking multiple blocks creates deep Transformers.
 ## Suitable Input Features
 
 ### Representation Options
+
+Input representation sets the Transformer’s inductive bias. Fine-grained tokens offer precise timing but make every attention layer expensive; coarser spectral or window-level tokens reduce length and add frequency structure, but may blur transient events. The most convincing comparison holds the total recording duration, subject split, and model capacity constant while varying only the tokenization scheme.
 
 #### Option 1: Raw Time Series with Channel Embedding
 ```python
@@ -200,6 +226,8 @@ mask = tf.cast(padded_signal != 0, tf.float32)
 ```
 
 ## Network Architecture for EEG
+
+The following architectures trade attention coverage against computation. Begin with a small encoder and a transparent tokenization baseline, then add depth, multi-scale processing, or sparse attention only when a failure mode is visible—for example, missed long-range context or memory limits. A larger architecture is not automatically more interpretable: attention maps should be evaluated alongside performance and physiological plausibility.
 
 ### Minimal Transformer (Single Layer)
 
@@ -315,6 +343,8 @@ Output
 ```
 
 ## Implementation Considerations
+
+Practical Transformer performance is often dominated by choices outside the attention equation. Padding masks must prevent artificial padded values from attracting attention, positional information must align with the tokenization procedure, and subject-wise splits are essential because large models can memorize individual recording signatures. Record memory use, effective sequence length, and inference latency together with accuracy to make architecture comparisons meaningful.
 
 ### Sequence Length and Memory
 
