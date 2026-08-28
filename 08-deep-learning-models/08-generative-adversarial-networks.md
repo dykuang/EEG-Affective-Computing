@@ -4,9 +4,15 @@
 
 Generative Adversarial Networks frame generation as a competitive game between two networks: a **generator** that creates synthetic EEG and a **discriminator** that distinguishes real from fake. Through adversarial training, the generator learns to produce increasingly realistic EEG signals. GANs excel at data augmentation, domain adaptation, and artifact removal in EEG-based affective computing.
 
-![Conditional GAN architecture for EEG. The diagram should show random latent noise and an optional emotion or subject condition entering a convolutional generator that produces multichannel synthetic EEG, alongside real EEG entering a discriminator with the generated sample. Show the adversarial feedback loop, optional class conditioning, and the separation of training from sampling.](figures/gan-eeg-architecture.png)
+## Generative Adversarial Network Architecture
 
-**Figure 8.8: Conditional GAN architecture for EEG.** A generator synthesizes conditioned EEG from latent noise while a discriminator learns to distinguish generated and real recordings through adversarial training.
+A generative adversarial network consists of two neural networks trained in opposition: a **generator** $G$ and a **discriminator** $D$. The generator maps a random latent vector $z$, sampled from a simple distribution such as a standard Gaussian, to a synthetic observation $G(z)$. The discriminator receives both real training examples and generated examples, and learns to estimate whether each input came from the data distribution or the generator. The generator is updated through the discriminator's feedback so that its synthetic samples become increasingly difficult to distinguish from real data.
+
+Rather than explicitly modeling a likelihood, GANs learn the target distribution through this adversarial game. Training alternates between improving $D$'s real-versus-fake decision and improving $G$'s ability to fool $D$. Once training is complete, only the generator is needed to produce new samples; conditions such as an emotion class or subject identifier can also be supplied to both networks to enable targeted generation. For EEG, this supports the synthesis of multichannel signals with realistic temporal and spectral structure.
+
+![Generative adversarial network architecture, showing a generator that transforms latent noise into synthetic data and a discriminator that distinguishes real from generated samples.](figures/GAN.png)
+
+**Figure 8.10: Generative adversarial network architecture.** The generator converts latent noise into synthetic samples, while the discriminator compares real and generated samples and supplies the adversarial learning signal.
 
 ## Theoretical Foundations
 
@@ -20,6 +26,8 @@ The minimax objective:
 $$\min_G \max_D \mathbb{E}_{x \sim p_{\text{data}}}[\log D(x)] + \mathbb{E}_{z \sim p(z)}[\log(1 - D(G(z)))]$$
 
 ### Training Dynamics
+
+The two losses should not be read as ordinary accuracy measures: a lower discriminator loss is not automatically better if it leaves the generator with no useful gradient. Healthy training is a moving balance in which the discriminator remains informative and the generator gradually covers diverse real-signal patterns. For EEG, visual plausibility alone is insufficient; the game must also preserve band power, temporal structure, and relationships between channels.
 
 ```
 For each iteration:
@@ -46,9 +54,17 @@ For each iteration:
 
 ## GAN Architectures for EEG
 
+GAN variants alter the adversarial objective, conditioning mechanism, or transformation task to address different EEG-generation goals (Figure 8.11). DCGAN uses convolutional generator and discriminator networks for direct signal synthesis; CGAN incorporates labels for emotion-controlled generation; WGAN and WGAN-GP replace the original divergence with a Wasserstein objective to improve stability; CycleGAN learns unpaired translation between domains such as subjects or recording sessions; and SRGAN targets signal enhancement or resolution recovery. Selecting a variant should follow the intended EEG task rather than sample realism alone.
+
+![Overview of GAN variants for EEG, including DCGAN, CGAN, WGAN, CycleGAN, and SRGAN.](figures/GAN-variants.png)
+
+**Figure 8.11: GAN variants and their roles in EEG analysis.** DCGAN provides convolutional synthesis; CGAN conditions generation on labels; WGAN/WGAN-GP improve adversarial training stability; CycleGAN enables unpaired cross-domain translation; and SRGAN learns to reconstruct higher-resolution signals from lower-resolution inputs.
+
 ### 1. Deep Convolutional GAN (DCGAN)
 
 The foundational GAN architecture adapted for 1D EEG signals:
+
+The generator expands a compact noise vector into a full multichannel time series, while the discriminator progressively compresses a time series into one realism score. Strided convolutions make this tractable for long recordings, but can introduce periodic artifacts or neglect slow rhythms. Kernel sizes, stride, and output scaling should therefore be selected with the sampling rate and EEG bands of interest in mind.
 
 ```
 Generator:
@@ -86,6 +102,8 @@ Discriminator:
 
 Generate EEG conditioned on emotion labels:
 
+Conditioning closes the gap between *realistic* generation and *useful* generation. It gives the model a target class, but the discriminator must see the same condition; otherwise the generator can ignore it. Classifier accuracy on generated signals, balanced across labels, is a simple check that the label has affected the signal rather than merely being passed through the API.
+
 ```
 Generator:
   z (noise) + y (emotion label)
@@ -104,6 +122,8 @@ Discriminator:
 
 Uses Earth Mover's distance for more stable training:
 
+The practical motivation is that the original GAN discriminator can become overconfident when real and generated EEG distributions barely overlap, producing weak gradients for the generator. WGAN replaces probability classification with a critic score, and the gradient penalty encourages the critic to change smoothly between real and generated signals. This is especially valuable for small, heterogeneous EEG datasets, although it increases the cost of each training step.
+
 $$\min_G \max_{D \in \mathcal{D}} \mathbb{E}_{x \sim p_{\text{data}}}[D(x)] - \mathbb{E}_{z \sim p(z)}[D(G(z))]$$
 
 With gradient penalty (WGAN-GP):
@@ -115,6 +135,8 @@ $$\mathcal{L}_{\text{GP}} = \lambda \mathbb{E}_{\hat{x}}[(\|\nabla_{\hat{x}} D(\
 ### 4. CycleGAN for Cross-Subject EEG Translation
 
 Translates EEG from one subject's "style" to another:
+
+Cycle consistency provides a safeguard in the absence of paired recordings: an EEG segment translated from subject A to B and back again should retain its original content. It reduces arbitrary transformations, but does not guarantee that emotion is preserved. When using CycleGAN for subject adaptation, validate the translated output against known labels and ensure the method does not amplify demographic or acquisition-related biases.
 
 ```
 Subject A EEG → Generator A→B → Subject B EEG → Discriminator B
@@ -148,6 +170,8 @@ Discriminator: Real or Fake high-res?
 ## Implementation
 
 ### WGAN-GP for EEG Generation
+
+This implementation separates the generator, critic, and training controller so that the adversarial roles remain clear. The critic is updated several times for each generator update because it must provide a useful transport-distance estimate before the generator moves. The gradient penalty is evaluated on interpolated real and fake samples; its purpose is to regularize the critic, not to make the EEG waveform itself smoother.
 
 ```python
 import tensorflow as tf
@@ -272,6 +296,8 @@ class WGAN_GP(Model):
 
 ### CycleGAN for Cross-Subject Translation
 
+Unlike the noise-to-signal WGAN generator above, CycleGAN generators must map one signal directly into another signal of the same shape. The code emphasizes cycle and identity losses because adversarial loss alone would permit a generator to change any aspect of the recording that fools the discriminator. In a full training loop, those losses should be weighted and reported separately to reveal whether translation is preserving content or merely minimizing pixel-level differences.
+
 ```python
 class CycleGAN_EEG(Model):
     def __init__(self):
@@ -320,6 +346,8 @@ class CycleGAN_EEG(Model):
 ```
 
 ## Applications in EEG Affective Computing
+
+GAN applications should be framed as distribution-learning experiments, not as a licence to manufacture arbitrary EEG. Hold out subjects and sessions before GAN training when the downstream goal is generalization, and compare generated and real signals with PSD, connectivity, channel-correlation, and classifier-based metrics. The central question is whether synthetic data improves a pre-specified downstream task without leaking information from its evaluation set.
 
 ### 1. Data Augmentation for Imbalanced Emotions
 
@@ -418,6 +446,8 @@ new_eeg = synthesis_network(w_modified)
 
 EEG signals are challenging for GANs due to high dimensionality and limited data. Strategies:
 
+Most stability techniques address a single failure mode: the discriminator may dominate, the generator may collapse to a few stereotyped trials, or the networks may learn shortcuts based on amplitude and acquisition artifacts. Apply them incrementally and record which change improves both training behavior and EEG-specific validation measures; combining many methods at once makes failures difficult to diagnose.
+
 ### 1. Gradient Penalty (WGAN-GP)
 ```python
 # Most important stabilization technique
@@ -466,6 +496,8 @@ d_optimizer = Adam(lr=0.0004, beta_1=0.5)  # D learns faster
 ```
 
 ## Evaluation Metrics for EEG GANs
+
+No one metric establishes that a GAN has learned useful EEG. Distributional scores quantify similarity in a chosen feature space, whereas downstream accuracy tests utility and expert review tests face validity. Report several complementary measures, use the same feature extractor for all comparisons, and include real-versus-real baselines so that the unavoidable variability between genuine recordings is visible.
 
 | Metric | Description | EEG Adaptation |
 |---|---|---|

@@ -4,9 +4,23 @@
 
 Flow-based and diffusion models represent the most recent and powerful class of generative models. **Flow-based models** use invertible transformations with exact likelihood computation, while **diffusion models** learn to reverse a gradual noising process. Both produce state-of-the-art sample quality and have unique advantages for EEG-based affective computing — from clean signal reconstruction to uncertainty-aware emotion prediction.
 
-![Flow and diffusion architectures for EEG. The diagram should use two panels: an invertible normalizing flow mapping EEG through repeated coupling blocks to a latent Gaussian with exact likelihood, and a diffusion model showing forward noise addition to EEG followed by a conditioned denoising network that reverses the process. Label applications such as anomaly detection, imputation, and conditional synthesis.](figures/flow-and-diffusion-eeg-architectures.png)
+## Flow-Based and Diffusion Generation Pipeline
 
-**Figure 8.9: Flow and diffusion architectures for EEG.** Flows map EEG and latent variables bijectively for exact density estimation, whereas diffusion models learn to reverse a staged corruption process for generation and denoising.
+Flow-based and diffusion models take two complementary routes to learning a complex data distribution. A **normalizing flow** transforms samples from a simple base distribution, usually a Gaussian, through a sequence of invertible mappings. Because every mapping has a tractable Jacobian determinant, a flow can both generate EEG by mapping latent samples forward and evaluate the exact likelihood of an observed EEG segment by mapping it backward. This makes flows particularly useful when density estimation, anomaly scoring, or reversible latent manipulation is required.
+
+A **diffusion model** instead defines a forward process that gradually adds noise to a clean signal, then trains a neural network to reverse that corruption one step at a time. At generation time, it starts from random noise and repeatedly denoises it until a realistic EEG segment emerges. The gradual reverse process supports expressive, stable generation and naturally accommodates tasks such as denoising, imputation, and conditioning on emotion labels or subject information.
+
+![Flow-based and diffusion generation pipelines, showing invertible transformations between a latent Gaussian and data, and forward noising followed by iterative reverse denoising.](figures/FlowGen.png)
+
+**Figure 8.12: Flow-based and diffusion generation pipelines.** A normalizing flow maps between EEG and a latent distribution through invertible transformations, whereas a diffusion model learns to transform noise into EEG by reversing a staged noising process.
+
+## Model Variants
+
+Several variants tailor these two model families to different requirements in EEG generation and analysis (Figure 8.13). Within flow-based modeling, RealNVP uses efficient affine coupling layers, while Glow augments this design with learned normalization and invertible channel mixing. Within diffusion modeling, conditional diffusion introduces labels or auxiliary signals for controlled synthesis, latent diffusion performs denoising in a compact learned representation to reduce computational cost, and DDIM accelerates sampling by using a non-Markovian, often deterministic reverse trajectory. Together, these variants trade off exact density estimation, conditioning flexibility, sampling speed, and signal fidelity.
+
+![Overview of flow-based and diffusion-model variants, including RealNVP, Glow, conditional diffusion, latent diffusion, and DDIM.](figures/Flow-variants.png)
+
+**Figure 8.13: Flow-based and diffusion-model variants.** RealNVP and Glow provide invertible density models; conditional diffusion enables controlled EEG synthesis; latent diffusion reduces the cost of generation through a compressed latent space; and DDIM produces high-quality samples with substantially fewer denoising steps.
 
 ## Part 1: Flow-based Models
 
@@ -23,11 +37,15 @@ $$\log p(x) = \log p(z) + \sum_{k=1}^K \log \left|\det \frac{\partial f_k}{\part
 
 **Key property**: Exact likelihood computation (unlike VAE's ELBO or GAN's implicit distribution).
 
+Intuitively, a flow is a reversible warping of a simple cloud of latent points into the complex geometry of EEG data. Reversibility is the source of its strength and its constraint: every layer must preserve enough information to run backward, so flows cannot freely compress data in the way an autoencoder can. This trade-off makes them attractive for scoring and manipulating observed signals, but can make architectures more memory-intensive for long multichannel sequences.
+
 ### Normalizing Flows for EEG
 
 #### RealNVP (Real-valued Non-Volume Preserving)
 
 Uses coupling layers for efficient Jacobian computation:
+
+The split in the following block is a deliberate compromise. One part of the signal is left unchanged while the other part is transformed, making the Jacobian easy to evaluate; alternating the split across layers eventually lets every dimension influence every other dimension. For EEG, the splitting and channel-mixing strategy should avoid systematically isolating specific electrodes or temporal intervals, which could otherwise limit cross-channel dependencies.
 
 **Affine coupling layer**:
 ```
@@ -62,9 +80,13 @@ Latent z ~ N(0, I)
 
 ### Applications in EEG Affective Computing
 
+Flow applications are valuable when an explicit notion of *typicality* is useful. A high likelihood means the segment resembles the distribution that the model learned, not that it is clinically healthy or emotionally desirable. The examples below therefore require careful definition of the training distribution and validation against task-specific labels.
+
 #### 1. Exact Density Estimation
 
 Compute how likely a given EEG segment is under the learned distribution:
+
+This snippet illustrates why exact likelihood is appealing for quality control: it converts a complex segment into a scalar score without separately training a classifier. Its limitation is that likelihood can be sensitive to preprocessing and may favor simple backgrounds over semantically meaningful signals. Compare scores against known artifacts and genuine but unusual trials before choosing an operating threshold.
 
 ```python
 # Train flow on normal/resting EEG
@@ -87,6 +109,8 @@ This is useful for:
 #### 2. Controlled Generation with Latent Manipulation
 
 Since flows map bijectively between data and latent space:
+
+Latent editing is only meaningful when the chosen direction has been estimated from data, for example by contrasting latent codes from labeled groups while controlling for subject and session. Adding an arbitrary vector may produce a mathematically valid inverse mapping but an implausible physiological signal. Inspect both the edited waveform and its spectral and spatial properties.
 
 ```python
 # Encode real EEG to latent
@@ -117,6 +141,8 @@ Recover missing channels using the flow's density model:
 
 ### Advantages and Limitations
 
+In short, flows are often chosen for what they can measure rather than for maximum sample realism. Their exact density and reversible encoding answer questions that GANs and ordinary diffusion models do not directly answer, while their dimensionality-preserving constraint is the price paid for those guarantees.
+
 | Aspect | Flow Models |
 |---|---|
 | **Exact likelihood** | ✓ Yes (unique among deep generative models) |
@@ -146,6 +172,8 @@ $$q(x_t | x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\alpha}_t
 
 where $$\bar{\alpha}_t = \prod_{s=1}^t (1 - \beta_s)$$.
 
+The forward process is fixed rather than learned, which simplifies optimization: the model always knows the clean EEG, the noise level, and the noise realization used to construct a training example. Different timesteps expose the denoiser to different levels of corruption. A well-chosen schedule is important for EEG because noise that destroys low-frequency rhythms too early may make the reverse task needlessly difficult.
+
 #### Reverse Diffusion Process
 
 Learn to reverse the noising process:
@@ -155,6 +183,8 @@ $$p_\theta(x_{t-1} | x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\the
 The network predicts the noise $$\epsilon_\theta(x_t, t)$$ that was added:
 
 $$\mathcal{L}_{\text{simple}} = \mathbb{E}_{t, x_0, \epsilon}\left[\|\epsilon - \epsilon_\theta(x_t, t)\|^2\right]$$
+
+Predicting noise rather than directly predicting the clean sample yields a stable, uniform learning target across noise levels. The timestep input tells the network how much of the observation should be trusted; without it, a single denoiser would have to infer whether a pattern is neural structure or injected noise. This is why time embeddings are a central component of diffusion architectures.
 
 #### Sampling (Generation)
 
@@ -187,6 +217,8 @@ Output: x_0 (clean EEG)
 #### 1. EEG Diffusion (1D U-Net)
 
 Standard diffusion with a 1D U-Net adapted for EEG:
+
+The U-Net combines broad context with precise reconstruction. Its downsampling path captures longer temporal dependencies, the bottleneck can model global relationships, and skip connections return fine timing information to the decoder. For EEG, downsampling must be conservative enough not to erase brief events or distort phase-sensitive patterns; the receptive field should cover the temporal phenomenon of interest.
 
 ```
 Noisy EEG (14, 2048) + timestep t
@@ -256,6 +288,8 @@ x_{t-1} = √(ᾱ_{t-1}) * x̂₀ + √(1 - ᾱ_{t-1} - σ_t²) * ε̂_θ + σ_t
 ### Implementation
 
 #### EEG Diffusion Model
+
+The implementation makes the training objective explicit: sample a timestep, add known noise, and train the U-Net to predict that noise. This differs from a conventional autoencoder, which learns a single reconstruction pass. The sampling method is intentionally separate because generation is an iterative inference procedure; it is normal for it to be much slower than a training forward pass. For practical studies, begin with a small sequence length and fewer steps to verify shapes and spectral behavior before scaling up.
 
 ```python
 import tensorflow as tf
@@ -415,6 +449,8 @@ class EEGDiffusion(Model):
 
 For EEG (structured, oscillatory signals):
 
+The schedule determines which structures the model learns to recover at each stage. A cosine schedule often reserves more intermediate signal-to-noise levels, giving the network opportunities to learn oscillatory structure before the signal becomes indistinguishable from noise. It remains a design choice: compare schedules using held-out spectral and downstream-task criteria, not training loss alone.
+
 ```python
 # Cosine schedule preserves low-frequency structure longer
 cosine_schedule = cosine_beta_schedule(1000)
@@ -426,6 +462,8 @@ linear_schedule = linear_beta_schedule(1000)
 ```
 
 #### Conditioning Strategies
+
+Conditioning should state what is known at generation time. Emotion labels may support class-balanced augmentation, subject identifiers may support personalized synthesis, and channel metadata can support different montages. Strong conditioning can improve target fidelity but reduce diversity, so assess both condition accuracy and within-condition variability.
 
 ```python
 # 1. Emotion label conditioning (classifier-free)
@@ -445,9 +483,13 @@ linear_schedule = linear_beta_schedule(1000)
 
 ## Applications in EEG Affective Computing
 
+The applications below exploit the fact that diffusion models learn a prior over plausible signals. That prior can fill in uncertain or missing content, but it can also overwrite rare real physiology with a more typical-looking alternative. Keep the original recording, communicate uncertainty, and validate any reconstruction against the needs of the downstream scientific or clinical decision.
+
 ### 1. EEG Denoising and Artifact Removal
 
 Diffusion models are naturally suited for denoising:
+
+The key design decision is what the model calls “clean.” If training data retain subtle artifacts or omit meaningful but rare brain states, reverse diffusion may preserve the former and suppress the latter. Evaluate denoising with paired or expert-annotated data where possible, and verify that emotion-relevant band power survives the procedure.
 
 ```python
 # Train diffusion model on clean EEG
@@ -498,6 +540,8 @@ Recover data from broken/missing electrodes:
 
 ### 4. Conditional Generation for Data Augmentation
 
+Conditional samples are most useful when they increase coverage of an under-represented class without blurring the distinction between real and synthesized data. Train the diffusion model only on the training partition, label generated trials in metadata, and test the final emotion classifier on untouched real subjects. This protects the evaluation from a subtle form of generative-data leakage.
+
 ```python
 # Train conditional diffusion on all emotions
 cond_diffusion = ConditionalEEGDiffusion()
@@ -516,6 +560,8 @@ neutral_eeg = cond_diffusion.sample(emotion='neutral', n=200)
 ### 5. Counterfactual EEG Generation
 
 "What would this subject's EEG look like if they were feeling happy instead of sad?"
+
+Counterfactual outputs are hypothesis-generating visualizations, not observed evidence of an individual's brain response. Their credibility depends on whether inversion preserves subject and session factors while the changed condition alters only validated emotion-related characteristics. Treat these samples as model-based scenarios and report the conditioning strength and inversion settings.
 
 ```python
 # Encode real EEG with DDIM inversion
