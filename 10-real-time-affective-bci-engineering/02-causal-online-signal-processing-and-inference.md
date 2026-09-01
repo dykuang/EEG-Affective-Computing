@@ -50,7 +50,7 @@ Widmann, Schröger, and Maess emphasize that filter choice is a causal design de
 
 Causal counterparts exist. A forward-only IIR or minimum-phase FIR filter uses only past and present samples; it imposes group delay that must enter $$L_{\mathrm{preprocessing}}$$. Unidirectional recurrent models can run sample-by-sample or window-by-window with carried state. Causal attention can restrict keys and values to $$\tau \le t$$. Incremental feature computation (running power, exponentially weighted covariance, sliding STFT with a causal hop) avoids recomputing a whole trial and makes the cost of each update closer to the cost that will be paid at runtime.
 
-![Offline versus causal-online information availability. The left column shows operations that consume future samples or whole-recording statistics and therefore cannot support a current-time real-time claim. The right column shows causal counterparts that use only past and present data, with explicit warm-up and delay.](figures/offline-versus-causal-online.svg)
+![Offline versus causal-online information availability. The left column shows operations that consume future samples or whole-recording statistics and therefore cannot support a current-time real-time claim. The right column shows causal counterparts that use only past and present data, with explicit warm-up and delay.](figures/offline-versus-causal-online.png)
 
 **Figure 10.2: Offline versus causal-online information availability.** Centered filters, future context windows, whole-recording normalization, and bidirectional models invalidate a current-time claim. Causal filters, past-only windows, frozen or running statistics, and unidirectional state are the corresponding online tools.
 

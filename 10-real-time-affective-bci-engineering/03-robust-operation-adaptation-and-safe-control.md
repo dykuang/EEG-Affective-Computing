@@ -47,7 +47,7 @@ A small state machine makes permitted actions explicit. One useful set of modes 
 | `ABSTAIN` | Uncertainty or quality gate failed | "Insufficient evidence"; no new intervention | $$u_t$$ and quality recover for a declared dwell time |
 | `SAFE_FALLBACK` | Repeated faults, model-service failure, corrupted calibration, or operator override | Predeclared safe output (pause, neutral UI, human control) | Explicit recovery procedure, not automatic confidence |
 
-![Runtime state machine for a real-time affective BCI. Initialization and calibration lead to ready operation; quality or uncertainty faults move the system to degraded or abstain modes; severe or repeated faults enter safe fallback; recovery requires new evidence rather than a reset of confidence.](figures/runtime-state-machine.svg)
+![Runtime state machine for a real-time affective BCI. Initialization and calibration lead to ready operation; quality or uncertainty faults move the system to degraded or abstain modes; severe or repeated faults enter safe fallback; recovery requires new evidence rather than a reset of confidence.](figures/runtime-state-machine.png)
 
 **Figure 10.3: Runtime state machine.** Ready operation is only one mode. Degraded, abstain, and safe-fallback modes restrict action. Recovery is evidence-based: a new warm-up, a passed quality check, or an operator-confirmed calibration, not a softmax value crossing a line once.
 

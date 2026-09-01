@@ -22,7 +22,7 @@ A complete path typically includes:
 
 BCI2000 was designed around this kind of modular, timed loop: acquisition, processing, and application modules exchanging data under a real-time schedule rather than as a single offline script. Lab Streaming Layer (LSL) addresses a complementary problem: publishing and subscribing to heterogeneous time series on a local network with per-sample timestamps and software clock synchronization. Neither system removes the need to measure the delays that occur *before* data reach software.
 
-![End-to-end real-time affective BCI architecture. EEG and auxiliary sensors feed timestamped streams into a buffer; causal processing and inference produce scores that pass a quality and uncertainty gate before a decision policy drives an interface; feedback returns to the user; logging and monitoring observe every stage.](figures/end-to-end-architecture-latency-budget.svg)
+![End-to-end real-time affective BCI architecture. EEG and auxiliary sensors feed timestamped streams into a buffer; causal processing and inference produce scores that pass a quality and uncertainty gate before a decision policy drives an interface; feedback returns to the user; logging and monitoring observe every stage.](figures/end-to-end-architecture-latency-budget.png)
 
 **Figure 10.1: End-to-end real-time architecture and latency budget.** A live affective BCI is a timed loop from sensors through policy to feedback, with logging beside the loop rather than after it. End-to-end latency is the sum of stage delays, not the model's forward-pass time.
 
