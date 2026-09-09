@@ -131,7 +131,7 @@ Different EEG datasets may disagree not only in labels, but in what was measured
 
 ### Bigger Is Not Automatically Better
 
-Large models can overfit nuisance structure, become computationally impractical, and be hard to interpret. In EEG, where datasets are modest and signal semantics are fragile, architectural scaling laws are much less established than in language.
+Large models can overfit nuisance structure, become computationally impractical, and be hard to interpret. In EEG, where datasets are modest and signal semantics are fragile, architectural scaling laws are much less established than in language. Consistent with this caution, [EEG-FM-Compass](https://doi.org/10.1093/nsr/nwag466) found that larger EEG foundation models did not reliably yield better downstream generalization under its current data regimes and training practices; strong specialist models trained from scratch also remained competitive on many tasks.
 
 ### Benchmark Leakage and Inflated Claims
 
@@ -151,7 +151,9 @@ Foundation-model claims should be evaluated at the representation level, not onl
 - ablations comparing frozen, fine-tuned, and parameter-efficient adaptation,
 - and comparisons against strong task-specific baselines rather than only weak shallow models.
 
-For affective EEG, it is also important to test whether the pretrained representation improves calibration, uncertainty estimation, and out-of-distribution behavior, not just closed-set accuracy.
+These principles are operationalized by [EEG-FM-Compass](https://doi.org/10.1093/nsr/nwag466), which pairs a review of 55 representative EEG foundation models with an open-source [EEG-FM-Benchmark](https://github.com/Dingkun0817/EEG-FM-Benchmark). The benchmark evaluates 12 open-source foundation models and specialist baselines across 13 datasets from nine BCI paradigms, using both leave-one-subject-out generalization and within-subject few-shot adaptation. It also contrasts full-parameter fine-tuning with linear probing, an especially important distinction because frozen representations may not expose all of the value available through adaptation.
+
+For affective EEG, this benchmark perspective implies that evaluations should report the emotion datasets and splits explicitly, retain strong task-specific baselines, and distinguish cross-subject transfer from calibrated within-subject adaptation. It is also important to test whether the pretrained representation improves calibration, uncertainty estimation, and out-of-distribution behavior, not just closed-set accuracy.
 
 ## Relation to Open-World Affective Learning
 
@@ -177,4 +179,5 @@ For affective computing, the key question is not whether the field can imitate l
 - Yang, C., Yang, X., and others. (2024). EEGPT: Towards scalable and generalizable EEG foundation models. arXiv preprint arXiv:2408.00806.
 - Banville, H., Chehab, O., Hyvarinen, A., Engemann, D.-A., and Gramfort, A. (2021). Uncovering the structure of clinical EEG signals with self-supervised learning. Journal of Neural Engineering, 18(4), 046020.
 - Chen, Y., Zhao, S., Li, S., and Pan, G. (2026). EMOD: A Unified EEG Emotion Representation Framework Leveraging V-A Guided Contrastive Learning. Proceedings of the AAAI Conference on Artificial Intelligence, 40(21), 17427-17435. https://doi.org/10.1609/aaai.v40i21.38796
+- Liu, D., Chen, Y., Chen, Z., Cui, Z., Wen, Y., An, J., Luo, J., and Wu, D. (2026). EEG-FM-Compass: Progress, Benchmarking, and Future Directions for EEG Foundation Models. National Science Review, nwag466. https://doi.org/10.1093/nsr/nwag466
 - Wang, Y., Jung, T.-P., and others. (2024). Large language model-inspired neural foundation models for brain signals: opportunities and challenges. arXiv preprint arXiv:2403.XXXX.
