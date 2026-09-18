@@ -47,3 +47,6 @@ pnpm-lock.yaml
 
 # local files that are not part of the book source
 ExtraFiles/
+
+# Retained locally after removal from the published book source.
+11-special-topics/13-curvature-aware-EEG-emotion-recognition.md
