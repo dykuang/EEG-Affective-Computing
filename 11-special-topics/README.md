@@ -19,5 +19,6 @@ The sections in this chapter therefore emphasize modeling assumptions that are e
 11. **Multi-Label and Multi-Task Learning**: How co-occurring affect labels, auxiliary objectives, missing annotations, temporal granularity, and task interference should shape supervised EEG learning
 12. **AI Collaboration Protocol**: How researchers and AI agents can structure experiments, approval decisions, evidence, and reproducibility without delegating scientific judgment
 13. **Agents in the EEG Affective-Computing Pipeline**: How tool-using agents can make the pipeline more reproducible and adaptive while preserving scientific and human control
+14. **Agents for Idea Exploration and Algorithm Development**: How researchers and agents can explore uncertain directions, learn from failed work, and govern research memory before locking an experiment
 
 Taken together, these topics point toward a broader open-world view of affective EEG: models should be temporally plausible, uncertainty-aware, capable of representing emotion beyond a flat benchmark label space, designed for human adaptation in closed-loop use, and explicit about the limits of their causal and interpretability claims.

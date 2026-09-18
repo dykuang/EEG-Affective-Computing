@@ -86,6 +86,7 @@
 	- [11.11 Multi-Label and Multi-Task Learning](11-special-topics/11-multi-label-and-multi-task-learning.md)
 	- [11.12 AI Collaboration Protocol](11-special-topics/12-AI-collaboration-protocol.md)
 	- [11.13 Agents in the EEG Affective-Computing Pipeline](11-special-topics/13-agents-in-the-eeg-affective-computing-pipeline.md)
+	- [11.14 Agents for Idea Exploration and Algorithm Development](11-special-topics/14-agents-for-idea-exploration-and-algorithm-development.md)
 - [12. Future Directions](12-Look-into-the-future/README.md)
 	- [12.1 BCI Foundation Systems](12-Look-into-the-future/01-bci-foundation-systems.md)
 	- [12.2 LLM-Inspired Techniques for EEG](12-Look-into-the-future/02-llm-inspired-techniques-for-eeg.md)
