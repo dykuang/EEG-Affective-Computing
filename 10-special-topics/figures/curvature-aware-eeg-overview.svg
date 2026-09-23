@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="500" viewBox="0 0 1080 500" role="img" aria-labelledby="title desc">
+  <title id="title">Curvature-aware EEG emotion recognition overview</title>
+  <desc id="desc">Two separate pipelines. EEG features form a sparse channel graph; its edge curvature guides an EEG encoder and predictions. Emotion categories form a label graph; its edge curvature shapes class costs. Predictions and class costs feed a structured objective evaluated on held-out data.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#52677b"/>
+    </marker>
+    <style>
+      .bg { fill: #ffffff; }
+      .heading { font: 700 23px system-ui, sans-serif; fill: #172a3a; }
+      .rowlabel { font: 700 17px system-ui, sans-serif; }
+      .box-title { font: 700 16px system-ui, sans-serif; fill: #172a3a; }
+      .box-sub { font: 13px system-ui, sans-serif; fill: #435668; }
+      .note { font: 14px system-ui, sans-serif; fill: #435668; }
+      .x-box { fill: #eef6ff; stroke: #3b78b2; stroke-width: 2; }
+      .y-box { fill: #fff5e9; stroke: #b97833; stroke-width: 2; }
+      .merge-box { fill: #edf7f2; stroke: #438666; stroke-width: 2; }
+      .line { fill: none; stroke: #52677b; stroke-width: 2.5; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="1080" height="500"/>
+  <text class="heading" x="40" y="48">Two graph spaces, one recognition task</text>
+  <text class="rowlabel" x="40" y="99" fill="#2e679d">X-space · EEG connections</text>
+  <text class="rowlabel" x="40" y="254" fill="#a56324">Y-space · emotion relations</text>
+
+  <rect class="x-box" x="40" y="119" width="220" height="84" rx="12"/>
+  <text class="box-title" x="58" y="151">EEG features</text>
+  <text class="box-sub" x="58" y="176">Training trials; DE or raw EEG</text>
+  <rect class="x-box" x="300" y="119" width="220" height="84" rx="12"/>
+  <text class="box-title" x="318" y="151">Sparse channel graph</text>
+  <text class="box-sub" x="318" y="176">Estimated connections</text>
+  <rect class="x-box" x="560" y="119" width="220" height="84" rx="12"/>
+  <text class="box-title" x="578" y="151">Edge curvature</text>
+  <text class="box-sub" x="578" y="176">Local groups and bridges</text>
+  <rect class="x-box" x="820" y="119" width="220" height="84" rx="12"/>
+  <text class="box-title" x="838" y="151">EEG encoder</text>
+  <text class="box-sub" x="838" y="176">Graph prior → predictions</text>
+  <path class="line" d="M 260 161 H 291"/>
+  <path class="line" d="M 520 161 H 551"/>
+  <path class="line" d="M 780 161 H 811"/>
+
+  <rect class="y-box" x="40" y="274" width="220" height="84" rx="12"/>
+  <text class="box-title" x="58" y="306">Emotion categories</text>
+  <text class="box-sub" x="58" y="331">Declared label relation</text>
+  <rect class="y-box" x="300" y="274" width="220" height="84" rx="12"/>
+  <text class="box-title" x="318" y="306">Label graph</text>
+  <text class="box-sub" x="318" y="331">Similarity or transition</text>
+  <rect class="y-box" x="560" y="274" width="220" height="84" rx="12"/>
+  <text class="box-title" x="578" y="306">Edge curvature</text>
+  <text class="box-sub" x="578" y="331">Category neighborhoods</text>
+  <rect class="y-box" x="820" y="274" width="220" height="84" rx="12"/>
+  <text class="box-title" x="838" y="306">Structured class cost</text>
+  <text class="box-sub" x="838" y="331">Distance-aware errors</text>
+  <path class="line" d="M 260 316 H 291"/>
+  <path class="line" d="M 520 316 H 551"/>
+  <path class="line" d="M 780 316 H 811"/>
+
+  <rect class="merge-box" x="330" y="415" width="420" height="61" rx="12"/>
+  <text class="box-title" x="540" y="440" text-anchor="middle">Joint learning and held-out evaluation</text>
+  <text class="box-sub" x="540" y="460" text-anchor="middle">Compare baseline · X only · Y only · X + Y</text>
+  <path class="line" d="M 1040 161 H 1055 V 445 H 750"/>
+  <path class="line" d="M 930 358 V 390 H 540 V 407"/>
+</svg>

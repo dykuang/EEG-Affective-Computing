@@ -78,6 +78,7 @@
 	- [LLM-Inspired Techniques for EEG](10-special-topics/10-llm-inspired-techniques-for-eeg.md)
 	- [Multi-Label and Multi-Task Learning](10-special-topics/11-multi-label-and-multi-task-learning.md)
 	- [AI Collaboration Protocol](10-special-topics/12-AI-collaboration-protocol.md)
+	- [Curvature-aware EEG Emotion Recognition](10-special-topics/13-curvature-aware-EEG-emotion-recognition.md)
 - [Future Directions](11-Look-into-the-future/README.md)
 	- [Foundation Models and Language-Like Applications](11-Look-into-the-future/01-foundation-models-and-language-like-applications.md)
 	- [BCI Agents and Human-Machine Partnership](11-Look-into-the-future/02-bci-agents-and-human-machine-partnership.md)
